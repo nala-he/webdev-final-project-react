@@ -1,0 +1,36 @@
+/** {*/
+/*    outline: 1px solid red;*/
+/*}*/
+
+.button {
+    border: 0;
+    border-radius: 12px;
+    padding: 8px;
+    color: white;
+    background-color: #FCB4B8;
+}
+
+.wd-button-active {
+    font-weight: bold;
+    background-color: #FA8B91;
+}
+
+.wd-button-width {
+    width: 80%;
+}
+
+.wd-text-size {
+    font-size: 16px;
+}
+
+.wd-logo {
+    width: 50%;
+    min-width: 25px;
+    border-radius: 10%;
+    ;
+}
+
+.wd-sitename {
+    font-weight: bold;
+    font-size: 18px;
+}

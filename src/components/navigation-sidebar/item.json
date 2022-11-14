@@ -1,0 +1,32 @@
+[
+  { "_id": 123,
+    "icon": "bi bi-house-door-fill",
+    "text": "Home",
+    "link": "/home"
+  },
+  { "_id": 124,
+    "icon": "bi bi-person",
+    "text": "Profile",
+    "link": "/profile"
+  },
+  { "_id": 125,
+    "icon": "bi bi-people-fill",
+    "text": "Friends",
+    "link": "/friends"
+  },
+  { "_id": 126,
+    "icon": "bi bi-save2",
+    "text": "Saved Recipes",
+    "link": "/savedrecipes"
+  },
+  { "_id": 127,
+    "icon": "bi bi-pencil-square",
+    "text": "Create Recipes",
+    "link": "/createrecipes"
+  },
+  { "_id": 128,
+    "icon": "bi bi-door-open",
+    "text": "Logout",
+    "link": "/logout"
+  }
+]

@@ -15,14 +15,20 @@ const NavigationSidebarItem = (
     return (
         <Link to={item.link} className={`${item.link.includes(active) 
                                            ? 'active' : ''}`}>
-            <button type="button" className={`button mt-1 mb-1 w-100
+            {/*Navigation Button Item*/}
+            <button type="button" className={`button mt-2 mb-2 w-100
             ${item.link.includes(active) ? 'wd-button-active' : ''}`}>
-                <div className="row row-cols-12">
+                <div className="row row-cols-12 pt-2 pb-2">
                     <div className="col-2 d-flex align-items-center">
                         <i className={`${item.icon}`}> </i>
                     </div>
                     <div className="col-10 d-flex align-items-start">
-                        <span className="d-none d-xl-block wd-text-size">{item.text}</span>
+                        <div className="d-none d-xl-block d-xxl-none">
+                            <span className="wd-text-size-small">{item.text}</span>
+                        </div>
+                        <div className="d-none d-xxl-block">
+                            <span className="wd-text-size">{item.text}</span>
+                        </div>
                     </div>
                 </div>
             </button>

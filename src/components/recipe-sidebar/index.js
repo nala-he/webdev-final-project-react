@@ -38,7 +38,7 @@ const RecipeSidebar = () => {
     }
 
     return(
-        <div className="m-2 me-3 wd-component-outline wd-bg-light-blue">
+        <div className="m-2 wd-component-outline wd-bg-light-blue">
             {/* Ingredients Header */}
             <h4 className="p-3 fw-bold text-black">Ingredients</h4>
             <div>

@@ -2,6 +2,12 @@
 /*    outline: 1px solid red;*/
 /*}*/
 
+.wd-component-outline {
+    border-radius: 12px;
+    outline: 3px solid #D9D9D9;
+    height: 800px;
+}
+
 .button {
     border: 0;
     border-radius: 12px;
@@ -23,14 +29,17 @@
     font-size: 18px;
 }
 
+.wd-text-size-small {
+    font-size: 15px;
+}
+
 .wd-logo {
     width: 50%;
     min-width: 25px;
     border-radius: 10%;
-    ;
 }
 
 .wd-sitename {
     font-weight: bold;
-    font-size: 18px;
+    font-size: 20px;
 }

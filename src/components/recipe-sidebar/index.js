@@ -40,7 +40,7 @@ const RecipeSidebar = () => {
     return(
         <div className="m-2 me-3 wd-component-outline wd-bg-light-blue">
             {/* Ingredients Header */}
-            <h5 className="p-3 fw-bold text-black">Ingredients</h5>
+            <h5 className="p-3 fw-bold text-black ">Ingredients</h5>
             <div>
                 <ul className="list-group">
                     {/* Current ingredients */}

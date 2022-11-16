@@ -40,7 +40,7 @@ const RecipeSidebar = () => {
     return(
         <div className="m-2 me-3 wd-component-outline wd-bg-light-blue">
             {/* Ingredients Header */}
-            <h5 className="p-3 fw-bold text-black ">Ingredients</h5>
+            <h4 className="p-3 fw-bold text-black">Ingredients</h4>
             <div>
                 <ul className="list-group">
                     {/* Current ingredients */}
@@ -57,7 +57,8 @@ const RecipeSidebar = () => {
                                type="checkbox"
                                defaultChecked={ingredient.checked}
                                onClick={checkClickHandler}/>
-                        <input className="form-control w-100"
+                        <input className="form-control w-100 wd-font-18"
+                               type="text"
                                onChange={ingredientChangeHandler}
                                placeholder="New Ingredient"
                                value={ingredient.title}/>
@@ -67,7 +68,7 @@ const RecipeSidebar = () => {
                     <div className="d-flex justify-content-center mt-5">
                         <button onClick={addIngredientClickHandler}
                                 type="button"
-                                className="wd-button-blue wd-width-80">
+                                className="wd-button-blue wd-width-80 wd-font-18">
                             Add Ingredient
                         </button>
                     </div>
@@ -76,7 +77,7 @@ const RecipeSidebar = () => {
                     <div className="d-flex justify-content-center mt-3 mb-3">
                         <button onClick={searchByIngredientsClickHandler}
                                 type="button"
-                                className="wd-button-blue wd-width-80">
+                                className="wd-button-blue wd-width-80 wd-font-18">
                             Search for Recipes by Ingredients
                         </button>
                     </div>

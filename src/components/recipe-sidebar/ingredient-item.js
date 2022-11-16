@@ -1,6 +1,7 @@
 import React from "react";
 import {useDispatch} from "react-redux";
 import {ingredientCheckedToggle} from "../../reducers/ingredients-reducer";
+import "./index.css";
 
 const IngredientItem = (
     {
@@ -22,7 +23,7 @@ const IngredientItem = (
             <input type="checkbox"
                    defaultChecked={ingredient.checked}
                    onChange={() => toggleChecked(ingredient._id)}/>
-            <span className="ps-2 text-decoration-underline">
+            <span className="ps-2 text-decoration-underline wd-font-18">
                 {ingredient.title}
             </span>
         </li>

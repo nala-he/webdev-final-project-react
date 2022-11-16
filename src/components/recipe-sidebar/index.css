@@ -19,11 +19,10 @@
     width: 80%;
 }
 
-.wd-font-16 {
-    font-size: 16px;
+.wd-font-18 {
+    font-size: 18px;
 }
 
-.wd-font-14 {
-    font-size: 14px;
+.form-control.wd-font-18 {
+    font-size: 18px;
 }
-

@@ -21,7 +21,7 @@ const NavigationSidebarItem = (
                     <div className="col-2 d-flex align-items-center">
                         <i className={`${item.icon}`}> </i>
                     </div>
-                    <div className="col-10 d-flex align-items-center justify-content-center">
+                    <div className="col-10 d-flex align-items-start">
                         <span className="d-none d-xl-block wd-text-size">{item.text}</span>
                     </div>
                 </div>

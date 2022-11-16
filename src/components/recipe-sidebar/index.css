@@ -1,0 +1,21 @@
+.wd-bg-light-blue {
+    background-color: #E6F0FA;
+}
+
+.wd-component-outline {
+    border-radius: 12px;
+    outline: 3px solid #D9D9D9;
+}
+
+.wd-button-blue {
+    background-color: #A4D0F9;
+    border: 0;
+    border-radius: 12px;
+    padding: 8px;
+    color: black;
+}
+
+.wd-width-80 {
+    width: 80%;
+}
+

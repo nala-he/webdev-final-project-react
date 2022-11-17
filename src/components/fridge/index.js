@@ -7,8 +7,9 @@ import HomeComponent from "../home-component";
 import RecipeSidebar from "../recipe-sidebar";
 import {HashRouter} from "react-router-dom";
 import ingredients from "../../reducers/ingredients-reducer";
+import recipesReducer from "../../reducers/recipes-reducer"
 
-const store = configureStore({reducer: {ingredients}});
+const store = configureStore({reducer: {ingredients, recipes: recipesReducer}});
 
 function Fridge() {
     return(

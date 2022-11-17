@@ -1,10 +1,12 @@
 import React from "react";
+import RecipeSummaryList from "../recipe-summary-list";
+import "./index.css"
 
 const HomeComponent = () => {
     return (
-            <div className="mt-2 mb-2">
-                <h6>Home Component</h6>
-            </div>
+        <div className="m-3 wd-border">
+            <RecipeSummaryList/>
+        </div>
     );
 };
 export default HomeComponent;

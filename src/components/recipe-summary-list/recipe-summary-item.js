@@ -24,7 +24,6 @@ const RecipeSummaryItem = (
                 <div>
                     <span className="text-dark fw-bolder">{recipe.dishName} </span>
                     <span className="col text-muted"> @{recipe.author} </span>
-                    {/* <i className="bi bi-patch-check-fill"></i> */}
                 </div>
                 <span className="text-dark">{recipe.intro}</span>
                 <img className="wd-recipe-image mt-3" src={`/images/${recipe.recipePic}`} alt="recipePic"/>

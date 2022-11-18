@@ -1,0 +1,26 @@
+[
+    {
+      "_id": "123",
+      "author": "masterChef",
+      "avatar": "emptyAvatar.png",
+      "dishName": "Mashed Potato",
+      "intro": "Make southern style mashed potatos at home!",
+      "recipePic": "mashed_potato.jpg"
+    },
+    {
+      "_id": "234",
+      "author": "ItalianChef",
+      "avatar": "emptyAvatar.png",
+      "dishName": "Pasta",
+      "intro": "Creamy pasta!",
+      "recipePic": "mashed_potato.jpg"
+    },
+    {
+        "_id": "345",
+        "author": "dessertLuver",
+        "avatar": "emptyAvatar.png",
+        "dishName": "Cereal Icecream",
+        "intro": "Cereal flavored ice cream!",
+        "recipePic": "mashed_potato.jpg"
+    }
+]

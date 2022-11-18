@@ -11,11 +11,11 @@ const NavigationSidebar = () => {
     let active = (paths[1] !== '') ? paths[1] : 'home';
 
     return (
-            <div className="mt-2 border rounded-3 wd-component-outline">
+            <div className="mt-2 wd-component-outline">
                 {/*Logo and sitename*/}
                 <div className="m-2 row row-cols-12">
                         <div className="col-2 d-flex align-items-center justify-content-center">
-                            <img src="/images/logo.jpg" className="wd-logo"/>
+                            <img src="/images/logo.png" className="wd-logo"/>
                         </div>
                         <div className="col-10 d-flex align-items-center justify-content-center">
                             <span className="d-none d-xl-block wd-sitename text-black">

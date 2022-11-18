@@ -18,7 +18,7 @@ const NavigationSidebarItem = (
             {/*Navigation Button Item*/}
             <button type="button" className={`button mt-2 mb-2 w-100
             ${item.link.includes(active) ? 'wd-button-active' : ''}`}>
-                <div className="row row-cols-12 pt-2 pb-2">
+                <div className="row row-cols-12 pt-1 pb-1">
                     <div className="col-2 d-flex align-items-center">
                         <i className={`${item.icon}`}> </i>
                     </div>

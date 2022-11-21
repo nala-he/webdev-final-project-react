@@ -17,10 +17,10 @@ function Fridge() {
             <HashRouter>
                 <div className="container">
                     <div className="row">
-                        <div className="col-2 col-sm-2 col-md-2 col-lg-1 col-xl-2 mt-2">
+                        <div className="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2 mt-2">
                             <NavigationSidebar/>
                         </div>
-                        <div className="col-10 col-sm-10 col-md-10 col-lg-8 col-xl-7"
+                        <div className="col-10 col-sm-10 col-md-10 col-lg-7 col-xl-7"
                              style={{"position": "relative"}}>
                             <Routes>
                                 <Route path="/" element={<HomeComponent/>}/>

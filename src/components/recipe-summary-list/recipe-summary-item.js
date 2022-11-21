@@ -26,16 +26,31 @@ const RecipeSummaryItem = (
                     <span className="col text-muted"> @{recipe.author} </span>
                 </div>
                 <span className="text-dark">{recipe.intro}</span>
-                <img className="wd-recipe-image mt-3" src={`/images/${recipe.recipePic}`} alt="recipePic"/>
+                <div className="d-flex justify-content-center">
+                    <img className="wd-recipe-image mt-2 d-none d-md-block"
+                         src={`/images/${recipe.recipePic}`} alt="recipePic"/>
+                </div>
             </div>
             <div className="row">
                 <div className="btn col-5 text-dark">
-                    <i className="bi bi-bookmark text-dark p-2"></i>
-                    <span className="">Save Recipe</span>
+                    <div className="d-block d-xl-none">
+                        <i className="bi bi-bookmark text-dark p-2"></i>
+                        <span className="wd-text-md">Save Recipe</span>
+                    </div>
+                    <div className="d-none d-xl-block">
+                        <i className="bi bi-bookmark text-dark p-2"></i>
+                        <span>Save Recipe</span>
+                    </div>
                 </div>
                 <div className="btn col-6 text-dark">
-                    <i className="bi bi-check-square text-dark p-2"></i>
-                    <span className="">Follow Author</span>
+                    <div className="d-block d-xl-none">
+                        <i className="bi bi-check-square text-dark p-2"></i>
+                        <span className="wd-text-md">Follow Author</span>
+                    </div>
+                    <div className="d-none d-xl-block">
+                        <i className="bi bi-check-square text-dark p-2"></i>
+                        <span>Follow Author</span>
+                    </div>
                 </div>
             </div> 
         </div>

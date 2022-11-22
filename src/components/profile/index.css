@@ -11,7 +11,19 @@
     height: 800px;
 }
 
+.nav-link {
+    color: black;
+}
 
+.nav-item>a:hover {
+    color: black;
+}
+
+/*code to change background color*/
+.navbar-nav>.active>a {
+    background-color: #C0C0C0;
+    color: black;
+}
 
 .wd-avatar {
     width: 170px;

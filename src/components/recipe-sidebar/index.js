@@ -57,7 +57,7 @@ const RecipeSidebar = () => {
                                type="checkbox"
                                defaultChecked={ingredient.checked}
                                onClick={checkClickHandler}/>
-                        <input className="form-control w-100 wd-font-18"
+                        <input className="form-control w-100 wd-font-18 text-dark"
                                type="text"
                                onChange={ingredientChangeHandler}
                                placeholder="New Ingredient"

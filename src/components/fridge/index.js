@@ -8,6 +8,7 @@ import RecipeSidebar from "../recipe-sidebar";
 import {HashRouter} from "react-router-dom";
 import ingredients from "../../reducers/ingredients-reducer";
 import recipesReducer from "../../reducers/recipes-reducer"
+import FriendsComponent from "../friends-component";
 
 const store = configureStore({reducer: {ingredients, recipes: recipesReducer}});
 
@@ -25,6 +26,7 @@ function Fridge() {
                             <Routes>
                                 <Route path="/" element={<HomeComponent/>}/>
                                 <Route path="/home" element={<HomeComponent/>}/>
+                                <Route path="/friends/*" element={<FriendsComponent/>}/>
                             </Routes>
                         </div>
                         <div className="d-none d-lg-block col-lg-3 col-xl-3 mt-2">

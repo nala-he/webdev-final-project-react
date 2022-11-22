@@ -1,0 +1,41 @@
+/** {*/
+/*    outline: 1px solid red;*/
+/*}*/
+
+.wd-profile-background {
+    border-radius: 12px;
+    border-style: solid;
+    border-width: 1.5px;
+    border-color: #c0c0bc;
+    background-color: #F3F1EB;
+    height: 800px;
+}
+
+
+
+.wd-avatar {
+    width: 170px;
+    height: 150px;
+    border-radius: 20px;
+}
+
+.wd-profile-text {
+    font-size: 25px;
+    color: black;
+}
+
+.wd-edit-button {
+    font-size: 20px;
+    color: black;
+    background-color: white;
+    border: none;
+}
+
+.wd-bio {
+    font-size: 23px;
+    color: black;
+    background-color: white;
+}
+
+
+

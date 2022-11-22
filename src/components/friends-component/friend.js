@@ -39,7 +39,7 @@ const Friend = ({friend}) => {
                     </Link>
                     {
                         friend.recipes &&
-                        <Link to={`/profile/${friend._id}/recipes`}>
+                        <Link to={`/profile/${friend._id}/my-recipes`}>
                             <button className="btn wd-btn-grey rounded-4 m-1 text-dark fw-bold">
                                 Recipes
                             </button>

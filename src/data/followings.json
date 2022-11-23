@@ -1,0 +1,54 @@
+[
+  {
+    "_id": "123",
+    "username": "guyfieri",
+    "firstName": "Guy",
+    "lastName": "Fieri",
+    "type": "REG USER",
+    "avatar": "guy.jpg"
+  },
+  {
+    "_id": "345",
+    "username": "gr123",
+    "firstName": "Gordon",
+    "lastName": "RamseyRamseyRamsey",
+    "type": "PRO CHEF",
+    "avatar": "gordon.jpg",
+    "recipes": 8934
+  },
+  {
+    "_id": "234",
+    "username": "rr",
+    "firstName": "Rachael",
+    "lastName": "Ray",
+    "type": "RECIPE CREATOR",
+    "avatar": "rachael.jpg",
+    "recipes": 3489
+  },
+  {
+    "_id": "789",
+    "username": "roychoi",
+    "firstName": "Roy",
+    "lastName": "Choi",
+    "type": "PRO CHEF",
+    "avatar": "roy.jpg",
+    "recipes": 589
+  },
+  {
+    "_id": "456",
+    "username": "bobbyflay",
+    "firstName": "Bobby",
+    "lastName": "Flay",
+    "type": "REG USER",
+    "avatar": "bobby.jpg"
+  },
+  {
+    "_id": "567",
+    "username": "martha",
+    "firstName": "Martha",
+    "lastName": "Stewart",
+    "type": "RECIPE CREATOR",
+    "avatar": "martha.jpg",
+    "recipes": 99
+  }
+]

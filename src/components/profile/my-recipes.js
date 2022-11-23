@@ -1,4 +1,4 @@
-const MyRecipes = ({user}) => {
+const MyRecipes = () => {
 
 };
 export default MyRecipes;

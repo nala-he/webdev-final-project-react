@@ -6,11 +6,13 @@ import {useLocation} from "react-router";
 import FriendsList from "./friends-list";
 import followings from "../../data/followings.json";
 import followers from "../../data/followers.json";
+import {useDispatch, useSelector} from "react-redux";
 
 const FriendsComponent = () => {
+    let loggedIn = useSelector(state => state.profile);
     const {pathname} = useLocation();
     const paths = pathname.split('/');
-    const friend = paths[2];
+    const friend = paths[3];
 
     return(
         <div className="m-3">
@@ -27,22 +29,24 @@ const FriendsComponent = () => {
                     <li className="nav-item">
                         <Link className={`nav-link text-dark fs-5 
                                         ${friend === undefined ? 'active fw-bold' : ''}`}
-                              to="/friends">
+                              to={`/friends/${loggedIn._id}`}>
                             Following
                         </Link>
                     </li>
                     <li className="nav-item">
                         <Link className={`nav-link text-dark fs-5 
                                         ${friend === 'followers' ? 'active fw-bold' : ''}`}
-                              to="/friends/followers">
+                              to={`/friends/${loggedIn._id}/followers`}>
                             Followers
                         </Link>
                     </li>
                 </ul>
                 <div className="border border-top-0 ps-3 pe-3 pt-1 pb-1">
                     <Routes>
-                        <Route path="/" element={<FriendsList friends={followings}/>}/>
-                        <Route path="/followers" element={<FriendsList friends={followers}/>}/>
+                        <Route path="/"
+                               element={<FriendsList friends={followings}/>}/>
+                        <Route path="/followers"
+                               element={<FriendsList friends={followers}/>}/>
                     </Routes>
                 </div>
             </div>

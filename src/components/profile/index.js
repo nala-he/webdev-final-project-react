@@ -3,13 +3,16 @@ import {Link} from "react-router-dom";
 import {Routes, Route} from "react-router";
 import {useLocation} from "react-router";
 import ProfileDetails from "./profile-details";
+import FriendProfileDetails from "./friend-profile-details";
 import MyRecipes from "./my-recipes";
+import FriendRecipes from "./friend-recipes";
 import EditProfile from "./edit-profile";
 import "./index.css";
 import {useSelector} from "react-redux";
 
 const Profile = () => {
-    const profile = useSelector(state => state.profile);
+    let loggedIn = useSelector(state => state.profile);
+    let friend = useSelector(state => state.friendProfile);
     const {pathname} = useLocation();
     const paths = pathname.split('/');
     let active = paths.includes('my-recipes') ? 'my-recipes' : 'profile';
@@ -19,7 +22,7 @@ const Profile = () => {
             <ul className="nav nav-tabs">
                 <li className="nav-item">
                     <Link className={`nav-link text-dark ${active === 'profile' ? 'active' : ''}`}
-                          to={`/profile/${profile._id}`}>
+                          to={`/profile/${loggedIn._id}/*`}>
                         <h5 className={`${active === 'profile' ? 'fw-bolder' : ''}`}>
                             Profile
                         </h5>
@@ -28,7 +31,7 @@ const Profile = () => {
                 <li className="nav-item">
                     <Link className={`nav-link text-dark ${active === 'my-recipes' ? 'active'
                     : ''}`}
-                          to={`/profile/${profile._id}/my-recipes`}>
+                          to={`/profile/${loggedIn._id}/my-recipes/*`}>
                         <h5 className={`${active === 'my-recipes' ? 'fw-bolder' : ''}`}>
                             My Recipes
                         </h5>
@@ -36,16 +39,14 @@ const Profile = () => {
                 </li>
             </ul>
             <div>
-                {/*{*/}
-                {/*    active === 'profile' && <ProfileDetails/>*/}
-                {/*}*/}
-                {/*{*/}
-                {/*    active === 'my-recipes' && <MyRecipes/>*/}
-                {/*}*/}
                 <Routes>
                     <Route index element={<ProfileDetails/>}/>
-                    <Route path="./my-recipes" element={<MyRecipes/>}/>
-                    <Route path="./edit" element={<EditProfile/>}/>
+                    <Route path="/my-recipes" element={<MyRecipes/>}/>
+                    <Route path="/edit" element={<EditProfile/>}/>
+                    <Route path={`/friends/${friend._id}`}
+                           element={<FriendProfileDetails/>}/>
+                    <Route path={`/friends/${friend._id}`}
+                           element={<FriendRecipes/>}/>
                 </Routes>
             </div>
         </div>

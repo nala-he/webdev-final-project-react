@@ -11,10 +11,15 @@ import {HashRouter} from "react-router-dom";
 import ingredients from "../../reducers/ingredients-reducer";
 import recipesReducer from "../../reducers/recipes-reducer"
 import profileReducer from "../../reducers/profile-reducer";
+import friendProfileReducer from "../../reducers/friend-profile-reducer";
 import FriendsComponent from "../friends-component";
 
-const store = configureStore({reducer: {ingredients, recipes: recipesReducer,
-        profile: profileReducer}});
+const store = configureStore({reducer: {
+            ingredients, 
+            recipes: recipesReducer, 
+            profile: profileReducer, 
+            friendProfile: friendProfileReducer}
+});
 
 function Fridge() {
     return(
@@ -30,9 +35,9 @@ function Fridge() {
                             <Routes>
                                 <Route path="/" element={<HomeComponent/>}/>
                                 <Route path="/home" element={<HomeComponent/>}/>
-                                <Route path="/profile/:uid" element={<Profile/>}/>
+                                <Route path="/profile/:uid/*" element={<Profile/>}/>
                                 <Route path="/profile/:uid/edit" element={<EditProfile/>}/>
-                                <Route path="/friends/:uid" element={<FriendsComponent/>}/>
+                                <Route path="/friends/:uid/*" element={<FriendsComponent/>}/>
                             </Routes>
                         </div>
                         <div className="d-none d-lg-block col-lg-3 col-xl-3 mt-2">

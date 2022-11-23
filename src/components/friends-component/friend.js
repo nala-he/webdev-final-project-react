@@ -2,13 +2,19 @@ import React from "react";
 import "./index.css";
 import {Link} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
-import {updateProfile} from "../../reducers/profile-reducer";
+import {updateFriendProfile} from "../../reducers/friend-profile-reducer";
+import {useLocation} from "react-router";
 
 const Friend = ({friend}) => {
+    let loggedIn = useSelector(state => state.profile);
     const dispatch = useDispatch();
     const profileClickHandler = () => {
-        dispatch(updateProfile(friend));
+        dispatch(updateFriendProfile(friend));
     }
+
+    const {pathname} = useLocation();
+    const paths = pathname.split('/');
+    const last = paths[3];
 
     return (
         <div className="flex-fill col-5 col-lg-5 col-xl-3 m-2 border border-2
@@ -39,7 +45,9 @@ const Friend = ({friend}) => {
             {/* buttons (profile/recipes) */}
             <div className="mt-auto">
                 <div className="d-flex justify-content-center mt-1 mb-2">
-                    <Link to={`/profile/${friend._id}`}>
+                    <Link to={`${last !== "followers" 
+                              ? `../profile/${loggedIn._id}/friends/${friend._id}`
+                              : `../../profile/${loggedIn._id}/friends/${friend._id}`}`}>
                         <button className="btn wd-btn-grey rounded-4 m-1 text-dark fw-bold wd-font-14"
                                 onClick={profileClickHandler}>
                             Profile
@@ -47,7 +55,9 @@ const Friend = ({friend}) => {
                     </Link>
                     {
                         friend.recipes &&
-                        <Link to={`/profile/${friend._id}/my-recipes`}>
+                        <Link to={`${last !== "followers" 
+                        ? `../profile/${loggedIn._id}/my-recipes/friends/${friend._id}`
+                        : `../../profile/${loggedIn._id}/my-recipes/friends/${friend._id}`}`}>
                             <button className="btn wd-btn-grey rounded-4 m-1 text-dark fw-bold wd-font-14">
                                 Recipes
                             </button>

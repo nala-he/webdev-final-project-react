@@ -77,12 +77,18 @@ const EditProfile = () => {
                             {/*       }}*/}
                             {/*       value={editedProfile.type}>*/}
                             {/*</form>*/}
-                            <select className="form-select" aria-label="Default select example">
-                                <option value="REG USER" selected>
+                            <select className="form-select"
+                                    onChange={(e) => {
+                                setEditedProfile({...editedProfile, type: e.target.value})
+                            }}
+                                    value={editedProfile.type}>
+                                <option value="REG USER">
                                     REG USER</option>
                                 {/*{editedProfile.type === "REG USER" && selected}*/}
-                                <option value="RECIPE CREATOR">RECIPE CREATOR</option>
-                                <option value="PRO CHEF">PRO CHEF</option>
+                                <option value="RECIPE CREATOR">
+                                    RECIPE CREATOR</option>
+                                <option value="PRO CHEF">
+                                    PRO CHEF</option>
                             </select>
                         </div>
                     </div>

@@ -3,9 +3,7 @@ import {Link} from "react-router-dom";
 import {Routes, Route, useLocation} from "react-router";
 import {useSelector} from "react-redux";
 import ProfileDetails from "./profile-details";
-import FriendProfileDetails from "./friend-profile-details";
 import MyRecipes from "./my-recipes";
-import FriendRecipes from "./friend-recipes";
 import EditProfile from "./edit-profile";
 import "./index.css";
 

@@ -33,14 +33,14 @@ const Friend = ({friend}) => {
             <div className="mt-auto">
                 <div className="d-flex justify-content-center mt-1 mb-2">
                     <Link to={`/profile/${friend._id}`}>
-                        <button className="btn wd-btn-grey rounded-4 m-1 text-dark fw-bold">
+                        <button className="btn wd-btn-grey rounded-4 m-1 text-dark fw-bold wd-font-14">
                             Profile
                         </button>
                     </Link>
                     {
                         friend.recipes &&
                         <Link to={`/profile/${friend._id}/my-recipes`}>
-                            <button className="btn wd-btn-grey rounded-4 m-1 text-dark fw-bold">
+                            <button className="btn wd-btn-grey rounded-4 m-1 text-dark fw-bold wd-font-14">
                                 Recipes
                             </button>
                         </Link>

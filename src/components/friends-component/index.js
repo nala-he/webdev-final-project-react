@@ -39,10 +39,12 @@ const FriendsComponent = () => {
                         </Link>
                     </li>
                 </ul>
-                <Routes>
-                    <Route path="/" element={<FriendsList friends={followings}/>}/>
-                    <Route path="/followers" element={<FriendsList friends={followers}/>}/>
-                </Routes>
+                <div className="border border-top-0 ps-3 pe-3 pt-1 pb-1">
+                    <Routes>
+                        <Route path="/" element={<FriendsList friends={followings}/>}/>
+                        <Route path="/followers" element={<FriendsList friends={followers}/>}/>
+                    </Routes>
+                </div>
             </div>
         </div>
     );

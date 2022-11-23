@@ -3,51 +3,46 @@
 /*}*/
 
 .wd-profile-background {
-    border-radius: 12px;
-    border-style: solid;
-    border-width: 1.5px;
-    border-color: #c0c0bc;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
     background-color: #F3F1EB;
-    height: 800px;
-}
-
-.nav-link {
-    color: black;
-}
-
-.nav-item>a:hover {
-    color: black;
-}
-
-/*code to change background color*/
-.navbar-nav>.active>a {
-    background-color: #C0C0C0;
-    color: black;
+    height: 750px;
 }
 
 .wd-avatar {
-    width: 170px;
+    width: 90%;
+    margin-right: 3px;
     height: 150px;
     border-radius: 20px;
 }
 
 .wd-profile-text {
-    font-size: 25px;
+    font-size: 20px;
     color: black;
 }
 
 .wd-edit-button {
-    font-size: 20px;
+    font-size: 15px;
     color: black;
     background-color: white;
     border: none;
 }
 
 .wd-bio {
-    font-size: 23px;
+    font-size: 18px;
     color: black;
     background-color: white;
+    height: 300px;
 }
 
+.wd-text-sm {
+    font-size: 15px;
+}
 
+.wd-profile-buttons {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    list-style-type: none;
+}
 

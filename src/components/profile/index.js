@@ -11,7 +11,7 @@ const Profile = () => {
 
     return (
         <div className="mt-3">
-            <ul className="nav nav-pills">
+            <ul className="nav nav-tabs">
                 <li className="nav-item">
                     <Link className={`nav-link text-dark ${active === 'profile' ? 'active' : ''}`}
                           to="/profile">
@@ -30,7 +30,9 @@ const Profile = () => {
                     </Link>
                 </li>
             </ul>
-            <ProfileDetails/>
+            <div className="wd-profile-background">
+                <ProfileDetails/>
+            </div>
         </div>
     );
 }

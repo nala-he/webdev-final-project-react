@@ -5,12 +5,15 @@ import {Provider} from "react-redux";
 import NavigationSidebar from "../navigation-sidebar";
 import HomeComponent from "../home-component";
 import RecipeSidebar from "../recipe-sidebar";
-import Profile from "../profile"
+import Profile from "../profile";
+import EditProfile from "../profile/edit-profile";
 import {HashRouter} from "react-router-dom";
 import ingredients from "../../reducers/ingredients-reducer";
 import recipesReducer from "../../reducers/recipes-reducer"
+import profileReducer from "../../reducers/profile-reducer";
 
-const store = configureStore({reducer: {ingredients, recipes: recipesReducer}});
+const store = configureStore({reducer: {ingredients, recipes: recipesReducer,
+        profile: profileReducer}});
 
 function Fridge() {
     return(
@@ -26,7 +29,9 @@ function Fridge() {
                             <Routes>
                                 <Route path="/" element={<HomeComponent/>}/>
                                 <Route path="/home" element={<HomeComponent/>}/>
-                                <Route path="/profile/*" element={<Profile/>}/>
+                                <Route path="/profile/:uid" element={<Profile/>}/>
+                                <Route path="/profile/:uid/edit" element={<EditProfile/>}/>
+
                             </Routes>
                         </div>
                         <div className="d-none d-lg-block col-lg-3 col-xl-3 mt-2">

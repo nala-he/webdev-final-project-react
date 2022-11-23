@@ -9,6 +9,12 @@
     height: 750px;
 }
 
+.wd-edit-background {
+    border-radius: 20px;
+    background-color: #F3F1EB;
+    height: 800px;
+}
+
 .wd-avatar {
     width: 90%;
     margin-right: 3px;
@@ -46,3 +52,20 @@
     list-style-type: none;
 }
 
+.wd-icon-large {
+    font-size: 30px;
+}
+
+.wd-input-width {
+    width: 200px;
+}
+
+.wd-filter {
+    filter: opacity(30%);
+}
+
+.wd-camera {
+    font-size: 50px;
+    background: transparent;
+    right: 60%;
+}

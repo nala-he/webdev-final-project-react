@@ -1,8 +1,15 @@
 import React from "react";
 import "./index.css";
 import {Link} from "react-router-dom";
+import {useDispatch, useSelector} from "react-redux";
+import {updateProfile} from "../../reducers/profile-reducer";
 
 const Friend = ({friend}) => {
+    const dispatch = useDispatch();
+    const profileClickHandler = () => {
+        dispatch(updateProfile(friend));
+    }
+
     return (
         <div className="flex-fill col-5 col-lg-5 col-xl-3 m-2 border border-2
                         rounded-4 wd-bg-beige d-flex flex-column">
@@ -33,7 +40,8 @@ const Friend = ({friend}) => {
             <div className="mt-auto">
                 <div className="d-flex justify-content-center mt-1 mb-2">
                     <Link to={`/profile/${friend._id}`}>
-                        <button className="btn wd-btn-grey rounded-4 m-1 text-dark fw-bold wd-font-14">
+                        <button className="btn wd-btn-grey rounded-4 m-1 text-dark fw-bold wd-font-14"
+                                onClick={profileClickHandler}>
                             Profile
                         </button>
                     </Link>

@@ -15,9 +15,10 @@ const ProfileDetails = () => {
                 </div>
                 <div className="col-6">
                     <div>
-                        <span className="fw-bold wd-profile-text">{profile.userName} </span>
+                        <span className="fw-bold wd-profile-text">
+                            {profile.firstName} {profile.lastName}</span>
                     </div>
-                    <div className="wd-profile-text">@{profile.handle}</div>
+                    <div className="wd-profile-text">@{profile.username}</div>
                     <div className="wd-profile-text">{profile.type}</div>
                 </div>
                 <div className="col-2">
@@ -37,21 +38,26 @@ const ProfileDetails = () => {
             <div className="m-3">
                 <ul className="p-0 wd-profile-buttons">
                     <li>
-                        <button type="button"
-                                className="wd-edit-button border rounded-3
-                            ps-3 pe-3 pt-1 pb-1 ">
-                            <div className="wd-text-sm">{profile.followers}</div>
-                            <div className="wd-text-sm">Followers</div>
-                        </button>
+                        <Link to="/friends">
+                            <button type="button"
+                                    className="wd-edit-button border rounded-3
+                            ps-3 pe-3 pt-1 pb-1">
+                                <div className="wd-text-sm">{profile.followings}</div>
+                                <div className="wd-text-sm">Following</div>
+                            </button>
+                        </Link>
                     </li>
                     <li>
-                        <button type="button"
-                                className="wd-edit-button border rounded-3
-                            ps-3 pe-3 pt-1 pb-1">
-                            <div className="wd-text-sm">{profile.followings}</div>
-                            <div className="wd-text-sm">Followings</div>
-                        </button>
+                        <Link to="/friends/followers">
+                            <button type="button"
+                                    className="wd-edit-button border rounded-3
+                            ps-3 pe-3 pt-1 pb-1 ">
+                                <div className="wd-text-sm">{profile.followers}</div>
+                                <div className="wd-text-sm">Followers</div>
+                            </button>
+                        </Link>
                     </li>
+
                     <li>
                         <button type="button"
                                 className="wd-edit-button border rounded-3

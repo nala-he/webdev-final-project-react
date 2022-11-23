@@ -32,7 +32,7 @@ function Fridge() {
                                 <Route path="/home" element={<HomeComponent/>}/>
                                 <Route path="/profile/:uid" element={<Profile/>}/>
                                 <Route path="/profile/:uid/edit" element={<EditProfile/>}/>
-                                <Route path="/friends/*" element={<FriendsComponent/>}/>
+                                <Route path="/friends/:uid" element={<FriendsComponent/>}/>
                             </Routes>
                         </div>
                         <div className="d-none d-lg-block col-lg-3 col-xl-3 mt-2">

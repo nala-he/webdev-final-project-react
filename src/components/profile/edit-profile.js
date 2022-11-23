@@ -41,44 +41,56 @@ const EditProfile = () => {
                         <img className="wd-avatar m-3 wd-filter"
                              src={profile.avatar !== '' ? `/images/${profile.avatar}`
                                                         : `/images/emptyAvatar.png`}/>
-                        <i className="bi bi-camera wd-camera position-relative"></i>
+                        {/*<i className="bi bi-camera wd-camera position-relative"></i>*/}
                     </div>
                 </div>
                 <div className="col-6 position-relative d-flex align-items-center">
                     <div>
                         <div className="m-1">
-                            <input type="text" placeholder="Username" className="wd-input-width"
+                            <input type="text" class="form-control" placeholder="Firstname"
                                    onChange={(e) => {
-                                       setEditedProfile({...editedProfile, userName: e.target.value})
+                                       setEditedProfile({...editedProfile, firstName: e.target.value})
                                    }}
-                                   value={editedProfile.userName}>
+                                   value={editedProfile.firstName}>
                             </input>
                         </div>
                         <div className="m-1">
-                            <span>@</span>
-                            <input type="text" placeholder="Handle"
+                            <input type="text" class="form-control" placeholder="Lastname"
                                    onChange={(e) => {
-                                       setEditedProfile({...editedProfile, handle: e.target.value})
+                                       setEditedProfile({...editedProfile, lastName: e.target.value})
                                    }}
-                                   value={`${editedProfile.handle}`}>
+                                   value={editedProfile.lastName}>
                             </input>
                         </div>
                         <div className="m-1">
-                            <input type="text" placeholder="Username" className="wd-input-width"
+                            <input type="text" placeholder="Handle" class="form-control"
                                    onChange={(e) => {
-                                       setEditedProfile({...editedProfile, type: e.target.value})
+                                       setEditedProfile({...editedProfile, username: e.target.value})
                                    }}
-                                   value={editedProfile.type}>
+                                   value={`${editedProfile.username}`}>
                             </input>
+                        </div>
+                        <div className="m-1">
+                            {/*<form type="drop-down" placeholder="Username" className="wd-input-width"*/}
+                            {/*       onChange={(e) => {*/}
+                            {/*           setEditedProfile({...editedProfile, type: e.target.value})*/}
+                            {/*       }}*/}
+                            {/*       value={editedProfile.type}>*/}
+                            {/*</form>*/}
+                            <select className="form-select" aria-label="Default select example">
+                                <option value="REG USER" selected>
+                                    REG USER</option>
+                                {/*{editedProfile.type === "REG USER" && selected}*/}
+                                <option value="RECIPE CREATOR">RECIPE CREATOR</option>
+                                <option value="PRO CHEF">PRO CHEF</option>
+                            </select>
                         </div>
                     </div>
                 </div>
-                <div className="col-2">
-
-                </div>
             </div>
             <div className="m-3">
-                <textarea className="p-3 border w-100 rounded-3 wd-bio overflow-auto"
+                <textarea className="p-3 border w-100 rounded-3 overflow-auto"
+                          class="form-control" rows="8"
                           onChange={(e) => {
                               setEditedProfile({...editedProfile, bio: e.target.value})
                           }}

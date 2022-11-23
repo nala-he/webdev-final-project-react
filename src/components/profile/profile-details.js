@@ -1,9 +1,14 @@
 import React from "react";
 import {Link} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
+import {useLocation} from "react-router";
 
 const ProfileDetails = () => {
-    const profile = useSelector(state => state.profile);
+    let loggedIn = useSelector(state => state.profile);
+    let friend = useSelector(state => state.friendProfile);
+    const {pathname} = useLocation();
+    const paths = pathname.split('/');
+    let profile = paths.includes(loggedIn._id) ? loggedIn : friend;
     
     return (
         <div className="m-0 wd-profile-background">
@@ -24,13 +29,15 @@ const ProfileDetails = () => {
                 </div>
                 <div className="col-2">
                     {/*Profile edit button*/}
-                    <Link to="./edit">
-                        <button type="button"
-                                className="wd-edit-button border rounded-3 float-end me-3
-                            ps-3 pe-3 pt-1 pb-1">
-                            Edit
-                        </button>
-                    </Link>
+                    {profile._id === loggedIn._id &&
+                         <Link to="./edit">
+                             <button type="button"
+                                     className="wd-edit-button border rounded-3 float-end me-3
+                                ps-3 pe-3 pt-1 pb-1">
+                                 Edit
+                             </button>
+                         </Link>
+                    }
                 </div>
             </div>
             <div className="m-3">

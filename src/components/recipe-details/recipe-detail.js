@@ -1,6 +1,7 @@
 import React from "react";
 import "./index.css";
 import IngredientsList from "./ingredients-list";
+import DirectionsList from "./directions-list";
 
 const RecipeDetail = ({recipe}) => {
     return (
@@ -59,7 +60,7 @@ const RecipeDetail = ({recipe}) => {
 
             {/* directions */}
             <div className="row wd-border m-4">
-
+                <DirectionsList directions={recipe.directions}/>
             </div>
         </div>
     );

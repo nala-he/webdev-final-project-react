@@ -12,6 +12,9 @@ const SavedRecipesList = () => {
                     className="form-control rounded-pill ps-5 text-dark"/>
             <i className="bi bi-search position-absolute wd-nudge-up text-dark"></i>
         </div>
+        <div className="ms-4 text-dark fw-bold">
+            <span>Total Saved Recipes: 3</span>
+        </div>
       {
         recipes.map(recipe =>
           <SavedRecipeItem key={recipe._id} recipe={recipe}/> )

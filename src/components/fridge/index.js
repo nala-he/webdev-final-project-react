@@ -9,6 +9,7 @@ import {HashRouter} from "react-router-dom";
 import ingredients from "../../reducers/ingredients-reducer";
 import recipesReducer from "../../reducers/recipes-reducer"
 import FriendsComponent from "../friends-component";
+import SavedRecipes from "../saved-recipes/saved-recipes";
 
 const store = configureStore({reducer: {ingredients, recipes: recipesReducer}});
 
@@ -27,6 +28,7 @@ function Fridge() {
                                 <Route path="/" element={<HomeComponent/>}/>
                                 <Route path="/home" element={<HomeComponent/>}/>
                                 <Route path="/friends/*" element={<FriendsComponent/>}/>
+                                <Route path="/savedrecipes/*" element={<SavedRecipes/>}/>
                             </Routes>
                         </div>
                         <div className="d-none d-lg-block col-lg-3 col-xl-3 mt-2">

@@ -2,6 +2,7 @@ import React from "react";
 import "./index.css";
 import IngredientsList from "./ingredients-list";
 import DirectionsList from "./directions-list";
+import NutritionalFacts from "./nutritional-facts";
 
 const RecipeDetail = ({recipe}) => {
     return (
@@ -25,14 +26,14 @@ const RecipeDetail = ({recipe}) => {
             </div>
 
             {/* recipe pic and recipe summary/times */}
-            <div className="d-flex align-items-center justify-content-between flex-wrap">
+            <div className="d-flex align-items-center justify-content-center flex-wrap">
                 {/* recipe pic */}
-                <div className="ps-4">
+                <div className="ms-1 me-2">
                     <img src={`/images/${recipe.recipePic}`}
                          className="wd-recipe-pic"/>
                 </div>
                 {/* recipe summary/times */}
-                <div className="wd-border text-dark ms-2 me-4 wd-width-45">
+                <div className="wd-border text-dark ms-3 me-2 wd-width-45">
                     <ul className="p-3 pb-0">
                         <li className="list-group-item">
                             <span className="fw-bold">Prep Time: </span>{recipe.prepTime}<br/>
@@ -61,6 +62,11 @@ const RecipeDetail = ({recipe}) => {
             {/* directions */}
             <div className="row wd-border m-4">
                 <DirectionsList directions={recipe.directions}/>
+            </div>
+
+            {/* nutritional facts */}
+            <div className="row wd-border m-4">
+                <NutritionalFacts nutritionalFact={recipe.nutritionFacts}/>
             </div>
         </div>
     );

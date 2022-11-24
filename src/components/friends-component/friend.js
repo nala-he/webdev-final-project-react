@@ -1,8 +1,21 @@
 import React from "react";
 import "./index.css";
 import {Link} from "react-router-dom";
+import {useDispatch, useSelector} from "react-redux";
+import {updateFriendProfile} from "../../reducers/friend-profile-reducer";
+import {useLocation} from "react-router";
 
 const Friend = ({friend}) => {
+    let loggedIn = useSelector(state => state.profile);
+    const dispatch = useDispatch();
+    const profileClickHandler = () => {
+        dispatch(updateFriendProfile(friend));
+    }
+
+    const {pathname} = useLocation();
+    const paths = pathname.split('/');
+    const last = paths[3];
+
     return (
         <div className="flex-fill col-5 col-lg-5 col-xl-3 m-2 border border-2
                         rounded-4 wd-bg-beige d-flex flex-column">
@@ -32,14 +45,19 @@ const Friend = ({friend}) => {
             {/* buttons (profile/recipes) */}
             <div className="mt-auto">
                 <div className="d-flex justify-content-center mt-1 mb-2">
-                    <Link to={`/profile/${friend._id}`}>
-                        <button className="btn wd-btn-grey rounded-4 m-1 text-dark fw-bold wd-font-14">
+                    <Link to={`${last !== "followers" 
+                              ? `../profile/${friend._id}`
+                              : `../../profile/${friend._id}`}`}>
+                        <button className="btn wd-btn-grey rounded-4 m-1 text-dark fw-bold wd-font-14"
+                                onClick={profileClickHandler}>
                             Profile
                         </button>
                     </Link>
                     {
                         friend.recipes &&
-                        <Link to={`/profile/${friend._id}/my-recipes`}>
+                        <Link to={`${last !== "followers" 
+                        ? `../profile/${friend._id}`
+                        : `../../profile/${friend._id}/my-recipes`}`}>
                             <button className="btn wd-btn-grey rounded-4 m-1 text-dark fw-bold wd-font-14">
                                 Recipes
                             </button>

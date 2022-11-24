@@ -47,7 +47,7 @@ const EditProfile = () => {
                 <div className="col-6 position-relative d-flex align-items-center">
                     <div>
                         <div className="m-1">
-                            <input type="text" class="form-control" placeholder="Firstname"
+                            <input type="text" className="wd-edit-input" placeholder="Firstname"
                                    onChange={(e) => {
                                        setEditedProfile({...editedProfile, firstName: e.target.value})
                                    }}
@@ -55,7 +55,7 @@ const EditProfile = () => {
                             </input>
                         </div>
                         <div className="m-1">
-                            <input type="text" class="form-control" placeholder="Lastname"
+                            <input type="text" className="wd-edit-input" placeholder="Lastname"
                                    onChange={(e) => {
                                        setEditedProfile({...editedProfile, lastName: e.target.value})
                                    }}
@@ -63,7 +63,7 @@ const EditProfile = () => {
                             </input>
                         </div>
                         <div className="m-1">
-                            <input type="text" placeholder="Handle" class="form-control"
+                            <input type="text" placeholder="Handle" className="wd-edit-input"
                                    onChange={(e) => {
                                        setEditedProfile({...editedProfile, username: e.target.value})
                                    }}
@@ -71,13 +71,7 @@ const EditProfile = () => {
                             </input>
                         </div>
                         <div className="m-1">
-                            {/*<form type="drop-down" placeholder="Username" className="wd-input-width"*/}
-                            {/*       onChange={(e) => {*/}
-                            {/*           setEditedProfile({...editedProfile, type: e.target.value})*/}
-                            {/*       }}*/}
-                            {/*       value={editedProfile.type}>*/}
-                            {/*</form>*/}
-                            <select className="form-select"
+                            <select className="wd-edit-input"
                                     onChange={(e) => {
                                 setEditedProfile({...editedProfile, type: e.target.value})
                             }}
@@ -95,8 +89,7 @@ const EditProfile = () => {
                 </div>
             </div>
             <div className="m-3">
-                <textarea className="p-3 border w-100 rounded-3 overflow-auto"
-                          class="form-control" rows="8"
+                <textarea className="wd-edit-input" rows="8"
                           onChange={(e) => {
                               setEditedProfile({...editedProfile, bio: e.target.value})
                           }}

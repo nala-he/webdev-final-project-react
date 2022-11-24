@@ -20,9 +20,12 @@ const ProfileDetails = () => {
                                                     : `/images/emptyAvatar.png`}/>
                 </div>
                 <div className="col-6">
-                    <div>
+                    <div className="text-wrap text-break">
                         <span className="fw-bold wd-profile-text">
-                            {profile.firstName} {profile.lastName}</span>
+                            {profile.firstName} {profile.lastName} </span>
+                        {profile.type === "REG USER" ? <i className="fa-solid fa-drumstick-bite"></i> : ''}
+                        {profile.type === "RECIPE CREATOR" ? <i className="fa-solid fa-file-pen"></i> : ''}
+                        {profile.type === "PRO CHEF" ? <i className="fa-solid fa-bell-concierge"></i> : ''}
                     </div>
                     <div className="wd-profile-text">@{profile.username}</div>
                     <div className="wd-profile-text">{profile.type}</div>

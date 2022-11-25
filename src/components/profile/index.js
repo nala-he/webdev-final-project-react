@@ -5,6 +5,7 @@ import {useSelector} from "react-redux";
 import ProfileDetails from "./profile-details";
 import MyRecipes from "./my-recipes";
 import EditProfile from "./edit-profile";
+import MyRecipeDetails from "./my-recipe-details";
 import "./index.css";
 
 const Profile = () => {
@@ -45,6 +46,7 @@ const Profile = () => {
                     <Route index element={<ProfileDetails/>}/>
                     <Route path="/my-recipes" element={<MyRecipes/>}/>
                     <Route path="/edit" element={<EditProfile/>}/>
+                    <Route path="/my-recipes/details" element={<MyRecipeDetails/>}/>
                 </Routes>
             </div>
         </div>

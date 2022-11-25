@@ -1,6 +1,6 @@
-* {
-    outline: 1px solid red;
-}
+/** {*/
+/*    outline: 1px solid red;*/
+/*}*/
 
 .wd-profile-background {
     border-bottom-left-radius: 20px;
@@ -55,8 +55,15 @@
 }
 
 .wd-text-sm {
-    font-size: 15px;
+    font-size: 9px;
+    color: black;
 }
+
+.wd-text-md {
+    font-size: 16px;
+    color: black;
+}
+
 
 .wd-profile-buttons {
     width: 100%;
@@ -100,6 +107,12 @@
     border-radius: 15px;
     object-fit: cover;
 }
+
+.wd-no-decor {
+    text-decoration: none;
+    color: black;
+}
+
 /*.wd-filter {*/
 /*    filter: opacity(30%);*/
 /*}*/

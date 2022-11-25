@@ -14,8 +14,7 @@ const MyRecipes = () => {
                 <i className="bi bi-search position-absolute wd-nudge-up text-dark"></i>
             </div>
             <div className="ms-4 text-dark fw-bold">
-                {/*Hardcoded number, need to be updated later */}
-                <span>Total Saved Recipes: 10</span>
+                <span>Total Saved Recipes: {myRecipes.length}</span>
             </div>
             {
                 myRecipes.map(recipe => <MyRecipesItem key={recipe._id} recipe={recipe}/>)

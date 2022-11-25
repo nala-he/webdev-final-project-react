@@ -1,26 +1,46 @@
 [
   {
     "_id": "123",
-    "author": "martha",
-    "avatar": "martha.jpg",
     "dishName": "Mashed Potato",
     "intro": "Make southern style mashed potatos at home!",
-    "recipePic": "mashed_potato.jpg"
+    "recipePic": "mashed_potato.jpg",
+    "prepTime": "20 mins",
+    "cookTime": "50 mins",
+    "servings": "4",
+    "difficulty": "MEDIUM",
+    "privacy": "PRIVATE"
   },
   {
     "_id": "234",
-    "author": "martha",
-    "avatar": "martha.jpg",
     "dishName": "Pasta",
     "intro": "Creamy pasta!",
-    "recipePic": "mashed_potato.jpg"
+    "recipePic": "pasta.jpeg",
+    "prepTime": "20 mins",
+    "cookTime": "50 mins",
+    "servings": "4",
+    "difficulty": "MEDIUM",
+    "privacy": "PRIVATE"
   },
   {
     "_id": "345",
-    "author": "martha",
-    "avatar": "martha.jpg",
-    "dishName": "Cereal Icecream",
+    "dishName": "Blueberry Ice Cream",
     "intro": "Cereal flavored ice cream!",
-    "recipePic": "mashed_potato.jpg"
+    "recipePic": "ice-cream.jpeg",
+    "prepTime": "20 mins",
+    "cookTime": "60 mins",
+    "servings": "2",
+    "difficulty": "EASY",
+    "privacy": "PUBLIC"
+  },
+  {
+    "_id": "456",
+    "dishName": "Crème Brûlée",
+    "intro": "This Easy Crème Brûlée is made with just four ingredients and features a rich custard base with a ...",
+    "recipePic": "Creme-Brulee.jpeg",
+    "prepTime": "20 mins",
+    "cookTime": "50 mins",
+    "servings": "2",
+    "difficulty": "HARD",
+    "privacy": "PUBLIC"
   }
 ]

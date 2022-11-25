@@ -1,0 +1,26 @@
+[
+  {
+    "_id": "123",
+    "author": "martha",
+    "avatar": "martha.jpg",
+    "dishName": "Mashed Potato",
+    "intro": "Make southern style mashed potatos at home!",
+    "recipePic": "mashed_potato.jpg"
+  },
+  {
+    "_id": "234",
+    "author": "martha",
+    "avatar": "martha.jpg",
+    "dishName": "Pasta",
+    "intro": "Creamy pasta!",
+    "recipePic": "mashed_potato.jpg"
+  },
+  {
+    "_id": "345",
+    "author": "martha",
+    "avatar": "martha.jpg",
+    "dishName": "Cereal Icecream",
+    "intro": "Cereal flavored ice cream!",
+    "recipePic": "mashed_potato.jpg"
+  }
+]

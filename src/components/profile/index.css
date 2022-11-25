@@ -69,7 +69,19 @@
     font-size: 30px;
 }
 
+.wd-image-round {
+    width:60px;
+    height:60px;
+    border-radius: 20%;
+    object-fit: cover;
+}
 
+.wd-my-recipe-image {
+    width:90px;
+    height: 60px;
+    border-radius: 15px;
+    object-fit: cover;
+}
 /*.wd-filter {*/
 /*    filter: opacity(30%);*/
 /*}*/

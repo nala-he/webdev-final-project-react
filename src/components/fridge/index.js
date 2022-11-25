@@ -13,12 +13,15 @@ import recipesReducer from "../../reducers/recipes-reducer"
 import profileReducer from "../../reducers/profile-reducer";
 import friendProfileReducer from "../../reducers/friend-profile-reducer";
 import FriendsComponent from "../friends-component";
+import myRecipesReducer from "../../reducers/my-recipes-reducer";
 
 const store = configureStore({reducer: {
             ingredients, 
             recipes: recipesReducer, 
             profile: profileReducer, 
-            friendProfile: friendProfileReducer}
+            friendProfile: friendProfileReducer,
+            myRecipes: myRecipesReducer
+    }
 });
 
 function Fridge() {

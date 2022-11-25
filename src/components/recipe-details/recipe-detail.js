@@ -33,7 +33,7 @@ const RecipeDetail = ({recipe}) => {
                          className="wd-recipe-pic"/>
                 </div>
                 {/* recipe summary/times */}
-                <div className="wd-border text-dark ms-3 me-2 wd-width-45">
+                <div className="wd-border text-dark m-2 ms-3 wd-width-45">
                     <ul className="p-3 pb-0">
                         <li className="list-group-item">
                             <span className="fw-bold">Prep Time: </span>{recipe.prepTime}<br/>

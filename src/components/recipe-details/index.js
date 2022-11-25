@@ -14,7 +14,7 @@ const RecipeDetailsComponent = () => {
     return (
         <div className="m-3 wd-border wd-bg-beige">
             {/* close button */}
-            <div className="d-flex justify-content-end m-3">
+            <div className="d-flex justify-content-end m-3 me-4">
                 {
                     location === "my-recipes" &&
                     <Link to={`/profile/${userId}/my-recipes`}>
@@ -33,6 +33,33 @@ const RecipeDetailsComponent = () => {
             <div>
                 {/* hardcode recipe - update later*/}
                 <RecipeDetail recipe={recipes[0]}/>
+            </div>
+
+            {/* save or delete button (depends on which page) */}
+            <div className="d-flex justify-content-center">
+                {/* save button if in my recipes page */}
+                {
+                    location === "my-recipes" &&
+                    <Link to={`/profile/${userId}/my-recipes`}
+                          className="text-decoration-none mt-2">
+                        <i className="bi bi-save2 text-black fs-3"></i>
+                        <span className="fw-bold fs-4 ms-3 text-dark">
+                            Save Recipe
+                        </span>
+                    </Link>
+                }
+
+                {/* delete button if in saved recipes page */}
+                {
+                    location === "saved-recipes" &&
+                    <Link to="/savedrecipes"
+                          className="text-decoration-none mt-2">
+                        <i className="bi bi-trash text-black fs-3"></i>
+                        <span className="fw-bold fs-4 ms-3 text-dark">
+                            Delete Recipe
+                        </span>
+                    </Link>
+                }
             </div>
         </div>
     );

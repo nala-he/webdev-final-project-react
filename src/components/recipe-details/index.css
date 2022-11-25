@@ -26,3 +26,7 @@
 .wd-width-45 {
     width: 45%;
 }
+
+.wd-no-decoration a:hover a:active {
+    text-decoration: none;
+}

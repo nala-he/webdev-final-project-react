@@ -12,7 +12,7 @@ const RecipeDetailsComponent = () => {
     const recipeId = paths[4];
 
     return (
-        <div className="m-3 wd-border wd-bg-beige">
+        <div className="m-3 mb-0 wd-border wd-bg-beige">
             {/* close button */}
             <div className="d-flex justify-content-end m-3 me-4">
                 {
@@ -41,9 +41,9 @@ const RecipeDetailsComponent = () => {
                 {
                     location === "my-recipes" &&
                     <Link to={`/profile/${userId}/my-recipes`}
-                          className="text-decoration-none mt-2">
+                          className="text-decoration-none d-flex align-items-center">
                         <i className="bi bi-save2 text-black fs-3"></i>
-                        <span className="fw-bold fs-4 ms-3 text-dark">
+                        <span className="fw-bold fs-5 ms-3 text-dark">
                             Save Recipe
                         </span>
                     </Link>
@@ -53,9 +53,9 @@ const RecipeDetailsComponent = () => {
                 {
                     location === "saved-recipes" &&
                     <Link to="/savedrecipes"
-                          className="text-decoration-none mt-2">
+                          className="text-decoration-none d-flex align-items-center">
                         <i className="bi bi-trash text-black fs-3"></i>
-                        <span className="fw-bold fs-4 ms-3 text-dark">
+                        <span className="fw-bold fs-5 ms-3 text-dark">
                             Delete Recipe
                         </span>
                     </Link>

@@ -18,15 +18,11 @@
 
 .wd-recipe-pic {
     border-radius: 12px;
-    width: 100%;
+    width: 305px;
     height: 200px;
     object-fit: cover;
 }
 
-.wd-width-45 {
-    width: 45%;
-}
-
-.wd-no-decoration a:hover a:active {
-    text-decoration: none;
+.wd-width-305 {
+    width: 305px;
 }

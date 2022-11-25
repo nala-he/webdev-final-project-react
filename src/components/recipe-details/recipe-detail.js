@@ -8,7 +8,7 @@ const RecipeDetail = ({recipe}) => {
     return (
         <div className="m-3 wd-border h-100 bg-white">
             {/* author and dish title */}
-            <div className="p-4 d-flex justify-content-start align-items-center">
+            <div className="m-4 mb-3 d-flex justify-content-start align-items-center">
                 {/* author avatar */}
                 <div>
                     <img src={`/images/${recipe.avatar}`}
@@ -28,34 +28,36 @@ const RecipeDetail = ({recipe}) => {
             {/* recipe pic and recipe summary/times */}
             <div className="d-flex align-items-center justify-content-center flex-wrap">
                 {/* recipe pic */}
-                <div className="ms-1 me-2">
+                <div className="m-2">
                     <img src={`/images/${recipe.recipePic}`}
                          className="wd-recipe-pic"/>
                 </div>
                 {/* recipe summary/times */}
-                <div className="wd-border text-dark m-2 ms-3 wd-width-45">
-                    <ul className="p-3 pb-0">
-                        <li className="list-group-item">
-                            <span className="fw-bold">Prep Time: </span>{recipe.prepTime}<br/>
-                        </li>
-                        <li className="list-group-item">
-                            <span className="fw-bold">Cook Time: </span>{recipe.cookTime}<br/>
-                        </li>
-                        <li className="list-group-item">
-                            <span className="fw-bold">Total Time: </span>{recipe.totalTime}<br/>
-                        </li>
-                        <li className="list-group-item">
-                            <span className="fw-bold">Servings: </span>{recipe.servings}<br/>
-                        </li>
-                        <li className="list-group-item">
-                            <span className="fw-bold">Difficulty: </span>{recipe.difficulty}
-                        </li>
-                    </ul>
+                <div className="m-2">
+                    <div className="wd-border text-dark wd-width-305">
+                        <ul className="mt-3">
+                            <li className="list-group-item">
+                                <span className="fw-bold">Prep Time: </span>{recipe.prepTime}<br/>
+                            </li>
+                            <li className="list-group-item">
+                                <span className="fw-bold">Cook Time: </span>{recipe.cookTime}<br/>
+                            </li>
+                            <li className="list-group-item">
+                                <span className="fw-bold">Total Time: </span>{recipe.totalTime}<br/>
+                            </li>
+                            <li className="list-group-item">
+                                <span className="fw-bold">Servings: </span>{recipe.servings}<br/>
+                            </li>
+                            <li className="list-group-item">
+                                <span className="fw-bold">Difficulty: </span>{recipe.difficulty}
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
 
             {/* ingredients */}
-            <div className="row wd-border m-4">
+            <div className="row wd-border m-4 mt-3">
                 <IngredientsList ingredients={recipe.ingredients}/>
             </div>
 

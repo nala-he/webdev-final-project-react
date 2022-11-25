@@ -1,0 +1,14 @@
+[
+  {
+    "_id": "1234",
+    "username": "alice",
+    "firstName": "Alice",
+    "lastName": "Wonderland",
+    "type": "REG USER",
+    "avatar": "alice-avatar.jpeg",
+    "bio": "The fictional character of Alice lives a posh lifestyle in the mid to late 1800s in London, England. She is highly intelligent, and like any well brought up girl she is sophisticated and a great thinker for a seven and a half-year-old child. Alice is extremely brave, not being afraid to venture far out into new places or the unknown and she will become determined to investigate anything curious that makes her wonder.",
+    "followers": 10,
+    "followings": 23,
+    "savedRecipes": 43
+  }
+]

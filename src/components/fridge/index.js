@@ -14,13 +14,15 @@ import profileReducer from "../../reducers/profile-reducer";
 import friendProfileReducer from "../../reducers/friend-profile-reducer";
 import FriendsComponent from "../friends-component";
 import myRecipesReducer from "../../reducers/my-recipes-reducer";
+import friendRecipesReducer from "../../reducers/friend-recipes-reducer";
 
 const store = configureStore({reducer: {
             ingredients, 
             recipes: recipesReducer, 
             profile: profileReducer, 
             friendProfile: friendProfileReducer,
-            myRecipes: myRecipesReducer
+            myRecipes: myRecipesReducer,
+            friendReipes: friendRecipesReducer,
     }
 });
 

@@ -8,7 +8,8 @@
     "cookTime": "50 mins",
     "servings": "4",
     "difficulty": "MEDIUM",
-    "privacy": "PRIVATE"
+    "privacy": "PRIVATE",
+    "createdBy": "1234"
   },
   {
     "_id": "234",
@@ -19,7 +20,8 @@
     "cookTime": "50 mins",
     "servings": "4",
     "difficulty": "MEDIUM",
-    "privacy": "PRIVATE"
+    "privacy": "PRIVATE",
+    "createdBy": "1234"
   },
   {
     "_id": "345",
@@ -30,7 +32,8 @@
     "cookTime": "60 mins",
     "servings": "2",
     "difficulty": "EASY",
-    "privacy": "PUBLIC"
+    "privacy": "PUBLIC",
+    "createdBy": "1234"
   },
   {
     "_id": "456",
@@ -41,6 +44,7 @@
     "cookTime": "50 mins",
     "servings": "2",
     "difficulty": "HARD",
-    "privacy": "PUBLIC"
+    "privacy": "PUBLIC",
+    "createdBy": "1234"
   }
 ]

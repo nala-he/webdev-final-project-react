@@ -5,6 +5,9 @@ const myRecipesSlice = createSlice({
     name: 'myRecipes',
     initialState: myRecipes,
     reducers: {
+        updateMyRecipe(state, action) {
+            return {...action.payload}
+        },
         deleteMyRecipe(state, action) {
             const index = state
                 .findIndex(recipe =>
@@ -13,5 +16,5 @@ const myRecipesSlice = createSlice({
         }
     }
  });
-export const {deleteMyRecipe} = myRecipesSlice.actions;
+export const {updateMyRecipe, deleteMyRecipe} = myRecipesSlice.actions;
 export default myRecipesSlice.reducer;

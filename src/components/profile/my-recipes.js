@@ -1,9 +1,17 @@
-import React, {useEffect} from "react";
-import {useDispatch, useSelector} from "react-redux";
+import React from "react";
+import {useSelector} from "react-redux";
+import {useLocation} from "react-router";
 import MyRecipesItem from "./my-recipes-item";
 
 const MyRecipes = () => {
     const myRecipes = useSelector(state => state.myRecipes);
+    // let friendRecipes = useSelector(state => state.friendRecipes);
+    const {pathname} = useLocation();
+    const paths = pathname.split('/');
+    // Saved for future implementation
+    // let recipes = paths.includes(myRecipes[0].createdBy) ? myRecipes : friendRecipes;
+    // Use below for now
+    let recipes = myRecipes;
 
     return (
         <div>
@@ -14,10 +22,12 @@ const MyRecipes = () => {
                 <i className="bi bi-search position-absolute wd-nudge-up text-dark"></i>
             </div>
             <div className="ms-4 text-dark fw-bold">
-                <span>Total Saved Recipes: {myRecipes.length}</span>
+                <span>Total Created Recipes: {recipes.length}</span>
             </div>
             {
-                myRecipes.map(recipe => <MyRecipesItem key={recipe._id} recipe={recipe}/>)
+
+                recipes.map(recipe => <MyRecipesItem key={recipe._id} recipe={recipe}/>)
+
             }
         </div>
     );

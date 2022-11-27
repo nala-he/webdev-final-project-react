@@ -37,13 +37,13 @@ const MyRecipesItem = ({recipe}) => {
                     </div>
                     <div className="col-5 d-flex justify-content-end">
                         <div className="btn d-block d-xl-none">
-                            <Link to="./details" className="wd-no-decor">
+                            <Link to={`./${recipe._id}/details`} className="wd-no-decor">
                                 <i className="fa-solid fa-utensils text-dark p-2 wd-text-xs"></i>
                                 <span className="wd-text-xs">Open Recipe</span>
                             </Link>
                         </div>
                         <div className="btn d-none d-xl-block">
-                            <Link to="./details" className="wd-no-decor">
+                            <Link to={`./${recipe._id}/details`} className="wd-no-decor">
                                 <i className="fa-solid fa-utensils text-dark p-2"></i>
                                 <span className="wd-text-md">Open Recipe</span>
                             </Link>

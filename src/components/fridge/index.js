@@ -15,6 +15,7 @@ import friendProfileReducer from "../../reducers/friend-profile-reducer";
 import FriendsComponent from "../friends-component";
 import myRecipesReducer from "../../reducers/my-recipes-reducer";
 import friendRecipesReducer from "../../reducers/friend-recipes-reducer";
+import SavedRecipes from "../saved-recipes/saved-recipes";
 
 const store = configureStore({reducer: {
             ingredients, 
@@ -43,6 +44,7 @@ function Fridge() {
                                 <Route path="/profile/:uid/*" element={<Profile/>}/>
                                 <Route path="/profile/:uid/edit" element={<EditProfile/>}/>
                                 <Route path="/friends/:uid/*" element={<FriendsComponent/>}/>
+                                <Route path="/users/:uid/saved-recipes" element={<SavedRecipes/>}/>
                             </Routes>
                         </div>
                         <div className="d-none d-lg-block col-lg-3 col-xl-3 mt-2">

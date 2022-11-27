@@ -26,10 +26,6 @@ const store = configureStore({reducer: {
             myRecipes: myRecipesReducer,
             friendReipes: friendRecipesReducer,
     }
-            ingredients,
-            recipes: recipesReducer,
-            profile: profileReducer,
-            friendProfile: friendProfileReducer}
 });
 
 function Fridge() {

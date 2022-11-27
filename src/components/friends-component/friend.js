@@ -2,15 +2,19 @@ import React from "react";
 import "./index.css";
 import {Link} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
-import {updateFriendProfile} from "../../reducers/friend-profile-reducer";
 import {useLocation} from "react-router";
+import {updateFriendProfile} from "../../reducers/friend-profile-reducer";
+import {updateFriendRecipe} from "../../reducers/friend-recipes-reducer";
 
 const Friend = ({friend}) => {
-    let loggedIn = useSelector(state => state.profile);
     const dispatch = useDispatch();
     const profileClickHandler = () => {
         dispatch(updateFriendProfile(friend));
     }
+    // function for future implementation
+    // const recipeClickHandler = () => {
+    //     dispatch(updateFriendRecipe(findRecipesCreatedByUser(friend._id)));
+    // }
 
     const {pathname} = useLocation();
     const paths = pathname.split('/');
@@ -56,7 +60,7 @@ const Friend = ({friend}) => {
                     {
                         friend.recipes &&
                         <Link to={`${last !== "followers" 
-                        ? `../profile/${friend._id}`
+                        ? `../profile/${friend._id}/my-recipes`
                         : `../../profile/${friend._id}/my-recipes`}`}>
                             <button className="btn wd-btn-grey rounded-4 m-1 text-dark fw-bold wd-font-14">
                                 Recipes

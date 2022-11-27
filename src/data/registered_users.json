@@ -10,5 +10,31 @@
     "followers": 10,
     "followings": 23,
     "savedRecipes": 43
+  },
+  {
+    "_id": "567",
+    "username": "martha",
+    "firstName": "Martha",
+    "lastName": "Stewart",
+    "type": "RECIPE CREATOR",
+    "avatar": "martha.jpg",
+    "recipes": 99,
+    "bio": "I am a recipe creator.",
+    "followers": 10,
+    "followings": 23,
+    "savedRecipes": 43
+  },
+  {
+    "_id": "789",
+    "username": "roychoi",
+    "firstName": "Roy",
+    "lastName": "Choi",
+    "type": "PRO CHEF",
+    "avatar": "roy.jpg",
+    "recipes": 589,
+    "bio": "I am a professional chief.",
+    "followers": 1000,
+    "followings": 10,
+    "savedRecipes": 100
   }
 ]

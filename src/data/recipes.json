@@ -5,7 +5,30 @@
       "avatar": "emptyAvatar.png",
       "dishName": "Mashed Potato",
       "intro": "Make southern style mashed potatos at home!",
-      "recipePic": "mashed_potato.jpg"
+      "recipePic": "mashed_potato.jpg",
+      "prepTime": "15 mins",
+      "cookTime": "20 mins",
+      "totalTime": "35 mins",
+      "servings": 4,
+      "difficulty": "Medium",
+      "ingredients": [
+        "2 pounds baking potatoes, peeled and quartered", "3 cloves garlic, peeled, or to taste (Optional)",
+        "1 cup milk", "2 tablespoons butter", "Salt and ground black pepper to taste"
+      ],
+      "directions": [
+        "Bring a large pot of salted water to a boil.",
+        "Add potatoes and garlic, lower heat to medium, and simmer until potatoes are tender, 15 to 20 minutes.",
+        "When the potatoes are almost finished, heat milk and butter in a small saucepan over low heat until butter is melted.",
+        "Drain potatoes and return to the pot.",
+        "Slowly add warm milk mixture, blending it in with a potato masher or electric mixer until potatoes are smooth and creamy.",
+        "Season with salt and pepper."
+      ],
+      "nutritionFacts": {
+        "calories": 257,
+        "fat": "7g",
+        "carbs": "44g",
+        "protein": "6g"
+      }
     },
     {
       "_id": "234",

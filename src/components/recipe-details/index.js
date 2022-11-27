@@ -23,7 +23,7 @@ const RecipeDetailsComponent = () => {
                 }
                 {
                     location === "saved-recipes" &&
-                    <Link to="/savedrecipes">
+                    <Link to={`/users/${userId}/saved-recipes`}>
                         <i className="bi bi-x-square text-black fs-3"></i>
                     </Link>
                 }

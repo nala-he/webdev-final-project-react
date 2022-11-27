@@ -32,7 +32,7 @@ const MyRecipesItem = ({recipe}) => {
                         <div className="btn d-none d-xl-block"
                              onClick={() => deleteRecipeHandler(recipe._id)}>
                             <i className="bi bi-trash text-dark p-2"></i>
-                            <span className="wd-text-md">Delete Recipe</span>
+                            <span className="text-dark">Delete Recipe</span>
                         </div>
                     </div>
                     <div className="col-5 d-flex justify-content-end">
@@ -45,7 +45,7 @@ const MyRecipesItem = ({recipe}) => {
                         <div className="btn d-none d-xl-block">
                             <Link to={`./${recipe._id}/details`} className="wd-no-decor">
                                 <i className="fa-solid fa-utensils text-dark p-2"></i>
-                                <span className="wd-text-md">Open Recipe</span>
+                                <span className="text-dark">Open Recipe</span>
                             </Link>
                         </div>
                     </div>

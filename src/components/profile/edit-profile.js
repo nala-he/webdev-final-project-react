@@ -16,7 +16,7 @@ const EditProfile = () => {
 
     return (
         <div className="mt-3 wd-edit-background">
-            <div className="row d-flex align-items-center">
+            <div className="row d-flex align-items-center pt-1">
                 <div className="float-start col-6">
                     {/*Exit button*/}
                     <Link to={`/profile/${profile._id}`}>
@@ -93,9 +93,9 @@ const EditProfile = () => {
                           onChange={(e) => {
                               setEditedProfile({...editedProfile, bio: e.target.value})
                           }}
-                          placeholder="Bio">
-                    {profile.bio}
-                </textarea>
+                          placeholder="Bio"
+                          defaultValue={profile.bio}
+                />
             </div>
         </div>
     );

@@ -5,6 +5,7 @@ import {useSelector} from "react-redux";
 import ProfileDetails from "./profile-details";
 import MyRecipes from "./my-recipes";
 import EditProfile from "./edit-profile";
+import MyRecipeDetails from "./my-recipe-details";
 import "./index.css";
 
 const Profile = () => {
@@ -20,27 +21,32 @@ const Profile = () => {
             <ul className="nav nav-tabs">
                 <li className="nav-item">
                     <Link className={`nav-link text-dark ${active === 'profile' ? 'active' : ''}`}
-                          to={`/profile/${profile._id}/*`}>
+                          to={`/profile/${profile._id}/`}>
                         <h5 className={`${active === 'profile' ? 'fw-bolder' : ''}`}>
                             Profile
                         </h5>
                     </Link>
                 </li>
-                <li className="nav-item">
-                    <Link className={`nav-link text-dark ${active === 'my-recipes' ? 'active'
-                    : ''}`}
-                          to={`/profile/${profile._id}/my-recipes/*`}>
-                        <h5 className={`${active === 'my-recipes' ? 'fw-bolder' : ''}`}>
-                            My Recipes
-                        </h5>
-                    </Link>
-                </li>
+                {
+                    profile.type !== "REG USER"
+                    &&
+                    <li className="nav-item">
+                        <Link className={`nav-link text-dark ${active === 'my-recipes' ? 'active'
+                                                                                       : ''}`}
+                              to={`/profile/${profile._id}/my-recipes/`}>
+                            <h5 className={`${active === 'my-recipes' ? 'fw-bolder' : ''}`}>
+                                My Recipes
+                            </h5>
+                        </Link>
+                    </li>
+                }
             </ul>
             <div>
                 <Routes>
                     <Route index element={<ProfileDetails/>}/>
                     <Route path="/my-recipes" element={<MyRecipes/>}/>
                     <Route path="/edit" element={<EditProfile/>}/>
+                    <Route path="/my-recipes/details" element={<MyRecipeDetails/>}/>
                 </Routes>
             </div>
         </div>

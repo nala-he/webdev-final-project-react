@@ -1,5 +1,5 @@
 import {createSlice} from "@reduxjs/toolkit";
-import users from "../data/average-user.json";
+import users from "../data/registered_users.json";
 
 const loggedIn = users[0];
 

@@ -1,0 +1,50 @@
+[
+  {
+    "_id": "123",
+    "dishName": "Mashed Potato",
+    "intro": "Make southern style mashed potatos at home!",
+    "recipePic": "mashed_potato.jpg",
+    "prepTime": "20 mins",
+    "cookTime": "50 mins",
+    "servings": "4",
+    "difficulty": "MEDIUM",
+    "privacy": "PRIVATE",
+    "createdBy": "1234"
+  },
+  {
+    "_id": "234",
+    "dishName": "Pasta",
+    "intro": "Creamy pasta!",
+    "recipePic": "pasta.jpeg",
+    "prepTime": "20 mins",
+    "cookTime": "50 mins",
+    "servings": "4",
+    "difficulty": "MEDIUM",
+    "privacy": "PRIVATE",
+    "createdBy": "1234"
+  },
+  {
+    "_id": "345",
+    "dishName": "Blueberry Ice Cream",
+    "intro": "Cereal flavored ice cream!",
+    "recipePic": "ice-cream.jpeg",
+    "prepTime": "20 mins",
+    "cookTime": "60 mins",
+    "servings": "2",
+    "difficulty": "EASY",
+    "privacy": "PUBLIC",
+    "createdBy": "1234"
+  },
+  {
+    "_id": "456",
+    "dishName": "Crème Brûlée",
+    "intro": "This Easy Crème Brûlée is made with just four ingredients and features a rich custard base with a ...",
+    "recipePic": "Creme-Brulee.jpeg",
+    "prepTime": "20 mins",
+    "cookTime": "50 mins",
+    "servings": "2",
+    "difficulty": "HARD",
+    "privacy": "PUBLIC",
+    "createdBy": "1234"
+  }
+]

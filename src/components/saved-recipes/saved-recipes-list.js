@@ -13,7 +13,7 @@ const SavedRecipesList = () => {
             <i className="bi bi-search position-absolute wd-nudge-up text-dark"></i>
         </div>
         <div className="ms-4 text-dark fw-bold">
-            <span>Total Saved Recipes: 3</span>
+            <span>Total Saved Recipes: {recipes.length}</span>
         </div>
       {
         recipes.map(recipe =>

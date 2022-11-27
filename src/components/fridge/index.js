@@ -28,7 +28,7 @@ function Fridge() {
                                 <Route path="/" element={<HomeComponent/>}/>
                                 <Route path="/home" element={<HomeComponent/>}/>
                                 <Route path="/friends/*" element={<FriendsComponent/>}/>
-                                <Route path="/savedrecipes/*" element={<SavedRecipes/>}/>
+                                <Route path="users/:uid/saved-recipes" element={<SavedRecipes/>}/>
                             </Routes>
                         </div>
                         <div className="d-none d-lg-block col-lg-3 col-xl-3 mt-2">

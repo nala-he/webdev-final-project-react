@@ -52,7 +52,7 @@ const RecipeDetailsComponent = () => {
                 {/* delete button if in saved recipes page */}
                 {
                     location === "saved-recipes" &&
-                    <Link to="/savedrecipes"
+                    <Link to={`/users/${userId}/saved-recipes`}
                           className="text-decoration-none d-flex align-items-center">
                         <i className="bi bi-trash text-black fs-3"></i>
                         <span className="fw-bold fs-5 ms-3 text-dark">

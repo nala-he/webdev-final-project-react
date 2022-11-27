@@ -17,7 +17,7 @@
   { "_id": 126,
     "icon": "bi bi-save2",
     "text": "Saved Recipes",
-    "link": "/savedrecipes"
+    "link": "/users/:uid/saved-recipes"
   },
   { "_id": 127,
     "icon": "bi bi-pencil-square",

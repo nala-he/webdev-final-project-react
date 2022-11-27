@@ -17,7 +17,7 @@ const RecipeSummaryItem = (
     return(
     <div className="wd-item-border m-4 p-3 row">
         <div className="col-2 p-2">
-            <img className="wd-image-round" src={`/images/${recipe.avatar}`} alt="avatar"/>
+            <img className="wd-avatar" src={`/images/${recipe.avatar}`} alt="avatar"/>
         </div>
         <div className="col-10 ">
             <div className="p-3 wd-item-content">

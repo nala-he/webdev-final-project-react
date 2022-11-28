@@ -22,7 +22,7 @@
   { "_id": 127,
     "icon": "bi bi-pencil-square",
     "text": "Create Recipes",
-    "link": "/createrecipes"
+    "link": "/users/:uid/create-recipes"
   },
   { "_id": 128,
     "icon": "bi bi-door-open",

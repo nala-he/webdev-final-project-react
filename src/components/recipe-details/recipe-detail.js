@@ -68,7 +68,17 @@ const RecipeDetail = ({recipe}) => {
 
             {/* nutritional facts */}
             <div className="row wd-border m-4">
-                <NutritionalFacts nutritionalFact={recipe.nutritionFacts}/>
+                <div className="p-3">
+                    <div className="fs-5 text-dark">
+                        <span className="fw-bold">Nutritional Facts </span>(per serving)
+                    </div>
+                    <div className="mt-3 fs-6 text-dark">
+                        <span className="fw-bold">Calories: </span>{recipe.calories}<br/>
+                        <span className="fw-bold">Fat: </span>{recipe.fat}<br/>
+                        <span className="fw-bold">Carbs: </span>{recipe.carbs}<br/>
+                        <span className="fw-bold">Protein: </span>{recipe.protein}
+                    </div>
+                </div>
             </div>
         </div>
     );

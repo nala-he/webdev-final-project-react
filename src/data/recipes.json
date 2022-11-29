@@ -1,6 +1,7 @@
 [
     {
       "_id": "123",
+      "authorId": "345",
       "author": "masterChef",
       "avatar": "emptyAvatar.png",
       "dishName": "Mashed Potato",
@@ -23,27 +24,9 @@
         "Slowly add warm milk mixture, blending it in with a potato masher or electric mixer until potatoes are smooth and creamy.",
         "Season with salt and pepper."
       ],
-      "nutritionFacts": {
-        "calories": 257,
-        "fat": "7g",
-        "carbs": "44g",
-        "protein": "6g"
-      }
-    },
-    {
-      "_id": "234",
-      "author": "ItalianChef",
-      "avatar": "emptyAvatar.png",
-      "dishName": "Pasta",
-      "intro": "Creamy pasta!",
-      "recipePic": "mashed_potato.jpg"
-    },
-    {
-        "_id": "345",
-        "author": "dessertLuver",
-        "avatar": "emptyAvatar.png",
-        "dishName": "Cereal Icecream",
-        "intro": "Cereal flavored ice cream!",
-        "recipePic": "mashed_potato.jpg"
+      "calories": 257,
+      "fat": "7g",
+      "carbs": "44g",
+      "protein": "6g"
     }
 ]

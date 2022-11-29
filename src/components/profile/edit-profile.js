@@ -38,7 +38,7 @@ const EditProfile = () => {
             <div className="row row-cols-12">
                 <div className="col-4">
                     <div className="position-relative d-flex align-items-center">
-                        <img className="wd-avatar m-3 wd-filter"
+                        <img className="wd-profile-avatar m-3 wd-filter"
                              src={profile.avatar !== '' ? `/images/${profile.avatar}`
                                                         : `/images/emptyAvatar.png`}/>
                         {/*<i className="bi bi-camera wd-camera position-relative"></i>*/}
@@ -78,13 +78,21 @@ const EditProfile = () => {
                                     value={editedProfile.type}>
                                 <option value="REG USER">
                                     REG USER</option>
-                                {/*{editedProfile.type === "REG USER" && selected}*/}
                                 <option value="RECIPE CREATOR">
                                     RECIPE CREATOR</option>
                                 <option value="PRO CHEF">
                                     PRO CHEF</option>
                             </select>
                         </div>
+                        {
+                            editedProfile.type === "PRO CHEF" &&
+                            <div className="m-1">
+                                <input className="wd-edit-input"
+                                       type="text"
+                                       placeholder="Business Link"
+                                       defaultValue={`${editedProfile.business}`}></input>
+                            </div>
+                        }
                     </div>
                 </div>
             </div>

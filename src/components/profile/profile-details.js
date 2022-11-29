@@ -2,6 +2,7 @@ import React from "react";
 import {Link} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {useLocation} from "react-router";
+import "./index.css";
 
 const ProfileDetails = () => {
     let loggedIn = useSelector(state => state.profile);
@@ -12,23 +13,27 @@ const ProfileDetails = () => {
     
     return (
         <div className="m-0 wd-profile-background">
-            <div className="row row-cols-12 d-flex justify-content-center align-items-center">
+            <div className="row row-cols-12 d-flex justify-content-center align-items-center pt-3">
                 <div className="col-4">
-                    <img className="wd-avatar m-3"
+                    <img className="wd-profile-avatar ms-3"
                          alt="User avatar"
                          src={profile.avatar !== '' ? `/images/${profile.avatar}`
                                                     : `/images/emptyAvatar.png`}/>
                 </div>
-                <div className="col-6">
+                <div className="col-6 mt-3">
                     <div className="text-wrap text-break">
                         <span className="fw-bold wd-profile-text">
                             {profile.firstName} {profile.lastName} </span>
-                        {profile.type === "REG USER" ? <i className="fa-solid fa-drumstick-bite"></i> : ''}
-                        {profile.type === "RECIPE CREATOR" ? <i className="fa-solid fa-file-pen"></i> : ''}
-                        {profile.type === "PRO CHEF" ? <i className="fa-solid fa-bell-concierge"></i> : ''}
+                            {profile.type === "REG USER" ? <i className="fa-solid fa-drumstick-bite"></i> : ''}
+                            {profile.type === "RECIPE CREATOR" ? <i className="fa-solid fa-file-pen"></i> : ''}
+                            {profile.type === "PRO CHEF" ? <i className="fa-solid fa-bell-concierge"></i> : ''}
                     </div>
                     <div className="wd-profile-text">@{profile.username}</div>
                     <div className="wd-profile-text">{profile.type}</div>
+                    {
+                        profile.type === "PRO CHEF" &&
+                        <a className="wd-profile-text" href={`${profile.business}`}>{profile.business}</a>
+                    }
                 </div>
                 <div className="col-2">
                     {/*Profile edit button*/}

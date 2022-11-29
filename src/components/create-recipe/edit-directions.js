@@ -59,7 +59,7 @@ const EditDirections = ({recipe}) => {
                 <div className="row justify-content-center">
                     <button type="button"
                     onClick={addDirectionHandler}
-                    className="col-3 btn btn-sm btn-secondary">Add Direction</button>
+                    className="col-4 btn btn-sm btn-secondary">Add Direction</button>
                 </div>
             </div>
 

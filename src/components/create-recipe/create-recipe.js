@@ -58,24 +58,30 @@ const CreateRecipe = ({profile}) => {
                 {/* dish title and author name */}
                 <div className="text-dark">
                     <div className="row align-items-center">
-                        <label className="col-3 wd-input-label">Dish Name: </label>
+                        {/* large */}
+                        <label className="col-3 d-none d-xl-block wd-input-label">Dish Name: </label>
+                        {/* xs-large */}
+                        <label className="col-3 fw-bolder d-xl-none">Dish Name: </label>
                         <input
                             type = "text"
                             id = "dishName"
                             onChange={(e)=>setDish(e.target.value)}
-                            className = "col-4 wd-input-text" 
+                            className = "col-8 wd-input-text" 
                             value={editDish}>
                         </input>
                     </div>
                     <div className="row align-items-center mt-2">
-                        <label className="col-3 wd-input-label">Recipe Intro: </label>
-                        <input
+                        {/* large */}
+                        <label className="col-3 d-none d-xl-block wd-input-label">Recipe Intro: </label>
+                        {/* xs-large */}
+                        <label className="col-3 fw-bolder d-xl-none">Recipe Intro: </label>
+                        <textarea
                             type = "text"
                             id = "dishName"
                             onChange={(e)=>setIntro(e.target.value)}
                             className = "col-8 wd-input-text" 
                             value={editIntro}>
-                        </input>
+                        </textarea>
                     </div>
                     {/* <div className="fs-6 text-wrap">
                         Created By: {profile.username}
@@ -90,8 +96,12 @@ const CreateRecipe = ({profile}) => {
                         {/* recipe pic */}
                         <div className="row">
                             <div>
+                                {/* xs-large */}
                                 <img src={`/images/${recipe.recipePic}`}
-                                className="wd-create-recipe-pic mb-2"/>
+                                className="wd-create-recipe-pic-sm mb-2 d-xl-none"/>
+                                {/* xl */}
+                                <img src={`/images/${recipe.recipePic}`}
+                                className="d-none d-xl-block wd-create-recipe-pic mb-2"/>
                             </div>
                             <input type="file" id="recipePic" className="btn"
                             onChange={(e)=>setPhoto(e.target.files[0].name)}
@@ -102,43 +112,58 @@ const CreateRecipe = ({profile}) => {
                         {/* recipe summary/times */}
                         <div className="wd-border text-dark p-3">
                             <div className="row align-items-center">
-                                <label className="col-4 fw-bold">Prep Time: </label>
+                                {/* xs-large */}
+                                <label className="col-6 wd-sm-txt d-xl-none">Prep Time: </label>
+                                {/* xl */}
+                                <label className="col-6 fw-bold d-none d-xl-block">Prep Time: </label>
                                 <input
                                     type = "text" id = "prepTime" value={editPrep}
                                     onChange={(e)=>setPrep(e.target.value)}
-                                    className = "col-7 wd-input-text">
+                                    className = "col-5 wd-input-text">
                                 </input>
                             </div>
                             <div className="row align-items-center">
-                                <label className="col-4 fw-bold">Cook Time: </label>
+                                {/* xs-large */}
+                                <label className="col-6 wd-sm-txt d-xl-none">Cook Time: </label>
+                                {/* xl */}
+                                <label className="col-6 fw-bold d-none d-xl-block">Cook Time: </label>
                                 <input
                                     type = "text" id = "cookTime" value={editCookTime}
                                     onChange={(e)=>setCookTime(e.target.value)}
-                                    className = "col-7 wd-input-text">
+                                    className = "col-5 wd-input-text">
                                 </input>
                             </div>
                             <div className="row align-items-center">
-                                <label className="col-4 fw-bold">Total Time: </label>
+                                {/* xs-large */}
+                                <label className="col-6 wd-sm-txt d-xl-none">Total Time: </label>
+                                {/* xl */}
+                                <label className="col-6 fw-bold d-none d-xl-block">Total Time: </label>
                                 <input
                                     type = "text" id = "totalTime" value={editTotalTime}
                                     onChange={(e)=>setTotalTime(e.target.value)}
-                                    className = "col-7 wd-input-text">
+                                    className = "col-5 wd-input-text">
                                 </input>
                             </div>
                             <div className="row align-items-center">
-                                <label className="col-4 fw-bold">Servings: </label>
+                                {/* xs-large */}
+                                <label className="col-6 wd-sm-txt d-xl-none">Servings: </label>
+                                {/* xl */}
+                                <label className="col-6 fw-bold d-none d-xl-block">Servings: </label>
                                 <input
                                     type = "text" id = "servings" value={editServings}
                                     onChange={(e)=>setServings(e.target.value)}
-                                    className = "col-7 wd-input-text">
+                                    className = "col-5 wd-input-text">
                                 </input>
                             </div>
                             <div className="row align-items-center">
-                                <label className="col-4 fw-bold">Difficulty: </label>
+                                {/* xs-large */}
+                                <label className="col-6 wd-sm-txt d-xl-none">Difficulty: </label>
+                                {/* xl */}
+                                <label className="col-6 fw-bold d-none d-xl-block">Difficulty: </label>
                                 <input
                                     type = "text" id = "difficulty" value={editDifficulty}
                                     onChange={(e)=>setDifficulty(e.target.value)}
-                                    className = "col-7 wd-input-text">
+                                    className = "col-5 wd-input-text">
                                 </input>
                             </div>
                         </div>
@@ -193,11 +218,11 @@ const CreateRecipe = ({profile}) => {
             <div className="row justify-content-evenly">
                 <Link to="/profile/:uid/my-recipes/:rid/details" 
                     onClick={createClickHandler}
-                    className="col-3 btn btn-secondary mt-3 me-2">
+                    className="col-3 btn btn-sm btn-secondary mt-3 me-2">
                     Save Recipe
                 </Link>
                 <Link to="/profile/:uid/my-recipes/:rid/details" 
-                    className="col-3 btn btn-secondary mt-3 me-2">
+                    className="col-3 btn btn-sm btn-secondary mt-3 me-2">
                     Cancel
                 </Link>
             </div>

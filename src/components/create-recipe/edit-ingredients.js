@@ -59,7 +59,7 @@ const EditIngredients = ({recipe}) => {
                 <div className="row justify-content-center">
                     <button type="button"
                     onClick={addIngredientHandler}
-                    className="col-3 btn btn-sm btn-secondary">Add Ingredient</button>
+                    className="col-4 btn btn-sm btn-secondary">Add Ingredient</button>
                 </div>
             </div>
 

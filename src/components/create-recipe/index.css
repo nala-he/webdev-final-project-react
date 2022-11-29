@@ -18,8 +18,15 @@
 
 .wd-create-recipe-pic {
     border-radius: 12px;
-    width: 250px;
-    height: 150px;
+    width: 225px;
+    height: 135px;
+    object-fit: cover;
+}
+
+.wd-create-recipe-pic-sm {
+    border-radius: 12px;
+    width: 125px;
+    height: 75px;
     object-fit: cover;
 }
 
@@ -39,4 +46,9 @@
     border-color: rgb(221, 216, 216);
     padding: 5px;
     width:100%;
+}
+
+.wd-sm-txt {
+    font-weight: bold;
+    font-size: 15px;
 }

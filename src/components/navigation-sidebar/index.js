@@ -8,7 +8,7 @@ import "./index.css";
 const NavigationSidebar = () => {
     const {pathname} = useLocation();
     const paths = pathname.split('/');
-    let active = (paths[1] !== '') ? paths[1] : 'home';
+    let active = paths[paths.length - 1];
 
     return (
             <div className="mt-2 wd-component-outline">

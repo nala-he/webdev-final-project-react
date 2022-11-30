@@ -75,12 +75,14 @@ const ProfileDetails = () => {
                     </li>
 
                     <li>
-                        <button type="button"
-                                className="wd-edit-button border rounded-3
-                            ps-3 pe-3 pt-1 pb-1">
-                            <div className="wd-text-sm">{profile.savedRecipes}</div>
-                            <div className="wd-text-sm">Saved Recipes</div>
-                        </button>
+                        <Link to={`/users/${profile._id}/saved-recipes`}>
+                            <button type="button"
+                                    className="wd-edit-button border rounded-3
+                                ps-3 pe-3 pt-1 pb-1">
+                                <div className="wd-text-sm">{profile.savedRecipes}</div>
+                                <div className="wd-text-sm">Saved Recipes</div>
+                            </button>
+                        </Link>
                     </li>
                 </ul>
             </div>

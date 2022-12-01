@@ -2,6 +2,8 @@ import {Link} from "react-router-dom";
 import React, {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {updateProfile} from "../../reducers/profile-reducer";
+import {updateUserThunk} from "../../services/users-thunks";
+
 import "./index.css";
 
 const EditProfile = () => {
@@ -11,7 +13,8 @@ const EditProfile = () => {
 
     const dispatch = useDispatch();
     const saveClickHandler = () => {
-        dispatch(updateProfile(editedProfile));
+        // dispatch(updateProfile(editedProfile));
+        dispatch(updateUserThunk(editedProfile));
     }
 
     return (
@@ -55,6 +58,7 @@ const EditProfile = () => {
                     <div>
                         <div className="m-1">
                             <input type="text" className="wd-edit-input" placeholder="firstname"
+                                   title="firstname"
                                    onChange={(e) => {
                                        setEditedProfile({...editedProfile, firstName: e.target.value})
                                    }}
@@ -63,6 +67,7 @@ const EditProfile = () => {
                         </div>
                         <div className="m-1">
                             <input type="text" className="wd-edit-input" placeholder="lastname"
+                                   title="lastname"
                                    onChange={(e) => {
                                        setEditedProfile({...editedProfile, lastName: e.target.value})
                                    }}
@@ -70,7 +75,8 @@ const EditProfile = () => {
                             </input>
                         </div>
                         <div className="m-1">
-                            <input type="text" placeholder="username" className="wd-edit-input"
+                            <input type="text" placeholder="username" title="username"
+                                   className="wd-edit-input"
                                    onChange={(e) => {
                                        setEditedProfile({...editedProfile, username: e.target.value})
                                    }}
@@ -78,7 +84,16 @@ const EditProfile = () => {
                             </input>
                         </div>
                         <div className="m-1">
-                            <input type="url" placeholder="avatar image url" className="wd-edit-input"
+                            <input type="password" placeholder="password" title="password"
+                                   className="wd-edit-input"
+                                   onChange={(e) => {
+                                       setEditedProfile({...editedProfile, password: e.target.value})
+                                   }}>
+                            </input>
+                        </div>
+                        <div className="m-1">
+                            <input type="url" placeholder="avatar image url" title="avatar image url"
+                                   className="wd-edit-input"
                                    onChange={(e) => {
                                        setEditedProfile({...editedProfile, avatar: e.target.value})
                                    }}
@@ -104,7 +119,8 @@ const EditProfile = () => {
                             <div className="m-1">
                                 <input className="wd-edit-input"
                                        type="text"
-                                       placeholder="Business Link"
+                                       placeholder="business website"
+                                       title="business website"
                                        defaultValue={`${editedProfile.business}`}></input>
                             </div>
                         }

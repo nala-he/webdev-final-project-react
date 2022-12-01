@@ -2,14 +2,14 @@ import axios from 'axios';
 // REACT_APP_BASE_URL=http://localhost:4000
 const API_BASE = process.env.REACT_APP_BASE_URL;
 const USERS_API = `${API_BASE}/fridge/users`;
-axios.defaults.adapter = require('axios/lib/adapters/http')
+// axios.defaults.adapter = require('axios/lib/adapters/http')
 
 export const findUsers = async () => {
     const response = await axios.get(USERS_API);
     return response.data;
 }
 
-export const findUsersById = async (uid) => {
+export const findUserById = async (uid) => {
     const response = await axios.get(`${USERS_API}/${uid}`);
     return response.data;
 }

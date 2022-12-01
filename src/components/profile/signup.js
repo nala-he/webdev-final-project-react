@@ -26,21 +26,41 @@ const Signup = () => {
                    placeholder="password (required)" type="password"
                    onChange={(e) =>
                        setNewUser({...newUser, password: e.target.value})}/>
+            <select className="mb-2 form-control wd-edit-input"
+                    onChange={(e) => {
+                        setNewUser({...newUser, type: e.target.value})}}>
+                <option value="REG USER">
+                    REG USER</option>
+                <option value="RECIPE CREATOR">
+                    RECIPE CREATOR</option>
+                <option value="PRO CHEF">
+                    PRO CHEF</option>
+            </select>
+            <input className="mb-2 form-control"
+                   placeholder="firstname"
+                   onChange={(e) =>
+                       setNewUser({...newUser, firstname: e.target.value})}/>
+            <input className="mb-2 form-control"
+                   placeholder="lastname"
+                   onChange={(e) =>
+                       setNewUser({...newUser, lastname: e.target.value})}/>
             <input className="mb-2 form-control"
                    placeholder="avatar image url"
+                   type="url"
                    onChange={(e) =>
                        setNewUser({...newUser, avatar: e.target.value})}/>
-            <select className="mb-2 form-control wd-edit-input"
-                                    onChange={(e) => {
-                                setNewUser({...newUser, type: e.target.value})}}
-                                    value={newUser.type}>
-                                <option value="REG USER">
-                                    REG USER</option>
-                                <option value="RECIPE CREATOR">
-                                    RECIPE CREATOR</option>
-                                <option value="PRO CHEF">
-                                    PRO CHEF</option>
-                            </select>
+            <textarea className="mb-2 form-control"
+                   placeholder="bio"
+                   onChange={(e) =>
+                       setNewUser({...newUser, bio: e.target.value})}/>
+            {
+                newUser.type === "PRO CHEF" &&
+                <input className="mb-2 form-control"
+                       placeholder="business website"
+                       type="url"
+                       onChange={(e) =>
+                           setNewUser({...newUser, business: e.target.value})}/>
+            }
             <button className="btn btn-primary mb-5"
                     onClick={signup}>
                 Signup</button>

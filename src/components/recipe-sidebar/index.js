@@ -81,9 +81,6 @@ const RecipeSidebar = () => {
                             Search for Recipes by Ingredients
                         </button>
                     </div>
-
-
-
                 </ul>
             </div>
         </div>

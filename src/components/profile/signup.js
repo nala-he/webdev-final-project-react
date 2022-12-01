@@ -12,7 +12,7 @@ const Signup = () => {
         const user = await service.signup(newUser)
             .catch(e => alert(e));
         dispatch(updateProfile(user));
-        navigate('/home');
+        navigate('/profile');
     }
 
     return (

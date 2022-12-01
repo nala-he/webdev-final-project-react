@@ -1,7 +1,7 @@
 import {createSlice} from "@reduxjs/toolkit";
-import users from "../data/registered_users.json";
-
-const loggedIn = users[0];
+// import users from "../data/registered_users.json";
+//
+// const loggedIn = users[0];
 
 const profileSlice = createSlice({
      name: "profile",

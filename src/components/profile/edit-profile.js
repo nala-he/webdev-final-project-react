@@ -38,10 +38,17 @@ const EditProfile = () => {
             <div className="row row-cols-12">
                 <div className="col-4">
                     <div className="position-relative d-flex align-items-center">
-                        <img className="wd-profile-avatar m-3 wd-filter"
-                             src={profile.avatar !== '' ? `/images/${profile.avatar}`
-                                                        : `/images/emptyAvatar.png`}/>
-                        {/*<i className="bi bi-camera wd-camera position-relative"></i>*/}
+                        {
+                            profile.avatar.includes("http") &&
+                            <img className="wd-profile-avatar m-3 wd-filter"
+                                 src={profile.avatar}/>
+                        }
+                        {
+                            !profile.avatar.includes("http") &&
+                            <img className="wd-profile-avatar m-3 wd-filter"
+                                 src={profile.avatar !== '' ? `/images/${profile.avatar}`
+                                                            : `/images/emptyAvatar.png`}/>
+                        }
                     </div>
                 </div>
                 <div className="col-6 position-relative d-flex align-items-center">
@@ -68,6 +75,14 @@ const EditProfile = () => {
                                        setEditedProfile({...editedProfile, username: e.target.value})
                                    }}
                                    value={`${editedProfile.username}`}>
+                            </input>
+                        </div>
+                        <div className="m-1">
+                            <input type="url" placeholder="avatar image url" className="wd-edit-input"
+                                   onChange={(e) => {
+                                       setEditedProfile({...editedProfile, avatar: e.target.value})
+                                   }}
+                                   value={`${editedProfile.avatar}`}>
                             </input>
                         </div>
                         {/*<div className="m-1">*/}

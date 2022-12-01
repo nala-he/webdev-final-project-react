@@ -15,10 +15,17 @@ const ProfileDetails = () => {
         <div className="m-0 wd-profile-background">
             <div className="row row-cols-12 d-flex justify-content-center align-items-center pt-3">
                 <div className="col-4">
-                    <img className="wd-profile-avatar ms-3"
-                         alt="User avatar"
-                         src={profile.avatar !== '' ? `/images/${profile.avatar}`
-                                                    : `/images/emptyAvatar.png`}/>
+                    {
+                        profile.avatar.includes("http") &&
+                        <img className="wd-profile-avatar m-3 wd-filter"
+                             src={profile.avatar}/>
+                    }
+                    {
+                        !profile.avatar.includes("http") &&
+                        <img className="wd-profile-avatar m-3 wd-filter"
+                             src={profile.avatar !== '' ? `/images/${profile.avatar}`
+                                                        : `/images/emptyAvatar.png`}/>
+                    }
                 </div>
                 <div className="col-6 mt-3">
                     <div className="text-wrap text-break">

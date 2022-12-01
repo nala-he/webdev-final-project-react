@@ -6,7 +6,7 @@ import {Link} from "react-router-dom";
 import "./index.css";
 import * as service from "../../services/auth-service";
 import {useNavigate} from "react-router-dom";
-import {useSelector} from "react-redux";
+import {useSelector, useDispatch} from "react-redux";
 import {resetProfile} from "../../reducers/profile-reducer";
 
 const NavigationSidebar = () => {
@@ -29,11 +29,12 @@ const NavigationSidebar = () => {
         fetchData();
     }, [pathname]);
 
+    const dispatch = useDispatch();
     const logout = () => {
         service.logout()
             .then(() => {
                 setIsLoggedIn(false);
-                resetProfile();
+                dispatch(resetProfile());
                 navigate('/login');
             });
     }
@@ -60,6 +61,7 @@ const NavigationSidebar = () => {
                     itemsArray.map(item => <NavigationSidebarItem
                         key={item._id} item={item} active={active}/>)
                 }
+                {/*show logout button if logged in*/}
                 {
                     (isLoggedIn) &&
                     <button type="button"
@@ -81,6 +83,7 @@ const NavigationSidebar = () => {
                         </div>
                     </button>
                 }
+                {/*show login button if not logged in*/}
                 {
                     (!isLoggedIn) &&
                     <Link to={itemsArray[5].link} className={`${itemsArray[5].link.includes(active)

@@ -54,7 +54,7 @@ const EditProfile = () => {
                 <div className="col-6 position-relative d-flex align-items-center">
                     <div>
                         <div className="m-1">
-                            <input type="text" className="wd-edit-input" placeholder="Firstname"
+                            <input type="text" className="wd-edit-input" placeholder="firstname"
                                    onChange={(e) => {
                                        setEditedProfile({...editedProfile, firstName: e.target.value})
                                    }}
@@ -62,7 +62,7 @@ const EditProfile = () => {
                             </input>
                         </div>
                         <div className="m-1">
-                            <input type="text" className="wd-edit-input" placeholder="Lastname"
+                            <input type="text" className="wd-edit-input" placeholder="lastname"
                                    onChange={(e) => {
                                        setEditedProfile({...editedProfile, lastName: e.target.value})
                                    }}
@@ -70,7 +70,7 @@ const EditProfile = () => {
                             </input>
                         </div>
                         <div className="m-1">
-                            <input type="text" placeholder="Handle" className="wd-edit-input"
+                            <input type="text" placeholder="username" className="wd-edit-input"
                                    onChange={(e) => {
                                        setEditedProfile({...editedProfile, username: e.target.value})
                                    }}

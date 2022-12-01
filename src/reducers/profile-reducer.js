@@ -3,14 +3,14 @@ import {createSlice} from "@reduxjs/toolkit";
 //
 // const loggedIn = users[0];
 const initialState = {
-    username: "",
-    firstName: "",
-    lastName: "",
-    type: "REG USER",
-    avatar: "emptyAvatar.png",
-    bio: "",
-    business: "",
-    password: ""
+    "username": "",
+    "firstName": "",
+    "lastName": "",
+    "type": "REG USER",
+    "avatar": "",
+    "bio": "",
+    "business": "",
+    "password": ""
 }
 
 const profileSlice = createSlice({

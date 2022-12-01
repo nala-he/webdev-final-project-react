@@ -1,13 +1,19 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import IngredientItem from "./ingredient-item";
 import "./index.css";
 import {useDispatch, useSelector} from "react-redux";
-import {createIngredient} from "../../reducers/ingredients-reducer";
+import * as service from "../../services/fridge-ingredients-service";
+import {
+    createFridgeIngredientThunk, findCheckedFridgeIngredientsByUserThunk,
+    findFridgeIngredientsByUserThunk
+} from "../../services/fridge-ingredients-thunk";
 
 const RecipeSidebar = () => {
-    const ingredients = useSelector(state => state.ingredients);
+    const {ingredients, checkedIngredients} = useSelector(state => state.ingredients);
     const [ingredient, setIngredient] = useState({title: '', checked: false});
     const dispatch = useDispatch();
+    // HARDCODED CURRENTLY LOGGED IN USER FOR TESTING ------- UPDATE ONCE PROFILE IMPLEMENTED ----------------------------------------------
+    const uid = "638624632cf03e49f0977571";
 
     const checkClickHandler = (event) => {
         const newIngredient = {
@@ -27,18 +33,20 @@ const RecipeSidebar = () => {
     };
 
     const addIngredientClickHandler = () => {
-        // dispatch(createIngredientThunk(ingredient))
-        dispatch(createIngredient(ingredient));
+        dispatch(createFridgeIngredientThunk({uid, ingredient}));
     };
 
-    const searchByIngredientsClickHandler = () => {
-        let checkedIngredients = ingredients.filter(ingredient => ingredient.checked === true)
-            .map(ingredient => ingredient.title);
-        alert(`Checked Ingredients: ${checkedIngredients}`)
+    const searchByIngredientsClickHandler = async () => {
+        const checkedIngredients = await service.findCheckedFridgeIngredientsByUser(uid);
+        alert(`Checked Ingredients: ${checkedIngredients.map(ingredient => ingredient.title)}`)
     }
 
+    useEffect(() => {
+        dispatch(findFridgeIngredientsByUserThunk(uid));
+    }, []);
+
     return(
-        <div className="m-2 wd-component-outline wd-bg-light-blue">
+        <div className="m-2 wd-component-outline wd-bg-light-blue h-100 sticky-top">
             {/* Ingredients Header */}
             <h4 className="p-3 fw-bold text-black">Ingredients</h4>
             <div>
@@ -81,9 +89,6 @@ const RecipeSidebar = () => {
                             Search for Recipes by Ingredients
                         </button>
                     </div>
-
-
-
                 </ul>
             </div>
         </div>

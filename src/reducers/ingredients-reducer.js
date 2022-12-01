@@ -1,9 +1,43 @@
 import {createSlice} from "@reduxjs/toolkit";
-import ingredients from "../data/ingredients.json";
+import {
+    createFridgeIngredientThunk,
+    deleteFridgeIngredientThunk,
+    findFridgeIngredientsByUserThunk, updateFridgeIngredientThunk
+} from "../services/fridge-ingredients-thunk";
+
+const initialState = {
+    ingredients: []
+}
 
 const ingredientsSlice = createSlice({
     name: 'ingredients',
-    initialState: ingredients,
+    initialState,
+    extraReducers: {
+        [findFridgeIngredientsByUserThunk.pending]:
+            (state) => {
+                state.ingredients = [];
+            },
+        [findFridgeIngredientsByUserThunk.fulfilled]:
+            (state, {payload}) => {
+                state.ingredients = payload;
+            },
+        [createFridgeIngredientThunk.fulfilled]:
+            (state, {payload}) => {
+                state.ingredients.push({...payload});
+            },
+        [deleteFridgeIngredientThunk.fulfilled]:
+            (state, {payload}) => {
+                state.ingredients = state.ingredients.filter(ingredient => ingredient._id !== payload);
+            },
+        [updateFridgeIngredientThunk.fulfilled]:
+            (state, {payload}) => {
+                const index = state.ingredients.findIndex(ingredient => ingredient._id === payload._id);
+                state.ingredients[index] = {
+                    ...state.ingredients[index],
+                    ...payload
+                }
+            }
+    },
     reducers: {
         createIngredient(state, action) {
             state.push({

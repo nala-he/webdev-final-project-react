@@ -5,10 +5,10 @@ const loggedIn = users[0];
 
 const profileSlice = createSlice({
      name: "profile",
-     initialState: loggedIn,
+     initialState: {},
      reducers: {
          updateProfile(state, action) {
-             return {...action.payload}
+             return {...state, ...action.payload}
          }
      }
 });

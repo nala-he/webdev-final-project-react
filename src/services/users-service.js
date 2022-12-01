@@ -1,6 +1,7 @@
 import axios from 'axios';
 const API_BASE = process.env.REACT_APP_API_BASE;
 const USERS_API = `${API_BASE}/fridge/users`;
+axios.defaults.adapter = require('axios/lib/adapters/http')
 
 export const findUsers = async () => {
     const response = await axios.get(USERS_API);

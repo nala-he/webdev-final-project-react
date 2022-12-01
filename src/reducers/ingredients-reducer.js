@@ -1,5 +1,4 @@
 import {createSlice} from "@reduxjs/toolkit";
-import ingredients from "../data/ingredients.json";
 import {
     createFridgeIngredientThunk,
     deleteFridgeIngredientThunk,
@@ -33,9 +32,8 @@ const ingredientsSlice = createSlice({
         [updateFridgeIngredientThunk.fulfilled]:
             (state, {payload}) => {
                 const index = state.ingredients.findIndex(ingredient => ingredient._id === payload._id);
-                let targetIngredient = state.ingredients[index];
-                targetIngredient = {
-                    ...targetIngredient,
+                state.ingredients[index] = {
+                    ...state.ingredients[index],
                     ...payload
                 }
             }

@@ -70,20 +70,20 @@ const EditProfile = () => {
                                    value={`${editedProfile.username}`}>
                             </input>
                         </div>
-                        <div className="m-1">
-                            <select className="wd-edit-input"
-                                    onChange={(e) => {
-                                setEditedProfile({...editedProfile, type: e.target.value})
-                            }}
-                                    value={editedProfile.type}>
-                                <option value="REG USER">
-                                    REG USER</option>
-                                <option value="RECIPE CREATOR">
-                                    RECIPE CREATOR</option>
-                                <option value="PRO CHEF">
-                                    PRO CHEF</option>
-                            </select>
-                        </div>
+                        {/*<div className="m-1">*/}
+                        {/*    <select className="wd-edit-input"*/}
+                        {/*            onChange={(e) => {*/}
+                        {/*        setEditedProfile({...editedProfile, type: e.target.value})*/}
+                        {/*    }}*/}
+                        {/*            value={editedProfile.type}>*/}
+                        {/*        <option value="REG USER">*/}
+                        {/*            REG USER</option>*/}
+                        {/*        <option value="RECIPE CREATOR">*/}
+                        {/*            RECIPE CREATOR</option>*/}
+                        {/*        <option value="PRO CHEF">*/}
+                        {/*            PRO CHEF</option>*/}
+                        {/*    </select>*/}
+                        {/*</div>*/}
                         {
                             editedProfile.type === "PRO CHEF" &&
                             <div className="m-1">

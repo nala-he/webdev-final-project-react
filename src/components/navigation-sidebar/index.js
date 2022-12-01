@@ -7,7 +7,7 @@ import "./index.css";
 import * as service from "../../services/auth-service";
 import {useNavigate} from "react-router-dom";
 import {useSelector} from "react-redux";
-import {updateProfile} from "../../reducers/profile-reducer";
+import {resetProfile} from "../../reducers/profile-reducer";
 
 const NavigationSidebar = () => {
     const {pathname} = useLocation();
@@ -33,7 +33,7 @@ const NavigationSidebar = () => {
         service.logout()
             .then(() => {
                 setIsLoggedIn(false);
-                updateProfile({});
+                resetProfile();
                 navigate('/login');
             });
     }

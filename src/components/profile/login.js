@@ -14,7 +14,7 @@ const Login = () => {
         const user = await service.login(loginUser)
             .catch(e => alert(e));
         dispatch(updateProfile(user));
-        navigate("/profile");
+        navigate(`/profile/${user._id}`);
     };
 
     return (

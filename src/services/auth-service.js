@@ -1,5 +1,5 @@
 import axios from "axios";
-// REACT_APP_API_BASE=http://localhost:4000
+// REACT_APP_BASE_URL=http://localhost:4000
 const BASE_URL = process.env.REACT_APP_BASE_URL
 const AUTH_API = `${BASE_URL}/fridge/auth`
 

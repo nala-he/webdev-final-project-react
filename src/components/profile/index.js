@@ -9,28 +9,29 @@ import MyRecipeDetails from "./my-recipe-details";
 import "./index.css";
 import * as service from "../../services/auth-service";
 import {useNavigate} from "react-router-dom";
+import updateProfile from "../../reducers/profile-reducer";
 
 const Profile = () => {
-    // let loggedIn = useSelector(state => state.profile);
-    // let friend = useSelector(state => state.friendProfile);
+    let friend = useSelector(state => state.friendProfile);
     const {pathname} = useLocation();
     const paths = pathname.split('/');
     let active = paths.includes('my-recipes') ? 'my-recipes' : 'profile';
-    // let profile = paths.includes(loggedIn._id) ? loggedIn : friend;
 
     const navigate = useNavigate();
-    const [profile, setProfile] = useState({});
+    const [loggedIn, setLoggedIn] = useState({});
     useEffect(() => {
         async function fetchData() {
             try {
                 const user = await service.profile();
-                setProfile(user);
+                await setLoggedIn(user);
             } catch (e) {
                 navigate('/login');
             }
         }
         fetchData();
     }, []);
+
+    let profile = paths.includes(loggedIn._id) ? loggedIn : friend;
 
     return (
         <div className="mt-3">
@@ -49,7 +50,7 @@ const Profile = () => {
                     <li className="nav-item">
                         <Link className={`nav-link text-dark ${active === 'my-recipes' ? 'active'
                                                                                        : ''}`}
-                              to={`/profile/${profile._id}/my-recipes/`}>
+                              to={`/profile/${profile._id}/my-recipes`}>
                             <h5 className={`${active === 'my-recipes' ? 'fw-bolder' : ''}`}>
                                 My Recipes
                             </h5>

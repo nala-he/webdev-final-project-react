@@ -7,11 +7,13 @@ import "./index.css";
 import * as service from "../../services/auth-service";
 import {useNavigate} from "react-router-dom";
 import {useSelector} from "react-redux";
+import {updateProfile} from "../../reducers/profile-reducer";
 
 const NavigationSidebar = () => {
     const {pathname} = useLocation();
     const paths = pathname.split('/');
-    let active = paths[paths.length - 1] === '' ? 'home' : paths[paths.length - 1];
+    let temp = paths[paths.length - 1] === '' ? 'home' : paths[paths.length - 1];
+    let active = paths.includes("my-recipes") || paths.includes("profile") ? "profile" : temp;
 
     const navigate = useNavigate();
     let [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -31,6 +33,7 @@ const NavigationSidebar = () => {
         service.logout()
             .then(() => {
                 setIsLoggedIn(false);
+                updateProfile({});
                 navigate('/login');
             });
     }

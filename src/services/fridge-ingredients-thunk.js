@@ -18,12 +18,16 @@ export const deleteFridgeIngredientThunk = createAsyncThunk(
     }
 );
 
+export const updateFridgeIngredientThunk = createAsyncThunk(
+    'update fridge ingredient',
+    async (updatedIngredient) => {
+        const {ingredientId, updates} = updatedIngredient;
+        await service.updateFridgeIngredient(ingredientId, updates);
+        return updatedIngredient;
+    }
+);
+
 export const findFridgeIngredientsByUserThunk = createAsyncThunk(
     'find fridge ingredients by user',
     async (uid) => await service.findFridgeIngredientsByUser(uid)
-);
-
-export const findCheckedFridgeIngredientsByUserThunk = createAsyncThunk(
-    'find checked fridge ingredients by user',
-    async (uid) => await service.findCheckedFridgeIngredientsByUser(uid)
 );

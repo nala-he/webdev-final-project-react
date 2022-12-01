@@ -1,7 +1,11 @@
 import React from "react";
 import {useDispatch} from "react-redux";
-import {deleteIngredient, ingredientCheckedToggle} from "../../reducers/ingredients-reducer";
 import "./index.css";
+import * as service from "../../services/fridge-ingredients-service";
+import {
+    deleteFridgeIngredientThunk,
+    updateFridgeIngredientThunk
+} from "../../services/fridge-ingredients-thunk";
 
 const IngredientItem = (
     {
@@ -14,12 +18,14 @@ const IngredientItem = (
 
     const dispatch = useDispatch();
 
-    const toggleChecked = (id) => {
-        dispatch(ingredientCheckedToggle(id));
+    const toggleChecked = async (id) => {
+        const targetIngredient = await service.findFridgeIngredientById(id);
+        targetIngredient.checked = !targetIngredient.checked;
+        dispatch(updateFridgeIngredientThunk({ingredientId: id, updates: targetIngredient}));
     }
 
     const deleteIngredientClickHandler = (id) => {
-        dispatch(deleteIngredient(id));
+        dispatch(deleteFridgeIngredientThunk(id));
     }
 
     return (

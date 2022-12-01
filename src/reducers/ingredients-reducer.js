@@ -3,13 +3,11 @@ import ingredients from "../data/ingredients.json";
 import {
     createFridgeIngredientThunk,
     deleteFridgeIngredientThunk,
-    findCheckedFridgeIngredientsByUserThunk,
-    findFridgeIngredientsByUserThunk
+    findFridgeIngredientsByUserThunk, updateFridgeIngredientThunk
 } from "../services/fridge-ingredients-thunk";
 
 const initialState = {
-    ingredients: [],
-    checkedIngredients: []
+    ingredients: []
 }
 
 const ingredientsSlice = createSlice({
@@ -32,10 +30,14 @@ const ingredientsSlice = createSlice({
             (state, {payload}) => {
                 state.ingredients = state.ingredients.filter(ingredient => ingredient._id !== payload);
             },
-        [findCheckedFridgeIngredientsByUserThunk.fulfilled]:
+        [updateFridgeIngredientThunk.fulfilled]:
             (state, {payload}) => {
-                console.log(payload)
-                state.checkedIngredients = payload;
+                const index = state.ingredients.findIndex(ingredient => ingredient._id === payload._id);
+                let targetIngredient = state.ingredients[index];
+                targetIngredient = {
+                    ...targetIngredient,
+                    ...payload
+                }
             }
     },
     reducers: {

@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react";
 import IngredientItem from "./ingredient-item";
 import "./index.css";
 import {useDispatch, useSelector} from "react-redux";
+import * as service from "../../services/fridge-ingredients-service";
 import {
     createFridgeIngredientThunk, findCheckedFridgeIngredientsByUserThunk,
     findFridgeIngredientsByUserThunk
@@ -35,10 +36,9 @@ const RecipeSidebar = () => {
         dispatch(createFridgeIngredientThunk({uid, ingredient}));
     };
 
-    const searchByIngredientsClickHandler = () => {
-        dispatch(findCheckedFridgeIngredientsByUserThunk(uid));
-        const displayChecked = checkedIngredients.map(ingredient => ingredient.title)
-        alert(`Checked Ingredients: ${displayChecked}`)
+    const searchByIngredientsClickHandler = async () => {
+        const checkedIngredients = await service.findCheckedFridgeIngredientsByUser(uid);
+        alert(`Checked Ingredients: ${checkedIngredients.map(ingredient => ingredient.title)}`)
     }
 
     useEffect(() => {
@@ -46,7 +46,7 @@ const RecipeSidebar = () => {
     }, []);
 
     return(
-        <div className="m-2 wd-component-outline wd-bg-light-blue">
+        <div className="m-2 wd-component-outline wd-bg-light-blue h-100 sticky-top">
             {/* Ingredients Header */}
             <h4 className="p-3 fw-bold text-black">Ingredients</h4>
             <div>

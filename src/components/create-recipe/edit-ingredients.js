@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import { createRecipeIngredient, deleteRecipeIngredient } from "../../reducers/recipe-ingredients-reducer";
 import {useDispatch, useSelector} from "react-redux";
+import { createRecipeIngredientThunk, deleteRecipeIngredientThunk, findIngredientsForRecipeThunk } from "../recipe-ingredients-thunk";
 import "./index.css";
 
 const EditIngredients = ({recipe}) => {
@@ -17,11 +18,14 @@ const EditIngredients = ({recipe}) => {
             ingredient: editIngredient,
             rid: recipe._id,
         }
-        dispatch(createRecipeIngredient(newIngredient));
+        dispatch(createRecipeIngredientThunk({
+            ingredient: editIngredient,
+            rid: recipe._id,
+        }));
     }
 
     const deleteIngredientHandler = (ingredientId) => {
-        dispatch(deleteRecipeIngredient(ingredientId));
+        dispatch(deleteRecipeIngredientThunk(ingredientId));
     }
 
     return (

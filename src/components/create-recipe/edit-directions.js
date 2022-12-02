@@ -19,11 +19,14 @@ const EditDirections = ({recipe}) => {
             direction: editDirection,
             rid: recipe._id,
         }
-        dispatch(createRecipeDirection(newDirection));
+        dispatch(createRecipeDirectionThunk({
+            direction: editDirection,
+            rid: recipe._id,
+        }));
     }
 
     const deleteDirectionHandler = (directionId) => {
-        dispatch(deleteRecipeDirection(directionId));
+        dispatch(deleteRecipeDirectionThunk(directionId));
     }
 
     return (
@@ -33,7 +36,7 @@ const EditDirections = ({recipe}) => {
             </div>
             <ul className="text-dark mt-2 p-0">
                 {
-                    directions.filter(direction => direction.rid === recipe._id)
+                    directions.recipeDirections.filter(direction => direction.rid === recipe._id)
                     .map(direction => 
                     <li key={direction._id} className="list-group-item">
                         <div className="row pt-3">

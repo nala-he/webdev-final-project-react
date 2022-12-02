@@ -3,6 +3,7 @@ import {Routes, Route} from "react-router";
 import {configureStore} from "@reduxjs/toolkit";
 import {Provider} from "react-redux";
 import NavigationSidebar from "../navigation-sidebar";
+import NewNavigationSidebar from "../navigation-sidebar/newNav";
 import HomeComponent from "../home-component";
 import RecipeSidebar from "../recipe-sidebar";
 import Profile from "../profile";
@@ -40,7 +41,8 @@ function Fridge() {
                 <div className="container">
                     <div className="row">
                         <div className="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2 mt-2">
-                            <NavigationSidebar/>
+                            {/* <NavigationSidebar/> */}
+                            <NewNavigationSidebar/>
                         </div>
                         <div className="col-10 col-sm-10 col-md-10 col-lg-7 col-xl-7"
                              style={{"position": "relative"}}>

@@ -1,6 +1,8 @@
 import React, {useState} from "react";
 import { createRecipeDirection, deleteRecipeDirection } from "../../reducers/recipe-directions-reducer";
 import {useDispatch, useSelector} from "react-redux";
+import { createRecipeDirectionThunk, deleteRecipeDirectionThunk, findDirectionsForRecipeThunk } from "../../services/recipe-directions-thunk";
+
 import "./index.css";
 
 const EditDirections = ({recipe}) => {

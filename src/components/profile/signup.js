@@ -39,11 +39,11 @@ const Signup = () => {
             <input className="mb-2 form-control"
                    placeholder="firstname"
                    onChange={(e) =>
-                       setNewUser({...newUser, firstname: e.target.value})}/>
+                       setNewUser({...newUser, firstName: e.target.value})}/>
             <input className="mb-2 form-control"
                    placeholder="lastname"
                    onChange={(e) =>
-                       setNewUser({...newUser, lastname: e.target.value})}/>
+                       setNewUser({...newUser, lastName: e.target.value})}/>
             <input className="mb-2 form-control"
                    placeholder="avatar image url"
                    type="url"

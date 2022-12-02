@@ -1,7 +1,7 @@
 import {React, useEffect, useState} from "react";
 import {Link} from "react-router-dom";
 import {Routes, Route, useLocation} from "react-router";
-import {useSelector} from "react-redux";
+import {useSelector, useDispatch} from "react-redux";
 import ProfileDetails from "./profile-details";
 import MyRecipes from "./my-recipes";
 import EditProfile from "./edit-profile";
@@ -9,7 +9,8 @@ import MyRecipeDetails from "./my-recipe-details";
 import "./index.css";
 import * as service from "../../services/auth-service";
 import {useNavigate} from "react-router-dom";
-import updateProfile from "../../reducers/profile-reducer";
+// import updateProfile from "../../reducers/profile-reducer";
+import {findUsersThunk} from "../../services/users-thunks";
 
 const Profile = () => {
     let friend = useSelector(state => state.friendProfile);
@@ -18,19 +19,25 @@ const Profile = () => {
     let active = paths.includes('my-recipes') ? 'my-recipes' : 'profile';
 
     const navigate = useNavigate();
+    const dispatch = useDispatch();
+    // const loggedIn = useSelector(state => state.profile);
+    const users = useSelector(state => state.usersData);
+
     const [loggedIn, setLoggedIn] = useState({});
     useEffect(() => {
         async function fetchData() {
             try {
                 const user = await service.profile();
-                await setLoggedIn(user);
+                await dispatch(findUsersThunk());
+                // await dispatch(findUserByIdThunk(user._id));
+                await setLoggedIn(users.filter(u => u._id === user._id));
+                // await dispatch(updateProfile(loggedIn));
             } catch (e) {
                 navigate('/login');
             }
         }
         fetchData();
     }, []);
-
     let profile = paths.includes(loggedIn._id) ? loggedIn : friend;
 
     return (

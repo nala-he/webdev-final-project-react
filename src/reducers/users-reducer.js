@@ -1,30 +1,30 @@
 import {createSlice} from "@reduxjs/toolkit";
-import {findUsersThunk, findUsersByIdThunk, createUserThunk, updateUserThunk,
-    deleteUserThunk} from "../../services/users-thunks";
+import {findUsersThunk, findUserByIdThunk, updateUserThunk} 
+    from "../services/users-thunks";
 
-const initialState = {}
+const initialState = []
 
 const usersSlice = createSlice({
-   name: "users",
-   initialState,
-   extraReducers: {
-       [findUsersThunk.fulfilled]:
-           (state, { payload }) => {
-               state = payload
-           },
-       [findUsersThunk.fulfilled]:
-           (state, { payload }) => {
-               state = payload
-           },
-       [updateUserThunk.fulfilled]:
-           (state, { payload }) => {
-               const userNdx = state
-                   .findIndex((t) => t._id === payload._id)
-               state[userNdx] = {
-                   ...state[userNdx],
-                   ...payload
-               }
-           }
-   }
-});
+                                   name: "users",
+                                   initialState,
+                                   extraReducers: {
+                                       [findUsersThunk.fulfilled]:
+                                           (state, {payload}) => {
+                                               state = payload
+                                           },
+                                       [findUserByIdThunk.fulfilled]:
+                                           (state, {payload}) => {
+                                                state.push(payload);
+                                           },
+                                       [updateUserThunk.fulfilled]:
+                                           (state, {payload}) => {
+                                               const userIndex = state
+                                                   .findIndex((u) => u._id === payload._id)
+                                               state[userIndex] = {
+                                                   ...state[userIndex],
+                                                   ...payload
+                                               }
+                                           }
+                                   }
+                               });
 export default usersSlice.reducer;

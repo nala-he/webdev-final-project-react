@@ -1,7 +1,7 @@
 import {Link} from "react-router-dom";
 import React, {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {updateProfile} from "../../reducers/profile-reducer";
+// import {updateProfile} from "../../reducers/profile-reducer";
 import {updateUserThunk} from "../../services/users-thunks";
 
 import "./index.css";
@@ -15,6 +15,7 @@ const EditProfile = () => {
     const saveClickHandler = () => {
         // dispatch(updateProfile(editedProfile));
         dispatch(updateUserThunk(editedProfile));
+        console.log(editedProfile);
     }
 
     return (
@@ -88,7 +89,8 @@ const EditProfile = () => {
                                    className="wd-edit-input"
                                    onChange={(e) => {
                                        setEditedProfile({...editedProfile, password: e.target.value})
-                                   }}>
+                                   }}
+                                   value={`${editedProfile.password}`}>
                             </input>
                         </div>
                         <div className="m-1">

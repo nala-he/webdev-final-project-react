@@ -21,6 +21,7 @@ import CreateRecipeComponent from "../create-recipe";
 import recipeIngredientsReducer from "../../reducers/recipe-ingredients-reducer";
 import recipeDirectionsReducer from "../../reducers/recipe-directions-reducer";
 import Login from "../profile/login";
+import usersReducer from "../../reducers/users-reducer";
 
 const store = configureStore({reducer: {
             ingredients, 
@@ -31,6 +32,7 @@ const store = configureStore({reducer: {
             friendReipes: friendRecipesReducer,
             recipeIngredients: recipeIngredientsReducer,
             recipeDirections: recipeDirectionsReducer,
+            usersData: usersReducer
     }
 });
 

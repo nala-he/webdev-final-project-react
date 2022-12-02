@@ -6,8 +6,6 @@ import "./index.css";
 
 const EditIngredients = ({recipe}) => {
     const ingredients = useSelector(state => state.recipeIngredients);
-    console.log(recipe);
-    console.log(ingredients);
     const [editIngredient, setIngredient] = useState('');
     const dispatch = useDispatch();
 

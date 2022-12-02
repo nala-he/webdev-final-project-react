@@ -10,6 +10,7 @@ import Profile from "../profile";
 import EditProfile from "../profile/edit-profile";
 import {HashRouter} from "react-router-dom";
 import ingredients from "../../reducers/ingredients-reducer";
+import recipes from "../../reducers/recipes-reducer";
 import recipesReducer from "../../reducers/recipes-reducer"
 import profileReducer from "../../reducers/profile-reducer";
 import friendProfileReducer from "../../reducers/friend-profile-reducer";
@@ -24,7 +25,7 @@ import recipeDirectionsReducer from "../../reducers/recipe-directions-reducer";
 
 const store = configureStore({reducer: {
             ingredients, 
-            recipes: recipesReducer, 
+            recipes, 
             profile: profileReducer, 
             friendProfile: friendProfileReducer,
             myRecipes: myRecipesReducer,

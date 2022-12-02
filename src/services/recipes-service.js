@@ -16,7 +16,10 @@ export const deleteRecipe = async (rid) => {
 
 export const updateRecipe = async (rid, recipe) => {
     const response = await axios.put(`${RECIPES_API}/${rid}`, recipe);
-    return response.data;
+    // console.log("service debug");
+    // console.log(rid);
+    // console.log(recipe);
+    return recipe;
 }
 
 export const findRecipes = async () => {

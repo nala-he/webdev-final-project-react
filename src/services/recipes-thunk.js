@@ -17,10 +17,15 @@ export const deleteRecipeThunk = createAsyncThunk(
 export const updateRecipeThunk = createAsyncThunk(
     'update recipe',
     async (recipe) => {
-        const {rid, updates} = recipe;
-        await service.updateRecipe(rid, updates);
+        const {rid, newRecipe} = recipe;
+        await service.updateRecipe(rid, newRecipe);
         return recipe;
     }
+);
+
+export const findAllRecipesThunk = createAsyncThunk(
+    'find all recipes',
+    async () => await service.findRecipes()
 );
 
 export const findRecipesByAuthorThunk = createAsyncThunk(

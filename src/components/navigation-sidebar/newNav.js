@@ -111,7 +111,7 @@ const NewNavigationSidebar = () => {
                 <div className="m-2">
                     <Link to="/users/:uid/saved-recipes" className={`${"/users/:uid/saved-recipes".includes(active) ? 'active' : ''}`}>
                         {/*Navigation Button Item*/}
-                        <button type="button" className={`button mt-2 mb-2 w-100
+                        <button type="button" onClick={null} className={`button mt-2 mb-2 w-100
                         ${"/users/:uid/saved-recipes".includes(active) ? 'wd-button-active' : ''}`}>
                             <div className="row row-cols-12 pt-1 pb-1">
                                 <div className="col-2 d-flex align-items-center">
@@ -157,7 +157,7 @@ const NewNavigationSidebar = () => {
                 <div className="m-2">
                     <Link to="/logout" className={`${"/logout".includes(active) ? 'active' : ''}`}>
                         {/*Navigation Button Item*/}
-                        <button type="button" className={`button mt-2 mb-2 w-100
+                        <button type="button" onClick={null} className={`button mt-2 mb-2 w-100
                         ${"/logout".includes(active) ? 'wd-button-active' : ''}`}>
                             <div className="row row-cols-12 pt-1 pb-1">
                                 <div className="col-2 d-flex align-items-center">

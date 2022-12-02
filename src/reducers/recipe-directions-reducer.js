@@ -2,25 +2,29 @@ import {createSlice} from "@reduxjs/toolkit";
 import recipeDirections from "../data/recipe-directions.json";
 import { createRecipeDirectionThunk, deleteRecipeDirectionThunk, findDirectionsForRecipeThunk } from "../services/recipe-directions-thunk";
 
+const initialState = {
+    recipeDirections: []
+}
+
 const recipeDirectionsSlice = createSlice({
     name: "recipeDirections",
-    initialState: recipeDirections,
+    initialState,
     extraReducers: {
         [findDirectionsForRecipeThunk.pending]:
             (state) => {
-                state = [];
+                state.recipeDirections = [];
             },
         [findDirectionsForRecipeThunk.fulfilled]:
             (state, {payload}) => {
-                state = payload;
+                state.recipeDirections = payload;
             },
         [createRecipeDirectionThunk.fulfilled]:
             (state, {payload}) => {
-                state.push({...payload});
+                state.recipeDirections.push({...payload});
             },
         [deleteRecipeDirectionThunk.fulfilled]:
             (state, {payload}) => {
-                state = state.filter(recipeDirection => recipeDirection._id !== payload);
+                state.recipeDirections = state.recipeDirections.filter(recipeDirection => recipeDirection._id !== payload);
             }
     },
     reducers: {

@@ -15,7 +15,6 @@ const EditDirections = ({recipe}) => {
     }
     console.log(recipe);
     console.log(directions);
-    console.log(directions.recipeDirections);
     
     const addDirectionHandler = () => {
         const newDirection = {
@@ -40,7 +39,7 @@ const EditDirections = ({recipe}) => {
             </div>
             <ul className="text-dark mt-2 p-0">
                 {
-                    directions.filter(direction => direction.rid === recipe._id)
+                    directions.recipeDirections.filter(direction => direction.rid === recipe._id)
                     .map(direction => 
                     <li key={direction._id} className="list-group-item">
                         <div className="row pt-3">

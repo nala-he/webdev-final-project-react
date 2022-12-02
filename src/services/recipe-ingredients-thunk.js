@@ -16,5 +16,5 @@ export const deleteRecipeIngredientThunk = createAsyncThunk(
 
 export const findIngredientsForRecipeThunk = createAsyncThunk(
     'find ingredient recipes',
-    async (recipeId) => await service.findFridgeIngredientsByUser(recipeId)
+    async (recipeId) => await service.findIngredientsForRecipe(recipeId)
 );

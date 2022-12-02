@@ -187,7 +187,7 @@ const CreateRecipe = ({profile}) => {
             <EditIngredients recipe={recipe}/>
             
             {/* directions */}
-            {/* <EditDirections recipe={recipe}/> */}
+            <EditDirections recipe={recipe}/>
             
             <div className="wd-border text-dark mt-3 p-3">
                 <div className="row align-items-center">

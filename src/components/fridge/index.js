@@ -22,6 +22,8 @@ import RecipeDetailsComponent from "../recipe-details";
 import CreateRecipeComponent from "../create-recipe";
 import recipeIngredientsReducer from "../../reducers/recipe-ingredients-reducer";
 import recipeDirectionsReducer from "../../reducers/recipe-directions-reducer";
+import recipeDirections from "../../reducers/recipe-directions-reducer";
+
 
 const store = configureStore({reducer: {
             ingredients, 

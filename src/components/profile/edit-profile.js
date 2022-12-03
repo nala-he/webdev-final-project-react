@@ -96,7 +96,7 @@ const EditProfile = () => {
                                    onChange={(e) => {
                                        setEditedProfile({...editedProfile, username: e.target.value})
                                    }}
-                                   value={`${editedProfile.username}`}>
+                                   value={editedProfile.username}>
                             </input>
                         </div>
                         <div className="m-1">
@@ -105,7 +105,7 @@ const EditProfile = () => {
                                    onChange={(e) => {
                                        setEditedProfile({...editedProfile, password: e.target.value})
                                    }}
-                                   value={`${editedProfile.password}`}>
+                                   value={editedProfile.password}>
                             </input>
                         </div>
                         <div className="m-1">
@@ -114,7 +114,7 @@ const EditProfile = () => {
                                    onChange={(e) => {
                                        setEditedProfile({...editedProfile, avatar: e.target.value})
                                    }}
-                                   value={`${editedProfile.avatar}`}>
+                                   value={editedProfile.avatar ? `${editedProfile.avatar}` : ``}>
                             </input>
                         </div>
                         {
@@ -124,7 +124,8 @@ const EditProfile = () => {
                                        type="text"
                                        placeholder="business website"
                                        title="business website"
-                                       defaultValue={`${editedProfile.business}`}></input>
+                                       defaultValue={editedProfile.business ? 
+                                                     `${editedProfile.business}` : ``}></input>
                             </div>
                         }
                     </div>

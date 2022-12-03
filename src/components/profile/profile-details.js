@@ -7,12 +7,12 @@ import "./index.css";
 import {findUserByIdThunk} from "../../services/users-thunks";
 
 const ProfileDetails = () => {
-    // const dispatch = useDispatch();
+    const dispatch = useDispatch();
     const {currentUser}= useSelector(state => state.usersData);
 
-    // useEffect(() => {
-    //     dispatch(findUserByIdThunk(currentUser._id));
-    // }, []);
+    useEffect(() => {
+        dispatch(findUserByIdThunk(currentUser._id));
+    }, []);
 
     let profile = currentUser;
     // console.log(profile);

@@ -10,7 +10,7 @@ import EditProfile from "../profile/edit-profile";
 import {BrowserRouter} from "react-router-dom";
 import ingredients from "../../reducers/ingredients-reducer";
 import recipesReducer from "../../reducers/recipes-reducer"
-import profileReducer from "../../reducers/profile-reducer";
+// import profileReducer from "../../reducers/profile-reducer";
 import friendProfileReducer from "../../reducers/friend-profile-reducer";
 import FriendsComponent from "../friends-component";
 import myRecipesReducer from "../../reducers/my-recipes-reducer";
@@ -31,7 +31,7 @@ import MyRecipeDetails from "../recipe-details/my-recipe-details";
 const store = configureStore({reducer: {
             ingredients, 
             recipes: recipesReducer, 
-            profile: profileReducer, 
+            // profile: profileReducer,
             friendProfile: friendProfileReducer,
             myRecipes: myRecipesReducer,
             friendReipes: friendRecipesReducer,

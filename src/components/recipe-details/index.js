@@ -3,6 +3,8 @@ import {useLocation} from "react-router";
 import {Link} from "react-router-dom";
 import RecipeDetail from "./recipe-detail";
 import recipes from "../../data/recipes.json";
+import {useDispatch} from "react-redux";
+import {createSavedRecipeThunk, deleteSavedRecipeThunk} from "../../services/saved-recipes-thunk";
 
 const RecipeDetailsComponent = () => {
     const {pathname} = useLocation();
@@ -10,6 +12,16 @@ const RecipeDetailsComponent = () => {
     const userId = paths[2];
     const location = paths[3];
     const recipeId = paths[4];
+    const dispatch = useDispatch();
+
+    const deleteRecipeClickHandler = () => {
+        alert("delete")
+        //dispatch(deleteSavedRecipeThunk(recipeId));
+    };
+
+    const saveRecipeClickHandler = () => {
+        dispatch(createSavedRecipeThunk({uid: userId, rid: recipeId}))
+    }
 
     return (
         <div className="m-3 mb-0 wd-border wd-bg-beige">
@@ -41,7 +53,8 @@ const RecipeDetailsComponent = () => {
                 {
                     location === "my-recipes" &&
                     <Link to={`/profile/${userId}/my-recipes`}
-                          className="text-decoration-none d-flex align-items-center">
+                          className="text-decoration-none d-flex align-items-center"
+                          onClick={saveRecipeClickHandler}>
                         <i className="bi bi-save2 text-black fs-3"></i>
                         <span className="fw-bold fs-5 ms-3 text-dark">
                             Save Recipe
@@ -53,7 +66,8 @@ const RecipeDetailsComponent = () => {
                 {
                     location === "saved-recipes" &&
                     <Link to={`/users/${userId}/saved-recipes`}
-                          className="text-decoration-none d-flex align-items-center">
+                          className="text-decoration-none d-flex align-items-center"
+                          onClick={deleteRecipeClickHandler}>
                         <i className="bi bi-trash text-black fs-3"></i>
                         <span className="fw-bold fs-5 ms-3 text-dark">
                             Delete Recipe

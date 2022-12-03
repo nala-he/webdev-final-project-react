@@ -2,18 +2,18 @@ import {React, useEffect, useState} from "react";
 import {Link} from "react-router-dom";
 import {Routes, Route, useLocation} from "react-router";
 import {useSelector, useDispatch} from "react-redux";
-import ProfileDetails from "./profile-details";
+import PublicProfileDetails from "./public-profile-details";
 import MyRecipes from "./my-recipes";
-import EditProfile from "./edit-profile";
 import MyRecipeDetails from "./my-recipe-details";
 import "./index.css";
 import * as service from "../../services/auth-service";
 import {useNavigate} from "react-router-dom";
 // import updateProfile from "../../reducers/profile-reducer";
-import {findUsersThunk} from "../../services/users-thunks";
+// import {findUsersThunk} from "../../services/users-thunks";
 
-const Profile = () => {
-    let friend = useSelector(state => state.friendProfile);
+const PublicProfile = () => {
+    // let friend = useSelector(state => state.friendProfile);
+    const {uid} = useParams();
     const {pathname} = useLocation();
     const paths = pathname.split('/');
     let active = paths.includes('my-recipes') ? 'my-recipes' : 'profile';
@@ -21,30 +21,30 @@ const Profile = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     // const currentUser = useSelector(state => state.profile);
-    const {users, loading}= useSelector(state => state.usersData);
-    const [loggedIn, setLoggedIn] = useState({});
+    const {publicProfile, loading}= useSelector(state => state.usersData);
 
     useEffect(() => {
-        const fetchData = async () => {
-            const user = await service.profile();
-            // console.log(user);
-            await dispatch(findUsersThunk());
-            console.log(users);
-            // const updatedUser = await users.filter(u => u._id === user._id)[0];
+        dispatch(findUserByIdThunk(uid));
+        // const fetchData = async () => {
+        //     const user = await service.profile();
+        //     // console.log(user);
+        //     await dispatch(findUsersThunk());
+        //     console.log(users);
+        //     // const updatedUser = await users.filter(u => u._id === user._id)[0];
+        //
+        //     // setLoggedIn(updatedUser);
+        //     setLoggedIn(user);
+        //     console.log(loggedIn);
+        // }
+        // try {
+        //     fetchData();
+        // }
+        // catch(e) {
+        //     navigate('/login');
+        // }
+    }, [uid]);
 
-            // setLoggedIn(updatedUser);
-            setLoggedIn(user);
-            console.log(loggedIn);
-        }
-        try {
-            fetchData();
-        }
-        catch(e) {
-            navigate('/login');
-        }
-    }, []);
-
-    let profile = paths.includes(loggedIn._id) ? loggedIn : friend;
+    let profile = publicProfile;
     console.log(profile);
     return (
         <div className="mt-3">
@@ -76,13 +76,12 @@ const Profile = () => {
             }
             <div>
                 <Routes>
-                    <Route index element={<ProfileDetails/>}/>
+                    <Route index element={<PublicProfileDetails/>}/>
                     <Route path="/my-recipes" element={<MyRecipes/>}/>
-                    <Route path="/edit" element={<EditProfile/>}/>
                     <Route path="/my-recipes/details" element={<MyRecipeDetails/>}/>
                 </Routes>
             </div>
         </div>
     );
 }
-export default Profile;
+export default PublicProfile;

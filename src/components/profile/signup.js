@@ -9,17 +9,15 @@ const Signup = () => {
     const {currentUser} = useSelector(state => state.usersData);
     const [newUser, setNewUser] = useState({});
     const dispatch = useDispatch();
+    const navigate = useNavigate();
+
     const signup = () => {
-        dispatch(signupThunk(newUser));
+        dispatch(signupThunk(newUser))
+            .then(navigate(`/profile`));
         // const user = await service.signup(newUser)
         //     .catch(e => alert(e));
         // dispatch(updateProfile(user));
         // navigate(`/profile/${user._id}`);
-    }
-
-    const navigate = useNavigate();
-    if (currentUser) {
-        navigate(`/profile`);
     }
 
     return (

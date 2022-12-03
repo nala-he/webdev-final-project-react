@@ -22,26 +22,26 @@ const Profile = () => {
     const dispatch = useDispatch();
     const {currentUser}= useSelector(state => state.usersData);
 
-    useEffect(() => {
-        // const fetchData = async () => {
-            // const user = await service.profile();
-            // console.log(user);
-            // await dispatch(findUsersThunk());
-            // console.log(users);
-            // const updatedUser = await users.filter(u => u._id === user._id)[0];
-
-            // setLoggedIn(updatedUser);
-            // setLoggedIn(user);
-            // console.log(loggedIn);
-        // }
-        try {
-            // fetchData();
-            dispatch(findUserByIdThunk(currentUser._id));
-        }
-        catch(e) {
-            navigate('/login');
-        }
-    }, []);
+    // useEffect(() => {
+    //     // const fetchData = async () => {
+    //         // const user = await service.profile();
+    //         // console.log(user);
+    //         // await dispatch(findUsersThunk());
+    //         // console.log(users);
+    //         // const updatedUser = await users.filter(u => u._id === user._id)[0];
+    //
+    //         // setLoggedIn(updatedUser);
+    //         // setLoggedIn(user);
+    //         // console.log(loggedIn);
+    //     // }
+    //     try {
+    //         // fetchData();
+    //         dispatch(findUserByIdThunk(currentUser._id));
+    //     }
+    //     catch(e) {
+    //         navigate('/login');
+    //     }
+    // }, []);
 
     let profile = currentUser;
     // console.log(profile);

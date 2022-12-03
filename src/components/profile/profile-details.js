@@ -7,12 +7,12 @@ import "./index.css";
 import {findUserByIdThunk} from "../../services/users-thunks";
 
 const ProfileDetails = () => {
-    const dispatch = useDispatch();
+    // const dispatch = useDispatch();
     const {currentUser}= useSelector(state => state.usersData);
 
-    useEffect(() => {
-        dispatch(findUserByIdThunk(currentUser._id));
-    }, []);
+    // useEffect(() => {
+    //     dispatch(findUserByIdThunk(currentUser._id));
+    // }, []);
 
     let profile = currentUser;
     // console.log(profile);
@@ -22,22 +22,34 @@ const ProfileDetails = () => {
             <div className="row row-cols-12 d-flex justify-content-center align-items-center pt-3">
                 <div className="col-4">
                     {
-                        profile.avatar.includes("http") &&
+                        (!profile.avatar) &&
+                        <img className="wd-profile-avatar m-3 wd-filter"
+                             alt="avatar"
+                             src={`/images/emptyAvatar.png`}/>
+                    }
+                    {
+                        profile.avatar && profile.avatar.includes("http") &&
                         <img className="wd-profile-avatar m-3 wd-filter"
                              src={profile.avatar} alt="avatar"/>
                     }
                     {
-                        !profile.avatar.includes("http") &&
+                        profile.avatar && !profile.avatar.includes("http") &&
                         <img className="wd-profile-avatar m-3 wd-filter"
                              alt="avatar"
-                             src={profile.avatar !== '' ? `/images/${profile.avatar}`
-                                                        : `/images/emptyAvatar.png`}/>
+                             src={`/images/${profile.avatar}`}/>
                     }
+
                 </div>
                 <div className="col-6 mt-3">
                     <div className="text-wrap text-break">
-                        <span className="fw-bold wd-profile-text">
-                            {profile.firstName} {profile.lastName} </span>
+                            {
+                                profile.firstName &&
+                                <span className="fw-bold wd-profile-text">{profile.firstName} </span>
+                            }
+                            {
+                                profile.lastName  &&
+                                <span className="fw-bold wd-profile-text">{profile.lastName} </span>
+                            }
                             {profile.type === "REG USER" ? <i className="fa-solid fa-drumstick-bite"></i> : ''}
                             {profile.type === "RECIPE CREATOR" ? <i className="fa-solid fa-file-pen"></i> : ''}
                             {profile.type === "PRO CHEF" ? <i className="fa-solid fa-bell-concierge"></i> : ''}
@@ -45,7 +57,7 @@ const ProfileDetails = () => {
                     <div className="wd-profile-text">@{profile.username}</div>
                     <div className="wd-profile-text">{profile.type}</div>
                     {
-                        profile.type === "PRO CHEF" &&
+                        profile.type === "PRO CHEF" && profile.business &&
                         <a className="wd-profile-text" href={`${profile.business}`}>{profile.business}</a>
                     }
                 </div>
@@ -60,9 +72,12 @@ const ProfileDetails = () => {
                      </Link>
                 </div>
             </div>
-            <div className="m-3">
-                <div className="p-3 border w-100 rounded-3 wd-bio overflow-auto">{profile.bio}</div>
-            </div>
+            {
+                profile.bio &&
+                <div className="m-3">
+                    <div className="p-3 border w-100 rounded-3 wd-bio overflow-auto">{profile.bio}</div>
+                </div>
+            }
             <div className="m-3">
                 <ul className="p-0 wd-profile-buttons">
                     <li>
@@ -70,7 +85,10 @@ const ProfileDetails = () => {
                             <button type="button"
                                     className="wd-edit-button border rounded-3
                             ps-3 pe-3 pt-1 pb-1">
-                                <div className="wd-text-sm">{profile.followings}</div>
+                                {
+                                    profile.followings &&
+                                    <div className="wd-text-sm">{profile.followings}</div>
+                                }
                                 <div className="wd-text-sm">Following</div>
                             </button>
                         </Link>
@@ -80,7 +98,10 @@ const ProfileDetails = () => {
                             <button type="button"
                                     className="wd-edit-button border rounded-3
                             ps-3 pe-3 pt-1 pb-1 ">
-                                <div className="wd-text-sm">{profile.followers}</div>
+                                {
+                                    profile.followers &&
+                                    <div className="wd-text-sm">{profile.followers}</div>
+                                }
                                 <div className="wd-text-sm">Followers</div>
                             </button>
                         </Link>
@@ -91,7 +112,10 @@ const ProfileDetails = () => {
                             <button type="button"
                                     className="wd-edit-button border rounded-3
                                 ps-3 pe-3 pt-1 pb-1">
-                                <div className="wd-text-sm">{profile.savedRecipes}</div>
+                                {
+                                    profile.savedRecipes &&
+                                    <div className="wd-text-sm">{profile.savedRecipes}</div>
+                                }
                                 <div className="wd-text-sm">Saved Recipes</div>
                             </button>
                         </Link>

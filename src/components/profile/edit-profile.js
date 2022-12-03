@@ -7,9 +7,9 @@ import {updateUserThunk} from "../../services/users-thunks";
 import "./index.css";
 
 const EditProfile = () => {
-    const profile = useSelector(state => state.profile);
-    let [showEdit, setShowEdit] = useState(false);
-    let [editedProfile, setEditedProfile] = useState(profile);
+    // const profile = useSelector(state => state.profile);
+    const {currentUser} = useSelector(state => state.usersData);
+    let [editedProfile, setEditedProfile] = useState(currentUser);
 
     const dispatch = useDispatch();
     const saveClickHandler = () => {
@@ -17,7 +17,8 @@ const EditProfile = () => {
         dispatch(updateUserThunk(editedProfile));
         console.log(editedProfile);
     }
-
+    let profile = currentUser;
+    
     return (
         <div className="mt-3 wd-edit-background">
             <div className="row d-flex align-items-center pt-1">
@@ -102,20 +103,6 @@ const EditProfile = () => {
                                    value={`${editedProfile.avatar}`}>
                             </input>
                         </div>
-                        {/*<div className="m-1">*/}
-                        {/*    <select className="wd-edit-input"*/}
-                        {/*            onChange={(e) => {*/}
-                        {/*        setEditedProfile({...editedProfile, type: e.target.value})*/}
-                        {/*    }}*/}
-                        {/*            value={editedProfile.type}>*/}
-                        {/*        <option value="REG USER">*/}
-                        {/*            REG USER</option>*/}
-                        {/*        <option value="RECIPE CREATOR">*/}
-                        {/*            RECIPE CREATOR</option>*/}
-                        {/*        <option value="PRO CHEF">*/}
-                        {/*            PRO CHEF</option>*/}
-                        {/*    </select>*/}
-                        {/*</div>*/}
                         {
                             editedProfile.type === "PRO CHEF" &&
                             <div className="m-1">

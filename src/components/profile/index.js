@@ -20,26 +20,32 @@ const Profile = () => {
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    // const loggedIn = useSelector(state => state.profile);
-    const users = useSelector(state => state.usersData);
-
+    // const currentUser = useSelector(state => state.profile);
+    const {users, loading}= useSelector(state => state.usersData);
     const [loggedIn, setLoggedIn] = useState({});
-    useEffect(() => {
-        async function fetchData() {
-            try {
-                const user = await service.profile();
-                await dispatch(findUsersThunk());
-                // await dispatch(findUserByIdThunk(user._id));
-                await setLoggedIn(users.filter(u => u._id === user._id));
-                // await dispatch(updateProfile(loggedIn));
-            } catch (e) {
-                navigate('/login');
-            }
-        }
-        fetchData();
-    }, []);
-    let profile = paths.includes(loggedIn._id) ? loggedIn : friend;
 
+    useEffect(() => {
+        const fetchData = async () => {
+            const user = await service.profile();
+            // console.log(user);
+            await dispatch(findUsersThunk());
+            console.log(users);
+            // const updatedUser = await users.filter(u => u._id === user._id)[0];
+
+            // setLoggedIn(updatedUser);
+            setLoggedIn(user);
+            console.log(loggedIn);
+        }
+        try {
+            fetchData();
+        }
+        catch(e) {
+            navigate('/login');
+        }
+    }, []);
+
+    let profile = paths.includes(loggedIn._id) ? loggedIn : friend;
+    console.log(profile);
     return (
         <div className="mt-3">
             <ul className="nav nav-tabs">
@@ -65,6 +71,9 @@ const Profile = () => {
                     </li>
                 }
             </ul>
+            {
+                loading && <h5>Loading...</h5>
+            }
             <div>
                 <Routes>
                     <Route index element={<ProfileDetails/>}/>

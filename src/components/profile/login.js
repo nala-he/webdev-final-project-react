@@ -13,7 +13,8 @@ const Login = () => {
     const login = async () => {
         const user = await service.login(loginUser)
             .catch(e => alert(e));
-        dispatch(updateProfile(user));
+        // dispatch(updateProfile(user));
+        dispatch(updateUserThunk(user));
         navigate(`/profile/${user._id}`);
     };
 

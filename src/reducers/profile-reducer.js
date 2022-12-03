@@ -18,16 +18,16 @@ const initialState = {
 const profileSlice = createSlice({
      name: "profile",
      initialState,
-     extraReducers: {
-         [findUserByIdThunk.fulfilled]:
-             (state, {payload}) => {
-                 state = payload;
-             },
-         [updateUserThunk.fulfilled]:
-             (state, {payload}) => {
-                 return {...state, ...payload}
-             }
-     },
+     // extraReducers: {
+     //     // [findUserByIdThunk.fulfilled]:
+     //     //     (state, {payload}) => {
+     //     //         state = payload;
+     //     //     },
+     //     [updateUserThunk.fulfilled]:
+     //         (state, {payload}) => {
+     //             return {...state, ...payload}
+     //         }
+     // },
      reducers: {
          updateProfile(state, action) {
              return {...state, ...action.payload}

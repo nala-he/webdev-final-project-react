@@ -3,7 +3,7 @@ import * as usersService from "./users-service";
 
 export const findUsersThunk = createAsyncThunk(
     'users/findUsers', async () => 
-        await usersService.findUsers()
+       await usersService.findUsers()
 )
 
 export const findUserByIdThunk = createAsyncThunk(
@@ -14,7 +14,7 @@ export const findUserByIdThunk = createAsyncThunk(
 
 export const createUserThunk = createAsyncThunk(
     'users/createUser', async (user) => {
-            return await usersService.createUser(user);
+        return await usersService.createUser(user);
     }
 )
 

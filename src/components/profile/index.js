@@ -9,8 +9,6 @@ import MyRecipeDetails from "../recipe-details/my-recipe-details";
 import "./index.css";
 import * as service from "../../services/auth-service";
 import {useNavigate} from "react-router-dom";
-// import updateProfile from "../../reducers/profile-reducer";
-// import {findUsersThunk} from "../../services/users-thunks";
 import {findUserByIdThunk} from "../../services/users-thunks";
 
 const Profile = () => {
@@ -22,26 +20,14 @@ const Profile = () => {
     const dispatch = useDispatch();
     const {currentUser}= useSelector(state => state.usersData);
 
-    // useEffect(() => {
-    //     // const fetchData = async () => {
-    //         // const user = await service.profile();
-    //         // console.log(user);
-    //         // await dispatch(findUsersThunk());
-    //         // console.log(users);
-    //         // const updatedUser = await users.filter(u => u._id === user._id)[0];
-    //
-    //         // setLoggedIn(updatedUser);
-    //         // setLoggedIn(user);
-    //         // console.log(loggedIn);
-    //     // }
-    //     try {
-    //         // fetchData();
-    //         dispatch(findUserByIdThunk(currentUser._id));
-    //     }
-    //     catch(e) {
-    //         navigate('/login');
-    //     }
-    // }, []);
+    useEffect(() => {
+        try {
+            dispatch(findUserByIdThunk(currentUser._id));
+        }
+        catch(e) {
+            navigate('/login');
+        }
+    }, []);
 
     let profile = currentUser;
     // console.log(profile);
@@ -71,13 +57,14 @@ const Profile = () => {
                 }
             </ul>
             <div>
-                <Routes>
-                    <Route index element={<ProfileDetails/>}/>
-                    {/*moved below to fridge/index.js*/}
-                    {/*<Route path="/my-recipes" element={<MyRecipes/>}/>*/}
-                    {/*<Route path="/edit" element={<EditProfile/>}/>*/}
-                    {/*<Route path="/my-recipes/details" element={<MyRecipeDetails/>}/>*/}
-                </Routes>
+                <ProfileDetails/>
+                {/*<Routes>*/}
+                {/*    <Route index element={<ProfileDetails/>}/>*/}
+                {/*    /!*moved below to fridge/index.js*!/*/}
+                {/*    /!*<Route path="/my-recipes" element={<MyRecipes/>}/>*!/*/}
+                {/*    /!*<Route path="/edit" element={<EditProfile/>}/>*!/*/}
+                {/*    /!*<Route path="/my-recipes/details" element={<MyRecipeDetails/>}/>*!/*/}
+                {/*</Routes>*/}
             </div>
         </div>
     );

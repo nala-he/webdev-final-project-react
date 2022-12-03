@@ -23,7 +23,6 @@ const usersReducer = createSlice({
            (state, {payload}) => {
                state.loading = false;
                state.users = payload;
-               console.log(state.users);
            },
        [findUserByIdThunk.fulfilled]:
            (state, {payload}) => {
@@ -40,8 +39,6 @@ const usersReducer = createSlice({
                    ...payload
                };
                state.currentUser = {...state.currentUser, ...payload};
-               console.log(state.currentUser);
-               console.log(state.users[userIndex]);
            },
        [logoutThunk.fulfilled]: (state, action) => {
            state.currentUser = null;

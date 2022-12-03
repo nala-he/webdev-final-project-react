@@ -26,6 +26,7 @@ export const createUser = async (user) => {
 
 export const updateUser = async (user) => {
     const response = await axios.put(`${USERS_API}/${user._id}`, user);
+    return user;
 }
 
 export const deleteUser = async (uid) => {

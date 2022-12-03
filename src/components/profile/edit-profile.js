@@ -1,4 +1,4 @@
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import React, {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 // import {updateProfile} from "../../reducers/profile-reducer";
@@ -13,12 +13,16 @@ const EditProfile = () => {
     let [editedProfile, setEditedProfile] = useState(currentUser);
 
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const saveClickHandler = () => {
-        // dispatch(updateProfile(editedProfile));
-        dispatch(findUsersThunk()).then(
+        try {
+            console.log(editedProfile);
             dispatch(updateUserThunk(editedProfile))
-        )
-        console.log(currentUser);
+            console.log(currentUser);
+        } catch (e) {
+            navigate("/login");
+        }
+        
     }
     let profile = currentUser;
     

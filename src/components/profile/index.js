@@ -10,48 +10,47 @@ import "./index.css";
 import * as service from "../../services/auth-service";
 import {useNavigate} from "react-router-dom";
 // import updateProfile from "../../reducers/profile-reducer";
-import {findUsersThunk} from "../../services/users-thunks";
+// import {findUsersThunk} from "../../services/users-thunks";
+import {findUserByIdThunk} from "../../services/users-thunks";
 
 const Profile = () => {
-    let friend = useSelector(state => state.friendProfile);
     const {pathname} = useLocation();
     const paths = pathname.split('/');
     let active = paths.includes('my-recipes') ? 'my-recipes' : 'profile';
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    // const currentUser = useSelector(state => state.profile);
-    const {users, loading}= useSelector(state => state.usersData);
-    const [loggedIn, setLoggedIn] = useState({});
+    const {currentUser}= useSelector(state => state.usersData);
 
     useEffect(() => {
-        const fetchData = async () => {
-            const user = await service.profile();
+        // const fetchData = async () => {
+            // const user = await service.profile();
             // console.log(user);
-            await dispatch(findUsersThunk());
-            console.log(users);
+            // await dispatch(findUsersThunk());
+            // console.log(users);
             // const updatedUser = await users.filter(u => u._id === user._id)[0];
 
             // setLoggedIn(updatedUser);
-            setLoggedIn(user);
-            console.log(loggedIn);
-        }
+            // setLoggedIn(user);
+            // console.log(loggedIn);
+        // }
         try {
-            fetchData();
+            // fetchData();
+            dispatch(findUserByIdThunk(currentUser._id));
         }
         catch(e) {
             navigate('/login');
         }
     }, []);
 
-    let profile = paths.includes(loggedIn._id) ? loggedIn : friend;
+    let profile = currentUser;
     console.log(profile);
     return (
         <div className="mt-3">
             <ul className="nav nav-tabs">
                 <li className="nav-item">
                     <Link className={`nav-link text-dark ${active === 'profile' ? 'active' : ''}`}
-                          to={`/profile/${profile._id}`}>
+                          to={`/profile`}>
                         <h5 className={`${active === 'profile' ? 'fw-bolder' : ''}`}>
                             Profile
                         </h5>
@@ -63,7 +62,7 @@ const Profile = () => {
                     <li className="nav-item">
                         <Link className={`nav-link text-dark ${active === 'my-recipes' ? 'active'
                                                                                        : ''}`}
-                              to={`/profile/${profile._id}/my-recipes`}>
+                              to={`/profile/my-recipes`}>
                             <h5 className={`${active === 'my-recipes' ? 'fw-bolder' : ''}`}>
                                 My Recipes
                             </h5>
@@ -71,9 +70,6 @@ const Profile = () => {
                     </li>
                 }
             </ul>
-            {
-                loading && <h5>Loading...</h5>
-            }
             <div>
                 <Routes>
                     <Route index element={<ProfileDetails/>}/>

@@ -5,7 +5,7 @@ import {Provider} from "react-redux";
 import NavigationSidebar from "../navigation-sidebar";
 import HomeComponent from "../home-component";
 import RecipeSidebar from "../recipe-sidebar";
-import Profile from "../profile";
+import Profile from "../profile/index";
 import EditProfile from "../profile/edit-profile";
 import {BrowserRouter} from "react-router-dom";
 import ingredients from "../../reducers/ingredients-reducer";

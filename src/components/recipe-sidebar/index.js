@@ -7,6 +7,7 @@ import {
     createFridgeIngredientThunk, findCheckedFridgeIngredientsByUserThunk,
     findFridgeIngredientsByUserThunk
 } from "../../services/fridge-ingredients-thunk";
+import {Navigate, useNavigate} from "react-router-dom";
 
 const RecipeSidebar = () => {
     const {ingredients, checkedIngredients} = useSelector(state => state.ingredients);
@@ -14,6 +15,8 @@ const RecipeSidebar = () => {
     const dispatch = useDispatch();
     // HARDCODED CURRENTLY LOGGED IN USER FOR TESTING ------- UPDATE ONCE PROFILE IMPLEMENTED ----------------------------------------------
     const uid = "638624632cf03e49f0977571";
+    // added the usersData reducer to check the currentUser status (logged in or not)-yutong
+    const {currentUser} = useSelector(state => state.usersData);
 
     const checkClickHandler = (event) => {
         const newIngredient = {
@@ -32,11 +35,24 @@ const RecipeSidebar = () => {
         setIngredient(newIngredient);
     };
 
+    const navigate = useNavigate();
     const addIngredientClickHandler = () => {
+        // added the if statement to prevent non-logged-in user clicking the button-yutong
+        if (!currentUser) {
+            // console.log("click")
+            navigate('/login');
+            return;
+        }
         dispatch(createFridgeIngredientThunk({uid, ingredient}));
     };
 
     const searchByIngredientsClickHandler = async () => {
+        // added the if statement to prevent non-logged-in user clicking the button-yutong
+        if (!currentUser) {
+            // console.log("click")
+            navigate('/login');
+            return;
+        }
         const checkedIngredients = await service.findCheckedFridgeIngredientsByUser(uid);
         alert(`Checked Ingredients: ${checkedIngredients.map(ingredient => ingredient.title)}`)
     }

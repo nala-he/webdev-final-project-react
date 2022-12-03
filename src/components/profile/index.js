@@ -8,7 +8,7 @@ import ProfileDetails from "./profile-details";
 // import MyRecipeDetails from "../recipe-details/my-recipe-details";
 import "./index.css";
 // import * as service from "../../services/auth-service";
-import {useNavigate} from "react-router-dom";
+import {useNavigate, Navigate} from "react-router-dom";
 import {findUserByIdThunk} from "../../services/users-thunks";
 
 const Profile = () => {
@@ -30,6 +30,10 @@ const Profile = () => {
             navigate('/login');
         }
     }, []);
+
+    if (!currentUser) {
+        return <Navigate to='/login'/>
+    }
 
     return (
         <div className="mt-3">

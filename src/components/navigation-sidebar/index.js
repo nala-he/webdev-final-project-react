@@ -7,7 +7,8 @@ import "./index.css";
 import * as service from "../../services/auth-service";
 import {useNavigate} from "react-router-dom";
 import {useSelector, useDispatch} from "react-redux";
-import {resetProfile} from "../../reducers/profile-reducer";
+// import {resetProfile} from "../../reducers/profile-reducer";
+import {logoutThunk} from "../../reducers/users-reducer";
 
 const NavigationSidebar = () => {
     const {pathname} = useLocation();
@@ -16,7 +17,7 @@ const NavigationSidebar = () => {
     let active = paths.includes("my-recipes") || paths.includes("profile") ? "profile" : temp;
 
     const navigate = useNavigate();
-    let [isLoggedIn, setIsLoggedIn] = useState(false);
+    const {currentUser} = useSelector(state => state.usersData);
     useEffect(() => {
         async function fetchData() {
             try {
@@ -31,10 +32,8 @@ const NavigationSidebar = () => {
 
     const dispatch = useDispatch();
     const logout = () => {
-        service.logout()
+        dispatch(logoutThunk());
             .then(() => {
-                setIsLoggedIn(false);
-                dispatch(resetProfile());
                 navigate('/login');
             });
     }
@@ -63,7 +62,7 @@ const NavigationSidebar = () => {
                 }
                 {/*show logout button if logged in*/}
                 {
-                    (isLoggedIn) &&
+                    currentUser &&
                     <button type="button"
                             className={`button mt-2 mb-2 w-100 
                     ${itemsArray[6].link.includes(active) ? 'wd-button-active' : ''}`}
@@ -85,7 +84,7 @@ const NavigationSidebar = () => {
                 }
                 {/*show login button if not logged in*/}
                 {
-                    (!isLoggedIn) &&
+                    (currentUser === null) &&
                     <Link to={itemsArray[5].link} className={`${itemsArray[5].link.includes(active)
                                                        ? 'active' : ''}`}>
                         {/*Navigation Button Item*/}

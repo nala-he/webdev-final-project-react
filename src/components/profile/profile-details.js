@@ -1,10 +1,10 @@
 import React, {useEffect} from "react";
 import {Link} from "react-router-dom";
-import {useSelector} from "react-redux";
+import {useSelector, useDispatch} from "react-redux";
 import {useLocation} from "react-router";
 import "./index.css";
 // import * as service from "../../services/auth-service";
-// import {findUsersThunk} from "../../services/users-thunks";
+import {findUserByIdThunk} from "../../services/users-thunks";
 
 const ProfileDetails = () => {
     const dispatch = useDispatch();
@@ -51,15 +51,13 @@ const ProfileDetails = () => {
                 </div>
                 <div className="col-2">
                     {/*Profile edit button*/}
-                    {profile._id === loggedIn._id &&
-                         <Link to="./edit">
-                             <button type="button"
-                                     className="wd-edit-button border rounded-3 float-end me-3
-                                ps-3 pe-3 pt-1 pb-1">
-                                 Edit
-                             </button>
-                         </Link>
-                    }
+                     <Link to="./edit">
+                         <button type="button"
+                                 className="wd-edit-button border rounded-3 float-end me-3
+                            ps-3 pe-3 pt-1 pb-1">
+                             Edit
+                         </button>
+                     </Link>
                 </div>
             </div>
             <div className="m-3">

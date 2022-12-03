@@ -19,5 +19,5 @@ export const loginThunk = createAsyncThunk(
 
 export const signupThunk = createAsyncThunk(
     'auth/signup',
-    async (user) => await register(user)
+    async (user) => await signup(user)
 )

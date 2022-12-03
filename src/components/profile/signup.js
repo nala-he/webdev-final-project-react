@@ -19,7 +19,7 @@ const Signup = () => {
 
     const navigate = useNavigate();
     if (currentUser) {
-        navigate(`/profile/${currentUser._id}`);
+        navigate(`/profile`);
     }
 
     return (

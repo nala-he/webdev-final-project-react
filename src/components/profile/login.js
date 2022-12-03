@@ -1,16 +1,18 @@
-import {useNavigate, useSelector} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import {React, useState, useEffect} from "react";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 
 import * as service from "../../services/auth-service";
-import {updateProfile} from "../../reducers/profile-reducer";
+// import {updateProfile} from "../../reducers/profile-reducer";
 import Signup from "./signup";
+import {loginThunk} from "../../services/auth-thunks";
 
 const Login = () => {
     const {currentUser} = useSelector(state => state.usersData);
     const [loginUser, setLoginUser] = useState({});
     const navigate = useNavigate()
     const dispatch = useDispatch();
+
     const login = () => {
         // const user = await service.login(loginUser)
         //     .catch(e => alert(e));
@@ -18,11 +20,12 @@ const Login = () => {
         // navigate(`/profile/${user._id}`);
         try {
             dispatch(loginThunk(loginUser))
-        } catch (e => alert(e)) 
-    };
+        }
+        catch (e) {}
+    }
     
     if (currentUser) {
-        navigate(`/profile/${currentUser._id}`);
+        navigate(`/profile`);
     }
     
     return (

@@ -9,7 +9,8 @@ import "./index.css";
 import * as service from "../../services/auth-service";
 import {useNavigate} from "react-router-dom";
 // import updateProfile from "../../reducers/profile-reducer";
-// import {findUsersThunk} from "../../services/users-thunks";
+import {findUserByIdThunk} from "../../services/users-thunks";
+import {useParams} from "react-router";
 
 const PublicProfile = () => {
     // let friend = useSelector(state => state.friendProfile);

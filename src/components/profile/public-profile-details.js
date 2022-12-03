@@ -1,7 +1,6 @@
-import React, {useEffect} from "react";
+import React from "react";
 import {Link} from "react-router-dom";
-import {useSelector} from "react-redux";
-import {useLocation} from "react-router";
+import {useSelector, useDispatch} from "react-redux";
 import "./index.css";
 // import * as service from "../../services/auth-service";
 import {findUserByIdThunk} from "../../services/users-thunks";

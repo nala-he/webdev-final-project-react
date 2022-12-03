@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {Link} from "react-router-dom";
 import {useSelector} from "react-redux";
 import {useLocation} from "react-router";
@@ -7,33 +7,14 @@ import "./index.css";
 // import {findUsersThunk} from "../../services/users-thunks";
 
 const ProfileDetails = () => {
-    let loggedIn = useSelector(state => state.profile);
-    let friend = useSelector(state => state.friendProfile);
-    const {pathname} = useLocation();
-    const paths = pathname.split('/');
-    let profile = paths.includes(loggedIn._id) ? loggedIn : friend;
+    const dispatch = useDispatch();
+    const {currentUser}= useSelector(state => state.usersData);
 
-    // let friend = useSelector(state => state.friendProfile);
-    // const {pathname} = useLocation();
-    // const paths = pathname.split('/');
-    //
-    // const dispatch = useDispatch();
-    // const {loggedIn, loading}= useSelector(state => state.usersData);
-    // const [loggedIn, setLoggedIn] = useState({});
-    //
-    // useEffect(() => {
-    //     const fetchData = async () => {
-    //         const user = await service.profile();
-    //         await dispatch(findUsersThunk());
-    //         const updatedUser = await users.filter(u => u._id === user._id)[0];
-    //         setLoggedIn(updatedUser);
-    //         console.log(updatedUser);
-    //     }
-    //     fetchData().catch(console.e);
-    //
-    // }, []);
-    //
-    // let profile = paths.includes(loggedIn._id) ? loggedIn : friend;
+    useEffect(() => {
+        dispatch(findUserByIdThunk(currentUser._id));
+    }, []);
+
+    let profile = currentUser;
     console.log(profile);
 
     return (

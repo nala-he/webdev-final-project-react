@@ -4,7 +4,10 @@ import {Link} from "react-router-dom";
 import RecipeDetail from "./recipe-detail";
 import recipes from "../../data/recipes.json";
 import {useDispatch} from "react-redux";
-import {createSavedRecipeThunk, deleteSavedRecipeThunk} from "../../services/saved-recipes-thunk";
+import {
+    createSavedRecipeThunk,
+    deleteSavedRecipeByUserAndRecipeIdThunk,
+} from "../../services/saved-recipes-thunk";
 
 const RecipeDetailsComponent = () => {
     const {pathname} = useLocation();
@@ -15,8 +18,7 @@ const RecipeDetailsComponent = () => {
     const dispatch = useDispatch();
 
     const deleteRecipeClickHandler = () => {
-        alert("delete")
-        //dispatch(deleteSavedRecipeThunk(recipeId));
+        dispatch(deleteSavedRecipeByUserAndRecipeIdThunk({uid: userId, rid: recipeId}));
     };
 
     const saveRecipeClickHandler = () => {

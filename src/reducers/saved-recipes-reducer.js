@@ -1,6 +1,6 @@
 import {createSlice} from "@reduxjs/toolkit";
 import {
-    createSavedRecipeThunk,
+    createSavedRecipeThunk, deleteSavedRecipeByUserAndRecipeIdThunk,
     deleteSavedRecipeThunk,
     findSavedRecipesByUserThunk
 } from "../services/saved-recipes-thunk";
@@ -25,6 +25,13 @@ const savedRecipesSlice = createSlice({
              (state, {payload}) => {
                  state.savedRecipes = state.savedRecipes.filter(recipe => recipe._id !== payload);
              },
+         [deleteSavedRecipeByUserAndRecipeIdThunk.fulfilled]:
+             (state, {payload}) => {
+                 const {uid, rid} = payload;
+                 const index = state.savedRecipes
+                     .findIndex(recipe => recipe.savedBy === uid && recipe.recipe === rid);
+                 state.savedRecipes.splice(index, 1);
+             }
      }
  });
 

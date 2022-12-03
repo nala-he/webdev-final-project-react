@@ -21,4 +21,13 @@ export const deleteSavedRecipeThunk = createAsyncThunk(
         await service.deleteSavedRecipe(savedRecipeId);
         return savedRecipeId;
     }
+);
+
+export const deleteSavedRecipeByUserAndRecipeIdThunk = createAsyncThunk(
+    'delete saved recipe by user and recipe id',
+    async (ids) => {
+        const {uid, rid} = ids;
+        await service.deleteSavedRecipeByUserAndRecipeId(uid, rid);
+        return ids;
+    }
 )

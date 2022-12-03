@@ -7,16 +7,18 @@ const api = axios.create({
                              withCredentials: true
                          });
 
-export const signup = (user) =>
-    api.post(`${AUTH_API}/signup`, user)
-        .then(response => response.data);
+export const signup = async (user) => {
+    const response = await api.post(`${AUTH_API}/signup`, user);
+    const newUser = response.data;
+    return newUser;
+}
 
 export const profile = () =>
     api.post(`${AUTH_API}/profile`)
         .then(response => response.data);
 
-export const logout = (user) =>
-    api.post(`${AUTH_API}/logout`, user)
+export const logout = () =>
+    api.post(`${AUTH_API}/logout`)
         .then(response => response.data);
 
 export const login = (credentials) =>

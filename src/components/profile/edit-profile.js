@@ -51,16 +51,23 @@ const EditProfile = () => {
                 <div className="col-4">
                     <div className="position-relative d-flex align-items-center">
                         {
-                            profile.avatar.includes("http") &&
+                            (!profile.avatar) &&
                             <img className="wd-profile-avatar m-3 wd-filter"
-                                 src={profile.avatar}/>
+                                 alt="avatar"
+                                 src={`/images/emptyAvatar.png`}/>
                         }
                         {
-                            !profile.avatar.includes("http") &&
+                            profile.avatar && profile.avatar.includes("http") &&
                             <img className="wd-profile-avatar m-3 wd-filter"
-                                 src={profile.avatar !== '' ? `/images/${profile.avatar}`
-                                                            : `/images/emptyAvatar.png`}/>
+                                 src={profile.avatar} alt="avatar"/>
                         }
+                        {
+                            profile.avatar && !profile.avatar.includes("http") &&
+                            <img className="wd-profile-avatar m-3 wd-filter"
+                                 alt="avatar"
+                                 src={`/images/${profile.avatar}`}/>
+                        }
+
                     </div>
                 </div>
                 <div className="col-6 position-relative d-flex align-items-center">

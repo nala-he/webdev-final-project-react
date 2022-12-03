@@ -38,7 +38,6 @@ const ProfileDetails = () => {
                              alt="avatar"
                              src={`/images/${profile.avatar}`}/>
                     }
-
                 </div>
                 <div className="col-6 mt-3">
                     <div className="text-wrap text-break">

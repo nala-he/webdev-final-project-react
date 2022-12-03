@@ -21,9 +21,9 @@ const NavigationSidebar = () => {
     const dispatch = useDispatch();
     const logout = () => {
         dispatch(logoutThunk())
-            .then(() => {
-                navigate('/login');
-            });
+            .then(
+                navigate('/login')
+            );
     }
 
     return (

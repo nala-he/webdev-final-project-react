@@ -1,18 +1,25 @@
 import {useState} from "react";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import * as service from "../../services/auth-service";
 import {useNavigate} from "react-router-dom";
 import {updateProfile} from "../../reducers/profile-reducer";
+import {signupThunk} from "../../services/auth-thunks";
 
 const Signup = () => {
+    const {currentUser} = useSelector(state => state.usersData);
     const [newUser, setNewUser] = useState({});
-    const navigate = useNavigate();
     const dispatch = useDispatch();
     const signup = async () => {
-        const user = await service.signup(newUser)
-            .catch(e => alert(e));
-        dispatch(updateProfile(user));
-        navigate(`/profile/${user._id}`);
+        dispatch(signupThunk(newUser));
+        // const user = await service.signup(newUser)
+        //     .catch(e => alert(e));
+        // dispatch(updateProfile(user));
+        // navigate(`/profile/${user._id}`);
+    }
+
+    const navigate = useNavigate();
+    if (currentUser) {
+        navigate(`/profile/${currentUser._id}`);
     }
 
     return (

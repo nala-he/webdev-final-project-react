@@ -9,7 +9,7 @@ const Signup = () => {
     const {currentUser} = useSelector(state => state.usersData);
     const [newUser, setNewUser] = useState({});
     const dispatch = useDispatch();
-    const signup = async () => {
+    const signup = () => {
         dispatch(signupThunk(newUser));
         // const user = await service.signup(newUser)
         //     .catch(e => alert(e));

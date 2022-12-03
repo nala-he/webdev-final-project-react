@@ -1,4 +1,4 @@
-import {useNavigate} from "react-router-dom";
+import {useNavigate, useSelector} from "react-router-dom";
 import {React, useState, useEffect} from "react";
 import {useDispatch} from "react-redux";
 
@@ -7,17 +7,24 @@ import {updateProfile} from "../../reducers/profile-reducer";
 import Signup from "./signup";
 
 const Login = () => {
+    const {currentUser} = useSelector(state => state.usersData);
     const [loginUser, setLoginUser] = useState({});
     const navigate = useNavigate()
     const dispatch = useDispatch();
-    const login = async () => {
-        const user = await service.login(loginUser)
-            .catch(e => alert(e));
+    const login = () => {
+        // const user = await service.login(loginUser)
+        //     .catch(e => alert(e));
         // dispatch(updateProfile(user));
-        dispatch(updateUserThunk(user));
-        navigate(`/profile/${user._id}`);
+        // navigate(`/profile/${user._id}`);
+        try {
+            dispatch(loginThunk(loginUser))
+        } catch (e => alert(e)) 
     };
-
+    
+    if (currentUser) {
+        navigate(`/profile/${currentUser._id}`);
+    }
+    
     return (
         <div>
             <Signup/>

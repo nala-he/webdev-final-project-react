@@ -26,7 +26,7 @@ import CurrentUser from "../profile/current-user";
 import PublicProfile from "../profile/public-profile";
 import ProtectedRoute from "../profile/protected-route";
 import MyRecipes from "../profile/my-recipes";
-import MyRecipeDetails from "../profile/my-recipe-details";
+import MyRecipeDetails from "../recipe-details/my-recipe-details";
 
 const store = configureStore({reducer: {
             ingredients, 

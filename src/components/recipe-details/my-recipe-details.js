@@ -1,14 +1,24 @@
 // Revise to Macee's MyRecipeDetails page
 import React from "react";
-import IngredientsList from "../recipe-details/ingredients-list";
-import DirectionsList from "../recipe-details/directions-list";
-import NutritionalFacts from "../recipe-details/nutritional-facts";
+import IngredientsList from "./ingredients-list";
+import DirectionsList from "./directions-list";
+import NutritionalFacts from "./nutritional-facts";
 import recipes from "../../data/recipes.json";
-import "../recipe-details/index.css";
+import "../profile/index.css";
+import {Link} from "react-router-dom";
+
 
 const MyRecipeDetails = ({recipe = recipes[0]}) => {
     return (
-        <div className="m-3 wd-border h-100 bg-white">
+        <div className="m-3 mb-0 wd-border wd-bg-beige">
+            {/* close button */}
+            <div className="d-flex justify-content-end m-3 me-4">
+                    <Link to={`/profile/my-recipes`}>
+                        <i className="bi bi-x-square text-black fs-3"></i>
+                    </Link>
+            </div>
+
+            <div className="m-3 wd-border h-100 bg-white">
             {/* author and dish title */}
             <div className="m-4 mb-3 d-flex justify-content-start align-items-center">
                 {/* author avatar */}
@@ -81,6 +91,18 @@ const MyRecipeDetails = ({recipe = recipes[0]}) => {
                         <span className="fw-bold">Protein: </span>{recipe.protein}
                     </div>
                 </div>
+            </div>
+        </div>
+            {/* save or delete button (depends on which page) */}
+            <div className="d-flex justify-content-center">
+                {/* save button if in my recipes page */}
+                <Link to={`/profile/my-recipes`}
+                      className="text-decoration-none d-flex align-items-center">
+                    <i className="bi bi-save2 text-black fs-3"></i>
+                    <span className="fw-bold fs-5 ms-3 text-dark">
+                        Save Recipe
+                    </span>
+                </Link>
             </div>
         </div>
     );

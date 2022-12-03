@@ -5,7 +5,7 @@ import {useSelector, useDispatch} from "react-redux";
 import ProfileDetails from "./profile-details";
 import MyRecipes from "./my-recipes";
 import EditProfile from "./edit-profile";
-import MyRecipeDetails from "./my-recipe-details";
+import MyRecipeDetails from "../recipe-details/my-recipe-details";
 import "./index.css";
 import * as service from "../../services/auth-service";
 import {useNavigate} from "react-router-dom";
@@ -73,9 +73,10 @@ const Profile = () => {
             <div>
                 <Routes>
                     <Route index element={<ProfileDetails/>}/>
-                    <Route path="/my-recipes" element={<MyRecipes/>}/>
-                    <Route path="/edit" element={<EditProfile/>}/>
-                    <Route path="/my-recipes/details" element={<MyRecipeDetails/>}/>
+                    {/*moved below to fridge/index.js*/}
+                    {/*<Route path="/my-recipes" element={<MyRecipes/>}/>*/}
+                    {/*<Route path="/edit" element={<EditProfile/>}/>*/}
+                    {/*<Route path="/my-recipes/details" element={<MyRecipeDetails/>}/>*/}
                 </Routes>
             </div>
         </div>

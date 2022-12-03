@@ -4,7 +4,7 @@ import {Routes, Route, useLocation} from "react-router";
 import {useSelector, useDispatch} from "react-redux";
 import PublicProfileDetails from "./public-profile-details";
 import MyRecipes from "./my-recipes";
-import MyRecipeDetails from "./my-recipe-details";
+import RecipeDetails from "../recipe-details/recipe-detail";
 import "./index.css";
 import * as service from "../../services/auth-service";
 import {useNavigate} from "react-router-dom";
@@ -26,23 +26,6 @@ const PublicProfile = () => {
 
     useEffect(() => {
         dispatch(findUserByIdThunk(uid));
-        // const fetchData = async () => {
-        //     const user = await service.profile();
-        //     // console.log(user);
-        //     await dispatch(findUsersThunk());
-        //     console.log(users);
-        //     // const updatedUser = await users.filter(u => u._id === user._id)[0];
-        //
-        //     // setLoggedIn(updatedUser);
-        //     setLoggedIn(user);
-        //     console.log(loggedIn);
-        // }
-        // try {
-        //     fetchData();
-        // }
-        // catch(e) {
-        //     navigate('/login');
-        // }
     }, [uid]);
 
     let profile = publicProfile;
@@ -79,7 +62,7 @@ const PublicProfile = () => {
                 <Routes>
                     <Route index element={<PublicProfileDetails/>}/>
                     <Route path="/my-recipes" element={<MyRecipes/>}/>
-                    <Route path="/my-recipes/details" element={<MyRecipeDetails/>}/>
+                    <Route path="/my-recipes/details" element={<RecipeDetails/>}/>
                 </Routes>
             </div>
         </div>

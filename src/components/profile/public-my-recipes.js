@@ -36,29 +36,6 @@ const MyRecipes = () => {
 
     return (
         <div className="mt-3">
-            <ul className="nav nav-tabs">
-                <li className="nav-item">
-                    <Link className={`nav-link text-dark ${active === 'profile' ? 'active' : ''}`}
-                          to={`/profile`}>
-                        <h5 className={`${active === 'profile' ? 'fw-bolder' : ''}`}>
-                            Profile
-                        </h5>
-                    </Link>
-                </li>
-                {
-                    profile.type !== "REG USER"
-                    &&
-                    <li className="nav-item">
-                        <Link className={`nav-link text-dark ${active === 'my-recipes' ? 'active'
-                                                                                       : ''}`}
-                              to={`/profile/my-recipes`}>
-                            <h5 className={`${active === 'my-recipes' ? 'fw-bolder' : ''}`}>
-                                My Recipes
-                            </h5>
-                        </Link>
-                    </li>
-                }
-            </ul>
             <div>
                 {/* Search bar */}
                 <div className="position-relative m-3">

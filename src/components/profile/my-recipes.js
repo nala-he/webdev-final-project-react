@@ -6,8 +6,8 @@ import MyRecipesItem from "./my-recipes-item";
 const MyRecipes = () => {
     const myRecipes = useSelector(state => state.myRecipes);
     // let friendRecipes = useSelector(state => state.friendRecipes);
-    const {pathname} = useLocation();
-    const paths = pathname.split('/');
+    // const {pathname} = useLocation();
+    // const paths = pathname.split('/');
     // Saved for future implementation
     // let recipes = paths.includes(myRecipes[0].createdBy) ? myRecipes : friendRecipes;
     // Use below for now

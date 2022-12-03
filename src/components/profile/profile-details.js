@@ -15,7 +15,7 @@ const ProfileDetails = () => {
     }, []);
 
     let profile = currentUser;
-    console.log(profile);
+    // console.log(profile);
 
     return (
         <div className="m-0 wd-profile-background">

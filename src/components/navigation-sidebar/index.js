@@ -8,7 +8,7 @@ import * as service from "../../services/auth-service";
 import {useNavigate} from "react-router-dom";
 import {useSelector, useDispatch} from "react-redux";
 // import {resetProfile} from "../../reducers/profile-reducer";
-import {logoutThunk} from "../../reducers/users-reducer";
+import {logoutThunk} from "../../services/auth-thunks";
 
 const NavigationSidebar = () => {
     const {pathname} = useLocation();
@@ -18,21 +18,9 @@ const NavigationSidebar = () => {
 
     const navigate = useNavigate();
     const {currentUser} = useSelector(state => state.usersData);
-    useEffect(() => {
-        async function fetchData() {
-            try {
-                const user = await service.profile();
-                await setIsLoggedIn(true);
-            } catch (e) {
-                navigate('/login');
-            }
-        }
-        fetchData();
-    }, [pathname]);
-
     const dispatch = useDispatch();
     const logout = () => {
-        dispatch(logoutThunk());
+        dispatch(logoutThunk())
             .then(() => {
                 navigate('/login');
             });

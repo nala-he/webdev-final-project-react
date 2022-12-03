@@ -44,7 +44,7 @@ const Profile = () => {
     }, []);
 
     let profile = currentUser;
-    console.log(profile);
+    // console.log(profile);
     return (
         <div className="mt-3">
             <ul className="nav nav-tabs">

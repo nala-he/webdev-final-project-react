@@ -25,6 +25,8 @@ import usersReducer from "../../reducers/users-reducer";
 import CurrentUser from "../profile/current-user";
 import PublicProfile from "../profile/public-profile";
 import ProtectedRoute from "../profile/protected-route";
+import MyRecipes from "../profile/my-recipes";
+import MyRecipeDetails from "../profile/my-recipe-details";
 
 const store = configureStore({reducer: {
             ingredients, 
@@ -43,7 +45,7 @@ function Fridge() {
     return(
         <Provider store={store}>
             <BrowserRouter>
-                <CurrentUser>
+                {/*<CurrentUser>*/}
                     <div className="container">
                         <div className="row">
                             <div className="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2 mt-2">
@@ -54,13 +56,16 @@ function Fridge() {
                                 <Routes>
                                     <Route path="/" element={<HomeComponent/>}/>
                                     <Route path="/home" element={<HomeComponent/>}/>
+                                    {/*differentiate logged in user's profile path from the friends' profile path*/}
                                     <Route path="/profile" element={
-                                        <ProtectedRoute>
+                                        // <ProtectedRoute>
                                             <Profile/>
-                                        </ProtectedRoute>
+                                        // </ProtectedRoute>
                                     }/>
+                                    <Route path="/profile/my-recipes" element={<MyRecipes/>}/>
+                                    <Route path="/profile/my-recipes/:rid/details" element={<MyRecipeDetails/>}/>
+                                    <Route path="/profile/edit" element={<EditProfile/>}/>
                                     <Route path="/profile/:uid/*" element={<PublicProfile/>}/>
-                                    <Route path="/profile/:uid/edit" element={<EditProfile/>}/>
                                     <Route path="/friends/:uid/*" element={<FriendsComponent/>}/>
                                     <Route path="/users/:uid/saved-recipes" element={<SavedRecipes/>}/>
                                     <Route path="/friends/*" element={<FriendsComponent/>}/>
@@ -76,7 +81,7 @@ function Fridge() {
                             </div>
                         </div>
                     </div>
-                </CurrentUser>
+                {/*</CurrentUser>*/}
             </BrowserRouter>
         </Provider>
     );

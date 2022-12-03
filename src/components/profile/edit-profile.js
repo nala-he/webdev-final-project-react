@@ -3,6 +3,7 @@ import React, {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 // import {updateProfile} from "../../reducers/profile-reducer";
 import {updateUserThunk} from "../../services/users-thunks";
+import {findUsersThunk} from "../../services/users-thunks";
 
 import "./index.css";
 
@@ -14,8 +15,10 @@ const EditProfile = () => {
     const dispatch = useDispatch();
     const saveClickHandler = () => {
         // dispatch(updateProfile(editedProfile));
-        dispatch(updateUserThunk(editedProfile));
-        console.log(editedProfile);
+        dispatch(findUsersThunk()).then(
+            dispatch(updateUserThunk(editedProfile))
+        )
+        console.log(currentUser);
     }
     let profile = currentUser;
     

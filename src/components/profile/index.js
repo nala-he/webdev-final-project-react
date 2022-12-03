@@ -1,13 +1,13 @@
 import {React, useEffect, useState} from "react";
 import {Link} from "react-router-dom";
-import {Routes, Route, useLocation} from "react-router";
+import {useLocation} from "react-router";
 import {useSelector, useDispatch} from "react-redux";
 import ProfileDetails from "./profile-details";
-import MyRecipes from "./my-recipes";
-import EditProfile from "./edit-profile";
-import MyRecipeDetails from "../recipe-details/my-recipe-details";
+// import MyRecipes from "./my-recipes";
+// import EditProfile from "./edit-profile";
+// import MyRecipeDetails from "../recipe-details/my-recipe-details";
 import "./index.css";
-import * as service from "../../services/auth-service";
+// import * as service from "../../services/auth-service";
 import {useNavigate} from "react-router-dom";
 import {findUserByIdThunk} from "../../services/users-thunks";
 
@@ -18,19 +18,19 @@ const Profile = () => {
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const {currentUser}= useSelector(state => state.usersData);
+    const {currentUser} = useSelector(state => state.usersData);
+    const [profile, setProfile] = useState(currentUser);
 
     useEffect(() => {
         try {
-            dispatch(findUserByIdThunk(currentUser._id));
+            dispatch(findUserByIdThunk(currentUser._id))
+                .then(setProfile(currentUser))
         }
         catch(e) {
             navigate('/login');
         }
     }, []);
 
-    let profile = currentUser;
-    // console.log(profile);
     return (
         <div className="mt-3">
             <ul className="nav nav-tabs">

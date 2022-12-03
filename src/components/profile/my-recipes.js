@@ -31,9 +31,9 @@ const MyRecipes = () => {
             navigate('/login');
         }
     }, []);
-
+    
     let profile = currentUser;
-    console.log(paths);
+    
     return (
         <div className="mt-3">
             {/*show the profile/my recipes nav tag if is for logged in user*/}

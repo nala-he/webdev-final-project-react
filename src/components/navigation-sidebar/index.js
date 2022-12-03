@@ -1,13 +1,12 @@
-import React, {useEffect, useState} from "react";
+import React from "react";
 import NavigationSidebarItem from "./navigation-sidebar-item";
 import itemsArray from "./item.json";
 import {useLocation} from "react-router";
 import {Link} from "react-router-dom";
 import "./index.css";
-import * as service from "../../services/auth-service";
+// import * as service from "../../services/auth-service";
 import {useNavigate} from "react-router-dom";
 import {useSelector, useDispatch} from "react-redux";
-// import {resetProfile} from "../../reducers/profile-reducer";
 import {logoutThunk} from "../../services/auth-thunks";
 
 const NavigationSidebar = () => {
@@ -16,14 +15,13 @@ const NavigationSidebar = () => {
     let temp = paths[paths.length - 1] === '' ? 'home' : paths[paths.length - 1];
     let active = paths.includes("my-recipes") || paths.includes("profile") ? "profile" : temp;
 
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
     const {currentUser} = useSelector(state => state.usersData);
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const logout = () => {
         dispatch(logoutThunk())
-            .then(
-                navigate('/login')
-            );
+            .then(() => navigate('/login'));
     }
 
     return (
@@ -31,7 +29,7 @@ const NavigationSidebar = () => {
                 {/*Logo and sitename*/}
                 <div className="m-2 row row-cols-12">
                         <div className="col-2 d-flex align-items-center justify-content-center">
-                            <img src="/images/logo.png" className="wd-logo"/>
+                            <img src="/images/logo.png" className="wd-logo" alt="logo"/>
                         </div>
                         <div className="col-10 d-flex align-items-center justify-content-center">
                             <span className="d-none d-xl-block wd-sitename text-black">

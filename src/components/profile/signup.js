@@ -1,8 +1,6 @@
 import {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import * as service from "../../services/auth-service";
-import {useNavigate} from "react-router-dom";
-import {updateProfile} from "../../reducers/profile-reducer";
+import {useNavigate, Navigate} from "react-router-dom";
 import {signupThunk} from "../../services/auth-thunks";
 
 const Signup = () => {
@@ -12,12 +10,20 @@ const Signup = () => {
     const navigate = useNavigate();
 
     const signup = () => {
-        dispatch(signupThunk(newUser))
-            .then(navigate(`/profile`));
+        try {
+            dispatch(signupThunk(newUser))
+        }
+        catch (e) {
+            navigate('/login');    
+        }
         // const user = await service.signup(newUser)
         //     .catch(e => alert(e));
         // dispatch(updateProfile(user));
         // navigate(`/profile/${user._id}`);
+    }
+
+    if(currentUser) {
+        return (<Navigate to={'/profile'}/>);
     }
 
     return (
@@ -67,8 +73,7 @@ const Signup = () => {
                            setNewUser({...newUser, business: e.target.value})}/>
             }
             <button className="btn btn-primary mb-5"
-                    onClick={signup}>
-                Signup</button>
+                    onClick={signup}>Signup</button>
         </div>
     );
 }

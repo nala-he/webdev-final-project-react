@@ -1,8 +1,8 @@
-import {useNavigate} from "react-router-dom";
-import {React, useState, useEffect} from "react";
+import {Navigate, useNavigate} from "react-router";
+import {React, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 
-import * as service from "../../services/auth-service";
+// import * as service from "../../services/auth-service";
 // import {updateProfile} from "../../reducers/profile-reducer";
 import Signup from "./signup";
 import {loginThunk} from "../../services/auth-thunks";
@@ -19,15 +19,17 @@ const Login = () => {
         // dispatch(updateProfile(user));
         // navigate(`/profile/${user._id}`);
         try {
-            dispatch(loginThunk(loginUser))
+            dispatch(loginThunk(loginUser));
         }
-        catch (e) {}
+        catch (e) {
+            navigate('/login');
+        }
     }
-    
+
     if (currentUser) {
-        navigate(`/profile`);
+        return (<Navigate to={'/profile'}/>)
     }
-    
+
     return (
         <div>
             <Signup/>

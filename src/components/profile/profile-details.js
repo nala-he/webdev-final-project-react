@@ -1,20 +1,28 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import {Link} from "react-router-dom";
 import {useSelector, useDispatch} from "react-redux";
 import {useLocation} from "react-router";
 import "./index.css";
-// import * as service from "../../services/auth-service";
 import {findUserByIdThunk} from "../../services/users-thunks";
+import {useNavigate} from "react-router-dom";
 
 const ProfileDetails = () => {
-    const dispatch = useDispatch();
     const {currentUser}= useSelector(state => state.usersData);
+    const [profile, setProfile] = useState(currentUser);
+
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     useEffect(() => {
-        dispatch(findUserByIdThunk(currentUser._id));
+        try {
+            dispatch(findUserByIdThunk(currentUser._id))
+                .then(setProfile(currentUser))
+        }
+        catch(e) {
+            navigate('/login');
+        }
     }, []);
 
-    let profile = currentUser;
     // console.log(profile);
 
     return (

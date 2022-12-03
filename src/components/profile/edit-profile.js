@@ -24,13 +24,13 @@ const EditProfile = () => {
             <div className="row d-flex align-items-center pt-1">
                 <div className="float-start col-6">
                     {/*Exit button*/}
-                    <Link to={`/profile/${profile._id}`}>
+                    <Link to={`/profile`}>
                         <i className="bi bi-x wd-icon-large text-black ms-2"> </i>
                     </Link>
                 </div>
                 <div className="float-end col-6">
                     {/*Profile save button*/}
-                    <Link to={`/profile/${profile._id}`}>
+                    <Link to={`/profile`}>
                         <button type="button"
                                 onClick={saveClickHandler}
                                 className="wd-edit-button border rounded-3 float-end me-2

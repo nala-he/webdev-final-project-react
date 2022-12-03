@@ -1,5 +1,7 @@
 import React from "react"
 import "./index.css"
+import {createSavedRecipeThunk} from "../../services/saved-recipes-thunk";
+import {useDispatch} from "react-redux";
 
 const RecipeSummaryItem = (
     {
@@ -13,7 +15,14 @@ const RecipeSummaryItem = (
     }
     
 ) => {
-    
+    const dispatch = useDispatch();
+    // HARDCODED CURRENTLY LOGGED IN USER FOR TESTING ------- UPDATE ONCE PROFILE IMPLEMENTED ----------------------------------------------
+    const uid = "638624632cf03e49f0977571";
+
+    const saveRecipeClickHandler = () => {
+        dispatch(createSavedRecipeThunk({uid, rid: recipe._id}))
+    };
+
     return(
     <div className="wd-item-border m-4 p-3 row">
         <div className="col-2 p-2">
@@ -32,7 +41,8 @@ const RecipeSummaryItem = (
                 </div>
             </div>
             <div className="row">
-                <div className="btn col-5 text-dark">
+                <div className="btn col-5 text-dark"
+                     onClick={saveRecipeClickHandler}>
                     <div className="d-block d-xl-none">
                         <i className="bi bi-bookmark text-dark p-2"></i>
                         <span className="wd-text-md">Save Recipe</span>

@@ -21,7 +21,7 @@ const SavedRecipesList = () => {
                 <i className="bi bi-search position-absolute wd-nudge-up text-dark"></i>
             </div>
             <div className="ms-4 text-dark fw-bold">
-                {/*<span>Total Saved Recipes: {recipes.length}</span>*/}
+                <span>Total Saved Recipes: {savedRecipes.length}</span>
             </div>
             {
                 savedRecipes && savedRecipes.map(recipe =>

@@ -23,7 +23,7 @@ const RecipeDetailsComponent = () => {
 
     const saveRecipeClickHandler = () => {
         dispatch(createSavedRecipeThunk({uid: userId, rid: recipeId}))
-    }
+    };
 
     return (
         <div className="m-3 mb-0 wd-border wd-bg-beige">

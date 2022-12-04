@@ -23,10 +23,13 @@ const NewNavigationSidebar2 = () => {
     }
 
     // hard coded user for now
-    const uid = "638624452cf03e49f0977570";
+    // const uid = "638624452cf03e49f0977570";
 
     const createRecipeHandler = () => {
-        dispatch(createRecipeThunk({uid}));
+        if (currentUser) {
+            let uid = currentUser._id;
+            dispatch(createRecipeThunk({uid}));
+        }
     }
     const deleteInvalidRecipesHandler = () => {
         dispatch(deleteInvalidRecipesThunk());

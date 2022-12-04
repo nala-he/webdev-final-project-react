@@ -32,7 +32,7 @@ const RecipeSummaryItem = (
                 </div>
             </div>
             <div className="row">
-                <div className="btn col-5 text-dark">
+                <div className="btn col-4 text-dark">
                     <div className="d-block d-xl-none">
                         <i className="bi bi-bookmark text-dark p-2"></i>
                         <span className="wd-text-md">Save Recipe</span>
@@ -42,7 +42,17 @@ const RecipeSummaryItem = (
                         <span>Save Recipe</span>
                     </div>
                 </div>
-                <div className="btn col-6 text-dark">
+                <div className="btn col-4 text-dark">
+                    <div className="d-block d-xl-none">
+                        <i className="fa-solid fa-utensils text-dark p-2"></i>
+                        <span className="wd-text-md">Open Recipe</span>
+                    </div>
+                    <div className="d-none d-xl-block">
+                        <i className="fa-solid fa-utensils text-dark p-2"></i>
+                        <span>Open Recipe</span>
+                    </div>
+                </div>
+                <div className="btn col-4 text-dark">
                     <div className="d-block d-xl-none">
                         <i className="bi bi-check-square text-dark p-2"></i>
                         <span className="wd-text-md">Follow Author</span>

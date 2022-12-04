@@ -20,7 +20,7 @@ const RecipeSummaryList = () => {
         </div>
       {
         recipes.recipes.map(recipe =>
-          <RecipeSummaryItem key={recipe._id} recipe={recipe}/> )
+          <RecipeSummaryItem key={recipe._id} recipe={recipe}/> ).reverse()
       }
     </div>
     );

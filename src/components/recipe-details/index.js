@@ -21,6 +21,14 @@ const RecipeDetailsComponent = () => {
         dispatch(deleteSavedRecipeByUserAndRecipeIdThunk({uid: userId, rid: recipeId}));
     };
 
+    // const deleteRecipeClickHandler = () => {
+    //     if (currentUser) {
+    //         dispatch(deleteSavedRecipeByUserAndRecipeIdThunk({uid: currentUser._id, rid}));
+    //     } else {
+    //         navigate('/login');
+    //     }
+    // };
+
     const saveRecipeClickHandler = () => {
         dispatch(createSavedRecipeThunk({uid: userId, rid: recipeId}))
     };

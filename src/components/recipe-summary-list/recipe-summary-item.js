@@ -1,5 +1,6 @@
 import React from "react"
 import "./index.css"
+import {Link} from "react-router-dom";
 
 const RecipeSummaryItem = (
     {
@@ -43,14 +44,16 @@ const RecipeSummaryItem = (
                     </div>
                 </div>
                 <div className="btn col-4 text-dark">
-                    <div className="d-block d-xl-none">
-                        <i className="fa-solid fa-utensils text-dark p-2"></i>
-                        <span className="wd-text-md">Open Recipe</span>
-                    </div>
-                    <div className="d-none d-xl-block">
-                        <i className="fa-solid fa-utensils text-dark p-2"></i>
-                        <span>Open Recipe</span>
-                    </div>
+                    <Link to={`/recipes/${recipe._id}/details`}>
+                        <div className="d-block d-xl-none">
+                            <i className="fa-solid fa-utensils text-dark p-2"></i>
+                            <span className="wd-text-md">Open Recipe</span>
+                        </div>
+                        <div className="d-none d-xl-block">
+                            <i className="fa-solid fa-utensils text-dark p-2"></i>
+                            <span>Open Recipe</span>
+                        </div>
+                    </Link>
                 </div>
                 <div className="btn col-4 text-dark">
                     <div className="d-block d-xl-none">

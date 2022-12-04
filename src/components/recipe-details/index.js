@@ -1,15 +1,31 @@
-import React from "react";
+import React, {useEffect,useState} from "react";
 import {useLocation} from "react-router";
 import {Link} from "react-router-dom";
 import RecipeDetail from "./recipe-detail";
 import recipes from "../../data/recipes.json";
+import * as service from "../../services/recipes-service";
 
 const RecipeDetailsComponent = () => {
     const {pathname} = useLocation();
     const paths = pathname.split('/');
     const userId = paths[2];
-    const location = paths[3];
-    const recipeId = paths[4];
+    let location = paths[3];
+    let recipeId = paths[4];
+    const [recipe, setRecipe] = useState()
+
+    if (paths[1] === "recipes") {
+        recipeId = paths[2]
+        location = paths[1]
+    }
+
+    useEffect(() => {
+        async function fetchData() {
+            const targetRecipe = await service.findRecipeById(recipeId)
+            setRecipe(targetRecipe)
+        }
+        fetchData();
+    },[recipeId]);
+    console.log(recipe);
 
     return (
         <div className="m-3 mb-0 wd-border wd-bg-beige">
@@ -32,7 +48,7 @@ const RecipeDetailsComponent = () => {
             {/* recipe detail */}
             <div>
                 {/* hardcode recipe - update later*/}
-                <RecipeDetail recipe={recipes[0]}/>
+                <RecipeDetail recipe={recipe}/>
             </div>
 
             {/* save or delete button (depends on which page) */}

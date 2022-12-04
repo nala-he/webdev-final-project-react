@@ -183,6 +183,7 @@ const NewNavigationSidebar2 = () => {
                 {/*show logout button if logged in*/}
                 {
                     currentUser &&
+                    <div className="m-2">
                     <button type="button"
                             className={`button mt-2 mb-2 w-100 
                     ${"/logout".includes(active) ? 'wd-button-active' : ''}`}
@@ -201,10 +202,12 @@ const NewNavigationSidebar2 = () => {
                             </div>
                         </div>
                     </button>
+                    </div>
                 }
                 {/*show login button if not logged in*/}
                 {
                     (currentUser === null) &&
+                    <div className="m-2">
                     <Link to="/login" className={`${"/login".includes(active)
                                                        ? 'active' : ''}`}>
                         {/*Navigation Button Item*/}
@@ -225,6 +228,7 @@ const NewNavigationSidebar2 = () => {
                             </div>
                         </button>
                     </Link>
+                    </div>
                 }
             </div>
     );

@@ -4,11 +4,26 @@ import itemsArray from "./item.json";
 import {useLocation} from "react-router";
 import {Link} from "react-router-dom";
 import "./index.css";
+import {useDispatch, useSelector} from "react-redux";
+import { createRecipeThunk, deleteInvalidRecipesThunk } from "../../services/recipes-thunk";
 
 const NavigationSidebar = () => {
     const {pathname} = useLocation();
     const paths = pathname.split('/');
     let active = (paths[1] !== '') ? paths[1] : 'home';
+
+    const dispatch = useDispatch();
+
+    // hard coded user for now
+    const uid = "638624452cf03e49f0977570";
+
+    const createRecipeHandler = () => {
+        dispatch(createRecipeThunk({uid}));
+    }
+
+    const deleteInvalidRecipesHandler = () => {
+        dispatch(deleteInvalidRecipesThunk());
+    }
 
     return (
             <div className="mt-2 wd-component-outline">

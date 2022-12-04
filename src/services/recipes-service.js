@@ -6,6 +6,7 @@ const USERS_API = `${FRIDGE_API_BASE}/users`;
 
 export const createRecipe = async (uid) => {
     const response = await axios.post(`${USERS_API}/${uid}/recipes`);
+    // console.log(response.data);
     return response.data;
 }
 

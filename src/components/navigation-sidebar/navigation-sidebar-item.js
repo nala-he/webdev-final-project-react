@@ -1,7 +1,7 @@
 import React from "react";
 import {Link} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
-import { createRecipeThunk } from "../../services/recipes-thunk";
+import { createRecipeThunk, deleteInvalidRecipesThunk } from "../../services/recipes-thunk";
 
 const NavigationSidebarItem = (
     {
@@ -10,7 +10,8 @@ const NavigationSidebarItem = (
             "_id": 123,
             "icon": "bi bi-house-door-fill",
             "text": "Home",
-            "link": "/home"
+            "link": "/home",
+            "click": "handler"
         }
     }
 ) => {
@@ -23,14 +24,15 @@ const NavigationSidebarItem = (
         dispatch(createRecipeThunk({uid}));
     }
 
-
-
+    const deleteInvalidRecipesHandler = () => {
+        dispatch(deleteInvalidRecipesThunk());
+    }
 
     return (
         <Link to={item.link} className={`${item.link.includes(active) 
                                            ? 'active' : ''}`}>
             {/*Navigation Button Item*/}
-            <button type="button" className={`button mt-2 mb-2 w-100
+            <button type="button" onClick={item.click} className={`button mt-2 mb-2 w-100
             ${item.link.includes(active) ? 'wd-button-active' : ''}`}>
                 <div className="row row-cols-12 pt-1 pb-1">
                     <div className="col-2 d-flex align-items-center">

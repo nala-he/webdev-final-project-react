@@ -3,7 +3,7 @@ import React, {useEffect, useState} from "react";
 import {useLocation} from "react-router";
 import {Link} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
-import { createRecipeThunk } from "../../services/recipes-thunk";
+import { createRecipeThunk, deleteInvalidRecipesThunk } from "../../services/recipes-thunk";
 import "./index.css";
 
 const NewNavigationSidebar = () => {
@@ -18,6 +18,9 @@ const NewNavigationSidebar = () => {
 
     const createRecipeHandler = () => {
         dispatch(createRecipeThunk({uid}));
+    }
+    const deleteInvalidRecipesHandler = () => {
+        dispatch(deleteInvalidRecipesThunk());
     }
 
     return (
@@ -42,7 +45,7 @@ const NewNavigationSidebar = () => {
                 <div className="m-2">
                     <Link to="/home" className={`${"/home".includes(active) ? 'active' : ''}`}>
                         {/*Navigation Button Item*/}
-                        <button type="button" className={`button mt-2 mb-2 w-100
+                        <button type="button" onClick={deleteInvalidRecipesHandler} className={`button mt-2 mb-2 w-100
                         ${"/home".includes(active) ? 'wd-button-active' : ''}`}>
                             <div className="row row-cols-12 pt-1 pb-1">
                                 <div className="col-2 d-flex align-items-center">

@@ -2,31 +2,37 @@
   { "_id": 123,
     "icon": "bi bi-house-door-fill",
     "text": "Home",
-    "link": "/home"
+    "link": "/home",
+    "click": "{deleteInvalidRecipesHandler}"
   },
   { "_id": 124,
     "icon": "bi bi-person",
     "text": "Profile",
-    "link": "/profile"
+    "link": "/profile",
+    "click": "deleteInvalidRecipesHandler"
   },
   { "_id": 125,
     "icon": "bi bi-people-fill",
     "text": "Friends",
-    "link": "/friends"
+    "link": "/friends",
+    "click": "deleteInvalidRecipesHandler"
   },
   { "_id": 126,
     "icon": "bi bi-save2",
     "text": "Saved Recipes",
-    "link": "/users/:uid/saved-recipes"
+    "link": "/users/:uid/saved-recipes",
+    "click": "deleteInvalidRecipesHandler"
   },
   { "_id": 127,
     "icon": "bi bi-pencil-square",
     "text": "Create Recipes",
-    "link": "/users/:uid/create-recipes"
+    "link": "/users/:uid/create-recipes",
+    "click": "createRecipeHandler"
   },
   { "_id": 128,
     "icon": "bi bi-door-open",
     "text": "Logout",
-    "link": "/logout"
+    "link": "/logout",
+    "click": "deleteInvalidRecipesHandler"
   }
 ]

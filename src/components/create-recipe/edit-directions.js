@@ -13,8 +13,6 @@ const EditDirections = ({recipe}) => {
     const directionChangeHandler = (event) => {
         setDirection(event.target.value);
     }
-    console.log(recipe);
-    console.log(directions);
     
     const addDirectionHandler = () => {
         const newDirection = {

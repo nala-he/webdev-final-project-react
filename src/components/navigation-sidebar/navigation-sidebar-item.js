@@ -1,5 +1,7 @@
 import React from "react";
 import {Link} from "react-router-dom";
+import {useDispatch, useSelector} from "react-redux";
+import { createRecipeThunk } from "../../services/recipes-thunk";
 
 const NavigationSidebarItem = (
     {
@@ -12,6 +14,18 @@ const NavigationSidebarItem = (
         }
     }
 ) => {
+    const dispatch = useDispatch();
+
+    // hard coded user for now
+    const uid = "638624452cf03e49f0977570";
+
+    const createRecipeHandler = () => {
+        dispatch(createRecipeThunk({uid}));
+    }
+
+
+
+
     return (
         <Link to={item.link} className={`${item.link.includes(active) 
                                            ? 'active' : ''}`}>

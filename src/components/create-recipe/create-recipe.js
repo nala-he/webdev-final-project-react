@@ -22,7 +22,7 @@ const CreateRecipe = ({profile}) => {
 
     const rid = recipe._id ;
     // console.log(rid);
-
+    console.log(rid);
     let [editDish, setDish] = useState(recipe.dishName);
     let [editPhoto,setPhoto] = useState(recipe.recipePic);
     let [editIntro, setIntro] = useState(recipe.intro);
@@ -52,6 +52,7 @@ const CreateRecipe = ({profile}) => {
             protein: editProtein    
         }
         dispatch(updateRecipeThunk({rid,newRecipe}));   
+        setDish("");
     }
 
     const deleteClickHandler = () => {

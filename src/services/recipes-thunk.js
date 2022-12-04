@@ -14,6 +14,11 @@ export const deleteRecipeThunk = createAsyncThunk(
     }
 );
 
+export const deleteInvalidRecipesThunk = createAsyncThunk(
+    'delete invalid recipes',
+    async () => await service.deleteInvalidRecipes()
+);
+
 export const updateRecipeThunk = createAsyncThunk(
     'update recipe',
     async (recipe) => {

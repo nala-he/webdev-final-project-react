@@ -35,6 +35,7 @@ export const findRecipes = async () => {
 
 export const findRecipeById = async (rid) => {
     const response = await axios.get(`${RECIPES_API}/${rid}`);
+    console.log(response.data);
     return response.data;
 }
 

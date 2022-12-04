@@ -12,10 +12,10 @@ import {useNavigate} from "react-router";
 const RecipeSidebar = () => {
     const {ingredients} = useSelector(state => state.ingredients);
     const {currentUser} = useSelector(state => state.usersData);
+    const [uid, setUid] = useState('')
     const [ingredient, setIngredient] = useState({title: '', checked: false});
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    let uid;
 
     const checkClickHandler = (event) => {
         const newIngredient = {
@@ -29,7 +29,7 @@ const RecipeSidebar = () => {
         const titleValue = event.target.value;
         const newIngredient = {
             ...ingredient,
-            title: titleValue
+            title: titleValue,
         };
         setIngredient(newIngredient);
     };
@@ -46,7 +46,6 @@ const RecipeSidebar = () => {
     const searchByIngredientsClickHandler = async () => {
         // added the if statement to prevent non-logged-in user clicking the button-yutong
         if (!currentUser) {
-            // console.log("click")
             navigate('/login');
             return;
         }
@@ -56,10 +55,11 @@ const RecipeSidebar = () => {
 
     useEffect(() => {
         if (currentUser) {
-            uid = currentUser._id;
+            setUid(currentUser._id);
+            console.log(uid)
             dispatch(findFridgeIngredientsByUserThunk(uid));
         }
-    }, []);
+    }, [currentUser, dispatch, uid]);
 
     return(
         <div className="m-2 wd-component-outline wd-bg-light-blue h-100 sticky-top">

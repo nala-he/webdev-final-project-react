@@ -16,9 +16,9 @@ const EditProfile = () => {
     const navigate = useNavigate();
     const saveClickHandler = () => {
         try {
-            console.log(editedProfile);
+            // console.log(editedProfile);
             dispatch(updateUserThunk(editedProfile))
-            console.log(currentUser);
+            // console.log(currentUser);
         } catch (e) {
             navigate("/login");
         }

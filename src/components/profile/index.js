@@ -21,16 +21,18 @@ const Profile = () => {
     const {currentUser} = useSelector(state => state.usersData);
     const [profile, setProfile] = useState(currentUser);
 
-    useEffect(() => {
-        try {
-            dispatch(findUserByIdThunk(currentUser._id))
-                .then(setProfile(currentUser))
-        }
-        catch(e) {
-            navigate('/login');
-        }
-    }, []);
+    // useEffect(() => {
+    //     try {
+    //
+    //         dispatch(findUserByIdThunk(currentUser._id))
+    //             .then(setProfile(currentUser)));
+    //     }
+    //     catch(e) {
+    //         navigate('/login');
+    //     }
+    // }, [currentUser, dispatch, navigate]);
 
+    
     if (!currentUser) {
         return <Navigate to='/login'/>
     }

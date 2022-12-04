@@ -21,9 +21,7 @@ const ProfileDetails = () => {
         catch(e) {
             navigate('/login');
         }
-    }, []);
-
-    // console.log(profile);
+    }, [currentUser, dispatch, navigate]);
 
     return (
         <div className="m-0 wd-profile-background">

@@ -30,8 +30,8 @@ import MyRecipeDetails from "../recipe-details/my-recipe-details";
 import savedRecipesReducer from "../../reducers/saved-recipes-reducer";
 
 const store = configureStore({reducer: {
-            ingredients, 
-            recipes: recipesReducer, 
+            ingredients,
+            recipes: recipesReducer,
             // profile: profileReducer,
             friendProfile: friendProfileReducer,
             myRecipes: myRecipesReducer,
@@ -51,7 +51,7 @@ function Fridge() {
                     <div className="container">
                         <div className="row">
                             <div className="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2 mt-2">
-                                <NavigationSidebar/>
+                                 <NavigationSidebar/>
                             </div>
                             <div className="col-10 col-sm-10 col-md-10 col-lg-7 col-xl-7"
                                  style={{"position": "relative"}}>
@@ -72,6 +72,7 @@ function Fridge() {
                                     <Route path="/users/:uid/saved-recipes" element={<SavedRecipes/>}/>
                                     <Route path="/friends/*" element={<FriendsComponent/>}/>
                                     {/* routes listed here for now - once other components done, add these routes to components */}
+                                    <Route path="/profile/:uid/my-recipes/:rid/details" element={<RecipeDetailsComponent/>}/>
                                     <Route path="/users/:uid/saved-recipes/:rid/details" element={<RecipeDetailsComponent/>}/>
                                     <Route path="/users/:uid/create-recipes" element={<CreateRecipeComponent/>}/>
                                     <Route path="/login" element={<Login/>}/>

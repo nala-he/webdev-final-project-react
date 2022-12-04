@@ -31,6 +31,12 @@
   },
   { "_id": 128,
     "icon": "bi bi-door-open",
+    "text": "Login",
+    "link": "/login",
+    "click": "deleteInvalidRecipesHandler"
+  },
+  { "_id": 129,
+    "icon": "bi bi-door-open-fill",
     "text": "Logout",
     "link": "/logout",
     "click": "deleteInvalidRecipesHandler"

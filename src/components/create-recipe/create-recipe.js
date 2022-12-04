@@ -6,7 +6,7 @@ import EditIngredients from "./edit-ingredients";
 import EditDirections from "./edit-directions";
 import { updateRecipeThunk, findAllRecipesThunk, deleteRecipeThunk } from "../../services/recipes-thunk";
 
-const CreateRecipe = ({profile}) => {
+const CreateRecipe = ({currentUser}) => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     // hard coded recipe for now- need to change
@@ -24,6 +24,7 @@ const CreateRecipe = ({profile}) => {
     const rid = recipe._id ;
     // console.log(rid);
     console.log(rid);
+    console.log(currentUser._id);
     let [editDish, setDish] = useState(recipe.dishName);
     let [editPhoto,setPhoto] = useState(recipe.recipePic);
     let [editIntro, setIntro] = useState(recipe.intro);
@@ -39,6 +40,8 @@ const CreateRecipe = ({profile}) => {
 
     const createClickHandler = () => {
         const newRecipe = {
+            authorId: currentUser._id,
+            authorName: currentUser.username,
             dishName: editDish,
             intro: editIntro,
             recipePic: editPhoto,

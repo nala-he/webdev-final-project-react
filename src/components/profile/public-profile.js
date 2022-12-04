@@ -1,48 +1,41 @@
 import {React, useEffect, useState} from "react";
 import {Link} from "react-router-dom";
-import {useLocation} from "react-router";
+import {Routes, Route, useLocation} from "react-router";
 import {useSelector, useDispatch} from "react-redux";
-import ProfileDetails from "./profile-details";
-// import MyRecipes from "./my-recipes";
-// import EditProfile from "./edit-profile";
-// import MyRecipeDetails from "../recipe-details/my-recipe-details";
+import PublicProfileDetails from "./public-profile-details";
+import MyRecipes from "./my-recipes";
+import RecipeDetails from "../recipe-details/recipe-detail";
 import "./index.css";
-// import * as service from "../../services/auth-service";
-import {useNavigate, Navigate} from "react-router-dom";
+import * as service from "../../services/auth-service";
+import {useNavigate} from "react-router-dom";
+// import updateProfile from "../../reducers/profile-reducer";
 import {findUserByIdThunk} from "../../services/users-thunks";
+import {useParams} from "react-router";
 
-const Profile = () => {
+const PublicProfile = () => {
+    // let friend = useSelector(state => state.friendProfile);
+    const {uid} = useParams();
     const {pathname} = useLocation();
     const paths = pathname.split('/');
     let active = paths.includes('my-recipes') ? 'my-recipes' : 'profile';
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const {currentUser} = useSelector(state => state.usersData);
-    const [profile, setProfile] = useState(currentUser);
+    // const currentUser = useSelector(state => state.profile);
+    const {publicProfile, loading}= useSelector(state => state.usersData);
 
-    // useEffect(() => {
-    //     try {
-    //
-    //         dispatch(findUserByIdThunk(currentUser._id))
-    //             .then(setProfile(currentUser)));
-    //     }
-    //     catch(e) {
-    //         navigate('/login');
-    //     }
-    // }, [currentUser, dispatch, navigate]);
+    useEffect(() => {
+        dispatch(findUserByIdThunk(uid));
+    }, [uid]);
 
-    
-    if (!currentUser) {
-        return <Navigate to='/login'/>
-    }
-
+    let profile = publicProfile;
+    console.log(profile);
     return (
         <div className="mt-3">
             <ul className="nav nav-tabs">
                 <li className="nav-item">
                     <Link className={`nav-link text-dark ${active === 'profile' ? 'active' : ''}`}
-                          to={`/profile`}>
+                          to={`/profile/${profile._id}`}>
                         <h5 className={`${active === 'profile' ? 'fw-bolder' : ''}`}>
                             Profile
                         </h5>
@@ -54,7 +47,7 @@ const Profile = () => {
                     <li className="nav-item">
                         <Link className={`nav-link text-dark ${active === 'my-recipes' ? 'active'
                                                                                        : ''}`}
-                              to={`/profile/my-recipes`}>
+                              to={`/profile/${profile._id}/my-recipes`}>
                             <h5 className={`${active === 'my-recipes' ? 'fw-bolder' : ''}`}>
                                 My Recipes
                             </h5>
@@ -62,17 +55,17 @@ const Profile = () => {
                     </li>
                 }
             </ul>
+            {
+                loading && <h5>Loading...</h5>
+            }
             <div>
-                <ProfileDetails/>
-                {/*<Routes>*/}
-                {/*    <Route index element={<ProfileDetails/>}/>*/}
-                {/*    /!*moved below to fridge/index.js*!/*/}
-                {/*    /!*<Route path="/my-recipes" element={<MyRecipes/>}/>*!/*/}
-                {/*    /!*<Route path="/edit" element={<EditProfile/>}/>*!/*/}
-                {/*    /!*<Route path="/my-recipes/details" element={<MyRecipeDetails/>}/>*!/*/}
-                {/*</Routes>*/}
+                <Routes>
+                    <Route index element={<PublicProfileDetails/>}/>
+                    <Route path="/my-recipes" element={<MyRecipes/>}/>
+                    <Route path="/my-recipes/details" element={<RecipeDetails/>}/>
+                </Routes>
             </div>
         </div>
     );
 }
-export default Profile;
+export default PublicProfile;

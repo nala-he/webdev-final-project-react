@@ -6,10 +6,12 @@ import {deleteMyRecipe} from "../../reducers/my-recipes-reducer";
 import "./index.css";
 
 const MyRecipesItem = ({recipe}) => {
-    let loggedIn = useSelector(state => state.profile);
+    let friend = useSelector(state => state.friendProfile);
+    let {currentUser} = useSelector(state => state.usersData);
+
     const {pathname} = useLocation();
     const paths = pathname.split('/');
-    let isMyRecipes = paths.includes(loggedIn._id);
+    let isMyRecipes = !paths.includes(friend._id);
 
     const dispatch = useDispatch();
     const deleteRecipeHandler = (id) => {

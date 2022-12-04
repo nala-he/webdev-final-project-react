@@ -4,19 +4,18 @@ import "./index.css";
 import {useDispatch, useSelector} from "react-redux";
 import * as service from "../../services/fridge-ingredients-service";
 import {
-    createFridgeIngredientThunk, findCheckedFridgeIngredientsByUserThunk,
+    createFridgeIngredientThunk,
     findFridgeIngredientsByUserThunk
 } from "../../services/fridge-ingredients-thunk";
-import {Navigate, useNavigate} from "react-router-dom";
+import {useNavigate} from "react-router";
 
 const RecipeSidebar = () => {
-    const {ingredients, checkedIngredients} = useSelector(state => state.ingredients);
+    const {ingredients} = useSelector(state => state.ingredients);
+    const {currentUser} = useSelector(state => state.usersData);
     const [ingredient, setIngredient] = useState({title: '', checked: false});
     const dispatch = useDispatch();
-    // HARDCODED CURRENTLY LOGGED IN USER FOR TESTING ------- UPDATE ONCE PROFILE IMPLEMENTED ----------------------------------------------
-    const uid = "638624632cf03e49f0977571";
-    // added the usersData reducer to check the currentUser status (logged in or not)-yutong
-    const {currentUser} = useSelector(state => state.usersData);
+    const navigate = useNavigate();
+    let uid;
 
     const checkClickHandler = (event) => {
         const newIngredient = {
@@ -35,11 +34,9 @@ const RecipeSidebar = () => {
         setIngredient(newIngredient);
     };
 
-    const navigate = useNavigate();
     const addIngredientClickHandler = () => {
         // added the if statement to prevent non-logged-in user clicking the button-yutong
         if (!currentUser) {
-            // console.log("click")
             navigate('/login');
             return;
         }
@@ -58,7 +55,10 @@ const RecipeSidebar = () => {
     }
 
     useEffect(() => {
-        dispatch(findFridgeIngredientsByUserThunk(uid));
+        if (currentUser) {
+            uid = currentUser._id;
+            dispatch(findFridgeIngredientsByUserThunk(uid));
+        }
     }, []);
 
     return(
@@ -69,24 +69,33 @@ const RecipeSidebar = () => {
                 <ul className="list-group">
                     {/* Current ingredients */}
                     {
-                        ingredients.map((ingredient) => {
+                        !currentUser &&
+                        <h5 className="p-3 text-black text-center">
+                            Please login or sign up to use this feature!
+                        </h5>
+                    }
+                    {
+                        currentUser && ingredients.map((ingredient) => {
                             return <IngredientItem key={ingredient._id}
                                                    ingredient={ingredient}/>
                         })
                     }
 
                     {/* Add new ingredient */}
-                    <li className="list-group-item border border-0 bg-transparent d-flex">
-                        <input className="me-2"
-                               type="checkbox"
-                               defaultChecked={ingredient.checked}
-                               onClick={checkClickHandler}/>
-                        <input className="form-control w-100 wd-font-18 text-dark"
-                               type="text"
-                               onChange={ingredientChangeHandler}
-                               placeholder="New Ingredient"
-                               value={ingredient.title}/>
-                    </li>
+                    {
+                        currentUser &&
+                        <li className="list-group-item border border-0 bg-transparent d-flex">
+                            <input className="me-2"
+                                   type="checkbox"
+                                   defaultChecked={ingredient.checked}
+                                   onClick={checkClickHandler}/>
+                            <input className="form-control w-100 wd-font-18 text-dark"
+                                   type="text"
+                                   onChange={ingredientChangeHandler}
+                                   placeholder="New Ingredient"
+                                   value={ingredient.title}/>
+                        </li>
+                    }
 
                     {/* Add ingredient button */}
                     <div className="d-flex justify-content-center mt-5">

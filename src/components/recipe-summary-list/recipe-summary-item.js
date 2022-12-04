@@ -1,7 +1,8 @@
-import React from "react"
+import React, {useEffect} from "react"
 import "./index.css"
 import {createSavedRecipeThunk} from "../../services/saved-recipes-thunk";
 import {useDispatch, useSelector} from "react-redux";
+import {useNavigate} from "react-router";
 
 const RecipeSummaryItem = (
     {
@@ -17,10 +18,15 @@ const RecipeSummaryItem = (
 ) => {
     const {currentUser} = useSelector(state => state.usersData);
     const dispatch = useDispatch();
-    const uid = currentUser._id;
+    const navigate = useNavigate();
 
     const saveRecipeClickHandler = () => {
-        dispatch(createSavedRecipeThunk({uid, rid: recipe._id}))
+        if (currentUser) {
+            const uid = currentUser._id;
+            dispatch(createSavedRecipeThunk({uid, rid: recipe._id}));
+        } else {
+            navigate('/login');
+        }
     };
 
     return(

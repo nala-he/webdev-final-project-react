@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import "./index.css";
 import EditIngredients from "./edit-ingredients";
@@ -8,6 +8,7 @@ import { updateRecipeThunk, findAllRecipesThunk, deleteRecipeThunk } from "../..
 
 const CreateRecipe = ({profile}) => {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     // hard coded recipe for now- need to change
     // const recipe = useSelector(state => state.recipes[0]);
     const recipes = useSelector(state => state.recipes);
@@ -52,7 +53,7 @@ const CreateRecipe = ({profile}) => {
             protein: editProtein    
         }
         dispatch(updateRecipeThunk({rid,newRecipe}));   
-        setDish("");
+        navigate("/home");
     }
 
     const deleteClickHandler = () => {

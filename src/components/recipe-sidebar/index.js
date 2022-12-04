@@ -56,7 +56,6 @@ const RecipeSidebar = () => {
     useEffect(() => {
         if (currentUser) {
             setUid(currentUser._id);
-            console.log(uid)
             dispatch(findFridgeIngredientsByUserThunk(uid));
         }
     }, [currentUser, dispatch, uid]);

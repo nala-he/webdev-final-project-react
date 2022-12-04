@@ -1,7 +1,7 @@
 import React from "react"
 import "./index.css"
 import {createSavedRecipeThunk} from "../../services/saved-recipes-thunk";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 
 const RecipeSummaryItem = (
     {
@@ -15,9 +15,9 @@ const RecipeSummaryItem = (
     }
     
 ) => {
+    const {currentUser} = useSelector(state => state.usersData);
     const dispatch = useDispatch();
-    // HARDCODED CURRENTLY LOGGED IN USER FOR TESTING ------- UPDATE ONCE PROFILE IMPLEMENTED ----------------------------------------------
-    const uid = "638624632cf03e49f0977571";
+    const uid = currentUser._id;
 
     const saveRecipeClickHandler = () => {
         dispatch(createSavedRecipeThunk({uid, rid: recipe._id}))

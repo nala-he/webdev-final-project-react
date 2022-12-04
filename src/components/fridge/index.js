@@ -38,8 +38,8 @@ const store = configureStore({reducer: {
             friendReipes: friendRecipesReducer,
             recipeIngredients: recipeIngredientsReducer,
             recipeDirections: recipeDirectionsReducer,
-            usersData: usersReducer
-            savedRecipes: savedRecipesReducer,
+            usersData: usersReducer,
+            savedRecipes: savedRecipesReducer
     }
 });
 

@@ -2,15 +2,21 @@ import React, {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import SavedRecipeItem from "./saved-recipe-item";
 import {findSavedRecipesByUserThunk} from "../../services/saved-recipes-thunk";
+import {useNavigate} from "react-router";
 
 const SavedRecipesList = () => {
-    const {savedRecipes} = useSelector((state) => state.savedRecipes)
+    const {savedRecipes} = useSelector((state) => state.savedRecipes);
+    const {currentUser} = useSelector(state => state.usersData);
     const dispatch = useDispatch();
-    // HARDCODED CURRENTLY LOGGED IN USER FOR TESTING ------- UPDATE ONCE PROFILE IMPLEMENTED ----------------------------------------------
-    const uid = "638624632cf03e49f0977571";
+    const navigate = useNavigate();
+    const uid = currentUser._id;
 
     useEffect(() => {
-        dispatch(findSavedRecipesByUserThunk(uid));
+        if (currentUser) {
+            dispatch(findSavedRecipesByUserThunk(uid));
+        } else {
+            navigate('/login');
+        }
     }, [])
 
     return(

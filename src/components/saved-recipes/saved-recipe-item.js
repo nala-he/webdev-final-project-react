@@ -1,6 +1,6 @@
 import React from "react"
 import "./index.css"
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {deleteSavedRecipeThunk} from "../../services/saved-recipes-thunk";
 import {Link} from "react-router-dom";
 
@@ -16,9 +16,9 @@ const SavedRecipeItem = (
     }
     
 ) => {
+    const {currentUser} = useSelector(state => state.usersData);
     const dispatch = useDispatch();
-    // HARDCODED CURRENTLY LOGGED IN USER FOR TESTING ------- UPDATE ONCE PROFILE IMPLEMENTED ----------------------------------------------
-    const uid = "638624632cf03e49f0977571";
+    const uid = currentUser._id;
 
     const deleteButtonClickHandler = () => {
         dispatch(deleteSavedRecipeThunk(recipeId));

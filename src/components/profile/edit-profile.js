@@ -1,31 +1,43 @@
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import React, {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {updateProfile} from "../../reducers/profile-reducer";
+// import {updateProfile} from "../../reducers/profile-reducer";
+import {updateUserThunk} from "../../services/users-thunks";
+import {findUsersThunk} from "../../services/users-thunks";
+
 import "./index.css";
 
 const EditProfile = () => {
-    const profile = useSelector(state => state.profile);
-    let [showEdit, setShowEdit] = useState(false);
-    let [editedProfile, setEditedProfile] = useState(profile);
+    // const profile = useSelector(state => state.profile);
+    const {currentUser} = useSelector(state => state.usersData);
+    let [editedProfile, setEditedProfile] = useState(currentUser);
 
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const saveClickHandler = () => {
-        dispatch(updateProfile(editedProfile));
+        try {
+            // console.log(editedProfile);
+            dispatch(updateUserThunk(editedProfile))
+            // console.log(currentUser);
+        } catch (e) {
+            navigate("/login");
+        }
+        
     }
-
+    let profile = currentUser;
+    
     return (
         <div className="mt-3 wd-edit-background">
             <div className="row d-flex align-items-center pt-1">
                 <div className="float-start col-6">
                     {/*Exit button*/}
-                    <Link to={`/profile/${profile._id}`}>
+                    <Link to={`/profile`}>
                         <i className="bi bi-x wd-icon-large text-black ms-2"> </i>
                     </Link>
                 </div>
                 <div className="float-end col-6">
                     {/*Profile save button*/}
-                    <Link to={`/profile/${profile._id}`}>
+                    <Link to={`/profile`}>
                         <button type="button"
                                 onClick={saveClickHandler}
                                 className="wd-edit-button border rounded-3 float-end me-2
@@ -38,16 +50,31 @@ const EditProfile = () => {
             <div className="row row-cols-12">
                 <div className="col-4">
                     <div className="position-relative d-flex align-items-center">
-                        <img className="wd-avatar m-3 wd-filter"
-                             src={profile.avatar !== '' ? `/images/${profile.avatar}`
-                                                        : `/images/emptyAvatar.png`}/>
-                        {/*<i className="bi bi-camera wd-camera position-relative"></i>*/}
+                        {
+                            (!profile.avatar) &&
+                            <img className="wd-profile-avatar m-3 wd-filter"
+                                 alt="avatar"
+                                 src={`/images/emptyAvatar.png`}/>
+                        }
+                        {
+                            profile.avatar && profile.avatar.includes("http") &&
+                            <img className="wd-profile-avatar m-3 wd-filter"
+                                 src={profile.avatar} alt="avatar"/>
+                        }
+                        {
+                            profile.avatar && !profile.avatar.includes("http") &&
+                            <img className="wd-profile-avatar m-3 wd-filter"
+                                 alt="avatar"
+                                 src={`/images/${profile.avatar}`}/>
+                        }
+
                     </div>
                 </div>
                 <div className="col-6 position-relative d-flex align-items-center">
                     <div>
                         <div className="m-1">
-                            <input type="text" className="wd-edit-input" placeholder="Firstname"
+                            <input type="text" className="wd-edit-input" placeholder="firstname"
+                                   title="firstname"
                                    onChange={(e) => {
                                        setEditedProfile({...editedProfile, firstName: e.target.value})
                                    }}
@@ -55,7 +82,8 @@ const EditProfile = () => {
                             </input>
                         </div>
                         <div className="m-1">
-                            <input type="text" className="wd-edit-input" placeholder="Lastname"
+                            <input type="text" className="wd-edit-input" placeholder="lastname"
+                                   title="lastname"
                                    onChange={(e) => {
                                        setEditedProfile({...editedProfile, lastName: e.target.value})
                                    }}
@@ -63,28 +91,43 @@ const EditProfile = () => {
                             </input>
                         </div>
                         <div className="m-1">
-                            <input type="text" placeholder="Handle" className="wd-edit-input"
+                            <input type="text" placeholder="username" title="username"
+                                   className="wd-edit-input"
                                    onChange={(e) => {
                                        setEditedProfile({...editedProfile, username: e.target.value})
                                    }}
-                                   value={`${editedProfile.username}`}>
+                                   value={editedProfile.username}>
                             </input>
                         </div>
                         <div className="m-1">
-                            <select className="wd-edit-input"
-                                    onChange={(e) => {
-                                setEditedProfile({...editedProfile, type: e.target.value})
-                            }}
-                                    value={editedProfile.type}>
-                                <option value="REG USER">
-                                    REG USER</option>
-                                {/*{editedProfile.type === "REG USER" && selected}*/}
-                                <option value="RECIPE CREATOR">
-                                    RECIPE CREATOR</option>
-                                <option value="PRO CHEF">
-                                    PRO CHEF</option>
-                            </select>
+                            <input type="password" placeholder="password" title="password"
+                                   className="wd-edit-input"
+                                   onChange={(e) => {
+                                       setEditedProfile({...editedProfile, password: e.target.value})
+                                   }}
+                                   value={editedProfile.password}>
+                            </input>
                         </div>
+                        <div className="m-1">
+                            <input type="url" placeholder="avatar image url" title="avatar image url"
+                                   className="wd-edit-input"
+                                   onChange={(e) => {
+                                       setEditedProfile({...editedProfile, avatar: e.target.value})
+                                   }}
+                                   value={editedProfile.avatar ? `${editedProfile.avatar}` : ``}>
+                            </input>
+                        </div>
+                        {
+                            editedProfile.type === "PRO CHEF" &&
+                            <div className="m-1">
+                                <input className="wd-edit-input"
+                                       type="text"
+                                       placeholder="business website"
+                                       title="business website"
+                                       defaultValue={editedProfile.business ? 
+                                                     `${editedProfile.business}` : ``}></input>
+                            </div>
+                        }
                     </div>
                 </div>
             </div>

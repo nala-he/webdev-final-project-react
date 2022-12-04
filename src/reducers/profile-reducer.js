@@ -1,16 +1,43 @@
-import {createSlice} from "@reduxjs/toolkit";
-import users from "../data/registered_users.json";
+//Not needed anymore check users-reducer instead
 
-const loggedIn = users[0];
-
-const profileSlice = createSlice({
-     name: "profile",
-     initialState: loggedIn,
-     reducers: {
-         updateProfile(state, action) {
-             return {...action.payload}
-         }
-     }
-});
-export const {updateProfile} = profileSlice.actions;
-export default profileSlice.reducer;
+// import {createSlice} from "@reduxjs/toolkit";
+// import {findUserByIdThunk, updateUserThunk} from "../services/users-thunks";
+//
+// // import users from "../data/registered_users.json";
+// //
+// // const loggedIn = users[0];
+// const initialState = {
+//     "username": "",
+//     "firstName": "",
+//     "lastName": "",
+//     "type": "REG USER",
+//     "avatar": "",
+//     "bio": "",
+//     "business": "",
+//     "password": ""
+// }
+//
+// const profileSlice = createSlice({
+//      name: "profile",
+//      initialState,
+//      // extraReducers: {
+//      //     // [findUserByIdThunk.fulfilled]:
+//      //     //     (state, {payload}) => {
+//      //     //         state = payload;
+//      //     //     },
+//      //     [updateUserThunk.fulfilled]:
+//      //         (state, {payload}) => {
+//      //             return {...state, ...payload}
+//      //         }
+//      // },
+//      reducers: {
+//          updateProfile(state, action) {
+//              return {...state, ...action.payload}
+//          },
+//          resetProfile(state) {
+//              return {...state, ...initialState}
+//          }
+//      }
+// });
+// export const {updateProfile, resetProfile} = profileSlice.actions;
+// export default profileSlice.reducer;

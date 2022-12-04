@@ -15,15 +15,15 @@
     height: 800px;
 }
 
-.wd-avatar {
-    width: 120px;
-    height: 120px;
-    margin-right: 3px;
+.wd-profile-avatar {
+    width: 100px;
+    height: 100px;
     border-radius: 20px;
+    object-fit: cover;
 }
 
 .wd-profile-text {
-    font-size: 20px;
+    font-size: 18px;
     color: black;
 }
 
@@ -60,7 +60,7 @@
 }
 
 .wd-text-sm {
-    font-size: 12px;
+    font-size: 15px;
     color: black;
 }
 
@@ -127,3 +127,4 @@
 /*    background: transparent;*/
 /*    right: 60%;*/
 /*}*/
+

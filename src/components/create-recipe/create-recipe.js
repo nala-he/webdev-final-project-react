@@ -25,6 +25,13 @@ const CreateRecipe = ({currentUser}) => {
     // console.log(rid);
     console.log(rid);
     console.log(currentUser._id);
+    console.log(currentUser.avatar);
+    // console.log(currentUser.avatar.type);
+    let avatar = currentUser.avatar;
+    if (currentUser.avatar === undefined) {
+        avatar = "/images/emptyAvatar.png"
+    }
+
     let [editDish, setDish] = useState(recipe.dishName);
     let [editPhoto,setPhoto] = useState(recipe.recipePic);
     let [editIntro, setIntro] = useState(recipe.intro);
@@ -42,6 +49,7 @@ const CreateRecipe = ({currentUser}) => {
         const newRecipe = {
             authorId: currentUser._id,
             authorName: currentUser.username,
+            avatar: avatar,
             dishName: editDish,
             intro: editIntro,
             recipePic: editPhoto,

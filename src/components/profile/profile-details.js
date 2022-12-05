@@ -96,7 +96,8 @@ const ProfileDetails = () => {
             <div className="m-3">
                 <ul className="p-0 wd-profile-buttons">
                     <li>
-                        <Link to={`/friends/${profile._id}`}>
+                        <Link to={profile._id === currentUser._id ? `/friends` 
+                                                                  : `/friends/${profile._id}`}>
                             <button type="button"
                                     className="wd-edit-button border rounded-3
                             ps-3 pe-3 pt-1 pb-1">
@@ -109,7 +110,8 @@ const ProfileDetails = () => {
                         </Link>
                     </li>
                     <li>
-                        <Link to={`/friends/${profile._id}/followers`}>
+                        <Link to={profile._id === currentUser._id ? `/friends/followers` 
+                                                                  : `/friends/${profile._id}/followers`}>
                             <button type="button"
                                     className="wd-edit-button border rounded-3
                             ps-3 pe-3 pt-1 pb-1 ">

@@ -15,8 +15,18 @@ const FriendsComponent = () => {
     
     const {pathname} = useLocation();
     const paths = pathname.split('/');
-    const uid = paths[2];
-    const friend = paths[3];
+    let uid = paths[2];
+    let friend = paths[3];
+
+    // e.g. localhost:3000/friends as logged in user friends page
+    if (paths.length === 2) {
+        uid = currentUser._id;
+    }
+    // e.g. localhost:3000/friends/followers as logged in user friends followers page
+    if (paths.length === 3) {
+        uid = currentUser._id;
+        friend = paths[2];
+    }
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -60,24 +70,40 @@ const FriendsComponent = () => {
                          <li className="nav-item">
                              <Link className={`nav-link text-dark fs-5 
                                         ${friend === undefined ? 'active fw-bold' : ''}`}
-                                   to={`/friends/${user._id}`}>
+                                   to={uid === currentUser._id ? `/friends` 
+                                                                    : `/friends/${user._id}`}>
                                  Following
                              </Link>
                          </li>
                          <li className="nav-item">
                              <Link className={`nav-link text-dark fs-5 
                                         ${friend === 'followers' ? 'active fw-bold' : ''}`}
-                                   to={`/friends/${user._id}/followers`}>
+                                   to={uid === currentUser._id ? `/friends/followers` 
+                                                                    : `/friends/${user._id}/followers`}>
                                  Followers
                              </Link>
                          </li>
                      </ul>
                      <div className="border border-top-0 ps-3 pe-3 pt-1 pb-1">
                          <Routes>
-                             <Route path="/"
-                                    element={<FriendsFollowingsList friends={following}/>}/>
-                             <Route path="/followers"
-                                    element={<FriendsFollowersList friends={followedBy}/>}/>
+                             {
+                                 uid === currentUser._id &&
+                                 <>
+                                     <Route path="/"
+                                            element={<FriendsFollowingsList friends={following}/>}/>
+                                     <Route path="/followers"
+                                            element={<FriendsFollowersList friends={followedBy}/>}/>
+                                 </>
+                             }
+                             {
+                                 uid !== currentUser._id &&
+                                 <>
+                                     <Route path={`${user._id}`}
+                                            element={<FriendsFollowingsList friends={following}/>}/>
+                                     <Route path={`${user._id}/followers`}
+                                            element={<FriendsFollowersList friends={followedBy}/>}/>
+                                 </>
+                             }
                          </Routes>
                      </div>
                  </div>

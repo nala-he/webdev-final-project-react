@@ -68,7 +68,7 @@ function Fridge() {
                                     <Route path="/profile/my-recipes/:rid/details" element={<MyRecipeDetails/>}/>
                                     <Route path="/profile/edit" element={<EditProfile/>}/>
                                     <Route path="/profile/:uid/*" element={<PublicProfile/>}/>
-                                    <Route path="/friends/:uid/*" element={<FriendsComponent/>}/>
+                                    {/*<Route path="/friends/:uid/*" element={<FriendsComponent/>}/>*/}
                                     <Route path="/users/:uid/saved-recipes" element={<SavedRecipes/>}/>
                                     <Route path="/friends/*" element={<FriendsComponent/>}/>
                                     {/* routes listed here for now - once other components done, add these routes to components */}

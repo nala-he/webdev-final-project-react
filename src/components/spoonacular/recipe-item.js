@@ -8,13 +8,13 @@ const RecipeItem = ({recipe}) => {
             {/* open recipe */}
             <div className="d-flex align-items-center justify-content-end ps-2 pe-2">
                 <div className="btn d-block d-xl-none">
-                    <Link to={`./${recipe._id}/details`} className="wd-no-decor">
+                    <Link to="" className="wd-no-decor">
                         <i className="fa-solid fa-utensils text-dark p-2"></i>
                         <span>Open Recipe</span>
                     </Link>
                 </div>
                 <div className="btn d-none d-xl-block">
-                    <Link to={`./${recipe._id}/details`} className="wd-no-decor">
+                    <Link to="" className="wd-no-decor">
                         <i className="fa-solid fa-utensils text-dark p-2"></i>
                         <span className="text-dark">Open Recipe</span>
                     </Link>

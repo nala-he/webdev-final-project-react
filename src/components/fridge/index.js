@@ -27,6 +27,7 @@ import PublicProfile from "../profile/public-profile";
 import ProtectedRoute from "../profile/protected-route";
 import MyRecipes from "../profile/my-recipes";
 import MyRecipeDetails from "../recipe-details/my-recipe-details";
+import spoonacularReducer from "../../reducers/spoonacular-reducer";
 
 const store = configureStore({reducer: {
             ingredients, 
@@ -37,7 +38,8 @@ const store = configureStore({reducer: {
             friendReipes: friendRecipesReducer,
             recipeIngredients: recipeIngredientsReducer,
             recipeDirections: recipeDirectionsReducer,
-            usersData: usersReducer
+            usersData: usersReducer,
+            spoonacular: spoonacularReducer
     }
 });
 

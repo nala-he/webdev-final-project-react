@@ -53,8 +53,11 @@ const RecipeSidebar = () => {
             navigate('/login');
             return;
         }
-        const checkedIngredients = await service.findCheckedFridgeIngredientsByUser(uid);
-        alert(`Checked Ingredients: ${checkedIngredients.map(ingredient => ingredient.title)}`)
+        let checkedIngredients = await service.findCheckedFridgeIngredientsByUser(uid);
+        checkedIngredients = checkedIngredients.map(ingredient => ingredient.title.toLowerCase());
+        const spoonacularIngredientsFormat = checkedIngredients.join(',+');
+        alert(spoonacularIngredientsFormat);
+        //alert(`Checked Ingredients: ${checkedIngredients.map(ingredient => ingredient.title)}`)
     }
 
     useEffect(() => {

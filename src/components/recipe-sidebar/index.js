@@ -8,6 +8,7 @@ import {
     findFridgeIngredientsByUserThunk
 } from "../../services/fridge-ingredients-thunk";
 import {Navigate, useNavigate} from "react-router-dom";
+import {findRecipesByIngredientsThunk} from "../../services/spoonacular-thunks";
 
 const RecipeSidebar = () => {
     const {ingredients, checkedIngredients} = useSelector(state => state.ingredients);
@@ -56,7 +57,8 @@ const RecipeSidebar = () => {
         let checkedIngredients = await service.findCheckedFridgeIngredientsByUser(uid);
         checkedIngredients = checkedIngredients.map(ingredient => ingredient.title.toLowerCase());
         const spoonacularIngredientsFormat = checkedIngredients.join(',+');
-        alert(spoonacularIngredientsFormat);
+        dispatch(findRecipesByIngredientsThunk(spoonacularIngredientsFormat))
+            .then(navigate('/searchByIngredients/results'));
     }
 
     useEffect(() => {

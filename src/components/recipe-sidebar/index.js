@@ -57,7 +57,6 @@ const RecipeSidebar = () => {
         checkedIngredients = checkedIngredients.map(ingredient => ingredient.title.toLowerCase());
         const spoonacularIngredientsFormat = checkedIngredients.join(',+');
         alert(spoonacularIngredientsFormat);
-        //alert(`Checked Ingredients: ${checkedIngredients.map(ingredient => ingredient.title)}`)
     }
 
     useEffect(() => {

@@ -24,7 +24,7 @@ const SavedRecipeItem = (
                 <div className="col-9">
                     <div>
                         <span className="text-dark fw-bolder">{recipe.dishName} </span>
-                        <span className="col text-muted"> @{recipe.author} </span>
+                        <span className="col text-muted"> @{recipe.authorName} </span>
                     </div>
                     <span className="text-dark d-none d-md-block">{recipe.intro}</span>
                 </div>

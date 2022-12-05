@@ -57,14 +57,14 @@ const RecipeDetail = ({recipe}) => {
             </div>
 
             {/* ingredients */}
-            <div className="row wd-border m-4 mt-3">
+            {/* <div className="row wd-border m-4 mt-3">
                 <IngredientsList ingredients={recipe.ingredients}/>
-            </div>
+            </div> */}
 
             {/* directions */}
-            <div className="row wd-border m-4">
+            {/* <div className="row wd-border m-4">
                 <DirectionsList directions={recipe.directions}/>
-            </div>
+            </div> */}
 
             {/* nutritional facts */}
             <div className="row wd-border m-4">

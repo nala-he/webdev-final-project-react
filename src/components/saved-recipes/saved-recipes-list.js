@@ -16,7 +16,7 @@ const SavedRecipesList = () => {
             <span>Total Saved Recipes: {recipes.length}</span>
         </div>
       {
-        recipes.map(recipe =>
+        recipes.recipes.map(recipe =>
           <SavedRecipeItem key={recipe._id} recipe={recipe}/> )
       }
     </div>

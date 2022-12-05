@@ -1,5 +1,7 @@
 import React from "react";
 import {Link} from "react-router-dom";
+import {useDispatch, useSelector} from "react-redux";
+import { createRecipeThunk, deleteInvalidRecipesThunk } from "../../services/recipes-thunk";
 
 const NavigationSidebarItem = (
     {
@@ -8,7 +10,8 @@ const NavigationSidebarItem = (
             "_id": 123,
             "icon": "bi bi-house-door-fill",
             "text": "Home",
-            "link": "/home"
+            "link": "/home",
+            "click": "handler"
         }
     }
 

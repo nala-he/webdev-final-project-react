@@ -7,7 +7,7 @@ import {useNavigate} from "react-router-dom";
 import {findUsersIamFollowingThunk, findUsersIamFollowedByThunk} from "../../services/friends-thunks";
 
 const ProfileDetails = () => {
-    const {currentUser}= useSelector(state => state.usersData);
+    const {currentUser, publicProfile}= useSelector(state => state.usersData);
     const [profile, setProfile] = useState(currentUser);
     
     const {followedBy, following} = useSelector(state => state.followsData);
@@ -20,8 +20,8 @@ const ProfileDetails = () => {
     useEffect(() => {
         async function fetchData() {
             await dispatch(findUserByIdThunk(currentUser._id))
-            await dispatch(findUsersIamFollowingThunk(currentUser))
-            await dispatch(findUsersIamFollowedByThunk(currentUser))
+            await dispatch(findUsersIamFollowingThunk(publicProfile))
+            await dispatch(findUsersIamFollowedByThunk(publicProfile))
             setProfile(currentUser)
             setFollowers(followedBy)
             setFollowings(following)
@@ -31,7 +31,7 @@ const ProfileDetails = () => {
         } catch(e) {
             navigate('/login');
         }
-    }, [currentUser, dispatch, navigate, followedBy, following]);
+    }, [currentUser, dispatch, navigate, followedBy, following, publicProfile]);
 
     return (
         <div className="m-0 wd-profile-background">

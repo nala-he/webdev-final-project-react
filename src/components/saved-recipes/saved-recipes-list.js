@@ -31,7 +31,7 @@ const SavedRecipesList = () => {
             </div>
             {
                 savedRecipes && savedRecipes.map(recipe =>
-                <SavedRecipeItem key={recipe._id} recipe={recipe.recipe} recipeId={recipe._id}/> )
+                <SavedRecipeItem key={recipe._id} recipe={recipe.recipe} recipeId={recipe._id}/> ).reverse()
             }
             {
                 !savedRecipes &&

@@ -27,7 +27,7 @@ const SavedRecipeItem = (
     return(
     <div className="wd-saved-item-border m-4 p-2 row">
         <div className="col-3 col-sm-3 col-md-2 col-lg-2 p-2">
-            <img className="wd-avatar" src={`/images/${recipe.avatar}`} alt="avatar"/>
+            <img className="wd-avatar" src={`${recipe.avatar}`} alt="avatar"/>
         </div>
         <div className="col-9 col-sm-9 col-md-10 col-lg-10">
             <div className="p-2 row wd-saved-item-content">

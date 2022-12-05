@@ -17,8 +17,7 @@ const MyRecipeDetails = ({recipe = recipes[0]}) => {
 
     const saveRecipeClickHandler = () => {
         if (currentUser) {
-            console.log(`${currentUser._id} saves ${rid}`)
-            //dispatch(createSavedRecipeThunk({uid: currentUser._id, rid}));
+            dispatch(createSavedRecipeThunk({uid: currentUser._id, rid}));
         } else {
             navigate('/login');
         }

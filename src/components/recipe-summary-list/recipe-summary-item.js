@@ -23,7 +23,8 @@ const RecipeSummaryItem = (
     const saveRecipeClickHandler = () => {
         if (currentUser) {
             const uid = currentUser._id;
-            dispatch(createSavedRecipeThunk({uid, rid: recipe._id}));
+            dispatch(createSavedRecipeThunk({uid, rid: recipe._id}))
+                .then(navigate(`/users/${uid}/saved-recipes`));
         } else {
             navigate('/login');
         }

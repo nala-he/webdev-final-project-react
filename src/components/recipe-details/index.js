@@ -23,7 +23,7 @@ const RecipeDetailsComponent = () => {
     };
 
     const saveRecipeClickHandler = () => {
-        dispatch(createSavedRecipeThunk({uid: currentUser._id, rid: recipeId}))
+        dispatch(createSavedRecipeThunk({uid: currentUser._id, rid: recipeId}));
     };
 
     return (

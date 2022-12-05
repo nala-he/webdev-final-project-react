@@ -28,7 +28,7 @@ import ProtectedRoute from "../profile/protected-route";
 import MyRecipes from "../profile/my-recipes";
 import MyRecipeDetails from "../recipe-details/my-recipe-details";
 import spoonacularReducer from "../../reducers/spoonacular-reducer";
-import SearchByIngredientsResults from "../spoonacular/spoonacular-search";
+import SearchByIngredientsResults from "../spoonacular";
 
 const store = configureStore({reducer: {
             ingredients, 

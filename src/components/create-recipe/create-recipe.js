@@ -1,15 +1,36 @@
-import React, {useState} from "react";
-import {Link} from "react-router-dom";
-import {useDispatch, useSelector} from "react-redux";
+import React, {useEffect, useState} from "react";
+import {Link, useNavigate} from "react-router-dom";
 import "./index.css";
-import { createRecipe } from "../../reducers/recipes-reducer";
 import EditIngredients from "./edit-ingredients";
 import EditDirections from "./edit-directions";
-import EditNutrients from "./edit-nutrients";
+import {useDispatch, useSelector} from "react-redux";
+import { updateRecipeThunk, findAllRecipesThunk, deleteRecipeThunk } from "../../services/recipes-thunk";
 
-const CreateRecipe = ({profile}) => {
+const CreateRecipe = ({currentUser}) => {
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
     // hard coded recipe for now- need to change
-    const recipe = useSelector(state => state.recipes[0]);
+    // const recipe = useSelector(state => state.recipes[0]);
+    const recipes = useSelector(state => state.recipes);
+    
+    // get recipe id of the empty recipe that was just created
+    useEffect(() => {
+        dispatch(findAllRecipesThunk());
+    }, []);
+
+    const len = recipes.recipes.length;
+    const recipe = recipes.recipes[len-1];
+
+    const rid = recipe._id ;
+    // console.log(rid);
+    console.log(rid);
+    console.log(currentUser._id);
+    console.log(currentUser.avatar);
+    // console.log(currentUser.avatar.type);
+    let avatar = currentUser.avatar;
+    if (currentUser.avatar === undefined) {
+        avatar = "/images/emptyAvatar.png"
+    }
 
     let [editDish, setDish] = useState(recipe.dishName);
     let [editPhoto,setPhoto] = useState(recipe.recipePic);
@@ -24,12 +45,11 @@ const CreateRecipe = ({profile}) => {
     let [editCarbs, setCarbs] = useState(recipe.carbs);
     let [editProtein, setProtein] = useState(recipe.protein);
 
-    const dispatch = useDispatch();
-
     const createClickHandler = () => {
         const newRecipe = {
-            author: profile.username,
-            avatar: profile.avatar,
+            authorId: currentUser._id,
+            authorName: currentUser.username,
+            avatar: avatar,
             dishName: editDish,
             intro: editIntro,
             recipePic: editPhoto,
@@ -43,7 +63,12 @@ const CreateRecipe = ({profile}) => {
             carbs: editCarbs,
             protein: editProtein    
         }
-        dispatch(createRecipe(newRecipe));
+        dispatch(updateRecipeThunk({rid,newRecipe}));   
+        navigate("/home");
+    }
+
+    const deleteClickHandler = () => {
+        dispatch(deleteRecipeThunk(rid));
     }
 
     return (
@@ -66,8 +91,7 @@ const CreateRecipe = ({profile}) => {
                             type = "text"
                             id = "dishName"
                             onChange={(e)=>setDish(e.target.value)}
-                            className = "col-8 wd-input-text" 
-                            value={editDish}>
+                            className = "col-8 wd-input-text">
                         </input>
                     </div>
                     <div className="row align-items-center mt-2">
@@ -79,8 +103,7 @@ const CreateRecipe = ({profile}) => {
                             type = "text"
                             id = "dishName"
                             onChange={(e)=>setIntro(e.target.value)}
-                            className = "col-8 wd-input-text" 
-                            value={editIntro}>
+                            className = "col-8 wd-input-text">
                         </textarea>
                     </div>
                     {/* <div className="fs-6 text-wrap">
@@ -117,7 +140,7 @@ const CreateRecipe = ({profile}) => {
                                 {/* xl */}
                                 <label className="col-6 fw-bold d-none d-xl-block">Prep Time: </label>
                                 <input
-                                    type = "text" id = "prepTime" value={editPrep}
+                                    type = "text" id = "prepTime"
                                     onChange={(e)=>setPrep(e.target.value)}
                                     className = "col-5 wd-input-text">
                                 </input>
@@ -128,7 +151,7 @@ const CreateRecipe = ({profile}) => {
                                 {/* xl */}
                                 <label className="col-6 fw-bold d-none d-xl-block">Cook Time: </label>
                                 <input
-                                    type = "text" id = "cookTime" value={editCookTime}
+                                    type = "text" id = "cookTime"
                                     onChange={(e)=>setCookTime(e.target.value)}
                                     className = "col-5 wd-input-text">
                                 </input>
@@ -139,7 +162,7 @@ const CreateRecipe = ({profile}) => {
                                 {/* xl */}
                                 <label className="col-6 fw-bold d-none d-xl-block">Total Time: </label>
                                 <input
-                                    type = "text" id = "totalTime" value={editTotalTime}
+                                    type = "text" id = "totalTime"
                                     onChange={(e)=>setTotalTime(e.target.value)}
                                     className = "col-5 wd-input-text">
                                 </input>
@@ -150,7 +173,7 @@ const CreateRecipe = ({profile}) => {
                                 {/* xl */}
                                 <label className="col-6 fw-bold d-none d-xl-block">Servings: </label>
                                 <input
-                                    type = "text" id = "servings" value={editServings}
+                                    type = "text" id = "servings"
                                     onChange={(e)=>setServings(e.target.value)}
                                     className = "col-5 wd-input-text">
                                 </input>
@@ -161,7 +184,7 @@ const CreateRecipe = ({profile}) => {
                                 {/* xl */}
                                 <label className="col-6 fw-bold d-none d-xl-block">Difficulty: </label>
                                 <input
-                                    type = "text" id = "difficulty" value={editDifficulty}
+                                    type = "text" id = "difficulty" 
                                     onChange={(e)=>setDifficulty(e.target.value)}
                                     className = "col-5 wd-input-text">
                                 </input>
@@ -183,7 +206,7 @@ const CreateRecipe = ({profile}) => {
                 <div className="row align-items-center">
                     <label className="col-3 fw-bold">Calories: </label>
                     <input
-                        type = "text" id = "calories" value={editCalories}
+                        type = "text" id = "calories"
                         onChange={(e)=>setCalories(e.target.value)}
                         className = "col-5 wd-input-text">
                     </input>
@@ -191,7 +214,7 @@ const CreateRecipe = ({profile}) => {
                 <div className="row align-items-center">
                     <label className="col-3 fw-bold">Fat: </label>
                     <input
-                        type = "text" id = "fat" value={editFat}
+                        type = "text" id = "fat"
                         onChange={(e)=>setFat(e.target.value)}
                         className = "col-5 wd-input-text">
                     </input>
@@ -199,7 +222,7 @@ const CreateRecipe = ({profile}) => {
                 <div className="row align-items-center">
                     <label className="col-3 fw-bold">Carbs: </label>
                     <input
-                        type = "text" id = "carbs" value={editCarbs}
+                        type = "text" id = "carbs"
                         onChange={(e)=>setCarbs(e.target.value)}
                         className = "col-5 wd-input-text">
                     </input>
@@ -207,7 +230,7 @@ const CreateRecipe = ({profile}) => {
                 <div className="row align-items-center">
                     <label className="col-3 fw-bold">Protein: </label>
                     <input
-                        type = "text" id = "protein" value={editProtein}
+                        type = "text" id = "protein"
                         onChange={(e)=>setProtein(e.target.value)}
                         className = "col-5 wd-input-text">
                     </input>
@@ -216,12 +239,13 @@ const CreateRecipe = ({profile}) => {
 
             {/* Save Recipe & cancel button */}
             <div className="row justify-content-evenly">
-                <Link to="/profile/:uid/my-recipes/:rid/details" 
+                <button
                     onClick={createClickHandler}
                     className="col-3 btn btn-sm btn-secondary mt-3 me-2">
                     Save Recipe
-                </Link>
-                <Link to="/profile/:uid/my-recipes/:rid/details" 
+                </button>
+                <Link to="/home" 
+                    onClick={deleteClickHandler}
                     className="col-3 btn btn-sm btn-secondary mt-3 me-2">
                     Cancel
                 </Link>

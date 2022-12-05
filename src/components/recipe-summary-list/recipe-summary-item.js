@@ -32,13 +32,13 @@ const RecipeSummaryItem = (
     return(
     <div className="wd-item-border m-4 p-3 row">
         <div className="col-2 p-2">
-            <img className="wd-avatar" src={`/images/${recipe.avatar}`} alt="avatar"/>
+            <img className="wd-avatar" src={recipe.avatar} alt="avatar"/>
         </div>
         <div className="col-10 ">
             <div className="p-3 wd-item-content">
                 <div>
                     <span className="text-dark fw-bolder">{recipe.dishName} </span>
-                    <span className="col text-muted"> @{recipe.author} </span>
+                    <span className="col text-muted"> @{recipe.authorName} </span>
                 </div>
                 <span className="text-dark">{recipe.intro}</span>
                 <div className="d-flex justify-content-center">
@@ -47,7 +47,7 @@ const RecipeSummaryItem = (
                 </div>
             </div>
             <div className="row">
-                <div className="btn col-5 text-dark"
+                <div className="btn col-4 text-dark"
                      onClick={saveRecipeClickHandler}>
                     <div className="d-block d-xl-none">
                         <i className="bi bi-bookmark text-dark p-2"></i>
@@ -58,7 +58,17 @@ const RecipeSummaryItem = (
                         <span>Save Recipe</span>
                     </div>
                 </div>
-                <div className="btn col-6 text-dark">
+                <div className="btn col-4 text-dark">
+                    <div className="d-block d-xl-none">
+                        <i className="fa-solid fa-utensils text-dark p-2"></i>
+                        <span className="wd-text-md">Open Recipe</span>
+                    </div>
+                    <div className="d-none d-xl-block">
+                        <i className="fa-solid fa-utensils text-dark p-2"></i>
+                        <span>Open Recipe</span>
+                    </div>
+                </div>
+                <div className="btn col-4 text-dark">
                     <div className="d-block d-xl-none">
                         <i className="bi bi-check-square text-dark p-2"></i>
                         <span className="wd-text-md">Follow Author</span>

@@ -1,9 +1,15 @@
 import React, {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import RecipeSummaryItem from "./recipe-summary-item";
+import { findAllRecipesThunk } from "../../services/recipes-thunk";
 
 const RecipeSummaryList = () => {
   const recipes = useSelector((state) => state.recipes)
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(findAllRecipesThunk());
+  }, []);
 
   return(
     <div>
@@ -13,8 +19,8 @@ const RecipeSummaryList = () => {
             <i className="bi bi-search position-absolute wd-nudge-up text-dark"></i>
         </div>
       {
-        recipes.map(recipe =>
-          <RecipeSummaryItem key={recipe._id} recipe={recipe}/> )
+        recipes.recipes.map(recipe =>
+          <RecipeSummaryItem key={recipe._id} recipe={recipe}/> ).reverse()
       }
     </div>
     );

@@ -12,7 +12,7 @@ const SearchByIngredientsResults = () => {
     return (
         <div className="m-3 mb-0 wd-border">
             {
-                recipes && recipes.map(recipe => <RecipeItem recipe={recipe}/>)
+                recipes && recipes.map(recipe => <RecipeItem key={recipe.id} recipe={recipe}/>)
             }
 
         </div>

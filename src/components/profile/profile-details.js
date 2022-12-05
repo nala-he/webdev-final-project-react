@@ -1,27 +1,37 @@
 import React, {useEffect, useState} from "react";
 import {Link} from "react-router-dom";
 import {useSelector, useDispatch} from "react-redux";
-import {useLocation} from "react-router";
 import "./index.css";
 import {findUserByIdThunk} from "../../services/users-thunks";
 import {useNavigate} from "react-router-dom";
+import {findUsersIamFollowingThunk, findUsersIamFollowedByThunk} from "../../services/friends-thunks";
 
 const ProfileDetails = () => {
     const {currentUser}= useSelector(state => state.usersData);
     const [profile, setProfile] = useState(currentUser);
-
+    
+    const {followedBy, following} = useSelector(state => state.followsData);
+    const [followings, setFollowings] = useState([]);
+    const [followers, setFollowers] = useState([]);
+    
     const dispatch = useDispatch();
     const navigate = useNavigate();
-
+    
     useEffect(() => {
-        try {
-            dispatch(findUserByIdThunk(currentUser._id))
-                .then(setProfile(currentUser))
+        async function fetchData() {
+            await dispatch(findUserByIdThunk(currentUser._id))
+            await dispatch(findUsersIamFollowingThunk(currentUser))
+            await dispatch(findUsersIamFollowedByThunk(currentUser))
+            setProfile(currentUser)
+            setFollowers(followedBy)
+            setFollowings(following)
         }
-        catch(e) {
+        try {
+            fetchData();
+        } catch(e) {
             navigate('/login');
         }
-    }, [currentUser, dispatch, navigate]);
+    }, [currentUser, dispatch, navigate, followedBy, following]);
 
     return (
         <div className="m-0 wd-profile-background">
@@ -91,8 +101,8 @@ const ProfileDetails = () => {
                                     className="wd-edit-button border rounded-3
                             ps-3 pe-3 pt-1 pb-1">
                                 {
-                                    profile.followings &&
-                                    <div className="wd-text-sm">{profile.followings}</div>
+                                    followings &&
+                                    <div className="wd-text-sm">{followings.length}</div>
                                 }
                                 <div className="wd-text-sm">Following</div>
                             </button>
@@ -104,8 +114,8 @@ const ProfileDetails = () => {
                                     className="wd-edit-button border rounded-3
                             ps-3 pe-3 pt-1 pb-1 ">
                                 {
-                                    profile.followers &&
-                                    <div className="wd-text-sm">{profile.followers}</div>
+                                    followers &&
+                                    <div className="wd-text-sm">{followers.length}</div>
                                 }
                                 <div className="wd-text-sm">Followers</div>
                             </button>

@@ -34,7 +34,22 @@ const RecipeSummaryItem = (
     return(
     <div className="wd-item-border m-4 p-3 row">
         <div className="col-2 p-2">
-            <img className="wd-avatar" src={recipe.avatar} alt="avatar"/>
+            {/* <img className="wd-avatar" src={recipe.avatar} alt="avatar"/> */}
+            {
+                (!recipe.avatar) &&
+                <img className="wd-avatar"
+                    alt="avatar" src={`/images/emptyRecipe.jpg`}/>
+            }
+            {
+                recipe.avatar && recipe.avatar.includes("http") &&
+                <img className="wd-avatar"
+                    src={recipe.avatar} alt="avatar"/>
+            }
+            {
+                recipe.avatar && !recipe.avatar.includes("http") &&
+                <img className="wd-avatar"
+                    src={`/images/${recipe.avatar}`} alt="avatar"/>
+            }
         </div>
         <div className="col-10 ">
             <div className="p-3 wd-item-content">
@@ -44,8 +59,23 @@ const RecipeSummaryItem = (
                 </div>
                 <span className="text-dark">{recipe.intro}</span>
                 <div className="d-flex justify-content-center">
-                    <img className="wd-recipe-image mt-2 d-none d-md-block"
-                         src={`/images/${recipe.recipePic}`} alt="recipePic"/>
+                    {
+                        (!recipe.recipePic) &&
+                        <img className="wd-recipe-image mt-2 d-none d-md-block"
+                            alt="recipePic" src={`/images/emptyAvatar.png`}/>
+                    }
+                    {
+                        recipe.recipePic && recipe.recipePic.includes("http") &&
+                        <img className="wd-recipe-image mt-2 d-none d-md-block"
+                            src={recipe.recipePic} alt="recipePic"/>
+                    }
+                    {
+                        recipe.recipePic && !recipe.recipePic.includes("http") &&
+                        <img className="wd-recipe-image mt-2 d-none d-md-block"
+                            src={`/images/${recipe.recipePic}`} alt="recipePic"/>
+                    }
+                    {/* <img className="wd-recipe-image mt-2 d-none d-md-block"
+                         src={`/images/${recipe.recipePic}`} alt="recipePic"/> */}
                 </div>
             </div>
             <div className="row">

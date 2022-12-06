@@ -104,15 +104,41 @@ const CreateRecipeDetails = ({recipe}) => {
                         <div className="row">
                             <div>
                                 {/* xs-large */}
-                                <img src={`/images/${recipe.recipePic}`}
-                                     className="wd-create-recipe-pic-sm mb-2 d-xl-none"/>
+                                {
+                                    (!recipe.recipePic) &&
+                                    <img className="wd-create-recipe-pic-sm mb-2 d-xl-none"
+                                        alt="recipePic" src={`/images/emptyRecipe.jpg`}/>
+                                }
+                                {
+                                    recipe.recipePic && recipe.recipePic.includes("http") &&
+                                    <img className="wd-create-recipe-pic-sm mb-2 d-xl-none"
+                                        src={recipe.recipePic} alt="recipePic"/>
+                                }
+                                {
+                                    recipe.recipePic && !recipe.recipePic.includes("http") &&
+                                    <img className="wd-create-recipe-pic-sm mb-2 d-xl-none"
+                                        src={`/images/${recipe.recipePic}`} alt="recipePic"/>
+                                }
                                 {/* xl */}
-                                <img src={`/images/${recipe.recipePic}`}
-                                     className="d-none d-xl-block wd-create-recipe-pic mb-2"/>
+                                {
+                                    (!recipe.recipePic) &&
+                                    <img className="d-none d-xl-block wd-create-recipe-pic mb-2"
+                                        alt="recipePic" src={`/images/emptyRecipe.jpg`}/>
+                                }
+                                {
+                                    recipe.recipePic && recipe.recipePic.includes("http") &&
+                                    <img className="d-none d-xl-block wd-create-recipe-pic mb-2"
+                                        src={recipe.recipePic} alt="recipePic"/>
+                                }
+                                {
+                                    recipe.recipePic && !recipe.recipePic.includes("http") &&
+                                    <img className="d-none d-xl-block wd-create-recipe-pic mb-2"
+                                        src={`/images/${recipe.recipePic}`} alt="recipePic"/>
+                                }
                             </div>
-                            <input type="file" id="recipePic" className="btn"
-                                   onChange={(e)=>setPhoto(e.target.files[0].name)}
-                                   accept="image/jpeg, image/png, image/jpg"></input>
+                            <input type="text" id="recipePic" placeholder="Enter image url" className="m-3 col-11 wd-pic-input"
+                                   onChange={(e)=>setPhoto(e.target.value)}>    
+                            </input>
                         </div>
                     </div>
                     <div className="col-7">

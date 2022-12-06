@@ -116,7 +116,7 @@ const Friend = ({friend, relation}) => {
                                 // e.g. localhost:3000/friends/:uid/followers
                                 paths.length === 4 && 
                                 <>
-                                    <Link to={`../../profile/${friend._id}`}>
+                                    <Link to={`../profile/${friend._id}`}>
                                         <button className="btn wd-btn-grey rounded-4 m-1 text-dark 
                                         fw-bold wd-font-14" onClick={profileClickHandler}>
                                             Profile
@@ -124,7 +124,7 @@ const Friend = ({friend, relation}) => {
                                     </Link>
                                     {
                                         friend.type !== "REG USER" &&
-                                        <Link to={`../../profile/${friend._id}/my-recipes`}>
+                                        <Link to={`../profile/${friend._id}/my-recipes`}>
                                             <button className="btn wd-btn-grey rounded-4 m-1 
                                             text-dark fw-bold wd-font-14">
                                                 Recipes

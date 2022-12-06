@@ -44,7 +44,7 @@ const store = configureStore({reducer: {
             recipeIngredients: recipeIngredientsReducer,
             recipeDirections: recipeDirectionsReducer,
             usersData: usersReducer,
-            followsData: friendsReducer
+            followsData: friendsReducer,
             savedRecipes: savedRecipesReducer
     }
 });

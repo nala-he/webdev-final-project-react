@@ -54,7 +54,21 @@ const MyRecipesItem = ({recipe}) => {
                 </div>
                 <div className="wd-inner-content row m-1 d-flex align-items-center">
                     <div className="col-4 p-2">
-                        <img className="wd-my-recipe-image" src={`/images/${recipe.recipePic}`} alt="avatar"/>
+                        {
+                        (!recipe.recipePic) &&
+                        <img className="wd-my-recipe-image"
+                            alt="recipePic" src={`/images/emptyRecipe.jpg`}/>
+                        }
+                        {
+                            recipe.recipePic && recipe.recipePic.includes("http") &&
+                            <img className="wd-my-recipe-image"
+                                src={recipe.recipePic} alt="recipePic"/>
+                        }
+                        {
+                            recipe.recipePic && !recipe.recipePic.includes("http") &&
+                            <img className="wd-my-recipe-image"
+                                src={`/images/${recipe.recipePic}`} alt="recipePic"/>
+                        }
                     </div>
                     <div className="col-7">
                         <div className="p-2 row">

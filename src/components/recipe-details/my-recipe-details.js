@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect,useState} from "react";
 import "./index.css";
 import {Link} from "react-router-dom";
 import RecipeDetail from "./recipe-detail";
@@ -6,14 +6,26 @@ import recipes from "../../data/recipes.json";
 import {useLocation, useNavigate} from "react-router";
 import {useDispatch, useSelector} from "react-redux";
 import {createSavedRecipeThunk} from "../../services/saved-recipes-thunk";
+import * as service from "../../services/recipes-service";
 
-const MyRecipeDetails = ({recipe = recipes[0]}) => {
+
+const MyRecipeDetails = () => {
     const {pathname} = useLocation();
     const paths = pathname.split('/');
     const rid = paths[3];
     const {currentUser} = useSelector(state => state.usersData);
     const dispatch = useDispatch();
     const navigate = useNavigate();
+
+    const [recipe, setRecipe] = useState({})
+
+    useEffect(() => {
+        async function fetchData() {
+            const targetRecipe = await service.findRecipeById(rid)
+            setRecipe(targetRecipe)
+        }
+        fetchData();
+    },[rid]);
 
     const saveRecipeClickHandler = () => {
         if (currentUser) {
@@ -36,7 +48,7 @@ const MyRecipeDetails = ({recipe = recipes[0]}) => {
             {/* recipe detail */}
             <div>
                 {/* hardcode recipe - update later*/}
-                <RecipeDetail recipe={recipes[0]}/>
+                <RecipeDetail recipe={recipe}/>
             </div>
 
             <div className="d-flex justify-content-center">

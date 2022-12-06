@@ -5,6 +5,7 @@ import MyRecipesItem from "./my-recipes-item";
 import {Link} from "react-router-dom";
 import {useNavigate} from "react-router-dom";
 import {findUserByIdThunk} from "../../services/users-thunks";
+import { findRecipesByAuthorThunk } from "../../services/recipes-thunk";
 
 const MyRecipes = () => {
     const myRecipes = useSelector(state => state.myRecipes);
@@ -14,7 +15,7 @@ const MyRecipes = () => {
     // Saved for future implementation
     // let recipes = paths.includes(myRecipes[0].createdBy) ? myRecipes : friendRecipes;
     // Use below for now
-    let recipes = myRecipes;
+    // let recipes = myRecipes;
     const {pathname} = useLocation();
     const paths = pathname.split('/');
     let active = paths.includes('my-recipes') ? 'my-recipes' : 'profile';
@@ -22,10 +23,13 @@ const MyRecipes = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const {currentUser}= useSelector(state => state.usersData);
+    const {recipes} = useSelector(state => state.recipes)
 
     useEffect(() => {
         try {
             dispatch(findUserByIdThunk(currentUser._id));
+            dispatch(findRecipesByAuthorThunk(currentUser._id));
+            console.log(recipes);
         }
         catch(e) {
             navigate('/login');

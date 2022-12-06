@@ -1,13 +1,12 @@
-import {React, useEffect, useState} from "react";
+import {React, useEffect} from "react";
 import {Link} from "react-router-dom";
 import {Routes, Route, useLocation} from "react-router";
 import {useSelector, useDispatch} from "react-redux";
+import {useNavigate} from "react-router-dom";
 import PublicProfileDetails from "./public-profile-details";
 import MyRecipes from "./my-recipes";
 import RecipeDetails from "../recipe-details/recipe-detail";
 import "./index.css";
-import * as service from "../../services/auth-service";
-import {useNavigate} from "react-router-dom";
 // import updateProfile from "../../reducers/profile-reducer";
 import {findUserByIdThunk} from "../../services/users-thunks";
 import {useParams} from "react-router";
@@ -21,40 +20,49 @@ const PublicProfile = () => {
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    // const currentUser = useSelector(state => state.profile);
     const {publicProfile, loading}= useSelector(state => state.usersData);
 
     useEffect(() => {
-        dispatch(findUserByIdThunk(uid));
-    }, [uid]);
+        try {
+            dispatch(findUserByIdThunk(uid));
+        } catch (e) {
+            navigate('/login');
+        }
+    }, [uid, dispatch, navigate]);
 
     let profile = publicProfile;
     // console.log(profile);
     return (
         <div className="mt-3">
-            <ul className="nav nav-tabs">
-                <li className="nav-item">
-                    <Link className={`nav-link text-dark ${active === 'profile' ? 'active' : ''}`}
-                          to={`/profile/${profile._id}`}>
-                        <h5 className={`${active === 'profile' ? 'fw-bolder' : ''}`}>
-                            Profile
-                        </h5>
-                    </Link>
-                </li>
-                {
-                    profile.type !== "REG USER"
-                    &&
-                    <li className="nav-item">
-                        <Link className={`nav-link text-dark ${active === 'my-recipes' ? 'active'
-                                                                                       : ''}`}
-                              to={`/profile/${profile._id}/my-recipes`}>
-                            <h5 className={`${active === 'my-recipes' ? 'fw-bolder' : ''}`}>
-                                My Recipes
-                            </h5>
-                        </Link>
-                    </li>
-                }
-            </ul>
+            {
+                profile && 
+                <>
+                    <ul className="nav nav-tabs">
+                        <li className="nav-item">
+                            <Link className={`nav-link text-dark ${active === 'profile' ? 'active' : ''}`}
+                                  to={`/profile/${profile._id}`}>
+                                <h5 className={`${active === 'profile' ? 'fw-bolder' : ''}`}>
+                                    Profile
+                                </h5>
+                            </Link>
+                        </li>
+                        {
+                            profile.type !== "REG USER"
+                            &&
+                            <li className="nav-item">
+                                <Link className={`nav-link text-dark ${active === 'my-recipes' ? 'active'
+                                                                                               : ''}`}
+                                      to={`/profile/${profile._id}/my-recipes`}>
+                                    <h5 className={`${active === 'my-recipes' ? 'fw-bolder' : ''}`}>
+                                        My Recipes
+                                    </h5>
+                                </Link>
+                            </li>
+                        }
+                    </ul>
+                </>
+            }
+            
             {
                 loading && <h5>Loading...</h5>
             }

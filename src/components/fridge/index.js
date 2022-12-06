@@ -22,9 +22,9 @@ import recipeIngredientsReducer from "../../reducers/recipe-ingredients-reducer"
 import recipeDirectionsReducer from "../../reducers/recipe-directions-reducer";
 import Login from "../profile/login";
 import usersReducer from "../../reducers/users-reducer";
-import CurrentUser from "../profile/current-user";
+// import CurrentUser from "../profile/current-user";
 import PublicProfile from "../profile/public-profile";
-import ProtectedRoute from "../profile/protected-route";
+// import ProtectedRoute from "../profile/protected-route";
 import MyRecipes from "../profile/my-recipes";
 import MyRecipeDetails from "../recipe-details/my-recipe-details";
 import friendsReducer from "../../reducers/friends-reducer";
@@ -67,10 +67,11 @@ function Fridge() {
                                     <Route path="/profile/my-recipes" element={<MyRecipes/>}/>
                                     <Route path="/profile/my-recipes/:rid/details" element={<MyRecipeDetails/>}/>
                                     <Route path="/profile/edit" element={<EditProfile/>}/>
+                                    {/*revised public profile path below -- yutong*/}
                                     <Route path="/friends/profile/:uid/*" element={<PublicProfile/>}/>
                                     {/*<Route path="/friends/:uid/*" element={<FriendsComponent/>}/>*/}
-                                    <Route path="/users/:uid/saved-recipes" element={<SavedRecipes/>}/>
                                     <Route path="/friends/*" element={<FriendsComponent/>}/>
+                                    <Route path="/users/:uid/saved-recipes" element={<SavedRecipes/>}/>
                                     {/* routes listed here for now - once other components done, add these routes to components */}
                                     <Route path="/profile/:uid/my-recipes/:rid/details" element={<RecipeDetailsComponent/>}/>
                                     <Route path="/users/:uid/saved-recipes/:rid/details" element={<RecipeDetailsComponent/>}/>

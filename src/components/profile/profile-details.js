@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from "react";
 import {Link} from "react-router-dom";
 import {useSelector, useDispatch} from "react-redux";
+import {useNavigate} from "react-router-dom";
 import "./index.css";
 import {findUserByIdThunk} from "../../services/users-thunks";
-import {useNavigate} from "react-router-dom";
 import {findUsersIamFollowingThunk, findUsersIamFollowedByThunk} from "../../services/friends-thunks";
 
 const ProfileDetails = () => {

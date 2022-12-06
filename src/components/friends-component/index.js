@@ -15,6 +15,9 @@ const FriendsComponent = () => {
     
     const {pathname} = useLocation();
     const paths = pathname.split('/');
+    // e.g. localhost:3000/friends/uid/followers
+    //      localhost:3000/friends/uid
+    // as friends' friends page
     let uid = paths[2];
     let friend = paths[3];
     
@@ -23,7 +26,7 @@ const FriendsComponent = () => {
         uid = currentUser._id;
     }
     // e.g. localhost:3000/friends/followers as logged in user friends followers page
-    if (paths.length === 3 && currentUser) {
+    if (paths.length === 3 && paths[2] === "followers" && currentUser) {
         uid = currentUser._id;
         friend = paths[2];
     }
@@ -68,9 +71,9 @@ const FriendsComponent = () => {
                      <ul className="nav nav-tabs nav-fill">
                          <li className="nav-item">
                              <Link className={`nav-link text-dark fs-5 
-                                        ${friend === undefined ? 'active fw-bold' : ''}`}
+                                        ${friend === "followers" ? '' : 'active fw-bold'}`}
                                    to={uid === currentUser._id ? `/friends` 
-                                                                    : `/friends/${user._id}`}>
+                                                               : `/friends/${user._id}`}>
                                  Following
                              </Link>
                          </li>
@@ -78,7 +81,7 @@ const FriendsComponent = () => {
                              <Link className={`nav-link text-dark fs-5 
                                         ${friend === 'followers' ? 'active fw-bold' : ''}`}
                                    to={uid === currentUser._id ? `/friends/followers` 
-                                                                    : `/friends/${user._id}/followers`}>
+                                                               : `/friends/${user._id}/followers`}>
                                  Followers
                              </Link>
                          </li>
@@ -97,9 +100,9 @@ const FriendsComponent = () => {
                              {
                                  uid !== currentUser._id &&
                                  <>
-                                     <Route path={`${user._id}`}
+                                     <Route path={`/${user._id}`}
                                             element={<FriendsFollowingsList friends={following}/>}/>
-                                     <Route path={`${user._id}/followers`}
+                                     <Route path={`/${user._id}/followers`}
                                             element={<FriendsFollowersList friends={followedBy}/>}/>
                                  </>
                              }

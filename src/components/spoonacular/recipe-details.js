@@ -1,9 +1,29 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import {Link} from "react-router-dom";
-import recipes from "../../data/recipes.json";
 import RecipeInfo from "./recipe-info";
+import * as service from "../../services/spoonacular-service";
+
+// HARDCODE RECIPE TO AVOID UNNECESSARY CALLS TO SPOONACULAR API -------------------------- UNCOMMENT OUT ONCE COMPLETE
+import recipeDetails from "./recipe-details.json"
+import {useLocation} from "react-router";
 
 const RecipeResultDetails = () => {
+    const {pathname} = useLocation();
+    const paths = pathname.split('/');
+    const rid = paths[3];
+
+    // HARDCODE RECIPE TO AVOID UNNECESSARY CALLS TO SPOONACULAR API -------------------------- UNCOMMENT OUT ONCE COMPLETE
+    const recipe = recipeDetails[0];
+
+    //const [recipe, setRecipe] = useState({})
+
+    // useEffect(() => {
+    //     async function fetchData() {
+    //         const targetRecipe = await service.findRecipeInfoById(rid);
+    //         setRecipe(recipe);
+    //     }
+    // }, [])
+
     return (
         <div className="m-3 mb-0 wd-border wd-bg-beige">
             {/* close button */}
@@ -15,7 +35,7 @@ const RecipeResultDetails = () => {
 
             {/* recipe detail */}
             <div>
-                <RecipeInfo recipe={recipes[0]}/>
+                <RecipeInfo recipe={recipe}/>
             </div>
 
             {/*<div className="d-flex justify-content-center">*/}

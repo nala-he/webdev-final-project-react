@@ -1,23 +1,21 @@
 import React from "react";
 import "./index.css";
+import {Link} from "react-router-dom";
 
 const RecipeInfo = ({recipe}) => {
     return (
         <div className="m-3 wd-border h-100 bg-white">
-            {/* author and dish title */}
-            <div className="m-4 mb-3 d-flex justify-content-start align-items-center">
-                {/* author avatar */}
-                <div>
-                    <img src={`/images/${recipe.avatar}`}
-                         className="wd-author-avatar"/>
-                </div>
-                {/* dish title and author name */}
-                <div className="text-dark ms-5">
+            {/* dish title and source */}
+            <div className="m-4 mb-3 d-flex align-items-center justify-content-center">
+                <div className="text-dark text-center">
                     <div className="fs-2 fw-bold text-wrap">
-                        {recipe.dishName}
+                        {recipe.title}
                     </div>
-                    <div className="fs-6 text-wrap">
-                        Created By: {recipe.author}
+                    <div className="fs-6 text-wrap mt-2 text-center">
+                        <span>Source: </span>
+                        <Link to={recipe.sourceUrl} className="text-decoration-none text-dark">
+                            {recipe.sourceUrl}
+                        </Link>
                     </div>
                 </div>
             </div>
@@ -26,7 +24,7 @@ const RecipeInfo = ({recipe}) => {
             <div className="d-flex align-items-center justify-content-center flex-wrap">
                 {/* recipe pic */}
                 <div className="m-2">
-                    <img src={`/images/${recipe.recipePic}`}
+                    <img src={`${recipe.image}`}
                          className="wd-recipe-pic"/>
                 </div>
                 {/* recipe summary/times */}

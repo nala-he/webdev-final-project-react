@@ -27,7 +27,23 @@ const SavedRecipeItem = (
     return(
     <div className="wd-saved-item-border m-4 p-2 row">
         <div className="col-3 col-sm-3 col-md-2 col-lg-2 p-2">
-            <img className="wd-avatar" src={`${recipe.avatar}`} alt="avatar"/>
+            {
+                (!recipe.avatar) &&
+                <img className="wd-avatar"
+                        src={`/images/emptyAvatar.png`} alt="avatar"/>
+            }
+            {
+                recipe.avatar && recipe.avatar.includes("http") &&
+                <img className="wd-avatar"
+                        src={recipe.avatar} alt="avatar"/>
+            }
+            {
+                recipe.avatar && !recipe.avatar.includes("http") &&
+                <img className="wd-avatar"
+                        alt="avatar"
+                        src={recipe.avatar !== '' ? `/images/${recipe.avatar}`
+                                                : `/images/emptyAvatar.png`}/>
+            }
         </div>
         <div className="col-9 col-sm-9 col-md-10 col-lg-10">
             <div className="p-2 row wd-saved-item-content">
@@ -39,8 +55,21 @@ const SavedRecipeItem = (
                     <span className="text-dark d-none d-md-block">{recipe.intro}</span>
                 </div>
                 <div className="col-3 d-flex justify-content-center">
-                    <img className="wd-saved-recipe-image m-2 d-none d-md-block"
-                         src={`/images/${recipe.recipePic}`} alt="recipePic"/>
+                    {
+                        (!recipe.recipePic) &&
+                        <img className="wd-saved-recipe-image m-2 d-none d-md-block"
+                            alt="recipePic" src={`/images/emptyRecipe.jpg`}/>
+                    }
+                    {
+                        recipe.recipePic && recipe.recipePic.includes("http") &&
+                        <img className="wd-saved-recipe-image m-2 d-none d-md-block"
+                            src={recipe.recipePic} alt="recipePic"/>
+                    }
+                    {
+                        recipe.recipePic && !recipe.recipePic.includes("http") &&
+                        <img className="wd-saved-recipe-image m-2 d-none d-md-block"
+                            src={`/images/${recipe.recipePic}`} alt="recipePic"/>
+                    }
                 </div>
             </div>
             <div className="row">

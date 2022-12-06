@@ -5,12 +5,15 @@ import * as service from "../../services/spoonacular-service";
 
 // HARDCODE RECIPE TO AVOID UNNECESSARY CALLS TO SPOONACULAR API -------------------------- UNCOMMENT OUT ONCE COMPLETE
 import recipeDetails from "./recipe-details.json"
-import {useLocation} from "react-router";
+import {useLocation, useNavigate} from "react-router";
+import {useSelector} from "react-redux";
 
 const RecipeResultDetails = () => {
     const {pathname} = useLocation();
+    const {currentUser} = useSelector(state => state.usersData);
     const paths = pathname.split('/');
     const rid = paths[3];
+    const navigate = useNavigate();
 
     // HARDCODE RECIPE TO AVOID UNNECESSARY CALLS TO SPOONACULAR API -------------------------- UNCOMMENT OUT ONCE COMPLETE
     const recipe = recipeDetails[0];
@@ -22,7 +25,12 @@ const RecipeResultDetails = () => {
     //         const targetRecipe = await service.findRecipeInfoById(rid);
     //         setRecipe(recipe);
     //     }
-    // }, [])
+    //     if (!currentUser) {
+    //         navigate('/login');
+    //         return;
+    //     }
+    //     fetchData();
+    // }, []);
 
     return (
         <div className="m-3 mb-0 wd-border wd-bg-beige">

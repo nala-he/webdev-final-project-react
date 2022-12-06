@@ -60,8 +60,8 @@ const RecipeSummaryItem = (
                         <span>Save Recipe</span>
                     </div>
                 </div>
-                <Link to={`/recipes/${recipe._id}/details`}>
-                    <div className="btn col-4 text-dark">
+                <div className="btn col-4 text-dark">
+                    <Link to={`/recipes/${recipe._id}/details`}>
                         <div className="d-block d-xl-none">
                             <i className="fa-solid fa-utensils text-dark p-2"></i>
                             <span className="wd-text-md">Open Recipe</span>
@@ -70,8 +70,8 @@ const RecipeSummaryItem = (
                             <i className="fa-solid fa-utensils text-dark p-2"></i>
                             <span>Open Recipe</span>
                         </div>
-                    </div>
-                </Link>
+                    </Link>
+                </div>
                 <div className="btn col-4 text-dark">
                     <div className="d-block d-xl-none">
                         <i className="bi bi-check-square text-dark p-2"></i>

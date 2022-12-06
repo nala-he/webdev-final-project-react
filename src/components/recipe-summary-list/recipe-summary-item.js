@@ -1,5 +1,8 @@
-import React from "react"
+import React, {useEffect} from "react"
 import "./index.css"
+import {createSavedRecipeThunk} from "../../services/saved-recipes-thunk";
+import {useDispatch, useSelector} from "react-redux";
+import {useNavigate} from "react-router";
 
 const RecipeSummaryItem = (
     {
@@ -13,7 +16,20 @@ const RecipeSummaryItem = (
     }
     
 ) => {
-    
+    const {currentUser} = useSelector(state => state.usersData);
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+    const saveRecipeClickHandler = () => {
+        if (currentUser) {
+            const uid = currentUser._id;
+            dispatch(createSavedRecipeThunk({uid, rid: recipe._id}))
+                .then(navigate(`/users/${uid}/saved-recipes`));
+        } else {
+            navigate('/login');
+        }
+    };
+
     return(
     <div className="wd-item-border m-4 p-3 row">
         <div className="col-2 p-2">
@@ -32,7 +48,8 @@ const RecipeSummaryItem = (
                 </div>
             </div>
             <div className="row">
-                <div className="btn col-4 text-dark">
+                <div className="btn col-4 text-dark"
+                     onClick={saveRecipeClickHandler}>
                     <div className="d-block d-xl-none">
                         <i className="bi bi-bookmark text-dark p-2"></i>
                         <span className="wd-text-md">Save Recipe</span>

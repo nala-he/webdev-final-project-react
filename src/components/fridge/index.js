@@ -31,17 +31,19 @@ import PublicProfile from "../profile/public-profile";
 import ProtectedRoute from "../profile/protected-route";
 import MyRecipes from "../profile/my-recipes";
 import MyRecipeDetails from "../recipe-details/my-recipe-details";
+import savedRecipesReducer from "../../reducers/saved-recipes-reducer";
 
 const store = configureStore({reducer: {
             ingredients, 
-            recipes, 
+            recipes,
             // profile: profileReducer,
             friendProfile: friendProfileReducer,
             myRecipes: myRecipesReducer,
             friendReipes: friendRecipesReducer,
             recipeIngredients: recipeIngredientsReducer,
             recipeDirections: recipeDirectionsReducer,
-            usersData: usersReducer
+            usersData: usersReducer,
+            savedRecipes: savedRecipesReducer
     }
 });
 

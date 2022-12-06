@@ -2,7 +2,7 @@ import React from "react";
 import {useLocation} from "react-router";
 import {useSelector, useDispatch} from "react-redux";
 import {Link} from "react-router-dom";
-import {deleteMyRecipe} from "../../reducers/my-recipes-reducer";
+import { deleteRecipeThunk } from "../../services/recipes-thunk";
 import "./index.css";
 
 const MyRecipesItem = ({recipe}) => {
@@ -15,7 +15,7 @@ const MyRecipesItem = ({recipe}) => {
 
     const dispatch = useDispatch();
     const deleteRecipeHandler = (id) => {
-        dispatch(deleteMyRecipe(id));
+        dispatch(deleteRecipeThunk(id));
     }
 
     return (
@@ -54,7 +54,21 @@ const MyRecipesItem = ({recipe}) => {
                 </div>
                 <div className="wd-inner-content row m-1 d-flex align-items-center">
                     <div className="col-4 p-2">
-                        <img className="wd-my-recipe-image" src={`/images/${recipe.recipePic}`} alt="avatar"/>
+                        {
+                        (!recipe.recipePic) &&
+                        <img className="wd-my-recipe-image"
+                            alt="recipePic" src={`/images/emptyRecipe.jpg`}/>
+                        }
+                        {
+                            recipe.recipePic && recipe.recipePic.includes("http") &&
+                            <img className="wd-my-recipe-image"
+                                src={recipe.recipePic} alt="recipePic"/>
+                        }
+                        {
+                            recipe.recipePic && !recipe.recipePic.includes("http") &&
+                            <img className="wd-my-recipe-image"
+                                src={`/images/${recipe.recipePic}`} alt="recipePic"/>
+                        }
                     </div>
                     <div className="col-7">
                         <div className="p-2 row">
@@ -62,8 +76,7 @@ const MyRecipesItem = ({recipe}) => {
                                 <div>
                                     <span className="text-dark fw-bolder">{recipe.dishName} </span>
                                 </div>
-                                <span className="text-dark d-none d-md-block">Prep Time: {recipe.prepTime}</span>
-                                <span className="text-dark d-none d-md-block">Cook Time: {recipe.cookTime}</span>
+                                <span className="text-dark">{recipe.intro.substring(0,53)} </span>
                                 <span className="text-dark d-none d-md-block">
                     Total Time: {parseInt(recipe.prepTime) + parseInt(recipe.cookTime)} mins</span>
                                 <span className="text-dark d-none d-md-block">Servings: {recipe.servings}</span>

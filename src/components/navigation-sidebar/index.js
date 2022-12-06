@@ -4,6 +4,7 @@ import itemsArray from "./item.json";
 import {useLocation} from "react-router";
 import {Link} from "react-router-dom";
 import "./index.css";
+import { createRecipeThunk, deleteInvalidRecipesThunk } from "../../services/recipes-thunk";
 // import * as service from "../../services/auth-service";
 import {useNavigate} from "react-router-dom";
 import {useSelector, useDispatch} from "react-redux";
@@ -13,6 +14,7 @@ const NavigationSidebar = () => {
     const {pathname} = useLocation();
     const paths = pathname.split('/');
     let temp = paths[paths.length - 1] === '' ? 'home' : paths[paths.length - 1];
+ 
     let active = temp;
     if (paths.includes("my-recipes") || paths.includes("profile")) {
         active = "profile";
@@ -20,7 +22,6 @@ const NavigationSidebar = () => {
         active = "friends"; 
     }
     
-    // const navigate = useNavigate();
     const {currentUser} = useSelector(state => state.usersData);
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -28,6 +29,18 @@ const NavigationSidebar = () => {
         dispatch(logoutThunk())
             .then(() => navigate('/login'));
     }
+
+    // hard coded user for now
+    // const uid = "638624452cf03e49f0977570";
+    // const uid = currentUser.uid;
+
+    // const createRecipeHandler = () => {
+    //     dispatch(createRecipeThunk({uid}));
+    // }
+
+    // const deleteInvalidRecipesHandler = () => {
+    //     dispatch(deleteInvalidRecipesThunk());
+    // }
 
     return (
             <div className="mt-2 wd-component-outline">

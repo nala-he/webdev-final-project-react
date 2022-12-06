@@ -27,7 +27,7 @@ const CreateRecipeComponent = () => {
             {/* recipe detail */}
             <div>
                 {/* hardcode recipe - update later*/}
-                <CreateRecipe profile ={profile}/>
+                <CreateRecipe currentUser ={currentUser}/>
             </div>
         </div>
     );

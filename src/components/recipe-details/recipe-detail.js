@@ -11,8 +11,23 @@ const RecipeDetail = ({recipe}) => {
             <div className="m-4 mb-3 d-flex justify-content-start align-items-center">
                 {/* author avatar */}
                 <div>
-                    <img src={`/images/${recipe.avatar}`}
-                         className="wd-author-avatar"/>
+                    {
+                        (!recipe.avatar) &&
+                        <img className="wd-author-avatar"
+                                src={`/images/emptyAvatar.png`} alt="avatar"/>
+                    }
+                    {
+                        recipe.avatar && recipe.avatar.includes("http") &&
+                        <img className="wd-author-avatar"
+                                src={recipe.avatar} alt="avatar"/>
+                    }
+                    {
+                        recipe.avatar && !recipe.avatar.includes("http") &&
+                        <img className="wd-author-avatar"
+                                alt="avatar"
+                                src={recipe.avatar !== '' ? `/images/${recipe.avatar}`
+                                                        : `/images/emptyAvatar.png`}/>
+                    }
                 </div>
                 {/* dish title and author name */}
                 <div className="text-dark ms-5">
@@ -20,7 +35,7 @@ const RecipeDetail = ({recipe}) => {
                         {recipe.dishName}
                     </div>
                     <div className="fs-6 text-wrap">
-                        Created By: {recipe.author}
+                        Created By: {recipe.authorName}
                     </div>
                 </div>
             </div>
@@ -29,8 +44,21 @@ const RecipeDetail = ({recipe}) => {
             <div className="d-flex align-items-center justify-content-center flex-wrap">
                 {/* recipe pic */}
                 <div className="m-2">
-                    <img src={`/images/${recipe.recipePic}`}
-                         className="wd-recipe-pic"/>
+                    {
+                        (!recipe.recipePic) &&
+                        <img className="wd-recipe-pic"
+                            alt="recipePic" src={`/images/emptyRecipe.jpg`}/>
+                    }
+                    {
+                        recipe.recipePic && recipe.recipePic.includes("http") &&
+                        <img className="wd-recipe-pic"
+                            src={recipe.recipePic} alt="recipePic"/>
+                    }
+                    {
+                        recipe.recipePic && !recipe.recipePic.includes("http") &&
+                        <img className="wd-recipe-pic"
+                            src={`/images/${recipe.recipePic}`} alt="recipePic"/>
+                    }
                 </div>
                 {/* recipe summary/times */}
                 <div className="m-2">
@@ -57,14 +85,14 @@ const RecipeDetail = ({recipe}) => {
             </div>
 
             {/* ingredients */}
-            <div className="row wd-border m-4 mt-3">
+            {/* <div className="row wd-border m-4 mt-3">
                 <IngredientsList ingredients={recipe.ingredients}/>
-            </div>
+            </div> */}
 
             {/* directions */}
-            <div className="row wd-border m-4">
+            {/* <div className="row wd-border m-4">
                 <DirectionsList directions={recipe.directions}/>
-            </div>
+            </div> */}
 
             {/* nutritional facts */}
             <div className="row wd-border m-4">

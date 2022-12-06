@@ -5,9 +5,13 @@ import {useNavigate} from "react-router-dom";
 import "./index.css";
 import {findUserByIdThunk} from "../../services/users-thunks";
 import {findUsersIamFollowingThunk, findUsersIamFollowedByThunk} from "../../services/friends-thunks";
+import {findSavedRecipesByUserThunk} from "../../services/saved-recipes-thunk";
+
 
 const ProfileDetails = () => {
     const {currentUser, publicProfile}= useSelector(state => state.usersData);
+    const {savedRecipes} = useSelector((state) => state.savedRecipes);
+    
     const [profile, setProfile] = useState(currentUser);
     
     const {followedBy, following} = useSelector(state => state.followsData);
@@ -19,9 +23,11 @@ const ProfileDetails = () => {
         try {
             dispatch(findUserByIdThunk(currentUser._id))
                 .then(setProfile(publicProfile));
-            dispatch(findUsersIamFollowingThunk(currentUser._id))
-            dispatch(findUsersIamFollowedByThunk(currentUser._id))
-        } catch(e) {
+            dispatch(findUsersIamFollowingThunk(currentUser._id));
+            dispatch(findUsersIamFollowedByThunk(currentUser._id));
+            dispatch(findSavedRecipesByUserThunk(currentUser._id));
+        }
+        catch(e) {
             navigate('/login');
         }
     }, [currentUser, dispatch, navigate, publicProfile]);
@@ -126,8 +132,8 @@ const ProfileDetails = () => {
                                             className="wd-edit-button border rounded-3
                                 ps-3 pe-3 pt-1 pb-1">
                                         {
-                                            profile.savedRecipes &&
-                                            <div className="wd-text-sm">{profile.savedRecipes}</div>
+                                            savedRecipes &&
+                                            <div className="wd-text-sm">{savedRecipes.length}</div>
                                         }
                                         <div className="wd-text-sm">Saved Recipes</div>
                                     </button>

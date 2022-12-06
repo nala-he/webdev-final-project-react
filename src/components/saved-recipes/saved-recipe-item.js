@@ -39,8 +39,21 @@ const SavedRecipeItem = (
                     <span className="text-dark d-none d-md-block">{recipe.intro}</span>
                 </div>
                 <div className="col-3 d-flex justify-content-center">
-                    <img className="wd-saved-recipe-image m-2 d-none d-md-block"
-                         src={`/images/${recipe.recipePic}`} alt="recipePic"/>
+                    {
+                        (!recipe.recipePic) &&
+                        <img className="wd-saved-recipe-image m-2 d-none d-md-block"
+                            alt="recipePic" src={`/images/emptyRecipe.jpg`}/>
+                    }
+                    {
+                        recipe.recipePic && recipe.recipePic.includes("http") &&
+                        <img className="wd-saved-recipe-image m-2 d-none d-md-block"
+                            src={recipe.recipePic} alt="recipePic"/>
+                    }
+                    {
+                        recipe.recipePic && !recipe.recipePic.includes("http") &&
+                        <img className="wd-saved-recipe-image m-2 d-none d-md-block"
+                            src={`/images/${recipe.recipePic}`} alt="recipePic"/>
+                    }
                 </div>
             </div>
             <div className="row">

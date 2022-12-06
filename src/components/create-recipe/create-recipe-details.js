@@ -86,6 +86,7 @@ const CreateRecipeDetails = ({recipe}) => {
                         <textarea
                             type = "text"
                             id = "dishName"
+                            maxLength={63}
                             onChange={(e)=>setIntro(e.target.value)}
                             className = "col-8 wd-input-text">
                         </textarea>

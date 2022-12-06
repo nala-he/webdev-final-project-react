@@ -20,7 +20,7 @@ const RecipeDetail = ({recipe}) => {
                         {recipe.dishName}
                     </div>
                     <div className="fs-6 text-wrap">
-                        Created By: {recipe.author}
+                        Created By: {recipe.authorName}
                     </div>
                 </div>
             </div>

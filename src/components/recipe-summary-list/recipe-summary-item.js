@@ -61,14 +61,14 @@ const RecipeSummaryItem = (
                     </div>
                 </div>
                 <div className="btn col-4 text-dark">
-                    <Link to={`/recipes/${recipe._id}/details`}>
+                    <Link className="wd-link" to={`/recipes/${recipe._id}/details`}>
                         <div className="d-block d-xl-none">
                             <i className="fa-solid fa-utensils text-dark p-2"></i>
                             <span className="wd-text-md">Open Recipe</span>
                         </div>
                         <div className="d-none d-xl-block">
                             <i className="fa-solid fa-utensils text-dark p-2"></i>
-                            <span>Open Recipe</span>
+                            <span className="text-dark">Open Recipe</span>
                         </div>
                     </Link>
                 </div>

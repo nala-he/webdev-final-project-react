@@ -40,3 +40,7 @@
 .wd-text-md {
     font-size: small;
 }
+
+.wd-link {
+    text-decoration: none;
+}

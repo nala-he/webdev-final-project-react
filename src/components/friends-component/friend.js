@@ -2,8 +2,9 @@ import React from "react";
 import "./index.css";
 import {Link} from "react-router-dom";
 import {useDispatch} from "react-redux";
-import {useLocation} from "react-router";
+import {useLocation, useParams} from "react-router";
 import {updateFriendProfile} from "../../reducers/friend-profile-reducer";
+
 // import {updateFriendRecipe} from "../../reducers/friend-recipes-reducer";
 // import {findUserByIdThunk} from "../../services/users-thunks";
 // import {useNavigate} from "react-router-dom";
@@ -22,12 +23,17 @@ const Friend = ({friend, relation}) => {
     // const recipeClickHandler = () => {
     //     dispatch(updateFriendRecipe(findRecipesCreatedByUser(friend._id)));
     // }
-
-    const {pathname} = useLocation();
+    
+    const {pathname} = useLocation()
     const paths = pathname.split('/');
-    const last = paths[2];
+    // const last = paths[2];
+    const last = paths[paths.length - 1];
     
-    
+  
+    if (paths.length === 3 && last === "followers") {
+        
+    }
+
     // hardcoded, need to update after combined with my-recipes data
     const recipesNum = 10;
     
@@ -64,24 +70,108 @@ const Friend = ({friend, relation}) => {
                     {/* buttons (profile/recipes) */}
                     <div className="mt-auto">
                         <div className="d-flex justify-content-center mt-1 mb-2">
-                            <Link to={`${last !== "followers"
-                                         ? `../friends/profile/${friend._id}`
-                                         : `../profile/${friend._id}`}`}>
-                                <button className="btn wd-btn-grey rounded-4 m-1 text-dark fw-bold wd-font-14"
-                                        onClick={profileClickHandler}>
-                                    Profile
-                                </button>
-                            </Link>
                             {
-                                friend.type !== "REG USER" &&
-                                <Link to={`${last !== "followers"
-                                             ? `../friends/profile/${friend._id}/my-recipes`
-                                             : `../profile/${friend._id}/my-recipes`}`}>
-                                    <button className="btn wd-btn-grey rounded-4 m-1 text-dark fw-bold wd-font-14">
-                                        Recipes
-                                    </button>
-                                </Link>
+                                // e.g. localhost:3000/friends/followers
+                                paths.length === 3 && last === "followers" &&
+                                <>
+                                    <Link to={`../profile/${friend._id}`}>
+                                        <button className="btn wd-btn-grey rounded-4 m-1 text-dark 
+                                    fw-bold wd-font-14" onClick={profileClickHandler}>
+                                            Profile
+                                        </button>
+                                    </Link>
+                                    {
+                                        friend.type !== "REG USER" &&
+                                        <Link to={`../profile/${friend._id}/my-recipes`}>
+                                            <button className="btn wd-btn-grey rounded-4 m-1 
+                                            text-dark fw-bold wd-font-14">
+                                                Recipes
+                                            </button>
+                                        </Link>
+                                    }
+                                </>
                             }
+                            {
+                                // e.g. localhost:3000/friends
+                                paths.length === 2 && 
+                                <>
+                                    <Link to={`../friends/profile/${friend._id}`}>
+                                        <button className="btn wd-btn-grey rounded-4 m-1 text-dark 
+                                        fw-bold wd-font-14" onClick={profileClickHandler}>
+                                            Profile
+                                        </button>
+                                    </Link>
+                                    {
+                                        friend.type !== "REG USER" &&
+                                        <Link to={`../friends/profile/${friend._id}/my-recipes`}>
+                                            <button className="btn wd-btn-grey rounded-4 m-1 
+                                            text-dark fw-bold wd-font-14">
+                                                Recipes
+                                            </button>
+                                        </Link>
+                                    }
+                                </>
+                            }
+                            {
+                                // e.g. localhost:3000/friends/:uid/followers
+                                paths.length === 4 && 
+                                <>
+                                    <Link to={`../../profile/${friend._id}`}>
+                                        <button className="btn wd-btn-grey rounded-4 m-1 text-dark 
+                                        fw-bold wd-font-14" onClick={profileClickHandler}>
+                                            Profile
+                                        </button>
+                                    </Link>
+                                    {
+                                        friend.type !== "REG USER" &&
+                                        <Link to={`../../profile/${friend._id}/my-recipes`}>
+                                            <button className="btn wd-btn-grey rounded-4 m-1 
+                                            text-dark fw-bold wd-font-14">
+                                                Recipes
+                                            </button>
+                                        </Link>
+                                    }
+                                </>
+                            }
+                            {
+                                // e.g. localhost:3000/friends/:uid
+                                paths.length === 3 && last != "followers" &&
+                                <>
+                                    <Link to={`../profile/${friend._id}`}>
+                                        <button className="btn wd-btn-grey rounded-4 m-1 text-dark 
+                                        fw-bold wd-font-14" onClick={profileClickHandler}>
+                                            Profile
+                                        </button>
+                                    </Link>
+                                    {
+                                        friend.type !== "REG USER" &&
+                                        <Link to={`../profile/${friend._id}/my-recipes`}>
+                                            <button className="btn wd-btn-grey rounded-4 m-1 
+                                            text-dark fw-bold wd-font-14">
+                                                Recipes
+                                            </button>
+                                        </Link>
+                                    }
+                                </>
+                            }
+                            {/*<Link to={`${last !== "followers"*/}
+                            {/*             ? `../friends/profile/${friend._id}`*/}
+                            {/*             : `../profile/${friend._id}`}`}>*/}
+                            {/*    <button className="btn wd-btn-grey rounded-4 m-1 text-dark fw-bold wd-font-14"*/}
+                            {/*            onClick={profileClickHandler}>*/}
+                            {/*        Profile*/}
+                            {/*    </button>*/}
+                            {/*</Link>*/}
+                            {/*{*/}
+                            {/*    friend.type !== "REG USER" &&*/}
+                            {/*    <Link to={`${last !== "followers"*/}
+                            {/*                 ? `../friends/profile/${friend._id}/my-recipes`*/}
+                            {/*                 : `../profile/${friend._id}/my-recipes`}`}>*/}
+                            {/*        <button className="btn wd-btn-grey rounded-4 m-1 text-dark fw-bold wd-font-14">*/}
+                            {/*            Recipes*/}
+                            {/*        </button>*/}
+                            {/*    </Link>*/}
+                            {/*}*/}
                         </div>
                     </div>
                 </>

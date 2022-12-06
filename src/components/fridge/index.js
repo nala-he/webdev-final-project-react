@@ -31,13 +31,14 @@ import PublicProfile from "../profile/public-profile";
 import ProtectedRoute from "../profile/protected-route";
 import MyRecipes from "../profile/my-recipes";
 import MyRecipeDetails from "../recipe-details/my-recipe-details";
+import savedRecipesReducer from "../../reducers/saved-recipes-reducer";
 import spoonacularReducer from "../../reducers/spoonacular-reducer";
 import SearchByIngredientsResults from "../spoonacular";
 import RecipeResultDetails from "../spoonacular/recipe-details";
 
 const store = configureStore({reducer: {
             ingredients, 
-            recipes, 
+            recipes,
             // profile: profileReducer,
             friendProfile: friendProfileReducer,
             myRecipes: myRecipesReducer,
@@ -45,6 +46,7 @@ const store = configureStore({reducer: {
             recipeIngredients: recipeIngredientsReducer,
             recipeDirections: recipeDirectionsReducer,
             usersData: usersReducer,
+            savedRecipes: savedRecipesReducer,
             spoonacular: spoonacularReducer
     }
 });

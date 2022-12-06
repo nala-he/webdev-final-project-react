@@ -36,12 +36,17 @@ const RecipeSummaryItem = (
         <div className="col-2 p-2">
             {/* <img className="wd-avatar" src={recipe.avatar} alt="avatar"/> */}
             {
-                recipe.avatar.includes("http") &&
+                (!recipe.avatar) &&
+                <img className="wd-avatar"
+                        src={`/images/emptyAvatar.png`} alt="avatar"/>
+            }
+            {
+                recipe.avatar && recipe.avatar.includes("http") &&
                 <img className="wd-avatar"
                         src={recipe.avatar} alt="avatar"/>
             }
             {
-                !recipe.avatar.includes("http") &&
+                recipe.avatar && !recipe.avatar.includes("http") &&
                 <img className="wd-avatar"
                         alt="avatar"
                         src={recipe.avatar !== '' ? `/images/${recipe.avatar}`
@@ -59,7 +64,7 @@ const RecipeSummaryItem = (
                     {
                         (!recipe.recipePic) &&
                         <img className="wd-recipe-image mt-2 d-none d-md-block"
-                            alt="recipePic" src={`/images/emptyAvatar.png`}/>
+                            alt="recipePic" src={`/images/emptyRecipe.jpg`}/>
                     }
                     {
                         recipe.recipePic && recipe.recipePic.includes("http") &&

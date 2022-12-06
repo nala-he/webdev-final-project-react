@@ -11,7 +11,7 @@ const RecipeDetailsComponent = () => {
     const userId = paths[2];
     let location = paths[3];
     let recipeId = paths[4];
-    const [recipe, setRecipe] = useState()
+    const [recipe, setRecipe] = useState({})
 
     if (paths[1] === "recipes") {
         recipeId = paths[2]

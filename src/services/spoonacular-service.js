@@ -7,3 +7,8 @@ export const findRecipesByIngredients = async (ingredients) => {
     const response = await axios.get(`${BASE_URL}/findByIngredients?${API_KEY}&ingredients=${ingredients}`);
     return response.data;
 }
+
+export const findRecipeInfoById = async (rid) => {
+    const response = await axios.get(`${BASE_URL}/${rid}/information?${API_KEY}&includeNutrition=false`);
+    return response.data;
+}

@@ -59,16 +59,18 @@ const RecipeSummaryItem = (
                         <span>Save Recipe</span>
                     </div>
                 </div>
-                <div className="btn col-4 text-dark">
-                    <div className="d-block d-xl-none">
-                        <i className="fa-solid fa-utensils text-dark p-2"></i>
-                        <span className="wd-text-md">Open Recipe</span>
+                <Link to={`/recipes/${recipe._id}/details`}>
+                    <div className="btn col-4 text-dark">
+                        <div className="d-block d-xl-none">
+                            <i className="fa-solid fa-utensils text-dark p-2"></i>
+                            <span className="wd-text-md">Open Recipe</span>
+                        </div>
+                        <div className="d-none d-xl-block">
+                            <i className="fa-solid fa-utensils text-dark p-2"></i>
+                            <span>Open Recipe</span>
+                        </div>
                     </div>
-                    <div className="d-none d-xl-block">
-                        <i className="fa-solid fa-utensils text-dark p-2"></i>
-                        <span>Open Recipe</span>
-                    </div>
-                </div>
+                </Link>
                 <div className="btn col-4 text-dark">
                     <div className="d-block d-xl-none">
                         <i className="bi bi-check-square text-dark p-2"></i>

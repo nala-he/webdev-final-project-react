@@ -18,6 +18,7 @@ const CreateRecipe = ({currentUser}) => {
 
     const len = recipes.recipes.length;
     const recipe = recipes.recipes[len-1];
+    console.log(recipe);
 
     return (
         <>

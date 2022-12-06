@@ -16,18 +16,18 @@ const CreateRecipeDetails = ({recipe}) => {
         avatar = "/images/emptyAvatar.png"
     }
 
-    let [editDish, setDish] = useState(recipe.dishName);
-    let [editPhoto,setPhoto] = useState(recipe.recipePic);
-    let [editIntro, setIntro] = useState(recipe.intro);
-    let [editPrep, setPrep] = useState(recipe.prepTime);
-    let [editCookTime, setCookTime] = useState(recipe.cookTime);
-    let [editTotalTime, setTotalTime] = useState(recipe.totalTime);
-    let [editServings, setServings] = useState(recipe.servings);
-    let [editDifficulty, setDifficulty] = useState(recipe.difficulty);
-    let [editCalories, setCalories] = useState(recipe.calories);
-    let [editFat, setFat] = useState(recipe.fat);
-    let [editCarbs, setCarbs] = useState(recipe.carbs);
-    let [editProtein, setProtein] = useState(recipe.protein);
+    let [editDish, setDish] = useState('');
+    let [editPhoto,setPhoto] = useState('');
+    let [editIntro, setIntro] = useState('');
+    let [editPrep, setPrep] = useState('');
+    let [editCookTime, setCookTime] = useState('');
+    let [editTotalTime, setTotalTime] = useState('');
+    let [editServings, setServings] = useState('');
+    let [editDifficulty, setDifficulty] = useState('');
+    let [editCalories, setCalories] = useState('');
+    let [editFat, setFat] = useState('');
+    let [editCarbs, setCarbs] = useState('');
+    let [editProtein, setProtein] = useState('');
 
     const createClickHandler = () => {
         const newRecipe = {
@@ -47,7 +47,9 @@ const CreateRecipeDetails = ({recipe}) => {
             carbs: editCarbs,
             protein: editProtein
         }
+        console.log(newRecipe);
         dispatch(updateRecipeThunk({rid,newRecipe}));
+        setIntro("newIntro");
         navigate("/home");
     }
 
@@ -86,6 +88,7 @@ const CreateRecipeDetails = ({recipe}) => {
                         <textarea
                             type = "text"
                             id = "dishName"
+                            maxLength={63}
                             onChange={(e)=>setIntro(e.target.value)}
                             className = "col-8 wd-input-text">
                         </textarea>
@@ -104,15 +107,41 @@ const CreateRecipeDetails = ({recipe}) => {
                         <div className="row">
                             <div>
                                 {/* xs-large */}
-                                <img src={`/images/${recipe.recipePic}`}
-                                     className="wd-create-recipe-pic-sm mb-2 d-xl-none"/>
+                                {
+                                    (!recipe.recipePic) &&
+                                    <img className="wd-create-recipe-pic-sm mb-2 d-xl-none"
+                                        alt="recipePic" src={`/images/emptyRecipe.jpg`}/>
+                                }
+                                {
+                                    recipe.recipePic && recipe.recipePic.includes("http") &&
+                                    <img className="wd-create-recipe-pic-sm mb-2 d-xl-none"
+                                        src={recipe.recipePic} alt="recipePic"/>
+                                }
+                                {
+                                    recipe.recipePic && !recipe.recipePic.includes("http") &&
+                                    <img className="wd-create-recipe-pic-sm mb-2 d-xl-none"
+                                        src={`/images/${recipe.recipePic}`} alt="recipePic"/>
+                                }
                                 {/* xl */}
-                                <img src={`/images/${recipe.recipePic}`}
-                                     className="d-none d-xl-block wd-create-recipe-pic mb-2"/>
+                                {
+                                    (!recipe.recipePic) &&
+                                    <img className="d-none d-xl-block wd-create-recipe-pic mb-2"
+                                        alt="recipePic" src={`/images/emptyRecipe.jpg`}/>
+                                }
+                                {
+                                    recipe.recipePic && recipe.recipePic.includes("http") &&
+                                    <img className="d-none d-xl-block wd-create-recipe-pic mb-2"
+                                        src={recipe.recipePic} alt="recipePic"/>
+                                }
+                                {
+                                    recipe.recipePic && !recipe.recipePic.includes("http") &&
+                                    <img className="d-none d-xl-block wd-create-recipe-pic mb-2"
+                                        src={`/images/${recipe.recipePic}`} alt="recipePic"/>
+                                }
                             </div>
-                            <input type="file" id="recipePic" className="btn"
-                                   onChange={(e)=>setPhoto(e.target.files[0].name)}
-                                   accept="image/jpeg, image/png, image/jpg"></input>
+                            <input type="text" id="recipePic" placeholder="Enter image url" className="m-3 col-11 wd-pic-input"
+                                   onChange={(e)=>setPhoto(e.target.value)}>    
+                            </input>
                         </div>
                     </div>
                     <div className="col-7">

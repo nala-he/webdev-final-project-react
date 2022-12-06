@@ -16,18 +16,18 @@ const CreateRecipeDetails = ({recipe}) => {
         avatar = "/images/emptyAvatar.png"
     }
 
-    let [editDish, setDish] = useState(recipe.dishName);
-    let [editPhoto,setPhoto] = useState(recipe.recipePic);
-    let [editIntro, setIntro] = useState(recipe.intro);
-    let [editPrep, setPrep] = useState(recipe.prepTime);
-    let [editCookTime, setCookTime] = useState(recipe.cookTime);
-    let [editTotalTime, setTotalTime] = useState(recipe.totalTime);
-    let [editServings, setServings] = useState(recipe.servings);
-    let [editDifficulty, setDifficulty] = useState(recipe.difficulty);
-    let [editCalories, setCalories] = useState(recipe.calories);
-    let [editFat, setFat] = useState(recipe.fat);
-    let [editCarbs, setCarbs] = useState(recipe.carbs);
-    let [editProtein, setProtein] = useState(recipe.protein);
+    let [editDish, setDish] = useState('');
+    let [editPhoto,setPhoto] = useState('');
+    let [editIntro, setIntro] = useState('');
+    let [editPrep, setPrep] = useState('');
+    let [editCookTime, setCookTime] = useState('');
+    let [editTotalTime, setTotalTime] = useState('');
+    let [editServings, setServings] = useState('');
+    let [editDifficulty, setDifficulty] = useState('');
+    let [editCalories, setCalories] = useState('');
+    let [editFat, setFat] = useState('');
+    let [editCarbs, setCarbs] = useState('');
+    let [editProtein, setProtein] = useState('');
 
     const createClickHandler = () => {
         const newRecipe = {
@@ -47,7 +47,9 @@ const CreateRecipeDetails = ({recipe}) => {
             carbs: editCarbs,
             protein: editProtein
         }
+        console.log(newRecipe);
         dispatch(updateRecipeThunk({rid,newRecipe}));
+        setIntro("newIntro");
         navigate("/home");
     }
 

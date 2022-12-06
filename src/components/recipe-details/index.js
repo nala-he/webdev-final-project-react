@@ -15,8 +15,8 @@ const RecipeDetailsComponent = () => {
     const {currentUser} = useSelector(state => state.usersData);
     const paths = pathname.split('/');
     const userId = paths[2];
-    const location = paths[3];
-    const recipeId = paths[4];
+    let location = paths[3];
+    let recipeId = paths[4];
     const dispatch = useDispatch();
 
     const [recipe, setRecipe] = useState({})

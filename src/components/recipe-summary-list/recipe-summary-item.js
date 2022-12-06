@@ -3,6 +3,7 @@ import "./index.css"
 import {createSavedRecipeThunk} from "../../services/saved-recipes-thunk";
 import {useDispatch, useSelector} from "react-redux";
 import {useNavigate} from "react-router";
+import {Link} from "react-router-dom";
 
 const RecipeSummaryItem = (
     {

@@ -36,19 +36,16 @@ const RecipeSummaryItem = (
         <div className="col-2 p-2">
             {/* <img className="wd-avatar" src={recipe.avatar} alt="avatar"/> */}
             {
-                (!recipe.avatar) &&
+                recipe.avatar.includes("http") &&
                 <img className="wd-avatar"
-                    alt="avatar" src={`/images/emptyRecipe.jpg`}/>
+                        src={recipe.avatar} alt="avatar"/>
             }
             {
-                recipe.avatar && recipe.avatar.includes("http") &&
+                !recipe.avatar.includes("http") &&
                 <img className="wd-avatar"
-                    src={recipe.avatar} alt="avatar"/>
-            }
-            {
-                recipe.avatar && !recipe.avatar.includes("http") &&
-                <img className="wd-avatar"
-                    src={`/images/${recipe.avatar}`} alt="avatar"/>
+                        alt="avatar"
+                        src={recipe.avatar !== '' ? `/images/${recipe.avatar}`
+                                                : `/images/emptyAvatar.png`}/>
             }
         </div>
         <div className="col-10 ">

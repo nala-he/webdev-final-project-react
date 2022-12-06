@@ -2,7 +2,7 @@ import React from "react";
 import {useLocation} from "react-router";
 import {useSelector, useDispatch} from "react-redux";
 import {Link} from "react-router-dom";
-import {deleteMyRecipe} from "../../reducers/my-recipes-reducer";
+import { deleteRecipeThunk } from "../../services/recipes-thunk";
 import "./index.css";
 
 const MyRecipesItem = ({recipe}) => {
@@ -15,7 +15,7 @@ const MyRecipesItem = ({recipe}) => {
 
     const dispatch = useDispatch();
     const deleteRecipeHandler = (id) => {
-        dispatch(deleteMyRecipe(id));
+        dispatch(deleteRecipeThunk(id));
     }
 
     return (

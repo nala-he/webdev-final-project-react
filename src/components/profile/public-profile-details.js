@@ -17,7 +17,7 @@ const PublicProfileDetails = () => {
 
     let profile = publicProfile;
     
-    console.log(profile);
+    // console.log(profile);
 
     return (
         <div className="m-0 wd-profile-background">

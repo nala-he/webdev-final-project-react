@@ -29,7 +29,7 @@ const PublicProfile = () => {
     }, [uid]);
 
     let profile = publicProfile;
-    console.log(profile);
+    // console.log(profile);
     return (
         <div className="mt-3">
             <ul className="nav nav-tabs">

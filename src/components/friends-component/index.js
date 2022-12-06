@@ -17,13 +17,13 @@ const FriendsComponent = () => {
     const paths = pathname.split('/');
     let uid = paths[2];
     let friend = paths[3];
-
+    
     // e.g. localhost:3000/friends as logged in user friends page
-    if (paths.length === 2) {
+    if (paths.length === 2 && currentUser) {
         uid = currentUser._id;
     }
     // e.g. localhost:3000/friends/followers as logged in user friends followers page
-    if (paths.length === 3) {
+    if (paths.length === 3 && currentUser) {
         uid = currentUser._id;
         friend = paths[2];
     }
@@ -51,7 +51,6 @@ const FriendsComponent = () => {
         return <Navigate to='/login'/>
     }
     
-
     return(
         <div className="m-3">
             {/* Search bar */}

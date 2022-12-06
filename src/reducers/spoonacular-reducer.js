@@ -1,8 +1,12 @@
 import {createSlice} from "@reduxjs/toolkit";
-import {findRecipesByIngredientsThunk} from "../services/spoonacular-thunks";
+import {
+    findRecipeInfoByIdThunk,
+    findRecipesByIngredientsThunk
+} from "../services/spoonacular-thunks";
 
 const initialState = {
-    recipes: []
+    recipes: [],
+    targetRecipe: null
 }
 
 const spoonacularReducer = createSlice({
@@ -12,6 +16,11 @@ const spoonacularReducer = createSlice({
         [findRecipesByIngredientsThunk.fulfilled]:
             (state, action) => {
                 state.recipes = action.payload;
+                state.targetRecipe = null;
+            },
+        [findRecipeInfoByIdThunk.fulfilled]:
+            (state, action) => {
+                state.targetRecipe = action.payload;
             }
     }
 })

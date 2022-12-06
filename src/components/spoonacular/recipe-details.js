@@ -1,36 +1,26 @@
 import React, {useEffect, useState} from "react";
 import {Link} from "react-router-dom";
 import RecipeInfo from "./recipe-info";
-import * as service from "../../services/spoonacular-service";
-
-// HARDCODE RECIPE TO AVOID UNNECESSARY CALLS TO SPOONACULAR API -------------------------- UNCOMMENT OUT ONCE COMPLETE
-import recipeDetails from "./recipe-details.json"
 import {useLocation, useNavigate} from "react-router";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import {findRecipeInfoByIdThunk} from "../../services/spoonacular-thunks";
 
 const RecipeResultDetails = () => {
     const {pathname} = useLocation();
+    const {targetRecipe} = useSelector(state => state.spoonacular)
     const {currentUser} = useSelector(state => state.usersData);
     const paths = pathname.split('/');
     const rid = paths[3];
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
-    // HARDCODE RECIPE TO AVOID UNNECESSARY CALLS TO SPOONACULAR API -------------------------- UNCOMMENT OUT ONCE COMPLETE
-    const recipe = recipeDetails[0];
-
-    //const [recipe, setRecipe] = useState({})
-
-    // useEffect(() => {
-    //     async function fetchData() {
-    //         const targetRecipe = await service.findRecipeInfoById(rid);
-    //         setRecipe(recipe);
-    //     }
-    //     if (!currentUser) {
-    //         navigate('/login');
-    //         return;
-    //     }
-    //     fetchData();
-    // }, []);
+    useEffect(() => {
+        if (currentUser) {
+            dispatch(findRecipeInfoByIdThunk(rid));
+        } else {
+            navigate('/login');
+        }
+    }, []);
 
     return (
         <div className="m-3 mb-0 wd-border wd-bg-beige">
@@ -43,8 +33,11 @@ const RecipeResultDetails = () => {
 
             {/* recipe detail */}
             <div>
-                <RecipeInfo recipe={recipe}/>
+                {
+                    targetRecipe && <RecipeInfo recipe={targetRecipe}/>
+                }
             </div>
+
 
             {/*<div className="d-flex justify-content-center">*/}
             {/*    /!* save button *!/*/}

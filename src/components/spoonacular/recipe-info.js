@@ -1,6 +1,5 @@
 import React from "react";
 import "./index.css";
-import {Link} from "react-router-dom";
 import IngredientsList from "./ingredients-list";
 import DirectionsList from "./directions-list";
 
@@ -15,9 +14,9 @@ const RecipeInfo = ({recipe}) => {
                     </div>
                     <div className="fs-6 text-wrap mt-2 text-center">
                         <span>Source: </span>
-                        <Link to={recipe.sourceUrl} className="text-decoration-none text-dark">
+                        <a href={recipe.sourceUrl} className="text-decoration-none text-dark">
                             {recipe.sourceUrl}
-                        </Link>
+                        </a>
                     </div>
                 </div>
             </div>

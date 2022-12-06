@@ -58,7 +58,7 @@ const RecipeSidebar = () => {
         checkedIngredients = checkedIngredients.map(ingredient => ingredient.title.toLowerCase());
         const spoonacularIngredientsFormat = checkedIngredients.join(',+');
         dispatch(findRecipesByIngredientsThunk(spoonacularIngredientsFormat))
-            .then(navigate('/searchByIngredients/results'));
+            .then(navigate('/search/recipesByIngredients/results'));
     }
 
     useEffect(() => {

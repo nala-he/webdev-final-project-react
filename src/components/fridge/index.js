@@ -85,8 +85,8 @@ function Fridge() {
                                     <Route path="/users/:uid/saved-recipes/:rid/details" element={<RecipeDetailsComponent/>}/>
                                     <Route path="/users/:uid/create-recipes" element={<CreateRecipeComponent/>}/>
                                     <Route path="/login" element={<Login/>}/>
-                                    <Route path="/searchByIngredients/results" element={<SearchByIngredientsResults/>}/>
-                                    <Route path="/searchByIngredients/results/:rid/details" element={<RecipeResultDetails/>}/>
+                                    <Route path="/search/recipesByIngredients/results" element={<SearchByIngredientsResults/>}/>
+                                    <Route path="/search/recipesByIngredients/results/details/:rid" element={<RecipeResultDetails/>}/>
                                 </Routes>
                             </div>
                             <div className="d-none d-lg-block col-lg-3 col-xl-3 mt-2">

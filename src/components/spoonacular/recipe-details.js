@@ -10,7 +10,7 @@ const RecipeResultDetails = () => {
     const {targetRecipe} = useSelector(state => state.spoonacular)
     const {currentUser} = useSelector(state => state.usersData);
     const paths = pathname.split('/');
-    const rid = paths[3];
+    const rid = paths[5];
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
@@ -26,7 +26,7 @@ const RecipeResultDetails = () => {
         <div className="m-3 mb-0 wd-border wd-bg-beige">
             {/* close button */}
             <div className="d-flex justify-content-end m-3 me-4">
-                <Link to="/searchByIngredients/results">
+                <Link to="/search/recipesByIngredients/results">
                     <i className="bi bi-x-square text-black fs-3"></i>
                 </Link>
             </div>

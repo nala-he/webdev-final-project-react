@@ -20,7 +20,7 @@ const PublicProfile = () => {
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const {publicProfile, currentUser, loading}= useSelector(state => state.usersData);
+    const {publicProfile, loading}= useSelector(state => state.usersData);
 
     useEffect(() => {
         try {
@@ -52,7 +52,7 @@ const PublicProfile = () => {
                             <li className="nav-item">
                                 <Link className={`nav-link text-dark ${active === 'my-recipes' ? 'active'
                                                                                                : ''}`}
-                                      to={`../profile/${profile._id}/my-recipes`}>
+                                      to={`../friends/profile/${profile._id}/my-recipes`}>
                                     <h5 className={`${active === 'my-recipes' ? 'fw-bolder' : ''}`}>
                                         My Recipes
                                     </h5>

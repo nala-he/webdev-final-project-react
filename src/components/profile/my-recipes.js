@@ -34,7 +34,7 @@ const MyRecipes = () => {
         catch(e) {
             navigate('/login');
         }
-    }, []);
+    });
     
     let profile = currentUser;
     

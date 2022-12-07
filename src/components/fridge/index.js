@@ -12,7 +12,7 @@ import EditProfile from "../profile/edit-profile";
 import {BrowserRouter} from "react-router-dom";
 import ingredients from "../../reducers/ingredients-reducer";
 import recipes from "../../reducers/recipes-reducer";
-// import recipesReducer from "../../reducers/recipes-reducer"
+import recipesReducer from "../../reducers/recipes-reducer"
 // import profileReducer from "../../reducers/profile-reducer";
 import friendProfileReducer from "../../reducers/friend-profile-reducer";
 import FriendsComponent from "../friends-component";
@@ -85,6 +85,8 @@ function Fridge() {
                                     <Route path="/users/:uid/saved-recipes" element={<SavedRecipes/>}/>
                                     {/* routes listed here for now - once other components done, add these routes to components */}
                                     <Route path="/profile/:uid/my-recipes/:rid/details" element={<RecipeDetailsComponent/>}/>
+                                    {/*route to friends' my-recipes details*/}
+                                    {/*<Route path="/friends/profile/:uid/my-recipes/:rid/details" element={<RecipeDetailsComponent/>}/>*/}
                                     <Route path="/recipes/:rid/details" element={<RecipeDetailsComponent/>}/>
                                     <Route path="/users/:uid/saved-recipes/:rid/details" element={<RecipeDetailsComponent/>}/>
                                     <Route path="/users/:uid/create-recipes" element={<CreateRecipeComponent/>}/>

@@ -1,9 +1,10 @@
-import React, {useEffect} from "react"
+import React from "react"
 import "./index.css"
 import {createSavedRecipeThunk} from "../../services/saved-recipes-thunk";
 import {useDispatch, useSelector} from "react-redux";
 import {useNavigate} from "react-router";
 import {Link} from "react-router-dom";
+import {followUserThunk} from "../../services/friends-thunks";
 
 const RecipeSummaryItem = (
     {
@@ -26,6 +27,15 @@ const RecipeSummaryItem = (
             const uid = currentUser._id;
             dispatch(createSavedRecipeThunk({uid, rid: recipe._id}))
                 .then(navigate(`/users/${uid}/saved-recipes`));
+        } else {
+            navigate('/login');
+        }
+    };
+
+    const followClickHandler = (friendId) => {
+        if (currentUser) {
+            dispatch(followUserThunk(friendId))
+                .then(navigate(`/profile`));
         } else {
             navigate('/login');
         }
@@ -104,7 +114,8 @@ const RecipeSummaryItem = (
                         </div>
                     </Link>
                 </div>
-                <div className="btn col-4 text-dark">
+                <div className="btn col-4 text-dark"
+                     onClick={() => followClickHandler(recipe.authorId)}>
                     <div className="d-block d-xl-none">
                         <i className="bi bi-check-square text-dark p-2"></i>
                         <span className="wd-text-md">Follow Author</span>

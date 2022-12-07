@@ -10,7 +10,7 @@ const followsReducer = createSlice({
    },
    extraReducers: {
        [followUserThunk.fulfilled]: (state, {payload}) => {
-           state.followers.push(payload)
+           state.followedBy.push(payload)
        },
        [findUsersIamFollowedByThunk.fulfilled]: (state, {payload}) => {
            state.followedBy = payload

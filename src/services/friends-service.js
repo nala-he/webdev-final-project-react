@@ -3,7 +3,6 @@ import axios from "axios";
 // REACT_APP_BASE_URL=http://localhost:4000
 const API_BASE = process.env.REACT_APP_BASE_URL;
 const USERS_API = `${API_BASE}/fridge/users`;
-const FRIENDS_API = `${API_BASE}/fridge/friends`;
 // axios.defaults.adapter = require('axios/lib/adapters/http')
 
 const api = axios.create({
@@ -11,7 +10,7 @@ const api = axios.create({
                          });
 
 export const followUser = async (follow) => {
-    const response = await api.post(`${FRIENDS_API}`, follow)
+    const response = await api.post(`${USERS_API}/${follow}/friends`)
     return response.data
 }
 

@@ -1,9 +1,10 @@
-import React from "react";
+import {React} from "react";
 import "./index.css";
 import {Link} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {useLocation} from "react-router";
 import {updateFriendProfile} from "../../reducers/friend-profile-reducer";
+import {findRecipesByAuthorThunk} from "../../services/recipes-thunk";
 
 // import {updateFriendRecipe} from "../../reducers/friend-recipes-reducer";
 // import {findUserByIdThunk} from "../../services/users-thunks";
@@ -18,20 +19,20 @@ const Friend = ({friend, relation}) => {
     
     const {currentUser} = useSelector(state => state.usersData);
     
+    const {recipes} = useSelector(state => state.recipes);
     // function for future implementation
-    // const recipeClickHandler = () => {
-    //     dispatch(updateFriendRecipe(findRecipesCreatedByUser(friend._id)));
+   
+    // const avatarClickHandler = () => {
+    //     dispatch(findRecipesByAuthorThunk(friend._id));
     // }
     
-    const {pathname} = useLocation()
+    const {pathname} = useLocation();
     const paths = pathname.split('/');
     const last = paths[paths.length - 1];
     
 
-    // hardcoded, need to update after combined with my-recipes data
-    const recipesNum = 10;
+    // let recipesNum = recipes.length;
     
-
     return (
         <div className="flex-fill col-5 col-lg-5 col-xl-3 m-2 border border-2
                         rounded-4 wd-bg-beige d-flex flex-column">
@@ -44,18 +45,21 @@ const Friend = ({friend, relation}) => {
                                 (!friend.avatar) &&
                                 <img className="wd-circle-avatar mt-2 border border-3"
                                      alt="avatar"
-                                     src={`/images/emptyAvatar.png`}/>
+                                     src={`/images/emptyAvatar.png`}
+                                />
                             }
                             {
                                 friend.avatar && friend.avatar.includes("http") &&
                                 <img className="wd-circle-avatar mt-2 border border-3"
-                                     src={friend.avatar} alt="avatar"/>
+                                     src={friend.avatar} alt="avatar"
+                                />
                             }
                             {
                                 friend.avatar && !friend.avatar.includes("http") &&
                                 <img className="wd-circle-avatar mt-2 border border-3"
                                      alt="avatar"
-                                     src={`/images/${friend.avatar}`}/>
+                                     src={`/images/${friend.avatar}`}
+                                />
                             }
                         </div>
 
@@ -67,11 +71,12 @@ const Friend = ({friend, relation}) => {
                                 {friend.type === "RECIPE CREATOR" ? <i className="fa-solid fa-file-pen"></i> : ''}
                                 {friend.type === "PRO CHEF" ? <i className="fa-solid fa-bell-concierge"></i> : ''}
                             </h6>
-                            <div className="text-center">
-                                {
-                                    friend.type !== "REG USER" && `${recipesNum} recipes`
-                                }
-                            </div>
+                            {/*<div className="text-center">*/}
+                            {/*    {*/}
+                            {/*        friend.type !== "REG USER" && recipesNum !== 0 */}
+                            {/*        && `${recipesNum} recipes`*/}
+                            {/*    }*/}
+                            {/*</div>*/}
                         </div>
                     </div>
 

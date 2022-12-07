@@ -1,10 +1,26 @@
 import React from "react";
 import "./index.css";
+import {Link, useNavigate} from "react-router-dom";
+import {createSavedRecipeThunk} from "../../services/saved-recipes-thunk";
+import {useDispatch, useSelector} from "react-redux";
 import IngredientsList from "./ingredients-list";
 import DirectionsList from "./directions-list";
-import NutritionalFacts from "./nutritional-facts";
 
 const RecipeDetail = ({recipe}) => {
+    const {currentUser} = useSelector(state => state.usersData);
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+    const saveRecipeClickHandler = () => {
+        if (currentUser) {
+            const uid = currentUser._id;
+            dispatch(createSavedRecipeThunk({uid, rid: recipe._id}))
+                .then(navigate(`/users/${uid}/saved-recipes`));
+        } else {
+            navigate('/login');
+        }
+    };
+
     return (
         <div className="m-3 wd-border h-100 bg-white">
             {/* author and dish title */}
@@ -107,6 +123,23 @@ const RecipeDetail = ({recipe}) => {
                         <span className="fw-bold">Protein: </span>{recipe.protein}
                     </div>
                 </div>
+            </div>
+
+            {/* Save Recipe & cancel button */}
+            <div className="row justify-content-evenly mb-2">
+                <button
+                onClick={saveRecipeClickHandler}
+                    className="col-3 btn btn-sm btn-secondary m-2">
+                    Save Recipe
+                </button>
+                <button
+                    className="col-3 btn btn-sm btn-secondary m-2">
+                    Follow Author
+                </button>
+                <Link to="/home"
+                      className="col-3 btn btn-sm btn-secondary m-2">
+                    Close
+                </Link>
             </div>
         </div>
     );

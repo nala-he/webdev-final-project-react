@@ -42,6 +42,7 @@ const RecipeSidebar = () => {
             return;
         }
         dispatch(createFridgeIngredientThunk({uid, ingredient}));
+        setIngredient({...ingredient, title: ''});
     };
 
     const searchByIngredientsClickHandler = async () => {
@@ -60,7 +61,9 @@ const RecipeSidebar = () => {
     useEffect(() => {
         if (currentUser) {
             setUid(currentUser._id);
-            dispatch(findFridgeIngredientsByUserThunk(uid));
+            if (uid !== '') {
+                dispatch(findFridgeIngredientsByUserThunk(uid));
+            }
         }
     }, [currentUser, dispatch, uid]);
 

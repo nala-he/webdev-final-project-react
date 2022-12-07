@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect,useState} from "react";
 import "./index.css";
 import {Link, useNavigate} from "react-router-dom";
 import {createSavedRecipeThunk} from "../../services/saved-recipes-thunk";
@@ -10,7 +10,6 @@ const RecipeDetail = ({recipe}) => {
     const {currentUser} = useSelector(state => state.usersData);
     const dispatch = useDispatch();
     const navigate = useNavigate();
-
     const saveRecipeClickHandler = () => {
         if (currentUser) {
             const uid = currentUser._id;
@@ -101,9 +100,9 @@ const RecipeDetail = ({recipe}) => {
             </div>
 
             {/* ingredients */}
-            {/* <div className="row wd-border m-4 mt-3">
-                <IngredientsList ingredients={recipe.ingredients}/>
-            </div> */}
+            <div className="row wd-border m-4 mt-3">
+                <IngredientsList recipe={recipe}/>
+            </div>
 
             {/* directions */}
             {/* <div className="row wd-border m-4">

@@ -2,7 +2,7 @@ import React from "react";
 import "./index.css";
 import {Link} from "react-router-dom";
 import {useDispatch} from "react-redux";
-import {useLocation, useParams} from "react-router";
+import {useLocation} from "react-router";
 import {updateFriendProfile} from "../../reducers/friend-profile-reducer";
 
 // import {updateFriendRecipe} from "../../reducers/friend-recipes-reducer";
@@ -46,9 +46,23 @@ const Friend = ({friend, relation}) => {
                     <div>
                         {/* avatar */}
                         <div className="d-flex justify-content-center">
-                            <img src={`/images/${friend.avatar}`}
-                                 className="wd-circle-avatar mt-2 border border-3"
-                                 alt="avatar"/>
+                            {
+                                (!friend.avatar) &&
+                                <img className="wd-circle-avatar mt-2 border border-3"
+                                     alt="avatar"
+                                     src={`/images/emptyAvatar.png`}/>
+                            }
+                            {
+                                friend.avatar && friend.avatar.includes("http") &&
+                                <img className="wd-circle-avatar mt-2 border border-3"
+                                     src={friend.avatar} alt="avatar"/>
+                            }
+                            {
+                                friend.avatar && !friend.avatar.includes("http") &&
+                                <img className="wd-circle-avatar mt-2 border border-3"
+                                     alt="avatar"
+                                     src={`/images/${friend.avatar}`}/>
+                            }
                         </div>
 
                         {/* name */}
@@ -135,7 +149,7 @@ const Friend = ({friend, relation}) => {
                             }
                             {
                                 // e.g. localhost:3000/friends/:uid
-                                paths.length === 3 && last != "followers" &&
+                                paths.length === 3 && last !== "followers" &&
                                 <>
                                     <Link to={`../profile/${friend._id}`}>
                                         <button className="btn wd-btn-grey rounded-4 m-1 text-dark 

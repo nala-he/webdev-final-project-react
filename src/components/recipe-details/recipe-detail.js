@@ -105,9 +105,9 @@ const RecipeDetail = ({recipe}) => {
             </div>
 
             {/* directions */}
-            {/* <div className="row wd-border m-4">
+            <div className="row wd-border m-4">
                 <DirectionsList directions={recipe.directions}/>
-            </div> */}
+            </div>
 
             {/* nutritional facts */}
             <div className="row wd-border m-4">

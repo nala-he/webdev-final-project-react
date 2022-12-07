@@ -6,13 +6,15 @@ import {useNavigate} from "react-router-dom";
 import "./index.css";
 import {findUserByIdThunk} from "../../services/users-thunks";
 import {findUsersIamFollowingThunk, findUsersIamFollowedByThunk} from "../../services/friends-thunks";
+import {findSavedRecipesByUserThunk} from "../../services/saved-recipes-thunk";
 
 // profile details page for friends' profiles, no edit button, has a path "/friends/profile/:uid/*"
 const PublicProfileDetails = () => {
     const {uid} = useParams();
     const {publicProfile}= useSelector(state => state.usersData);
     const {followedBy, following} = useSelector(state => state.followsData);
-    
+    const {savedRecipes} = useSelector((state) => state.savedRecipes);
+
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
@@ -21,6 +23,7 @@ const PublicProfileDetails = () => {
             dispatch(findUserByIdThunk(uid));
             dispatch(findUsersIamFollowingThunk(uid));
             dispatch(findUsersIamFollowedByThunk(uid));
+            dispatch(findSavedRecipesByUserThunk(uid));
         } catch (e) {
             navigate('/login');
         }
@@ -38,22 +41,33 @@ const PublicProfileDetails = () => {
                     <div className="row row-cols-12 d-flex justify-content-center align-items-center pt-3">
                         <div className="col-4">
                             {
-                                profile.avatar.includes("http") &&
+                                (!profile.avatar) &&
+                                <img className="wd-profile-avatar m-3 wd-filter"
+                                     alt="avatar"
+                                     src={`/images/emptyAvatar.png`}/>
+                            }
+                            {
+                                profile.avatar && profile.avatar.includes("http") &&
                                 <img className="wd-profile-avatar m-3 wd-filter"
                                      src={profile.avatar} alt="avatar"/>
                             }
                             {
-                                !profile.avatar.includes("http") &&
+                                profile.avatar && !profile.avatar.includes("http") &&
                                 <img className="wd-profile-avatar m-3 wd-filter"
                                      alt="avatar"
-                                     src={profile.avatar !== '' ? `/images/${profile.avatar}`
-                                                                : `/images/emptyAvatar.png`}/>
+                                     src={`/images/${profile.avatar}`}/>
                             }
                         </div>
                         <div className="col-8 mt-3">
                             <div className="text-wrap text-break">
-                        <span className="fw-bold wd-profile-text">
-                            {profile.firstName} {profile.lastName} </span>
+                                {
+                                    profile.firstName &&
+                                    <span className="fw-bold wd-profile-text">{profile.firstName} </span>
+                                }
+                                {
+                                    profile.lastName  &&
+                                    <span className="fw-bold wd-profile-text">{profile.lastName} </span>
+                                }
                                 {profile.type === "REG USER" ? <i className="fa-solid fa-drumstick-bite"></i> : ''}
                                 {profile.type === "RECIPE CREATOR" ? <i className="fa-solid fa-file-pen"></i> : ''}
                                 {profile.type === "PRO CHEF" ? <i className="fa-solid fa-bell-concierge"></i> : ''}
@@ -61,14 +75,17 @@ const PublicProfileDetails = () => {
                             <div className="wd-profile-text">@{profile.username}</div>
                             <div className="wd-profile-text">{profile.type}</div>
                             {
-                                profile.type === "PRO CHEF" &&
+                                profile.type === "PRO CHEF" && profile.business &&
                                 <a className="wd-profile-text" href={`${profile.business}`}>{profile.business}</a>
                             }
                         </div>
                     </div>
-                    <div className="m-3">
-                        <div className="p-3 border w-100 rounded-3 wd-bio overflow-auto">{profile.bio}</div>
-                    </div>
+                    {
+                        profile.bio &&
+                        <div className="m-3">
+                            <div className="p-3 border w-100 rounded-3 wd-bio overflow-auto">{profile.bio}</div>
+                        </div>
+                    }
                     <div className="m-3">
                         <ul className="p-0 wd-profile-buttons">
                             <li>
@@ -103,7 +120,10 @@ const PublicProfileDetails = () => {
                                     <button type="button"
                                             className="wd-edit-button border rounded-3
                                 ps-3 pe-3 pt-1 pb-1">
-                                        <div className="wd-text-sm">{profile.savedRecipes}</div>
+                                        {
+                                            savedRecipes &&
+                                            <div className="wd-text-sm">{savedRecipes.length}</div>
+                                        }                                        
                                         <div className="wd-text-sm">Saved Recipes</div>
                                     </button>
                                 </Link>

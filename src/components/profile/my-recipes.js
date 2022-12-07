@@ -29,7 +29,7 @@ const MyRecipes = () => {
         try {
             dispatch(findUserByIdThunk(currentUser._id));
             dispatch(findRecipesByAuthorThunk(currentUser._id));
-            console.log(recipes);
+            // console.log(recipes);
         }
         catch(e) {
             navigate('/login');

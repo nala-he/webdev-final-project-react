@@ -1,7 +1,7 @@
 import React from "react";
 import "./index.css";
 import {Link} from "react-router-dom";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {useLocation} from "react-router";
 import {updateFriendProfile} from "../../reducers/friend-profile-reducer";
 
@@ -11,13 +11,12 @@ import {updateFriendProfile} from "../../reducers/friend-profile-reducer";
 
 const Friend = ({friend, relation}) => {
     const dispatch = useDispatch();
-    // const navigate = useNavigate();
 
     const profileClickHandler = () => {
         dispatch(updateFriendProfile(friend));
     }
     
-    // console.log(friend);
+    const {currentUser} = useSelector(state => state.usersData);
     
     // function for future implementation
     // const recipeClickHandler = () => {
@@ -26,13 +25,8 @@ const Friend = ({friend, relation}) => {
     
     const {pathname} = useLocation()
     const paths = pathname.split('/');
-    // const last = paths[2];
     const last = paths[paths.length - 1];
     
-  
-    if (paths.length === 3 && last === "followers") {
-        
-    }
 
     // hardcoded, need to update after combined with my-recipes data
     const recipesNum = 10;
@@ -130,7 +124,9 @@ const Friend = ({friend, relation}) => {
                                 // e.g. localhost:3000/friends/:uid/followers
                                 paths.length === 4 && 
                                 <>
-                                    <Link to={`../profile/${friend._id}`}>
+                                    <Link to={friend._id !== currentUser._id 
+                                              ? `../profile/${friend._id}` 
+                                              : `../../profile`}>
                                         <button className="btn wd-btn-grey rounded-4 m-1 text-dark 
                                         fw-bold wd-font-14" onClick={profileClickHandler}>
                                             Profile
@@ -138,7 +134,9 @@ const Friend = ({friend, relation}) => {
                                     </Link>
                                     {
                                         friend.type !== "REG USER" &&
-                                        <Link to={`../profile/${friend._id}/my-recipes`}>
+                                        <Link to={friend._id !== currentUser._id 
+                                                  ? `../profile/${friend._id}/my-recipes` 
+                                                  : `../../profile/my-recipes` }>
                                             <button className="btn wd-btn-grey rounded-4 m-1 
                                             text-dark fw-bold wd-font-14">
                                                 Recipes
@@ -151,7 +149,8 @@ const Friend = ({friend, relation}) => {
                                 // e.g. localhost:3000/friends/:uid
                                 paths.length === 3 && last !== "followers" &&
                                 <>
-                                    <Link to={`../profile/${friend._id}`}>
+                                    <Link to={friend._id !== currentUser._id ? `../profile/${friend._id}` 
+                                                                             : `../../profile`}>
                                         <button className="btn wd-btn-grey rounded-4 m-1 text-dark 
                                         fw-bold wd-font-14" onClick={profileClickHandler}>
                                             Profile
@@ -159,7 +158,9 @@ const Friend = ({friend, relation}) => {
                                     </Link>
                                     {
                                         friend.type !== "REG USER" &&
-                                        <Link to={`../profile/${friend._id}/my-recipes`}>
+                                        <Link to={friend._id !== currentUser._id 
+                                                  ? `../profile/${friend._id}/my-recipes` 
+                                                  : `../../profile/my-recipes`}>
                                             <button className="btn wd-btn-grey rounded-4 m-1 
                                             text-dark fw-bold wd-font-14">
                                                 Recipes

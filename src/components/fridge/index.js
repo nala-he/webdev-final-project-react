@@ -73,7 +73,9 @@ function Fridge() {
                                         // </ProtectedRoute>
                                     }/>
                                     <Route path="/profile/my-recipes" element={<MyRecipes/>}/>
+                                    <Route path="/profile/:uid/my-recipes" element={<MyRecipes/>}/>
                                     <Route path="/profile/my-recipes/:rid/details" element={<MyRecipeDetails/>}/>
+                                    <Route path="/profile/:uid/my-recipes/:rid/details" element={<MyRecipeDetails/>}/>
                                     <Route path="/profile/edit" element={<EditProfile/>}/>
                                     {/*revised public profile path below -- yutong*/}
                                     <Route path="/friends/profile/:uid/*" element={<PublicProfile/>}/>

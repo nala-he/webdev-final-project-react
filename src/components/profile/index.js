@@ -26,7 +26,7 @@ const Profile = () => {
                     <ul className="nav nav-tabs">
                         <li className="nav-item">
                             <Link className={`nav-link text-dark ${active === 'profile' ? 'active' : ''}`}
-                                  to={`/profile`}>
+                                  to={`../profile`}>
                                 <h5 className={`${active === 'profile' ? 'fw-bolder' : ''}`}>
                                     Profile
                                 </h5>

@@ -30,6 +30,10 @@ const FriendsComponent = () => {
         uid = currentUser._id;
         friend = paths[2];
     }
+    
+    if (paths.length === 3 && paths[2] !== "followers") {
+        uid = paths[2];
+    }
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -89,7 +93,7 @@ const FriendsComponent = () => {
                      <div className="border border-top-0 ps-3 pe-3 pt-1 pb-1">
                          <Routes>
                              {
-                                 uid === currentUser._id &&
+                                 uid === currentUser._id && 
                                  <>
                                      <Route path="/"
                                             element={<FriendsFollowingsList friends={following}/>}/>

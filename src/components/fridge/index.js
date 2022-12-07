@@ -2,8 +2,8 @@ import React from "react";
 import {Routes, Route} from "react-router";
 import {configureStore} from "@reduxjs/toolkit";
 import {Provider} from "react-redux";
-import NavigationSidebar from "../navigation-sidebar";
-import NewNavigationSidebar from "../navigation-sidebar/newNav";
+// import NavigationSidebar from "../navigation-sidebar";
+// import NewNavigationSidebar from "../navigation-sidebar/newNav";
 import NewNavigationSidebar2 from "../navigation-sidebar/newNav2";
 import HomeComponent from "../home-component";
 import RecipeSidebar from "../recipe-sidebar";
@@ -12,7 +12,7 @@ import EditProfile from "../profile/edit-profile";
 import {BrowserRouter} from "react-router-dom";
 import ingredients from "../../reducers/ingredients-reducer";
 import recipes from "../../reducers/recipes-reducer";
-import recipesReducer from "../../reducers/recipes-reducer"
+// import recipesReducer from "../../reducers/recipes-reducer"
 // import profileReducer from "../../reducers/profile-reducer";
 import friendProfileReducer from "../../reducers/friend-profile-reducer";
 import FriendsComponent from "../friends-component";
@@ -23,7 +23,7 @@ import RecipeDetailsComponent from "../recipe-details";
 import CreateRecipeComponent from "../create-recipe";
 import recipeIngredientsReducer from "../../reducers/recipe-ingredients-reducer";
 import recipeDirectionsReducer from "../../reducers/recipe-directions-reducer";
-import recipeDirections from "../../reducers/recipe-directions-reducer";
+// import recipeDirections from "../../reducers/recipe-directions-reducer";
 import Login from "../profile/login";
 import usersReducer from "../../reducers/users-reducer";
 // import CurrentUser from "../profile/current-user";
@@ -81,6 +81,7 @@ function Fridge() {
                                     <Route path="/friends/profile/:uid/*" element={<PublicProfile/>}/>
                                     {/*<Route path="/friends/:uid/*" element={<FriendsComponent/>}/>*/}
                                     <Route path="/friends/*" element={<FriendsComponent/>}/>
+                                    <Route path="/users/:uid/saved-recipes" element={<SavedRecipes/>}/>
                                     <Route path="/users/:uid/saved-recipes" element={<SavedRecipes/>}/>
                                     {/* routes listed here for now - once other components done, add these routes to components */}
                                     <Route path="/profile/:uid/my-recipes/:rid/details" element={<RecipeDetailsComponent/>}/>

@@ -31,7 +31,8 @@ const ProfileDetails = () => {
             navigate('/login');
         }
     }, [currentUser, dispatch, navigate, publicProfile]);
-    
+    // console.log(profile.avatar)
+
     return (
         <div className="m-0 wd-profile-background">
             {

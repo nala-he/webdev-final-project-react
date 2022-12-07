@@ -59,7 +59,7 @@ const RecipeSummaryItem = (
                     <span className="text-dark fw-bolder">{recipe.dishName} </span>
                     <span className="col text-muted"> @{recipe.authorName} </span>
                 </div>
-                <span className="text-dark">{recipe.intro}</span>
+                <span className="text-dark wd-wrap">{recipe.intro}</span>
                 <div className="d-flex justify-content-center">
                     {
                         (!recipe.recipePic) &&

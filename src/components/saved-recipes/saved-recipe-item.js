@@ -52,7 +52,7 @@ const SavedRecipeItem = (
                         <span className="text-dark fw-bolder">{recipe.dishName} </span>
                         <span className="col text-muted"> @{recipe.authorName} </span>
                     </div>
-                    <span className="text-dark d-none d-md-block">{recipe.intro}</span>
+                    <span className="text-dark wd-wrap d-none d-md-block">{recipe.intro}</span>
                 </div>
                 <div className="col-3 d-flex justify-content-center">
                     {

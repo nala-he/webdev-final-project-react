@@ -160,7 +160,7 @@ const NewNavigationSidebar2 = () => {
                 {/* Create Recipes */}
                 <div className="m-2">
                     {
-                    ("/users/:uid/create-recipes" !== "/login" && "/users/:uid/create-recipes" !== "/logout") &&
+                    (currentUser && currentUser.type !== "REG USER" && "/users/:uid/create-recipes" !== "/login" && "/users/:uid/create-recipes" !== "/logout") &&
                     <Link to="/users/:uid/create-recipes" className={`${"/users/:uid/create-recipes".includes(active) ? 'active' : ''}`}>
                         {/*Navigation Button Item*/}
                         <button type="button" onClick={createRecipeHandler}
@@ -171,10 +171,10 @@ const NewNavigationSidebar2 = () => {
                                 </div>
                                 <div className="col-10 d-flex align-items-start">
                                     <div className="d-none d-xl-block d-xxl-none">
-                                        <span className="wd-text-size-small">Create Recipes</span>
+                                        <span className="wd-text-size-small">Create Recipe</span>
                                     </div>
                                     <div className="d-none d-xxl-block">
-                                        <span className="wd-text-size">Create Recipes</span>
+                                        <span className="wd-text-size">Create Recipe</span>
                                     </div>
                                 </div>
                             </div>

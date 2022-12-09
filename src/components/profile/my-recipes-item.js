@@ -21,7 +21,7 @@ const MyRecipesItem = ({recipe}) => {
     return (
         <>
         {
-            (recipe.privacy === "PUBLIC" || isMyRecipes) &&
+            recipe && (recipe.privacy === "PUBLIC" || isMyRecipes) &&
             <div className="m-3 p-2 wd-my-recipe-content">
                 <div className="row d-flex align-items-center ps-2 pe-2">
                     <span className="col-2">{recipe.privacy}</span>

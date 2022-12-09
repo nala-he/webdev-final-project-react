@@ -5,34 +5,28 @@ import MyRecipesItem from "./my-recipes-item";
 import {Link} from "react-router-dom";
 import {useNavigate} from "react-router-dom";
 import {findUserByIdThunk} from "../../services/users-thunks";
+import {findRecipesByAuthorThunk} from "../../services/recipes-thunk";
 
-const MyRecipes = () => {
-    const myRecipes = useSelector(state => state.myRecipes);
-    // let friendRecipes = useSelector(state => state.friendRecipes);
-    // const {pathname} = useLocation();
-    // const paths = pathname.split('/');
-    // Saved for future implementation
-    // let recipes = paths.includes(myRecipes[0].createdBy) ? myRecipes : friendRecipes;
-    // Use below for now
-    let recipes = myRecipes;
+const PublicMyRecipes = () => {
+    const {recipes} = useSelector(state => state.recipes);
+    
     const {pathname} = useLocation();
     const paths = pathname.split('/');
-    let active = paths.includes('my-recipes') ? 'my-recipes' : 'profile';
-
+    // let active = paths.includes('my-recipes') ? 'my-recipes' : 'profile';
+    let uid = paths[3];
+        
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const {currentUser}= useSelector(state => state.usersData);
+    // const {publicProfile}= useSelector(state => state.usersData);
 
     useEffect(() => {
         try {
-            dispatch(findUserByIdThunk(currentUser._id));
+            dispatch(findRecipesByAuthorThunk(uid));
         }
         catch(e) {
             navigate('/login');
         }
-    }, []);
-
-    let profile = currentUser;
+    }, [uid]);
 
     return (
         <div className="mt-3">
@@ -55,4 +49,4 @@ const MyRecipes = () => {
         </div>
     );
 };
-export default MyRecipes;
+export default PublicMyRecipes;

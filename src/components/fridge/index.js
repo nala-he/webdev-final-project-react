@@ -12,7 +12,7 @@ import EditProfile from "../profile/edit-profile";
 import {BrowserRouter} from "react-router-dom";
 import ingredients from "../../reducers/ingredients-reducer";
 import recipes from "../../reducers/recipes-reducer";
-import recipesReducer from "../../reducers/recipes-reducer"
+// import recipesReducer from "../../reducers/recipes-reducer"
 // import profileReducer from "../../reducers/profile-reducer";
 import friendProfileReducer from "../../reducers/friend-profile-reducer";
 import FriendsComponent from "../friends-component";
@@ -30,6 +30,7 @@ import usersReducer from "../../reducers/users-reducer";
 import PublicProfile from "../profile/public-profile";
 // import ProtectedRoute from "../profile/protected-route";
 import MyRecipes from "../profile/my-recipes";
+import PublicMyRecipes from "../profile/public-my-recipes";
 import MyRecipeDetails from "../recipe-details/my-recipe-details";
 import friendsReducer from "../../reducers/friends-reducer";
 import savedRecipesReducer from "../../reducers/saved-recipes-reducer";
@@ -73,9 +74,11 @@ function Fridge() {
                                         // </ProtectedRoute>
                                     }/>
                                     <Route path="/profile/my-recipes" element={<MyRecipes/>}/>
-                                    <Route path="/profile/:uid/my-recipes" element={<MyRecipes/>}/>
+                                    {/*<Route path="/profile/:uid/my-recipes" element={<MyRecipes/>}/>*/}
+                                    <Route path="/friends/profile/:uid/my-recipes" element={<PublicMyRecipes/>}/>
                                     <Route path="/profile/my-recipes/:rid/details" element={<MyRecipeDetails/>}/>
-                                    <Route path="/profile/:uid/my-recipes/:rid/details" element={<MyRecipeDetails/>}/>
+                                    {/*<Route path="/profile/:uid/my-recipes/:rid/details" element={<MyRecipeDetails/>}/>*/}
+                                    <Route path="/friends/profile/:uid/my-recipes/:rid/details" element={<MyRecipeDetails/>}/>
                                     <Route path="/profile/edit" element={<EditProfile/>}/>
                                     {/*revised public profile path below -- yutong*/}
                                     <Route path="/friends/profile/:uid/*" element={<PublicProfile/>}/>

@@ -1,8 +1,7 @@
 import React, {useEffect,useState} from "react";
-import {useLocation, useNavigate} from "react-router";
+import {useLocation} from "react-router";
 import {Link} from "react-router-dom";
 import RecipeDetail from "./recipe-detail";
-import recipes from "../../data/recipes.json";
 import {useDispatch, useSelector} from "react-redux";
 import {
     createSavedRecipeThunk,
@@ -33,7 +32,7 @@ const RecipeDetailsComponent = () => {
         }
         fetchData();
     },[recipeId]);
-    console.log(recipe);
+    // console.log(recipe);
 
     const deleteRecipeClickHandler = () => {
         dispatch(deleteSavedRecipeByUserAndRecipeIdThunk({uid: currentUser._id, rid: recipeId}));

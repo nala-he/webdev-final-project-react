@@ -33,6 +33,9 @@ import MyRecipes from "../profile/my-recipes";
 import MyRecipeDetails from "../recipe-details/my-recipe-details";
 import friendsReducer from "../../reducers/friends-reducer";
 import savedRecipesReducer from "../../reducers/saved-recipes-reducer";
+import spoonacularReducer from "../../reducers/spoonacular-reducer";
+import SearchByIngredientsResults from "../spoonacular";
+import RecipeResultDetails from "../spoonacular/recipe-details";
 
 const store = configureStore({reducer: {
             ingredients, 
@@ -45,7 +48,8 @@ const store = configureStore({reducer: {
             recipeDirections: recipeDirectionsReducer,
             usersData: usersReducer,
             followsData: friendsReducer,
-            savedRecipes: savedRecipesReducer
+            savedRecipes: savedRecipesReducer,
+            spoonacular: spoonacularReducer
     }
 });
 
@@ -91,6 +95,8 @@ function Fridge() {
                                     <Route path="/users/:uid/saved-recipes/:rid/details" element={<RecipeDetailsComponent/>}/>
                                     <Route path="/users/:uid/create-recipes" element={<CreateRecipeComponent/>}/>
                                     <Route path="/login" element={<Login/>}/>
+                                    <Route path="/search/recipesByIngredients/results" element={<SearchByIngredientsResults/>}/>
+                                    <Route path="/search/recipesByIngredients/results/details/:rid" element={<RecipeResultDetails/>}/>
                                 </Routes>
                             </div>
                             <div className="d-none d-lg-block col-lg-3 col-xl-3 mt-2">

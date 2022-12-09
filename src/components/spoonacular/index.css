@@ -1,0 +1,37 @@
+.wd-recipe-content {
+    border-radius: 15px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #c0c0bc;
+    background-color:#F3F1EB;
+}
+
+.wd-no-decor {
+    text-decoration: none;
+    color: black;
+}
+
+.wd-recipe-image {
+    width: 100%;
+    height: 140px;
+    border-radius: 15px;
+    object-fit: cover;
+}
+
+.wd-border {
+    border-radius: 12px;
+    border-style: solid;
+    border-width: 1.5px;
+    border-color: #c0c0bc;
+}
+
+.wd-recipe-pic {
+    border-radius: 12px;
+    width: 305px;
+    height: 200px;
+    object-fit: cover;
+}
+
+.wd-width-305 {
+    width: 305px;
+}

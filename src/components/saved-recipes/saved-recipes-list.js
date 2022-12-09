@@ -21,12 +21,7 @@ const SavedRecipesList = () => {
 
     return(
         <div>
-            <div className="position-relative m-3">
-                <input placeholder="Search Recipes"
-                        className="form-control rounded-pill ps-5 text-dark"/>
-                <i className="bi bi-search position-absolute wd-nudge-up text-dark"></i>
-            </div>
-            <div className="ms-4 text-dark fw-bold">
+            <div className="mt-3 ms-4 text-dark fw-bold">
                 <span>Total Saved Recipes: {savedRecipes.length}</span>
             </div>
             {

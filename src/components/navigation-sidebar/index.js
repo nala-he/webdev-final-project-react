@@ -14,8 +14,14 @@ const NavigationSidebar = () => {
     const {pathname} = useLocation();
     const paths = pathname.split('/');
     let temp = paths[paths.length - 1] === '' ? 'home' : paths[paths.length - 1];
-    let active = paths.includes("my-recipes") || paths.includes("profile") ? "profile" : temp;
-
+ 
+    let active = temp;
+    if (paths.includes("my-recipes") || paths.includes("profile")) {
+        active = "profile";
+    } if (paths.includes("friends")) {
+        active = "friends"; 
+    }
+    
     const {currentUser} = useSelector(state => state.usersData);
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -47,9 +53,6 @@ const NavigationSidebar = () => {
                             <span className="d-none d-xl-block wd-sitename text-black">
                                 RecipeFridge
                             </span>
-                            {/*<h6 className="d-none d-xl-block p-3 fw-bold text-black">*/}
-                            {/*    RecipeFridge*/}
-                            {/*</h6>*/}
                         </div>
                 </div>
                 {/*Navigation Buttons*/}

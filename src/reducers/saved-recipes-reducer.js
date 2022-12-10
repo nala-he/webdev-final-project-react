@@ -6,7 +6,8 @@ import {
 } from "../services/saved-recipes-thunk";
 
 const initialState = {
-    savedRecipes: []
+    savedRecipes: [],
+    savedSpoonacular: [],
 }
 
 const savedRecipesSlice = createSlice({
@@ -17,9 +18,17 @@ const savedRecipesSlice = createSlice({
              (state, {payload}) => {
                  state.savedRecipes = payload;
              },
+         [findSavedSpoonacularRecipesByUserThunk.fulfilled]:
+             (state, {payload}) => {
+                 state.savedSpoonacular = payload;
+             },
          [createSavedRecipeThunk.fulfilled]:
              (state, {payload}) => {
                  state.savedRecipes.unshift({...payload});
+             },
+         [createSavedSpoonacularRecipeThunk.fulfilled]:
+             (state, {payload}) => {
+                 state.savedSpoonacular.unshift(payload);
              },
          [deleteSavedRecipeThunk.fulfilled]:
              (state, {payload}) => {

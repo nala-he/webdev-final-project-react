@@ -16,7 +16,7 @@ const SavedRecipesList = () => {
     useEffect(() => {
         if (currentUser) {
             dispatch(findSavedRecipesByUserThunk(uid));
-            dispatch(findSavedSpoonacularRecipesByUserThunk(uid));
+            // await dispatch(findSavedSpoonacularRecipesByUserThunk(uid));
         } else {
             navigate('/login');
         }
@@ -25,7 +25,7 @@ const SavedRecipesList = () => {
     return(
         <div>
             <div className="mt-3 ms-4 text-dark fw-bold">
-                <span>Total Saved Recipes: {savedRecipes.length + savedSpoonaculars.length}</span>
+                <span>Total Saved Recipes: {savedRecipes.length} + {savedSpoonaculars.length}</span>
             </div>
             {
                 savedRecipes && savedRecipes.map(recipe => {
@@ -34,15 +34,13 @@ const SavedRecipesList = () => {
                     <SavedRecipeItem key={recipe._id} recipe={recipe.recipe} recipeId={recipe._id}/> ).reverse()
                 </>})
             }
-            {
-                savedSpoonaculars && savedSpoonaculars.map(recipe => {
-                    
-                                  
-                 <>
-                     <span>Saved Recipes from Spoonacular</span>
-                     <SpoonacularRecipeItem key={recipe} recipe={recipe}/> ).reverse()
-                 </>})
-            }
+            {/*{*/}
+            {/*    savedSpoonaculars && savedSpoonaculars.map(spoon => {*/}
+            {/* <>*/}
+            {/*     <span>Saved Recipes from Spoonacular</span>*/}
+            {/*     <SpoonacularRecipeItem key={spoon} recipe={spoon}/> ).reverse()*/}
+            {/* </>})*/}
+            {/*}*/}
             {
                 !savedRecipes && !savedSpoonaculars &&
                 <div className="d-flex justify-content-center mt-5">

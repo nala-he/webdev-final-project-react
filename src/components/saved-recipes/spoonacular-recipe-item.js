@@ -7,7 +7,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {findRecipeInfoByIdThunk} from "../../services/spoonacular-thunks";
 import {Link} from "react-router-dom";
 
-const SpoonacularRecipeItem = ({recipe}) => {
+export const SpoonacularRecipeItem = ({recipe}) => {
     const {pathname} = useLocation();
     const {currentUser} = useSelector(state => state.usersData);
     const {targetRecipe} = useSelector(state => state.spoonacular);
@@ -93,4 +93,3 @@ const SpoonacularRecipeItem = ({recipe}) => {
         </div>
     );
 };
-export default SpoonacularRecipeItem;

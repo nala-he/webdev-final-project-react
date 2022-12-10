@@ -2,12 +2,14 @@ import {createSlice} from "@reduxjs/toolkit";
 import {
     createSavedRecipeThunk, deleteSavedRecipeByUserAndRecipeIdThunk,
     deleteSavedRecipeThunk,
-    findSavedRecipesByUserThunk
+    findSavedRecipesByUserThunk,
+    findSavedSpoonacularRecipesByUserThunk,
+    createSavedSpoonacularRecipeThunk
 } from "../services/saved-recipes-thunk";
 
 const initialState = {
     savedRecipes: [],
-    savedSpoonacular: [],
+    savedSpoonaculars: [],
 }
 
 const savedRecipesSlice = createSlice({
@@ -28,7 +30,7 @@ const savedRecipesSlice = createSlice({
              },
          [createSavedSpoonacularRecipeThunk.fulfilled]:
              (state, {payload}) => {
-                 state.savedSpoonacular.unshift(payload);
+                 state.savedSpoonaculars.unshift(payload);
              },
          [deleteSavedRecipeThunk.fulfilled]:
              (state, {payload}) => {

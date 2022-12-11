@@ -1,12 +1,12 @@
 import React, {useEffect} from "react";
 import "./index.css";
-import IngredientsList from "../spoonacular/ingredients-list";
+import IngredientsList from "./spoonacular-ingredients-list";
 import DirectionsList from "../spoonacular/directions-list";
 import {useLocation, useNavigate} from "react-router";
 import {useDispatch, useSelector} from "react-redux";
 import {findRecipeInfoByIdThunk} from "../../services/spoonacular-thunks";
 import {Link} from "react-router-dom";
-import {deleteSavedSpoonacularRecipeThunk} from "../../services/saved-recipes-thunk";
+import {deleteSavedSpoonacularRecipeByUserAndRecipeIdThunk} from "../../services/saved-recipes-thunk";
 
 export const SpoonacularRecipeItem = ({recipe}) => {
     const {currentUser} = useSelector(state => state.usersData);
@@ -17,14 +17,12 @@ export const SpoonacularRecipeItem = ({recipe}) => {
     const dispatch = useDispatch();
     
     useEffect(() => {
-        dispatch(findRecipeInfoByIdThunk(recipe));
+        dispatch(findRecipeInfoByIdThunk(recipe.spoonacularRecipe));
     },[])
 
     const deleteButtonClickHandler = () => {
-        dispatch(deleteSavedSpoonacularRecipeThunk(recipe));
+        dispatch(deleteSavedSpoonacularRecipeByUserAndRecipeIdThunk(uid, recipe.spoonacularRecipe));
     };
-    
-    console.log(targetRecipe);
     
     return(
         <div className="wd-saved-item-border m-4 p-2 row">

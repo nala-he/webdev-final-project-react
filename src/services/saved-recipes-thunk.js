@@ -46,10 +46,10 @@ export const deleteSavedRecipeByUserAndRecipeIdThunk = createAsyncThunk(
     }
 )
 
-export const deleteSavedSpoonacularRecipeThunk = createAsyncThunk(
-    'delete saved spoonacular recipe',
-    async (spoonacularId) => {
-        await service.deleteSavedSpoonacularRecipe(spoonacularId);
+export const deleteSavedSpoonacularRecipeByUserAndRecipeIdThunk = createAsyncThunk(
+    'delete saved spoonacular recipe by user and recipe id',
+    async (uid, spoonacularId) => {
+        await service.deleteSavedSpoonacularRecipeByUserAndRecipeId(uid, spoonacularId);
         return spoonacularId;
     }
 )

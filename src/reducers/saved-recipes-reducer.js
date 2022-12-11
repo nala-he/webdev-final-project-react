@@ -4,7 +4,8 @@ import {
     deleteSavedRecipeThunk,
     findSavedRecipesByUserThunk,
     findSavedSpoonacularRecipesByUserThunk,
-    createSavedSpoonacularRecipeThunk
+    createSavedSpoonacularRecipeThunk,
+    deleteSavedSpoonacularRecipeByUserAndRecipeIdThunk
 } from "../services/saved-recipes-thunk";
 
 const initialState = {
@@ -42,6 +43,13 @@ const savedRecipesSlice = createSlice({
                  const index = state.savedRecipes
                      .findIndex(recipe => recipe.savedBy === uid && recipe.recipe === rid);
                  state.savedRecipes.splice(index, 1);
+             },
+         [deleteSavedSpoonacularRecipeByUserAndRecipeIdThunk.fulfilled]:
+             (state, {payload}) => {
+                const {uid, rid} = payload;
+                 const index = state.savedSpoonacular
+                     .findIndex(recipe => recipe === rid);
+                 state.savedSpoonaculars.splice(index, 1);
              }
      }
  });

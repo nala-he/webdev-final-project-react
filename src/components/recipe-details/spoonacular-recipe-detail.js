@@ -14,7 +14,7 @@ const SpoonacularRecipeDetail = () => {
     const {pathname} = useLocation();
     const paths = pathname.split('/');
     const rid = paths[4];
-    console.log(rid);
+    // console.log(rid);
     
     const dispatch = useDispatch();
 
@@ -107,9 +107,12 @@ const SpoonacularRecipeDetail = () => {
                     </div>
 
                     {/* directions */}
-                    <div className="row wd-border m-4">
-                        <DirectionsList directions={targetRecipe.analyzedInstructions[0].steps}/>
-                    </div>
+                    {/*<div className="row wd-border m-4">*/}
+                    {/*    {*/}
+                    {/*        targetRecipe.analyzedInstructions[0].steps &&*/}
+                    {/*        <DirectionsList directions={targetRecipe.analyzedInstructions[0].steps}/>*/}
+                    {/*    }*/}
+                    {/*</div>*/}
                 </div>
             </div>
         </div>

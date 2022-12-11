@@ -12,7 +12,7 @@ const SavedRecipesList = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const uid = currentUser._id;
-    console.log(savedRecipes);
+    // console.log(savedRecipes);
     useEffect(() => {
         if (currentUser) {
             dispatch(findSavedRecipesByUserThunk(uid))

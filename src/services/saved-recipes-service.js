@@ -2,7 +2,6 @@ import axios from 'axios';
 
 const FRIDGE_API_BASE = 'http://localhost:4000/fridge';
 const SAVED_RECIPES_API = `${FRIDGE_API_BASE}/saved-recipes`;
-const SAVED_SPOONACULARS_API = `${FRIDGE_API_BASE}/saved-spoonaculars`;
 const USERS_API = `${FRIDGE_API_BASE}/users`;
 
 export const createSavedRecipe = async (uid, rid) => {
@@ -12,6 +11,7 @@ export const createSavedRecipe = async (uid, rid) => {
 
 export const createSavedSpoonacularRecipe = async (uid, rid) => {
     const response = await axios.post(`${USERS_API}/${uid}/saved-spoonaculars/${rid}`);
+    console.log(response.data);
     return response.data;
 }
 
@@ -35,7 +35,9 @@ export const deleteSavedRecipeByUserAndRecipeId = async (uid, rid) => {
     return response.data;
 }
 
-export const deleteSavedSpoonacularRecipe = async (spoonacularId) => {
-    const response = await axios.delete(`${SAVED_SPOONACULARS_API}/${spoonacularId}`);
+export const deleteSavedSpoonacularRecipeByUserAndRecipeId = async (uid, spoonacularId) => {
+    const response = 
+        await axios.delete(`${USERS_API}/${uid}/recipes/${spoonacularId}/saved-spoonaculars`);
     return response.data;
 }
+

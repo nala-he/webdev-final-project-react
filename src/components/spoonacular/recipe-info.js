@@ -46,7 +46,7 @@ const RecipeInfo = ({recipe}) => {
                 {/* recipe pic */}
                 <div className="m-2">
                     <img src={`${recipe.image}`}
-                         className="wd-recipe-pic" alt="recipe image"/>
+                         className="wd-recipe-pic" alt="recipe"/>
                 </div>
                 {/* recipe summary/times */}
                 <div className="m-2">

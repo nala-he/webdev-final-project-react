@@ -37,6 +37,7 @@ import savedRecipesReducer from "../../reducers/saved-recipes-reducer";
 import spoonacularReducer from "../../reducers/spoonacular-reducer";
 import SearchByIngredientsResults from "../spoonacular";
 import RecipeResultDetails from "../spoonacular/recipe-details";
+import SpoonacularRecipeDetail from "../recipe-details/spoonacular-recipe-detail";
 
 const store = configureStore({reducer: {
             ingredients, 
@@ -96,6 +97,7 @@ function Fridge() {
                                     {/*<Route path="/friends/profile/:uid/my-recipes/:rid/details" element={<RecipeDetailsComponent/>}/>*/}
                                     <Route path="/recipes/:rid/details" element={<RecipeDetailsComponent/>}/>
                                     <Route path="/users/:uid/saved-recipes/:rid/details" element={<RecipeDetailsComponent/>}/>
+                                    <Route path="/users/:uid/saved-spoonaculars/:rid/details" element={<SpoonacularRecipeDetail/>}/>
                                     <Route path="/users/:uid/create-recipes" element={<CreateRecipeComponent/>}/>
                                     <Route path="/login" element={<Login/>}/>
                                     <Route path="/search/recipesByIngredients/results" element={<SearchByIngredientsResults/>}/>

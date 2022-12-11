@@ -12,7 +12,7 @@ const SavedRecipesList = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const uid = currentUser._id;
-
+    console.log(savedRecipes);
     useEffect(() => {
         if (currentUser) {
             dispatch(findSavedRecipesByUserThunk(uid));
@@ -25,22 +25,21 @@ const SavedRecipesList = () => {
     return(
         <div>
             <div className="mt-3 ms-4 text-dark fw-bold">
-                <span>Total Saved Recipes: {savedRecipes.length} + {savedSpoonaculars.length}</span>
+                <span>Total Saved Recipes: {savedRecipes.length} FridgeRecipes 
+                    + {savedSpoonaculars.length} Spoonacular recipes</span>
             </div>
+            
             {
-                savedRecipes && savedRecipes.map(recipe => {
-                <>
-                    <span>Saved Recipes from FridgeRecipe</span>
-                    <SavedRecipeItem key={recipe._id} recipe={recipe.recipe} recipeId={recipe._id}/> ).reverse()
-                </>})
+                savedRecipes && <span>Saved Recipes</span> && savedRecipes.map(each => 
+                            <SavedRecipeItem key={each._id}
+                                             recipe={each.recipe}
+                                             recipeId={each._id}/>
+                    ).reverse()
             }
-            {/*{*/}
-            {/*    savedSpoonaculars && savedSpoonaculars.map(spoon => {*/}
-            {/* <>*/}
-            {/*     <span>Saved Recipes from Spoonacular</span>*/}
-            {/*     <SpoonacularRecipeItem key={spoon} recipe={spoon}/> ).reverse()*/}
-            {/* </>})*/}
-            {/*}*/}
+            {
+                savedSpoonaculars && <span>Saved Spoonacular Recipes</span> && savedSpoonaculars.map(spoon =>
+                 <SpoonacularRecipeItem key={spoon} recipe={spoon}/> ).reverse()
+            }
             {
                 !savedRecipes && !savedSpoonaculars &&
                 <div className="d-flex justify-content-center mt-5">

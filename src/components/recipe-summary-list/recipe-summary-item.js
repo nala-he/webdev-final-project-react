@@ -74,23 +74,20 @@ const RecipeSummaryItem = (
             <div className="p-3 wd-item-content">
                 <div>
                     <span className="text-dark fw-bolder">{recipe.dishName} </span>
-                    {/*{*/}
-                    {/*    currentUser &&*/}
-                    {/*    <Link to={`/friends/profile/${recipe.authorId}`} className="text-decoration-none">*/}
-                    {/*        <span className="col text-muted" onClick={profileClickHandler}>*/}
-                    {/*            @{recipe.authorName}*/}
-                    {/*        </span>*/}
-                    {/*    </Link>*/}
-                    {/*}*/}
-                    {/*{*/}
-                    {/*    !currentUser &&*/}
-                    {/*    <span className="col text-muted">*/}
-                    {/*            @{recipe.authorName}*/}
-                    {/*    </span>*/}
-                    {/*}*/}
-                    <span className="col text-muted">
-                        @{recipe.authorName}
-                    </span>
+                    {
+                        currentUser &&
+                        <Link to={`/friends/profile/${recipe.authorId}`} className="text-decoration-none">
+                            <span className="col text-muted" onClick={profileClickHandler}>
+                                @{recipe.authorName}
+                            </span>
+                        </Link>
+                    }
+                    {
+                        !currentUser &&
+                        <span className="col text-muted">
+                                @{recipe.authorName}
+                        </span>
+                    }
 
                 </div>
                 <span className="text-dark">{recipe.intro}</span>

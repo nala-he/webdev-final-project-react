@@ -68,28 +68,14 @@ const MyRecipeDetails = () => {
 
             <div className="d-flex justify-content-center">
                 {/* save button */}
-                {
-                    paths.length !== 7 &&
-                    <Link to={`/profile/my-recipes`}
-                          className="text-decoration-none d-flex align-items-center"
-                          onClick={saveRecipeClickHandler}>
-                        <i className="bi bi-save2 text-black fs-3"></i>
-                        <span className="fw-bold fs-5 ms-3 text-dark">
-                            Save Recipe
-                        </span>
-                    </Link>
-                }
-                {
-                    paths.length === 7 &&
-                    <Link to={`/friends/profile/${uid}/my-recipes`}
-                        className="text-decoration-none d-flex align-items-center"
-                        onClick={saveRecipeClickHandler}>
-                        <i className="bi bi-save2 text-black fs-3"></i>
-                        <span className="fw-bold fs-5 ms-3 text-dark">
-                            Save Recipe
-                        </span>
-                    </Link>
-                }
+                <Link to={`/users/${currentUser._id}/saved-recipes`}
+                    className="text-decoration-none d-flex align-items-center"
+                    onClick={saveRecipeClickHandler}>
+                    <i className="bi bi-save2 text-black fs-3"></i>
+                    <span className="fw-bold fs-5 ms-3 text-dark">
+                        Save Recipe
+                    </span>
+                </Link>
             </div>
         </div>
     );

@@ -15,8 +15,8 @@ const SavedRecipesList = () => {
     console.log(savedRecipes);
     useEffect(() => {
         if (currentUser) {
-            dispatch(findSavedRecipesByUserThunk(uid));
-            // await dispatch(findSavedSpoonacularRecipesByUserThunk(uid));
+            dispatch(findSavedRecipesByUserThunk(uid))
+                .then(dispatch(findSavedSpoonacularRecipesByUserThunk(uid)))
         } else {
             navigate('/login');
         }

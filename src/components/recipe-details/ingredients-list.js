@@ -3,6 +3,8 @@ import IngredientItem from "./ingredient-item";
 import "./index.css";
 
 const IngredientsList = ({ingredients}) => {
+    console.log(ingredients);
+    
     return (
         <div className="p-3">
             <div className="fw-bold fs-5 text-dark">

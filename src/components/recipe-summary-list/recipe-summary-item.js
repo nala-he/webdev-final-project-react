@@ -5,8 +5,6 @@ import {useDispatch, useSelector} from "react-redux";
 import {useNavigate} from "react-router";
 import {Link} from "react-router-dom";
 import {followUserThunk} from "../../services/friends-thunks";
-import {updateFriendProfile} from "../../reducers/friend-profile-reducer";
-import * as service from "../../services/users-service";
 
 const RecipeSummaryItem = (
     {
@@ -43,11 +41,6 @@ const RecipeSummaryItem = (
         }
     };
 
-    const profileClickHandler = async () => {
-        const otherUser = await service.findUserById(recipe.authorId)
-        dispatch(updateFriendProfile(otherUser));
-    }
-
     return(
     <div className="wd-item-border m-4 p-3 row">
         <div className="col-2 p-2">
@@ -74,21 +67,9 @@ const RecipeSummaryItem = (
             <div className="p-3 wd-item-content">
                 <div>
                     <span className="text-dark fw-bolder">{recipe.dishName} </span>
-                    {
-                        currentUser &&
-                        <Link to={`/friends/profile/${recipe.authorId}`} className="text-decoration-none">
-                            <span className="col text-muted" onClick={profileClickHandler}>
-                                @{recipe.authorName}
-                            </span>
-                        </Link>
-                    }
-                    {
-                        !currentUser &&
-                        <span className="col text-muted">
-                                @{recipe.authorName}
-                        </span>
-                    }
-
+                    <span className="col text-muted">
+                        @{recipe.authorName}
+                    </span>
                 </div>
                 <span className="text-dark">{recipe.intro}</span>
                 <div className="d-flex justify-content-center">

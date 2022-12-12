@@ -6,6 +6,8 @@ import {createSavedRecipeThunk} from "../../services/saved-recipes-thunk";
 import {useDispatch, useSelector} from "react-redux";
 import IngredientsList from "./ingredients-list";
 import DirectionsList from "./directions-list";
+import {findUserByIdThunk} from "../../services/users-thunks";
+
 
 const RecipeDetail = ({recipe}) => {
     const {currentUser} = useSelector(state => state.usersData);
@@ -18,6 +20,18 @@ const RecipeDetail = ({recipe}) => {
     if (paths.includes("saved-recipes") || paths.includes("my-recipes")) {
         savedOrMy = true;
     }
+    useEffect(() => {
+        try {
+            if (currentUser) {
+              dispatch(findUserByIdThunk(currentUser._id));
+            }
+            // console.log(recipes);
+        }
+        catch(e) {
+            navigate('/login');
+        }
+        // console.log(recipes)
+    }, [currentUser, dispatch,navigate]);
 
     const saveRecipeClickHandler = () => {
         if (currentUser) {

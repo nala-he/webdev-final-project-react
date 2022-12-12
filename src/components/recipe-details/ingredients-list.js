@@ -7,7 +7,14 @@ import {useLocation} from "react-router-dom";
 const IngredientsList = () => {
     const {pathname} = useLocation();
     const paths = pathname.split('/');
-    const rid = paths[2];
+    let rid = paths[2];
+
+    if (paths.includes("my-recipes")) {
+        rid = paths[3];
+        if (paths.length === 7) {
+            rid = paths[5];
+        }
+    }
 
     const [ingredients, setIngredients] = useState([])
 
@@ -27,7 +34,7 @@ const IngredientsList = () => {
             <ul className="text-dark mt-2">
                 {
                     ingredients.map(ingredient => 
-                    <li>
+                    <li key={ingredient._id}>
                         <span>{ingredient.ingredient}</span>
                     </li>
                         )

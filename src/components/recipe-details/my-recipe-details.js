@@ -17,6 +17,7 @@ const MyRecipeDetails = () => {
     
     const {pathname} = useLocation();
     const paths = pathname.split('/');
+    // console.log(paths);
     let rid = paths[3];
     let uid = currentUser._id;
     if (paths.length === 7) {
@@ -28,6 +29,7 @@ const MyRecipeDetails = () => {
 
     useEffect(() => {
         async function fetchData() {
+            console.log(rid);
             const targetRecipe = await service.findRecipeById(rid)
             setRecipe(targetRecipe)
         }

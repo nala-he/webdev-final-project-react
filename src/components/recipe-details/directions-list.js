@@ -7,7 +7,14 @@ import {useLocation} from "react-router-dom";
 const DirectionsList = () => {
     const {pathname} = useLocation();
     const paths = pathname.split('/');
-    const rid = paths[2];
+    let rid = paths[2];
+    
+    if (paths.includes("my-recipes")) {
+        rid = paths[3];
+        if (paths.length === 7) {
+            rid = paths[5];
+        }
+    }
 
     const [directions, setDirections] = useState([])
 
@@ -27,7 +34,7 @@ const DirectionsList = () => {
             <ol className="text-dark mt-2">
                 {
                     directions.map(direction => 
-                    <li>
+                    <li key={direction._id}>
                         <span>{direction.direction}</span>
                     </li>
                         )

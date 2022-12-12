@@ -113,6 +113,17 @@ const SpoonacularRecipeDetail = () => {
                     {/*        <DirectionsList directions={targetRecipe.analyzedInstructions[0].steps}/>*/}
                     {/*    }*/}
                     {/*</div>*/}
+                    {
+                        targetRecipe.instructions &&
+                        <div className="row wd-border m-4">
+                            <div className="p-3">
+                                <div className="fw-bold fs-5 text-dark">
+                                    Directions
+                                </div>
+                                <span className="text-dark mt-2">{targetRecipe.instructions}</span>
+                            </div>
+                        </div>
+                    }
                 </div>
             </div>
         </div>

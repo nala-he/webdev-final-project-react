@@ -4,6 +4,8 @@ import {useSelector, useDispatch} from "react-redux";
 import {Link} from "react-router-dom";
 import { deleteRecipeThunk } from "../../services/recipes-thunk";
 import "./index.css";
+import * as service from "../../services/saved-recipes-service";
+import {findSavedRecipesByUserThunk} from "../../services/saved-recipes-thunk";
 
 const MyRecipesItem = ({recipe}) => {
     let friend = useSelector(state => state.friendProfile);
@@ -12,9 +14,19 @@ const MyRecipesItem = ({recipe}) => {
     const {pathname} = useLocation();
     const paths = pathname.split('/');
     let isMyRecipes = !paths.includes(friend._id);
+    const me = (paths[1] === 'profile') && (!paths.includes('friends'));
 
     const dispatch = useDispatch();
-    const deleteRecipeHandler = (id) => {
+
+    const deleteRecipeHandler = async (id) => {
+        // remove all saved recipes that exist in database associated to recipe to be deleted
+        const recipes = await service.findSavedRecipesByRecipe(id);
+        await Promise.all(recipes.map(recipe => service.deleteSavedRecipe(recipe._id)));
+
+        // dispatch saved recipes again to update reducer
+        dispatch(findSavedRecipesByUserThunk(currentUser._id));
+
+        // delete recipe
         dispatch(deleteRecipeThunk(id));
     }
 
@@ -27,7 +39,7 @@ const MyRecipesItem = ({recipe}) => {
                     <span className="col-2">{recipe.privacy}</span>
                     <div className="col-5 d-flex justify-content-end">
                         {
-                            isMyRecipes &&
+                            me && isMyRecipes &&
                             <>
                                 <div className="btn d-block d-xl-none"
                                      onClick={() => deleteRecipeHandler(recipe._id)}>

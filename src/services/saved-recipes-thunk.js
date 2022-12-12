@@ -30,4 +30,4 @@ export const deleteSavedRecipeByUserAndRecipeIdThunk = createAsyncThunk(
         await service.deleteSavedRecipeByUserAndRecipeId(uid, rid);
         return ids;
     }
-)
+);

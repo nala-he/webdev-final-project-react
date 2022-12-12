@@ -1,29 +1,39 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {useLocation} from "react-router";
 import {useSelector, useDispatch} from "react-redux";
 import {Link} from "react-router-dom";
 import { deleteRecipeThunk } from "../../services/recipes-thunk";
 import "./index.css";
+import {findUsersIamFollowingThunk} from "../../services/friends-thunks";
 
 const MyRecipesItem = ({recipe}) => {
     let friend = useSelector(state => state.friendProfile);
     let {currentUser} = useSelector(state => state.usersData);
+    let uid;
+    if (currentUser) {
+        uid = currentUser._id;
+    }
     const {following} = useSelector(state => state.followsData);
     const followingList = following.map(friend => friend.following._id);
-
+    console.log(followingList);
     const {pathname} = useLocation();
     const paths = pathname.split('/');
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(findUsersIamFollowingThunk(uid));
+    }, [uid, dispatch]);
 
     let isFollowing;
     let notFollowingPublic;
     if (paths.includes('friends')) {
         const friendId = paths[3];
         isFollowing = followingList.includes(friendId);
+        console.log(isFollowing);
         notFollowingPublic = !followingList.includes(friendId) && (recipe.privacy === 'PUBLIC');
     }
     let isMyRecipes = !paths.includes('friends');
 
-    const dispatch = useDispatch();
     const deleteRecipeHandler = (id) => {
         dispatch(deleteRecipeThunk(id));
     }

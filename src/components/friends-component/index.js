@@ -20,11 +20,12 @@ const FriendsComponent = () => {
     // as friends' friends page
     let uid = paths[2];
     let friend = paths[3];
-    
+
     // e.g. localhost:3000/friends as logged in user friends page
     if (paths.length === 2 && currentUser) {
         uid = currentUser._id;
     }
+
     // e.g. localhost:3000/friends/followers as logged in user friends followers page
     if (paths.length === 3 && paths[2] === "followers" && currentUser) {
         uid = currentUser._id;

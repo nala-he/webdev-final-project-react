@@ -1,10 +1,7 @@
 import React from "react";
-import IngredientItem from "./ingredient-item";
-import "./index.css";
+import IngredientName from "./spoonacular-ingredient-name";
 
-const IngredientsList = ({ingredients}) => {
-    // console.log(ingredients);
-    
+const SpoonacularIngredientsList = ({ingredients}) => {
     return (
         <div className="p-3">
             <div className="fw-bold fs-5 text-dark">
@@ -12,10 +9,10 @@ const IngredientsList = ({ingredients}) => {
             </div>
             <ul className="text-dark mt-2">
                 {
-                    ingredients.map(ingredient => <IngredientItem ingredient={ingredient}/>)
+                    ingredients.map(ingredient => <IngredientName ingredient={ingredient.original}/>)
                 }
             </ul>
         </div>
     );
 };
-export default IngredientsList;
+export default SpoonacularIngredientsList;

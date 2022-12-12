@@ -27,14 +27,16 @@ const MyRecipes = () => {
 
     useEffect(() => {
         try {
-            dispatch(findUserByIdThunk(currentUser._id));
-            dispatch(findRecipesByAuthorThunk(currentUser._id));
+            if (currentUser) {
+                dispatch(findUserByIdThunk(currentUser._id));
+                dispatch(findRecipesByAuthorThunk(currentUser._id));
+            }
             // console.log(recipes);
         }
         catch(e) {
             navigate('/login');
         }
-    }, [currentUser._id, dispatch, navigate]);
+    }, [currentUser, dispatch, navigate]);
     
     let profile = currentUser;
     

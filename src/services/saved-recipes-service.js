@@ -37,8 +37,14 @@ export const deleteSavedRecipeByUserAndRecipeId = async (uid, rid) => {
 }
 
 export const deleteSavedSpoonacularRecipeByUserAndRecipeId = async (uid, spoonacularId) => {
-    const response = 
+    const response =
         await axios.delete(`${USERS_API}/${uid}/recipes/${spoonacularId}/saved-spoonaculars`);
     return response.data;
 }
 
+
+
+export const findSavedRecipesByRecipe = async (rid) => {
+    const response = await axios.get(`${FRIDGE_API_BASE}/recipes/${rid}/saved-recipes`);
+    return response.data;
+}

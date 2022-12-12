@@ -16,14 +16,18 @@ export const createSavedSpoonacularRecipeThunk = createAsyncThunk(
         // const {uid, rid, name} = ids;
         // console.log(name);
         const savedSpoonacular = await service.createSavedSpoonacularRecipe(ids);
-    
+
         return savedSpoonacular;
     }
 );
 
 export const findSavedRecipesByUserThunk = createAsyncThunk(
     'find saved recipes by user',
-    async (uid) => await service.findSavedRecipesByUser(uid)
+    async (uid) => {
+        let validSavedRecipes = await service.findSavedRecipesByUser(uid);
+        validSavedRecipes = validSavedRecipes.filter(recipe => recipe.recipe || recipe.spoonacularRecipe);
+        return validSavedRecipes;
+    }
 );
 
 export const findSavedSpoonacularRecipesByUserThunk = createAsyncThunk(
@@ -54,4 +58,4 @@ export const deleteSavedSpoonacularRecipeByUserAndRecipeIdThunk = createAsyncThu
         await service.deleteSavedSpoonacularRecipeByUserAndRecipeId(uid, spoonacularId);
         return spoonacularId;
     }
-)
+);

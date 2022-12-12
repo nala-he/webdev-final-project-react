@@ -8,10 +8,20 @@ import "./index.css";
 const MyRecipesItem = ({recipe}) => {
     let friend = useSelector(state => state.friendProfile);
     let {currentUser} = useSelector(state => state.usersData);
+    const {following} = useSelector(state => state.followsData);
+    const followingList = following.map(friend => friend.following._id);
 
     const {pathname} = useLocation();
     const paths = pathname.split('/');
-    let isMyRecipes = !paths.includes(friend._id);
+
+    let isFollowing;
+    let notFollowingPublic;
+    if (paths.includes('friends')) {
+        const friendId = paths[3];
+        isFollowing = followingList.includes(friendId);
+        notFollowingPublic = !followingList.includes(friendId) && (recipe.privacy === 'PUBLIC');
+    }
+    let isMyRecipes = !paths.includes('friends');
 
     const dispatch = useDispatch();
     const deleteRecipeHandler = (id) => {
@@ -21,7 +31,8 @@ const MyRecipesItem = ({recipe}) => {
     return (
         <>
         {
-            recipe && (recipe.privacy === "PUBLIC" || isMyRecipes) &&
+            recipe && (isFollowing || isMyRecipes || notFollowingPublic) &&
+            // recipe && (recipe.privacy === "PUBLIC" || isMyRecipes) &&
             <div className="m-3 p-2 wd-my-recipe-content">
                 <div className="row d-flex align-items-center ps-2 pe-2">
                     <span className="col-2">{recipe.privacy}</span>

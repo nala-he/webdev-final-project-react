@@ -14,6 +14,8 @@ const IngredientsList = () => {
         if (paths.length === 7) {
             rid = paths[5];
         }
+    } else if (paths.includes("saved-recipes")) {
+        rid = paths[4];
     }
 
     const [ingredients, setIngredients] = useState([])

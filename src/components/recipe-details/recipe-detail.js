@@ -101,12 +101,12 @@ const RecipeDetail = ({recipe}) => {
 
             {/* ingredients */}
             <div className="row wd-border m-4 mt-3">
-                <IngredientsList recipe={recipe}/>
+                <IngredientsList/>
             </div>
 
             {/* directions */}
             <div className="row wd-border m-4">
-                <DirectionsList directions={recipe.directions}/>
+                <DirectionsList/>
             </div>
 
             {/* nutritional facts */}

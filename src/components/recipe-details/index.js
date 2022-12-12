@@ -13,6 +13,7 @@ const RecipeDetailsComponent = () => {
     const {pathname} = useLocation();
     const {currentUser} = useSelector(state => state.usersData);
     const paths = pathname.split('/');
+    console.log(paths);
     const userId = paths[2];
     let location = paths[3];
     let recipeId = paths[4];

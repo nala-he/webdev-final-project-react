@@ -28,7 +28,7 @@ const CreateRecipeDetails = ({recipe}) => {
     let [editFat, setFat] = useState('');
     let [editCarbs, setCarbs] = useState('');
     let [editProtein, setProtein] = useState('');
-    let [editPrivacy, setPrivacy] = useState(recipe.privacy);
+    let [editPrivacy, setPrivacy] = useState('PUBLIC');
 
     const createClickHandler = () => {
         const newRecipe = {
@@ -49,7 +49,6 @@ const CreateRecipeDetails = ({recipe}) => {
             protein: editProtein,
             privacy: editPrivacy
         }
-        console.log(newRecipe);
         dispatch(updateRecipeThunk({rid,newRecipe}));
         setIntro("newIntro");
         navigate("/home");
@@ -105,10 +104,10 @@ const CreateRecipeDetails = ({recipe}) => {
                             id = "privacy"
                             onChange={(e)=>setPrivacy(e.target.value)}
                             className = "col-8 wd-input-text">
-                                <option value="PRIVATE">
-                                    PRIVATE</option>
                                 <option value="PUBLIC">
                                     PUBLIC</option>
+                                <option value="PRIVATE">
+                                    PRIVATE</option>
                         </select>
                     </div>
                     {/* <div className="fs-6 text-wrap">

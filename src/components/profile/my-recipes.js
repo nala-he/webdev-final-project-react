@@ -29,60 +29,66 @@ const MyRecipes = () => {
         try {
             dispatch(findUserByIdThunk(currentUser._id));
             dispatch(findRecipesByAuthorThunk(currentUser._id));
-            console.log(recipes);
+            // console.log(recipes);
         }
         catch(e) {
             navigate('/login');
         }
-    }, []);
+    }, [currentUser._id, dispatch, navigate]);
     
     let profile = currentUser;
     
     return (
         <div className="mt-3">
-            {/*show the profile/my recipes nav tag if is for logged in user*/}
             {
-                paths.length === 3 &&
-                <ul className="nav nav-tabs">
-                    <li className="nav-item">
-                        <Link className={`nav-link text-dark ${active === 'profile' ? 'active' : ''}`}
-                              to={`/profile`}>
-                            <h5 className={`${active === 'profile' ? 'fw-bolder' : ''}`}>
-                                Profile
-                            </h5>
-                        </Link>
-                    </li>
+                profile &&
+                <>
+                    {/*show the profile/my recipes nav tag if is for logged in user*/}
                     {
-                        profile.type !== "REG USER"
-                        &&
-                        <li className="nav-item">
-                            <Link className={`nav-link text-dark ${active === 'my-recipes' ? 'active'
-                                                                                           : ''}`}
-                                  to={`/profile/my-recipes`}>
-                                <h5 className={`${active === 'my-recipes' ? 'fw-bolder' : ''}`}>
-                                    My Recipes
-                                </h5>
-                            </Link>
-                        </li>
+                        paths.length === 3 &&
+                        <ul className="nav nav-tabs">
+                            <li className="nav-item">
+                                <Link className={`nav-link text-dark ${active === 'profile' ? 'active' : ''}`}
+                                      to={`/profile`}>
+                                    <h5 className={`${active === 'profile' ? 'fw-bolder' : ''}`}>
+                                        Profile
+                                    </h5>
+                                </Link>
+                            </li>
+                            {
+                                profile.type !== "REG USER"
+                                &&
+                                <li className="nav-item">
+                                    <Link className={`nav-link text-dark ${active === 'my-recipes' ? 'active'
+                                                                                                   : ''}`}
+                                          to={`/profile/my-recipes`}>
+                                        <h5 className={`${active === 'my-recipes' ? 'fw-bolder' : ''}`}>
+                                            My Recipes
+                                        </h5>
+                                    </Link>
+                                </li>
+                            }
+                        </ul>
                     }
-                </ul>
+                    <div>
+                        {/* Search bar */}
+                        <div className="position-relative m-3">
+                            <input placeholder="Search Recipes"
+                                   className="form-control rounded-pill ps-5 text-dark"/>
+                            <i className="bi bi-search position-absolute wd-nudge-up text-dark"></i>
+                        </div>
+                        <div className="ms-4 text-dark fw-bold">
+                            <span>Total Created Recipes: {recipes.length}</span>
+                        </div>
+                        {
+
+                            recipes.map(recipe => <MyRecipesItem key={recipe._id} recipe={recipe}/>)
+
+                        }
+                    </div>
+                </>
+            
             }
-            <div>
-                {/* Search bar */}
-                <div className="position-relative m-3">
-                    <input placeholder="Search Recipes"
-                           className="form-control rounded-pill ps-5 text-dark"/>
-                    <i className="bi bi-search position-absolute wd-nudge-up text-dark"></i>
-                </div>
-                <div className="ms-4 text-dark fw-bold">
-                    <span>Total Created Recipes: {recipes.length}</span>
-                </div>
-                {
-    
-                    recipes.map(recipe => <MyRecipesItem key={recipe._id} recipe={recipe}/>)
-    
-                }
-            </div>
         </div>
     );
 };

@@ -7,6 +7,7 @@ import {
     createFridgeIngredientThunk,
     findFridgeIngredientsByUserThunk
 } from "../../services/fridge-ingredients-thunk";
+import {findRecipesByIngredientsThunk} from "../../services/spoonacular-thunks";
 import {useNavigate} from "react-router";
 
 const RecipeSidebar = () => {
@@ -41,6 +42,7 @@ const RecipeSidebar = () => {
             return;
         }
         dispatch(createFridgeIngredientThunk({uid, ingredient}));
+        setIngredient({...ingredient, title: ''});
     };
 
     const searchByIngredientsClickHandler = async () => {
@@ -49,14 +51,19 @@ const RecipeSidebar = () => {
             navigate('/login');
             return;
         }
-        const checkedIngredients = await service.findCheckedFridgeIngredientsByUser(uid);
-        alert(`Checked Ingredients: ${checkedIngredients.map(ingredient => ingredient.title)}`)
+        let checkedIngredients = await service.findCheckedFridgeIngredientsByUser(uid);
+        checkedIngredients = checkedIngredients.map(ingredient => ingredient.title.toLowerCase());
+        const spoonacularIngredientsFormat = checkedIngredients.join(',+');
+        dispatch(findRecipesByIngredientsThunk(spoonacularIngredientsFormat))
+            .then(navigate('/search/recipesByIngredients/results'));
     }
 
     useEffect(() => {
         if (currentUser) {
             setUid(currentUser._id);
-            dispatch(findFridgeIngredientsByUserThunk(uid));
+            if (uid !== '') {
+                dispatch(findFridgeIngredientsByUserThunk(uid));
+            }
         }
     }, [currentUser, dispatch, uid]);
 

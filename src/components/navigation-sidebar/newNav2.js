@@ -89,7 +89,7 @@ const NewNavigationSidebar2 = () => {
                         ${"/profile".includes(active) ? 'wd-button-active' : ''}`}>
                             <div className="row row-cols-12 pt-1 pb-1">
                                 <div className="col-2 d-flex align-items-center">
-                                    <i className="bi bi-house-door-fill"> </i>
+                                    <i className="bi bi-person"> </i>
                                 </div>
                                 <div className="col-10 d-flex align-items-start">
                                     <div className="d-none d-xl-block d-xxl-none">

@@ -10,13 +10,20 @@ import * as service from "../../services/recipes-service";
 
 
 const MyRecipeDetails = () => {
-    const {pathname} = useLocation();
-    const paths = pathname.split('/');
-    const rid = paths[3];
+   
     const {currentUser} = useSelector(state => state.usersData);
     const dispatch = useDispatch();
     const navigate = useNavigate();
-
+    
+    const {pathname} = useLocation();
+    const paths = pathname.split('/');
+    let rid = paths[3];
+    let uid = currentUser._id;
+    if (paths.length === 7) {
+        rid = paths[5];
+        let uid = paths[3];
+    }
+    // console.log(rid);
     const [recipe, setRecipe] = useState({})
 
     useEffect(() => {
@@ -39,10 +46,18 @@ const MyRecipeDetails = () => {
         <div className="m-3 mb-0 wd-border wd-bg-beige">
             {/* close button */}
             <div className="d-flex justify-content-end m-3 me-4">
-                <Link to={`/profile/my-recipes`}>
-                    <i className="bi bi-x-square text-black fs-3"></i>
-                </Link>
-
+                {
+                    paths.length !== 7 &&
+                    <Link to={`/profile/my-recipes`}>
+                        <i className="bi bi-x-square text-black fs-3"></i>
+                    </Link>
+                }
+                {
+                    paths.length === 7 &&
+                    <Link to={`/friends/profile/${uid}/my-recipes`}>
+                        <i className="bi bi-x-square text-black fs-3"></i>
+                    </Link>
+                }
             </div>
 
             {/* recipe detail */}
@@ -53,9 +68,9 @@ const MyRecipeDetails = () => {
 
             <div className="d-flex justify-content-center">
                 {/* save button */}
-                <Link to={`/profile/my-recipes`}
-                      className="text-decoration-none d-flex align-items-center"
-                      onClick={saveRecipeClickHandler}>
+                <Link to={`/users/${currentUser._id}/saved-recipes`}
+                    className="text-decoration-none d-flex align-items-center"
+                    onClick={saveRecipeClickHandler}>
                     <i className="bi bi-save2 text-black fs-3"></i>
                     <span className="fw-bold fs-5 ms-3 text-dark">
                         Save Recipe

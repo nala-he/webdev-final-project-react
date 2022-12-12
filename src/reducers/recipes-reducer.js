@@ -1,5 +1,4 @@
 import {createSlice} from "@reduxjs/toolkit";
-import recipes from "../data/recipes.json";
 import { findAllRecipesThunk, findRecipesByAuthorThunk, createRecipeThunk,deleteRecipeThunk, updateRecipeThunk } from "../services/recipes-thunk";
 
 const initialState = {
@@ -34,7 +33,7 @@ const recipesSlice = createSlice({
             (state, {payload}) => {
                 console.log(state.recipes.length);
                 const ndx = state.recipes.length - 1;
-                const index = state.recipes.findIndex((recipe) => recipe._id === payload._id);
+                // const index = state.recipes.findIndex((recipe) => recipe._id === payload._id);
                 console.log(state.recipes[ndx]);
                 state.recipes[ndx] = {
                     ...state.recipes[ndx],

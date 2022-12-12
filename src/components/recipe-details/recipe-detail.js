@@ -1,6 +1,7 @@
 import React, {useEffect,useState} from "react";
 import "./index.css";
 import {Link, useNavigate} from "react-router-dom";
+import {useLocation} from "react-router";
 import {createSavedRecipeThunk} from "../../services/saved-recipes-thunk";
 import {useDispatch, useSelector} from "react-redux";
 import IngredientsList from "./ingredients-list";
@@ -10,6 +11,14 @@ const RecipeDetail = ({recipe}) => {
     const {currentUser} = useSelector(state => state.usersData);
     const dispatch = useDispatch();
     const navigate = useNavigate();
+
+    const {pathname} = useLocation();
+    const paths = pathname.split('/');
+    let savedOrMy;
+    if (paths.includes("saved-recipes") || paths.includes("my-recipes")) {
+        savedOrMy = true;
+    }
+
     const saveRecipeClickHandler = () => {
         if (currentUser) {
             const uid = currentUser._id;
@@ -125,6 +134,7 @@ const RecipeDetail = ({recipe}) => {
             </div>
 
             {/* Save Recipe & cancel button */}
+            {!savedOrMy &&
             <div className="row justify-content-evenly mb-2">
                 <button
                 onClick={saveRecipeClickHandler}
@@ -140,6 +150,7 @@ const RecipeDetail = ({recipe}) => {
                     Close
                 </Link>
             </div>
+            }
         </div>
     );
 };

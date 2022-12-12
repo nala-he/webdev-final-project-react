@@ -2,11 +2,15 @@ import {createSlice} from "@reduxjs/toolkit";
 import {
     createSavedRecipeThunk, deleteSavedRecipeByUserAndRecipeIdThunk,
     deleteSavedRecipeThunk,
-    findSavedRecipesByUserThunk
+    findSavedRecipesByUserThunk,
+    findSavedSpoonacularRecipesByUserThunk,
+    createSavedSpoonacularRecipeThunk,
+    deleteSavedSpoonacularRecipeByUserAndRecipeIdThunk
 } from "../services/saved-recipes-thunk";
 
 const initialState = {
-    savedRecipes: []
+    savedRecipes: [],
+    savedSpoonaculars: [],
 }
 
 const savedRecipesSlice = createSlice({
@@ -17,13 +21,22 @@ const savedRecipesSlice = createSlice({
              (state, {payload}) => {
                  state.savedRecipes = payload;
              },
+         [findSavedSpoonacularRecipesByUserThunk.fulfilled]:
+             (state, {payload}) => {
+                 state.savedSpoonaculars = payload;
+             },
          [createSavedRecipeThunk.fulfilled]:
              (state, {payload}) => {
                  state.savedRecipes.unshift({...payload});
              },
+         [createSavedSpoonacularRecipeThunk.fulfilled]:
+             (state, {payload}) => {
+                 state.savedSpoonaculars.unshift({...payload});
+             },
          [deleteSavedRecipeThunk.fulfilled]:
              (state, {payload}) => {
                  state.savedRecipes = state.savedRecipes.filter(recipe => recipe._id !== payload);
+                 state.savedSpoonaculars = state.savedSpoonaculars.filter(recipe => recipe._id !== payload);
              },
          [deleteSavedRecipeByUserAndRecipeIdThunk.fulfilled]:
              (state, {payload}) => {
@@ -31,6 +44,13 @@ const savedRecipesSlice = createSlice({
                  const index = state.savedRecipes
                      .findIndex(recipe => recipe.savedBy === uid && recipe.recipe === rid);
                  state.savedRecipes.splice(index, 1);
+             },
+         [deleteSavedSpoonacularRecipeByUserAndRecipeIdThunk.fulfilled]:
+             (state, {payload}) => {
+                const {uid, rid} = payload;
+                 const index = state.savedSpoonaculars
+                     .findIndex(recipe => recipe === rid);
+                 state.savedSpoonaculars.splice(index, 1);
              }
      }
  });

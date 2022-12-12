@@ -5,12 +5,12 @@ import {useNavigate} from "react-router-dom";
 import "./index.css";
 import {findUserByIdThunk} from "../../services/users-thunks";
 import {findUsersIamFollowingThunk, findUsersIamFollowedByThunk} from "../../services/friends-thunks";
-import {findSavedRecipesByUserThunk} from "../../services/saved-recipes-thunk";
-
+import {findSavedRecipesByUserThunk, findSavedSpoonacularRecipesByUserThunk}
+    from "../../services/saved-recipes-thunk";
 
 const ProfileDetails = () => {
     const {currentUser, publicProfile}= useSelector(state => state.usersData);
-    const {savedRecipes} = useSelector((state) => state.savedRecipes);
+    const {savedRecipes, savedSpoonaculars} = useSelector((state) => state.savedRecipes);
     
     const [profile, setProfile] = useState(currentUser);
     
@@ -26,6 +26,7 @@ const ProfileDetails = () => {
             dispatch(findUsersIamFollowingThunk(currentUser._id));
             dispatch(findUsersIamFollowedByThunk(currentUser._id));
             dispatch(findSavedRecipesByUserThunk(currentUser._id));
+            dispatch(findSavedSpoonacularRecipesByUserThunk(currentUser._id));
         }
         catch(e) {
             navigate('/login');
@@ -133,8 +134,9 @@ const ProfileDetails = () => {
                                             className="wd-edit-button border rounded-3
                                 ps-3 pe-3 pt-1 pb-1">
                                         {
-                                            savedRecipes &&
-                                            <div className="wd-text-sm">{savedRecipes.length}</div>
+                                            savedRecipes && savedSpoonaculars &&
+                                            <div className="wd-text-sm">{savedRecipes.length
+                                                + savedSpoonaculars.length} </div>
                                         }
                                         <div className="wd-text-sm">Saved Recipes</div>
                                     </button>

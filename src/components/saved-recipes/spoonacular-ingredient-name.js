@@ -1,6 +1,6 @@
 import React from "react";
 
-const IngredientItem = ({ingredient}) => {
+const SpoonacularIngredientName = ({ingredient}) => {
     // console.log(ingredient);
     return (
         <>
@@ -11,4 +11,4 @@ const IngredientItem = ({ingredient}) => {
         
     );
 };
-export default IngredientItem;
+export default SpoonacularIngredientName;

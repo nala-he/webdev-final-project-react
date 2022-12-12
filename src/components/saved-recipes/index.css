@@ -54,4 +54,8 @@
 
 .wd-wrap {
     overflow-wrap: break-word;
+  }
+
+.wd-logo {
+    width: 10px;
 }

@@ -2,8 +2,29 @@ import React from "react";
 import "./index.css";
 import IngredientsList from "./ingredients-list";
 import DirectionsList from "./directions-list";
+import {useLocation, useNavigate} from "react-router";
+import {useDispatch, useSelector} from "react-redux";
+import {createSavedSpoonacularRecipeThunk} from "../../services/saved-recipes-thunk";
 
 const RecipeInfo = ({recipe}) => {
+    const {pathname} = useLocation();
+    const {currentUser} = useSelector(state => state.usersData);
+    const paths = pathname.split('/');
+    const rid = paths[5];
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+    
+    const saveRecipeClickHandler = () => {
+        if (currentUser && recipe) {
+            const uid = currentUser._id;
+            const name = {spoonacularName: recipe.title};
+            dispatch(createSavedSpoonacularRecipeThunk({uid, rid, name}))
+                .then(navigate(`/users/${uid}/saved-recipes`));
+        } else {
+            navigate('/login');
+        }
+    };
+    
     return (
         <div className="m-3 wd-border h-100 bg-white">
             {/* dish title and source */}
@@ -26,7 +47,7 @@ const RecipeInfo = ({recipe}) => {
                 {/* recipe pic */}
                 <div className="m-2">
                     <img src={`${recipe.image}`}
-                         className="wd-recipe-pic"/>
+                         className="wd-recipe-pic" alt="recipe"/>
                 </div>
                 {/* recipe summary/times */}
                 <div className="m-2">
@@ -74,15 +95,28 @@ const RecipeInfo = ({recipe}) => {
             </div>
 
             {/* ingredients */}
-            <div className="row wd-border m-4 mt-3">
-                <IngredientsList ingredients={recipe.extendedIngredients}/>
-            </div>
+            {
+                recipe.extendedIngredients.length !== 0 &&
+                <div className="row wd-border m-4 mt-3">
+                    <IngredientsList ingredients={recipe.extendedIngredients}/>
+                </div>
+            }
 
             {/* directions */}
-            <div className="row wd-border m-4">
-                <DirectionsList directions={recipe.analyzedInstructions[0]}/>
+            {
+                recipe.analyzedInstructions.length !== 0 &&
+                <div className="row wd-border m-4">
+                    <DirectionsList directions={recipe.analyzedInstructions[0]}/>
+                </div>
+            }
+            {/* save button */}
+            <div className="btn text-dark d-flex justify-content-center"
+                 onClick={saveRecipeClickHandler}>
+                <div>
+                    <i className="bi bi-bookmark text-dark p-2"></i>
+                    <span className="fw-bold text-dark">Save Recipe</span>
+                </div>
             </div>
-
         </div>
     );
 };

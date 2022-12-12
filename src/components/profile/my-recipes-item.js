@@ -5,6 +5,8 @@ import {Link} from "react-router-dom";
 import { deleteRecipeThunk } from "../../services/recipes-thunk";
 import "./index.css";
 import {findUsersIamFollowingThunk} from "../../services/friends-thunks";
+import * as service from "../../services/saved-recipes-service";
+import {findSavedRecipesByUserThunk} from "../../services/saved-recipes-thunk";
 
 const MyRecipesItem = ({recipe}) => {
     let friend = useSelector(state => state.friendProfile);
@@ -18,6 +20,7 @@ const MyRecipesItem = ({recipe}) => {
     console.log(followingList);
     const {pathname} = useLocation();
     const paths = pathname.split('/');
+
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -37,7 +40,18 @@ const MyRecipesItem = ({recipe}) => {
     }
     let isMyRecipes = !paths.includes('friends');
 
-    const deleteRecipeHandler = (id) => {
+    //let isMyRecipes = !paths.includes(friend._id);
+    const me = (paths[1] === 'profile') && (!paths.includes('friends'));
+
+    const deleteRecipeHandler = async (id) => {
+        // remove all saved recipes that exist in database associated to recipe to be deleted
+        const recipes = await service.findSavedRecipesByRecipe(id);
+        await Promise.all(recipes.map(recipe => service.deleteSavedRecipe(recipe._id)));
+
+        // dispatch saved recipes again to update reducer
+        dispatch(findSavedRecipesByUserThunk(currentUser._id));
+
+        // delete recipe
         dispatch(deleteRecipeThunk(id));
     }
 
@@ -50,16 +64,22 @@ const MyRecipesItem = ({recipe}) => {
                 <div className="row d-flex align-items-center ps-2 pe-2">
                     <span className="col-2">{recipe.privacy}</span>
                     <div className="col-5 d-flex justify-content-end">
-                        <div className="btn d-block d-xl-none"
-                             onClick={() => deleteRecipeHandler(recipe._id)}>
-                            <i className="bi bi-trash p-2 text-dark wd-text-xs"></i>
-                            <span className="wd-text-xs">Delete Recipe</span>
-                        </div>
-                        <div className="btn d-none d-xl-block"
-                             onClick={() => deleteRecipeHandler(recipe._id)}>
-                            <i className="bi bi-trash text-dark p-2"></i>
-                            <span className="text-dark">Delete Recipe</span>
-                        </div>
+                        {
+                            me && isMyRecipes &&
+                            <>
+                                <div className="btn d-block d-xl-none"
+                                     onClick={() => deleteRecipeHandler(recipe._id)}>
+                                    <i className="bi bi-trash p-2 text-dark wd-text-xs"></i>
+                                    <span className="wd-text-xs">Delete Recipe</span>
+                                </div>
+                                <div className="btn d-none d-xl-block"
+                                     onClick={() => deleteRecipeHandler(recipe._id)}>
+                                    <i className="bi bi-trash text-dark p-2"></i>
+                                    <span className="text-dark">Delete Recipe</span>
+                                </div>
+                            </>
+                        }
+
                     </div>
                     <div className="col-5 d-flex justify-content-end">
                         <div className="btn d-block d-xl-none">

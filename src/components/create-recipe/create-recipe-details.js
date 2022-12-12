@@ -5,6 +5,8 @@ import EditIngredients from "./edit-ingredients";
 import EditDirections from "./edit-directions";
 import {useDispatch, useSelector} from "react-redux";
 import { updateRecipeThunk, deleteRecipeThunk } from "../../services/recipes-thunk";
+import * as service from "../../services/saved-recipes-service";
+import {findSavedRecipesByUserThunk} from "../../services/saved-recipes-thunk";
 
 const CreateRecipeDetails = ({recipe}) => {
     const {currentUser} = useSelector(state => state.usersData);
@@ -54,7 +56,15 @@ const CreateRecipeDetails = ({recipe}) => {
         navigate("/home");
     }
 
-    const deleteClickHandler = () => {
+    const deleteClickHandler = async () => {
+        // remove all saved recipes that exist in database associated to recipe to be deleted
+        const recipes = await service.findSavedRecipesByRecipe(rid);
+        await Promise.all(recipes.map(recipe => service.deleteSavedRecipe(recipe._id)));
+
+        // dispatch saved recipes again to update reducer
+        dispatch(findSavedRecipesByUserThunk(currentUser._id));
+
+        // delete recipe
         dispatch(deleteRecipeThunk(rid));
     }
 

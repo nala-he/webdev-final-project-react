@@ -20,7 +20,7 @@ const RecipeResultDetails = () => {
         } else {
             navigate('/login');
         }
-    }, []);
+    }, [currentUser]);
 
     return (
         <div className="m-3 mb-0 wd-border wd-bg-beige">
@@ -37,18 +37,6 @@ const RecipeResultDetails = () => {
                     targetRecipe && <RecipeInfo recipe={targetRecipe}/>
                 }
             </div>
-
-
-            {/*<div className="d-flex justify-content-center">*/}
-            {/*    /!* save button *!/*/}
-            {/*    <Link to="/searchByIngredients/results"*/}
-            {/*          className="text-decoration-none d-flex align-items-center">*/}
-            {/*        <i className="bi bi-save2 text-black fs-3"></i>*/}
-            {/*        <span className="fw-bold fs-5 ms-3 text-dark">*/}
-            {/*            Save Recipe*/}
-            {/*        </span>*/}
-            {/*    </Link>*/}
-            {/*</div>*/}
         </div>
     );
 };

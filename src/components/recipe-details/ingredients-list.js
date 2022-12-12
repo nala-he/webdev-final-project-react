@@ -3,7 +3,6 @@ import {findIngredientsForRecipe} from "../../services/recipe-ingredients-servic
 import "./index.css";
 import {useLocation} from "react-router-dom";
 
-
 const IngredientsList = () => {
     const {pathname} = useLocation();
     const paths = pathname.split('/');
@@ -29,6 +28,7 @@ const IngredientsList = () => {
     },[rid]);
 
     return(
+
         <div className="p-3">
             <div className="fw-bold fs-5 text-dark">
                 Ingredients

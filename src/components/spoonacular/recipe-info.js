@@ -74,9 +74,12 @@ const RecipeInfo = ({recipe}) => {
             </div>
 
             {/* ingredients */}
-            <div className="row wd-border m-4 mt-3">
-                <IngredientsList ingredients={recipe.extendedIngredients}/>
-            </div>
+            {
+                recipe.extendedIngredients.length !== 0 &&
+                <div className="row wd-border m-4 mt-3">
+                    <IngredientsList ingredients={recipe.extendedIngredients}/>
+                </div>
+            }
 
             {/* directions */}
             <div className="row wd-border m-4">

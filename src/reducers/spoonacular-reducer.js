@@ -22,6 +22,7 @@ const spoonacularReducer = createSlice({
             (state, action) => {
                 state.targetRecipe = action.payload;
             }
+            
     }
 })
 export default spoonacularReducer.reducer;

@@ -13,8 +13,10 @@ export const createSavedRecipeThunk = createAsyncThunk(
 export const createSavedSpoonacularRecipeThunk = createAsyncThunk(
     'create saved spoonacular recipe',
     async (ids) => {
-        const {uid, rid} = ids;
-        const savedSpoonacular = await service.createSavedSpoonacularRecipe(uid, rid);
+        // const {uid, rid, name} = ids;
+        // console.log(name);
+        const savedSpoonacular = await service.createSavedSpoonacularRecipe(ids);
+    
         return savedSpoonacular;
     }
 );

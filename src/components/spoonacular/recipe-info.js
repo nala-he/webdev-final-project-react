@@ -15,9 +15,10 @@ const RecipeInfo = ({recipe}) => {
     const dispatch = useDispatch();
     
     const saveRecipeClickHandler = () => {
-        if (currentUser) {
+        if (currentUser && recipe) {
             const uid = currentUser._id;
-            dispatch(createSavedSpoonacularRecipeThunk({uid, rid}))
+            const name = {spoonacularName: recipe.title};
+            dispatch(createSavedSpoonacularRecipeThunk({uid, rid, name}))
                 .then(navigate(`/users/${uid}/saved-recipes`));
         } else {
             navigate('/login');

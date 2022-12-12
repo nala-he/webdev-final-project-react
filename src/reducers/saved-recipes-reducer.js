@@ -31,7 +31,7 @@ const savedRecipesSlice = createSlice({
              },
          [createSavedSpoonacularRecipeThunk.fulfilled]:
              (state, {payload}) => {
-                 state.savedSpoonaculars.unshift(payload);
+                 state.savedSpoonaculars.unshift({...payload});
              },
          [deleteSavedRecipeThunk.fulfilled]:
              (state, {payload}) => {

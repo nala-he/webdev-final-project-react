@@ -12,15 +12,15 @@ export const SpoonacularRecipeItem = ({recipe}) => {
     // console.log(recipe);
     
     const {currentUser} = useSelector(state => state.usersData);
-    const {targetRecipe} = useSelector(state => state.spoonacular);
+    // const {targetRecipe} = useSelector(state => state.spoonacular);
     const uid = currentUser._id;
     
     const navigate = useNavigate();
     const dispatch = useDispatch();
     
-    useEffect(() => {
-        dispatch(findRecipeInfoByIdThunk(recipe.spoonacularRecipe));
-    },[])
+    // useEffect(() => {
+    //     dispatch(findRecipeInfoByIdThunk(recipe.spoonacularRecipe));
+    // },[recipe])
     
     const deleteButtonClickHandler = () => {
         dispatch(deleteSavedRecipeThunk(recipe._id));
@@ -33,20 +33,18 @@ export const SpoonacularRecipeItem = ({recipe}) => {
                      src="/images/spoonacular.png" alt="avatar"/>
             </div>
             {
-                targetRecipe && 
+                recipe && 
                 <>
                     <div className="col-9 col-sm-9 col-md-10 col-lg-10">
                         <div className="p-2 row wd-saved-item-content">
                             <div className="col-9">
                                 <div>
-                                    <span className="text-dark fw-bolder">{targetRecipe.title} </span>
-                                    <span className="col text-muted"> @{targetRecipe.sourceName} </span>
+                                    <span className="text-dark fw-bolder">{recipe.spoonacularName} </span>
                                 </div>
-                                <span className="text-dark d-none d-md-block text-wrap text-break">{targetRecipe.intro}</span>
                             </div>
                             <div className="col-3 d-flex justify-content-center">
                                 <img className="wd-saved-recipe-image m-2 d-none d-md-block"
-                                     alt="recipePic" src={targetRecipe.image}/>
+                                     alt="recipePic" src="/images/emptyRecipe.jpg"/>
                             </div>
                         </div>
                         <div className="row">
@@ -71,19 +69,19 @@ export const SpoonacularRecipeItem = ({recipe}) => {
                             </div>
                             <div className="btn col-6 text-dark">
                                 {/* xs , sm */}
-                                <Link to={`/users/${uid}/saved-spoonaculars/${targetRecipe.id}/details`}
+                                <Link to={`/users/${uid}/saved-spoonaculars/${recipe.spoonacularRecipe}/details`}
                                       className="wd-btn-align d-md-none text-decoration-none text-dark">
                                     <i className="fa-solid fa-utensils text-dark p-2"></i>
                                 </Link>
                                 {/* md-l */}
-                                <Link to={`/users/${uid}/saved-spoonaculars/${targetRecipe.id}/details`}
+                                <Link to={`/users/${uid}/saved-spoonaculars/${recipe.spoonacularRecipe}/details`}
                                       className="wd-btn-align d-none d-md-block d-xl-none
                                      text-decoration-none text-dark">
                                     <i className="fa-solid fa-utensils text-dark p-2"></i>
                                     <span className="wd-text-md">Open Recipe</span>
                                 </Link>
                                 {/* xl */}
-                                <Link to={`/users/${uid}/saved-spoonaculars/${targetRecipe.id}/details`}
+                                <Link to={`/users/${uid}/saved-spoonaculars/${recipe.spoonacularRecipe}/details`}
                                       className="wd-btn-align d-none d-xl-block text-decoration-none text-dark">
                                     <i className="fa-solid fa-utensils text-dark p-2"></i>
                                     <span>Open Recipe</span>

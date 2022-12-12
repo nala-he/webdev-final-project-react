@@ -20,7 +20,8 @@ const SavedRecipesList = () => {
             navigate('/login');
         }
     }, [uid, dispatch])
-
+    // console.log(savedSpoonaculars);
+    
     return(
         <div>
             <div className="mt-3 ms-4 text-dark fw-bold">
@@ -40,7 +41,8 @@ const SavedRecipesList = () => {
                 savedSpoonaculars
                 && savedSpoonaculars.map(spoon =>
                  <SpoonacularRecipeItem key={spoon._id} 
-                                        recipe={spoon}/> ).reverse()
+                                        recipe={spoon}/> 
+                    ).reverse()
             }
             {/*{*/}
             {/*    !savedRecipes && !savedSpoonaculars &&*/}

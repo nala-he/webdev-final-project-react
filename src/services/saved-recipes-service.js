@@ -9,8 +9,9 @@ export const createSavedRecipe = async (uid, rid) => {
     return response.data;
 }
 
-export const createSavedSpoonacularRecipe = async (uid, rid) => {
-    const response = await axios.post(`${USERS_API}/${uid}/saved-spoonaculars/${rid}`);
+export const createSavedSpoonacularRecipe = async (ids) => {
+    const {uid, rid, name} = ids;
+    const response = await axios.post(`${USERS_API}/${uid}/saved-spoonaculars/${rid}`, name);
     console.log(response.data);
     return response.data;
 }

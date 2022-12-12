@@ -15,8 +15,8 @@ const SavedRecipesList = () => {
     // console.log(savedRecipes);
     useEffect(() => {
         if (currentUser) {
-            dispatch(findSavedRecipesByUserThunk(uid))
-                .then(dispatch(findSavedSpoonacularRecipesByUserThunk(uid)))
+            dispatch(findSavedRecipesByUserThunk(uid));
+            dispatch(findSavedSpoonacularRecipesByUserThunk(uid));
         } else {
             navigate('/login');
         }
@@ -30,15 +30,20 @@ const SavedRecipesList = () => {
             </div>
             
             {
-                savedRecipes && <span>Saved Recipes</span> && savedRecipes.map(each => 
+                savedRecipes 
+                && <span>Saved Recipes</span> 
+                && savedRecipes.map(each => 
                             <SavedRecipeItem key={each._id}
                                              recipe={each.recipe}
                                              recipeId={each._id}/>
                     ).reverse()
             }
             {
-                savedSpoonaculars && <span>Saved Spoonacular Recipes</span> && savedSpoonaculars.map(spoon =>
-                 <SpoonacularRecipeItem key={spoon} recipe={spoon}/> ).reverse()
+                savedSpoonaculars 
+                && <span>Saved Spoonacular Recipes</span> 
+                && savedSpoonaculars.map(spoon =>
+                 <SpoonacularRecipeItem key={spoon} 
+                                        recipe={spoon}/> ).reverse()
             }
             {
                 !savedRecipes && !savedSpoonaculars &&

@@ -23,7 +23,7 @@ const savedRecipesSlice = createSlice({
              },
          [findSavedSpoonacularRecipesByUserThunk.fulfilled]:
              (state, {payload}) => {
-                 state.savedSpoonacular = payload;
+                 state.savedSpoonaculars = payload;
              },
          [createSavedRecipeThunk.fulfilled]:
              (state, {payload}) => {
@@ -36,6 +36,7 @@ const savedRecipesSlice = createSlice({
          [deleteSavedRecipeThunk.fulfilled]:
              (state, {payload}) => {
                  state.savedRecipes = state.savedRecipes.filter(recipe => recipe._id !== payload);
+                 state.savedSpoonaculars = state.savedSpoonaculars.filter(recipe => recipe._id !== payload);
              },
          [deleteSavedRecipeByUserAndRecipeIdThunk.fulfilled]:
              (state, {payload}) => {
@@ -47,7 +48,7 @@ const savedRecipesSlice = createSlice({
          [deleteSavedSpoonacularRecipeByUserAndRecipeIdThunk.fulfilled]:
              (state, {payload}) => {
                 const {uid, rid} = payload;
-                 const index = state.savedSpoonacular
+                 const index = state.savedSpoonaculars
                      .findIndex(recipe => recipe === rid);
                  state.savedSpoonaculars.splice(index, 1);
              }

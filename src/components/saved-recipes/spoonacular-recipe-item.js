@@ -6,9 +6,11 @@ import {useLocation, useNavigate} from "react-router";
 import {useDispatch, useSelector} from "react-redux";
 import {findRecipeInfoByIdThunk} from "../../services/spoonacular-thunks";
 import {Link} from "react-router-dom";
-import {deleteSavedSpoonacularRecipeByUserAndRecipeIdThunk} from "../../services/saved-recipes-thunk";
+import {deleteSavedRecipeThunk} from "../../services/saved-recipes-thunk";
 
 export const SpoonacularRecipeItem = ({recipe}) => {
+    // console.log(recipe);
+    
     const {currentUser} = useSelector(state => state.usersData);
     const {targetRecipe} = useSelector(state => state.spoonacular);
     const uid = currentUser._id;
@@ -19,9 +21,9 @@ export const SpoonacularRecipeItem = ({recipe}) => {
     useEffect(() => {
         dispatch(findRecipeInfoByIdThunk(recipe.spoonacularRecipe));
     },[])
-
+    
     const deleteButtonClickHandler = () => {
-        dispatch(deleteSavedSpoonacularRecipeByUserAndRecipeIdThunk(uid, recipe.spoonacularRecipe));
+        dispatch(deleteSavedRecipeThunk(recipe._id));
     };
     
     return(

@@ -12,7 +12,6 @@ const SavedRecipesList = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const uid = currentUser._id;
-    // console.log(savedRecipes);
     useEffect(() => {
         if (currentUser) {
             dispatch(findSavedRecipesByUserThunk(uid));
@@ -20,7 +19,7 @@ const SavedRecipesList = () => {
         } else {
             navigate('/login');
         }
-    }, [uid])
+    }, [uid, dispatch])
 
     return(
         <div>
@@ -30,8 +29,7 @@ const SavedRecipesList = () => {
             </div>
             
             {
-                savedRecipes 
-                && <span>Saved Recipes</span> 
+                savedRecipes
                 && savedRecipes.map(each => 
                             <SavedRecipeItem key={each._id}
                                              recipe={each.recipe}
@@ -39,18 +37,17 @@ const SavedRecipesList = () => {
                     ).reverse()
             }
             {
-                savedSpoonaculars 
-                && <span>Saved Spoonacular Recipes</span> 
+                savedSpoonaculars
                 && savedSpoonaculars.map(spoon =>
-                 <SpoonacularRecipeItem key={spoon} 
+                 <SpoonacularRecipeItem key={spoon._id} 
                                         recipe={spoon}/> ).reverse()
             }
-            {
-                !savedRecipes && !savedSpoonaculars &&
-                <div className="d-flex justify-content-center mt-5">
-                    <h4>Sorry, no saved recipes</h4>
-                </div>
-            }
+            {/*{*/}
+            {/*    !savedRecipes && !savedSpoonaculars &&*/}
+            {/*    <div className="d-flex justify-content-center mt-5">*/}
+            {/*        <h4>Sorry, no saved recipes</h4>*/}
+            {/*    </div>*/}
+            {/*}*/}
         </div>
     );
 };

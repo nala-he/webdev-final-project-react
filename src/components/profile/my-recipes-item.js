@@ -21,8 +21,11 @@ const MyRecipesItem = ({recipe}) => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(findUsersIamFollowingThunk(uid));
-    }, [uid, dispatch]);
+        if (currentUser) {
+            uid = currentUser._id;
+            dispatch(findUsersIamFollowingThunk(uid));
+        }
+    }, [currentUser, dispatch]);
 
     let isFollowing;
     let notFollowingPublic;

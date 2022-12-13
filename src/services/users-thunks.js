@@ -8,9 +8,7 @@ export const findUsersThunk = createAsyncThunk(
 
 export const findUserByIdThunk = createAsyncThunk(
     'users/findUserById', async (uid) => {
-        // console.log(uid);
         const user = await usersService.findUserById(uid);
-        // console.log(user);
         return user;
     }
 )

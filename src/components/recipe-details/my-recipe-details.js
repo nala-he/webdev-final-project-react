@@ -18,11 +18,15 @@ const MyRecipeDetails = () => {
     const {pathname} = useLocation();
     const paths = pathname.split('/');
     let rid = paths[3];
-    let uid = currentUser._id;
+    let uid;
+    if (currentUser) {
+        let uid = currentUser._id;
+    }
     if (paths.length === 7) {
         rid = paths[5];
         let uid = paths[3];
     }
+ 
     // console.log(rid);
     const [recipe, setRecipe] = useState({})
 
@@ -62,20 +66,22 @@ const MyRecipeDetails = () => {
 
             {/* recipe detail */}
             <div>
-                {/* hardcode recipe - update later*/}
                 <RecipeDetail recipe={recipe}/>
             </div>
 
             <div className="d-flex justify-content-center">
                 {/* save button */}
-                <Link to={`/users/${currentUser._id}/saved-recipes`}
-                    className="text-decoration-none d-flex align-items-center"
-                    onClick={saveRecipeClickHandler}>
-                    <i className="bi bi-save2 text-black fs-3"></i>
-                    <span className="fw-bold fs-5 ms-3 text-dark">
+                {
+                    currentUser &&
+                    <Link to={`/users/${currentUser._id}/saved-recipes`}
+                          className="text-decoration-none d-flex align-items-center"
+                          onClick={saveRecipeClickHandler}>
+                        <i className="bi bi-save2 text-black fs-3"></i>
+                        <span className="fw-bold fs-5 ms-3 text-dark">
                         Save Recipe
                     </span>
-                </Link>
+                    </Link>
+                }
             </div>
         </div>
     );

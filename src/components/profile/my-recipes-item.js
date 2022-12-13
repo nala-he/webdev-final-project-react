@@ -125,7 +125,7 @@ const MyRecipesItem = ({recipe}) => {
                                     <span className="text-dark">{recipe.intro.substring(0,53)} </span>
                                 }
                                 <span className="text-dark d-none d-md-block">
-                    Total Time: {parseInt(recipe.prepTime) + parseInt(recipe.cookTime)} mins</span>
+                    Total Time: {recipe.totalTime}</span>
                                 <span className="text-dark d-none d-md-block">Servings: {recipe.servings}</span>
                                 <span className="text-dark d-none d-md-block">Difficulty: {recipe.difficulty}</span>
                             </div>

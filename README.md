@@ -1,6 +1,6 @@
 # CS5610 Final Project RecipeFridge
 
-RecipeFridge is an application that allows you to view, create, and save recipes from other users on the app. You can even search for recipes based on ingredients in your refrigerator!
+RecipeFridge is an application that allows you to view and save recipes from other users on the app, or create your own recipe. You can even search for recipes based on ingredients in your refrigerator!
 
 ## Running this app locally
 

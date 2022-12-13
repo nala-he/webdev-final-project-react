@@ -1,0 +1,20 @@
+[
+  { 
+    "authorId": "",
+    "author": "",
+    "avatar": "emptyAvatar.png",
+    "dishName": "",
+    "intro": "",
+    "recipePic": "",
+    "prepTime": "",
+    "cookTime": "",
+    "totalTime": "",
+    "servings": null,
+    "difficulty": "",
+    "calories": null,
+    "fat": "",
+    "carbs": "",
+    "protein": "",
+    "privacy": "PUBLIC"
+  }
+]

@@ -1,0 +1,50 @@
+.wd-avatar {
+    width:60px;
+    height:60px;
+    border-radius: 20%;
+    object-fit: cover;
+}
+
+.wd-recipe-image {
+    width:90%;
+    /*height:180px;*/
+    max-height: 180px;
+    border-radius: 15px;
+    object-fit: cover;
+}
+
+.wd-item-border {
+    border-radius: 15px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #c0c0bc;
+    max-height: 360px;
+    background-color:#eae6e0;
+}
+
+.wd-item-content {
+    border-radius: 15px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #c0c0bc;
+    /*height: 280px;*/
+    max-height: 280px;
+    background-color:#ffffff;
+}
+
+.wd-nudge-up {
+    bottom: 7px;
+    left: 20px;
+}
+
+.wd-text-md {
+    font-size: small;
+}
+
+.wd-link {
+    text-decoration: none;
+}
+
+.wd-wrap {
+    overflow-wrap: break-word;
+}

@@ -1,0 +1,18 @@
+[
+    {"_id": "1234",
+      "rid": "123",
+      "direction": "direction1"
+    },
+    {"_id": "2345",
+      "rid": "123",
+      "direction": "direction2"
+    },
+    {"_id": "3456",
+      "rid": "124",
+      "direction": "direction2.1"
+    },
+    {"_id": "4567",
+      "rid": "123",
+      "direction": "direction3"
+    }
+]

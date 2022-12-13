@@ -1,0 +1,61 @@
+.wd-border {
+    border-radius: 12px;
+    border-style: solid;
+    border-width: 1.5px;
+    border-color: #c0c0bc;
+    height: 100%;
+}
+
+.wd-avatar {
+    width:60px;
+    height:60px;
+    border-radius: 20%;
+    object-fit: cover;
+}
+
+.wd-saved-recipe-image {
+    width:90px;
+    height: 60px;
+    border-radius: 15px;
+    object-fit: cover;
+}
+
+.wd-saved-item-border {
+    border-radius: 15px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #c0c0bc;
+    height: 160px;
+    background-color:#eae6e0;
+}
+
+.wd-saved-item-content {
+    border-radius: 15px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #c0c0bc;
+    /*height: 280px;*/
+    height: 100px;
+    background-color:#ffffff;
+}
+
+.wd-nudge-up {
+    bottom: 7px;
+    left: 20px;
+}
+
+.wd-text-md {
+    font-size: small;
+}
+
+.wd-btn-align {
+    line-height: 2;
+}
+
+.wd-wrap {
+    overflow-wrap: break-word;
+  }
+
+.wd-logo {
+    width: 10px;
+}

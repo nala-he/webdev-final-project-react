@@ -1,0 +1,22 @@
+[
+  {
+    "_id": "123",
+    "checked": true,
+    "title": "Tomato"
+  },
+  {
+    "_id": "234",
+    "checked": true,
+    "title": "Garlic"
+  },
+  {
+    "_id": "345",
+    "checked": true,
+    "title": "Chicken"
+  },
+  {
+    "_id": "456",
+    "checked": false,
+    "title": "Shrimp"
+  }
+]

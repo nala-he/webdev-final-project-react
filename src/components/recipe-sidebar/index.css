@@ -1,0 +1,31 @@
+.wd-bg-light-blue {
+    background-color: #E6F0FA;
+}
+
+.wd-component-outline {
+    border-radius: 12px;
+    border-style: solid;
+    border-width: 1.5px;
+    border-color: #c0c0bc;
+    height: 800px;
+}
+
+.wd-button-blue {
+    background-color: #A4D0F9;
+    border: 0;
+    border-radius: 12px;
+    padding: 8px;
+    color: black;
+}
+
+.wd-width-80 {
+    width: 80%;
+}
+
+.wd-font-18 {
+    font-size: 18px;
+}
+
+.form-control.wd-font-18 {
+    font-size: 18px;
+}

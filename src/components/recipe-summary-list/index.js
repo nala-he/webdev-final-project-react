@@ -26,11 +26,11 @@ const RecipeSummaryList = () => {
 
   return(
     <div>
-        <div className="position-relative m-3">
+        {/* <div className="position-relative m-3">
             <input placeholder="Search Recipes"
                     className="form-control rounded-pill ps-5 text-dark"/>
             <i className="bi bi-search position-absolute wd-nudge-up text-dark"></i>
-        </div>
+        </div> */}
       {recipesList}
       {/* {
         recipes.recipes.map(recipe =>

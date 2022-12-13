@@ -10,7 +10,7 @@ You can start it in main branch of the `webdev-final-project-node` directory by 
 
 ## Running the frontend
 In the main branch of the `webdev-final-project-react` directory, run `npm start` (you'll need to run
-npm install the very first time you run it). After several moments (or minutes, depending on the
+`npm install` the very first time you run it). After several moments (or minutes, depending on the
 speed of your machine), a browser will open with the frontend running locally. The frontend will
 automatically re-compile and reload in your browser if you change any files in the
 `webdev-final-project-react/src` directory.

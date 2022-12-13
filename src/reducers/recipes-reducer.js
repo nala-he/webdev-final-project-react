@@ -31,16 +31,11 @@ const recipesSlice = createSlice({
             },
         [updateRecipeThunk.fulfilled]:
             (state, {payload}) => {
-                console.log(state.recipes.length);
                 const ndx = state.recipes.length - 1;
-                // const index = state.recipes.findIndex((recipe) => recipe._id === payload._id);
-                console.log(state.recipes[ndx]);
                 state.recipes[ndx] = {
                     ...state.recipes[ndx],
                     ...payload.newRecipe
                 }
-                console.log(payload.newRecipe);
-                console.log(state.recipes[ndx]);
             }
     },
     reducers: {

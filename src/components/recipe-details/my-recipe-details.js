@@ -20,12 +20,13 @@ const MyRecipeDetails = () => {
     // console.log(paths);
     let rid = paths[3];
     let uid;
+    let friendId;
     if (currentUser) {
-        let uid = currentUser._id;
+        uid = currentUser._id;
     }
     if (paths.length === 7) {
         rid = paths[5];
-        let uid = paths[3];
+        friendId = paths[3];
     }
  
     // console.log(rid);
@@ -60,7 +61,7 @@ const MyRecipeDetails = () => {
                 }
                 {
                     paths.length === 7 &&
-                    <Link to={`/friends/profile/${uid}/my-recipes`}>
+                    <Link to={`/friends/profile/${friendId}/my-recipes`}>
                         <i className="bi bi-x-square text-black fs-3"></i>
                     </Link>
                 }

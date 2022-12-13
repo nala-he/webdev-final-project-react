@@ -1,22 +1,47 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {useLocation} from "react-router";
 import {useSelector, useDispatch} from "react-redux";
 import {Link} from "react-router-dom";
 import { deleteRecipeThunk } from "../../services/recipes-thunk";
 import "./index.css";
+import {findUsersIamFollowingThunk} from "../../services/friends-thunks";
 import * as service from "../../services/saved-recipes-service";
 import {findSavedRecipesByUserThunk} from "../../services/saved-recipes-thunk";
 
 const MyRecipesItem = ({recipe}) => {
     let friend = useSelector(state => state.friendProfile);
     let {currentUser} = useSelector(state => state.usersData);
-
+    let uid;
+    if (currentUser) {
+        uid = currentUser._id;
+    }
+    const {following} = useSelector(state => state.followsData);
+    const followingList = following.map(friend => friend.following._id);
+    console.log(followingList);
     const {pathname} = useLocation();
     const paths = pathname.split('/');
-    let isMyRecipes = !paths.includes(friend._id);
-    const me = (paths[1] === 'profile') && (!paths.includes('friends'));
 
     const dispatch = useDispatch();
+
+    useEffect(() => {
+        if (currentUser) {
+            uid = currentUser._id;
+            dispatch(findUsersIamFollowingThunk(uid));
+        }
+    }, [currentUser, dispatch]);
+
+    let isFollowing;
+    let notFollowingPublic;
+    if (paths.includes('friends')) {
+        const friendId = paths[3];
+        isFollowing = followingList.includes(friendId);
+        console.log(isFollowing);
+        notFollowingPublic = !followingList.includes(friendId) && (recipe.privacy === 'PUBLIC');
+    }
+    let isMyRecipes = !paths.includes('friends');
+
+    //let isMyRecipes = !paths.includes(friend._id);
+    const me = (paths[1] === 'profile') && (!paths.includes('friends'));
 
     const deleteRecipeHandler = async (id) => {
         // remove all saved recipes that exist in database associated to recipe to be deleted
@@ -33,7 +58,8 @@ const MyRecipesItem = ({recipe}) => {
     return (
         <>
         {
-            recipe && (recipe.privacy === "PUBLIC" || isMyRecipes) &&
+            recipe && (isFollowing || isMyRecipes || notFollowingPublic) &&
+            // recipe && (recipe.privacy === "PUBLIC" || isMyRecipes) &&
             <div className="m-3 p-2 wd-my-recipe-content">
                 <div className="row d-flex align-items-center ps-2 pe-2">
                     <span className="col-2">{recipe.privacy}</span>

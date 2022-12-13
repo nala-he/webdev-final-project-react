@@ -28,8 +28,8 @@ const MyRecipes = () => {
     useEffect(() => {
         try {
             if (currentUser) {
-                dispatch(findUserByIdThunk(currentUser._id));
-                dispatch(findRecipesByAuthorThunk(currentUser._id));
+              dispatch(findUserByIdThunk(currentUser._id));
+              dispatch(findRecipesByAuthorThunk(currentUser._id));
             }
             // console.log(recipes);
         }

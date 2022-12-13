@@ -30,6 +30,7 @@ const CreateRecipeDetails = ({recipe}) => {
     let [editFat, setFat] = useState('');
     let [editCarbs, setCarbs] = useState('');
     let [editProtein, setProtein] = useState('');
+    let [editPrivacy, setPrivacy] = useState('PUBLIC');
 
     const createClickHandler = () => {
         const newRecipe = {
@@ -47,9 +48,9 @@ const CreateRecipeDetails = ({recipe}) => {
             calories: editCalories,
             fat: editFat,
             carbs: editCarbs,
-            protein: editProtein
+            protein: editProtein,
+            privacy: editPrivacy
         }
-        console.log(newRecipe);
         dispatch(updateRecipeThunk({rid,newRecipe}));
         setIntro("newIntro");
         navigate("/home");
@@ -97,11 +98,27 @@ const CreateRecipeDetails = ({recipe}) => {
                         <label className="col-3 fw-bolder d-xl-none">Recipe Intro: </label>
                         <textarea
                             type = "text"
-                            id = "dishName"
+                            id = "intro"
                             maxLength={63}
                             onChange={(e)=>setIntro(e.target.value)}
                             className = "col-8 wd-input-text">
                         </textarea>
+                    </div>
+                    <div className="row align-items-center mt-2">
+                        {/* large */}
+                        <label className="col-3 d-none d-xl-block wd-input-label">Privacy: </label>
+                        {/* xs-large */}
+                        <label className="col-3 fw-bolder d-xl-none">Privacy: </label>
+                        <select
+                            type = "text"
+                            id = "privacy"
+                            onChange={(e)=>setPrivacy(e.target.value)}
+                            className = "col-8 wd-input-text">
+                                <option value="PUBLIC">
+                                    PUBLIC</option>
+                                <option value="PRIVATE">
+                                    PRIVATE</option>
+                        </select>
                     </div>
                     {/* <div className="fs-6 text-wrap">
                         Created By: {profile.username}

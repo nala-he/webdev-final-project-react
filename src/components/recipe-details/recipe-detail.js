@@ -1,10 +1,48 @@
-import React from "react";
+import React, {useEffect,useState} from "react";
 import "./index.css";
+import {Link, useNavigate} from "react-router-dom";
+import {useLocation} from "react-router";
+import {createSavedRecipeThunk} from "../../services/saved-recipes-thunk";
+import {useDispatch, useSelector} from "react-redux";
 import IngredientsList from "./ingredients-list";
 import DirectionsList from "./directions-list";
-import NutritionalFacts from "./nutritional-facts";
+import {findUserByIdThunk} from "../../services/users-thunks";
+
 
 const RecipeDetail = ({recipe}) => {
+    const {currentUser} = useSelector(state => state.usersData);
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+    const {pathname} = useLocation();
+    const paths = pathname.split('/');
+    let savedOrMy;
+    if (paths.includes("saved-recipes") || paths.includes("my-recipes")) {
+        savedOrMy = true;
+    }
+    useEffect(() => {
+        try {
+            if (currentUser) {
+              dispatch(findUserByIdThunk(currentUser._id));
+            }
+            // console.log(recipes);
+        }
+        catch(e) {
+            navigate('/login');
+        }
+        // console.log(recipes)
+    }, [currentUser, dispatch,navigate]);
+
+    const saveRecipeClickHandler = () => {
+        if (currentUser) {
+            const uid = currentUser._id;
+            dispatch(createSavedRecipeThunk({uid, rid: recipe._id}))
+                .then(navigate(`/users/${uid}/saved-recipes`));
+        } else {
+            navigate('/login');
+        }
+    };
+
     return (
         <div className="m-3 wd-border h-100 bg-white">
             {/* author and dish title */}
@@ -85,14 +123,14 @@ const RecipeDetail = ({recipe}) => {
             </div>
 
             {/* ingredients */}
-            {/* <div className="row wd-border m-4 mt-3">
-                <IngredientsList ingredients={recipe.ingredients}/>
-            </div> */}
+            <div className="row wd-border m-4 mt-3">
+                <IngredientsList/>
+            </div>
 
             {/* directions */}
-            {/* <div className="row wd-border m-4">
-                <DirectionsList directions={recipe.directions}/>
-            </div> */}
+            <div className="row wd-border m-4">
+                <DirectionsList/>
+            </div>
 
             {/* nutritional facts */}
             <div className="row wd-border m-4">
@@ -108,6 +146,25 @@ const RecipeDetail = ({recipe}) => {
                     </div>
                 </div>
             </div>
+
+            {/* Save Recipe & cancel button */}
+            {!savedOrMy &&
+            <div className="row justify-content-evenly mb-2">
+                <button
+                onClick={saveRecipeClickHandler}
+                    className="col-3 btn btn-sm btn-secondary m-2">
+                    Save Recipe
+                </button>
+                <button
+                    className="col-3 btn btn-sm btn-secondary m-2">
+                    Follow Author
+                </button>
+                <Link to="/home"
+                      className="col-3 btn btn-sm btn-secondary m-2">
+                    Close
+                </Link>
+            </div>
+            }
         </div>
     );
 };

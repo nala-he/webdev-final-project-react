@@ -32,12 +32,12 @@ const PublicMyRecipes = () => {
         <div className="mt-3">
             <div>
                 {/* Search bar */}
-                <div className="position-relative m-3">
+                {/* <div className="position-relative m-3">
                     <input placeholder="Search Recipes"
                            className="form-control rounded-pill ps-5 text-dark"/>
                     <i className="bi bi-search position-absolute wd-nudge-up text-dark"></i>
-                </div>
-                <div className="ms-4 text-dark fw-bold">
+                </div> */}
+                <div className="ms-4 pt-2 text-dark fw-bold">
                     <span>Total Created Recipes: {recipes.length}</span>
                 </div>
                 {

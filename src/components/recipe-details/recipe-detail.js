@@ -7,12 +7,14 @@ import {useDispatch, useSelector} from "react-redux";
 import IngredientsList from "./ingredients-list";
 import DirectionsList from "./directions-list";
 import {findUserByIdThunk} from "../../services/users-thunks";
-
+import {followUserThunk} from "../../services/friends-thunks";
 
 const RecipeDetail = ({recipe}) => {
     const {currentUser} = useSelector(state => state.usersData);
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    console.log(recipe);
+    console.log(recipe.authorId);
 
     const {pathname} = useLocation();
     const paths = pathname.split('/');
@@ -28,7 +30,7 @@ const RecipeDetail = ({recipe}) => {
             // console.log(recipes);
         }
         catch(e) {
-            navigate('/login');
+            // navigate('/login');
         }
         // console.log(recipes)
     }, [currentUser, dispatch,navigate]);
@@ -38,6 +40,15 @@ const RecipeDetail = ({recipe}) => {
             const uid = currentUser._id;
             dispatch(createSavedRecipeThunk({uid, rid: recipe._id}))
                 .then(navigate(`/users/${uid}/saved-recipes`));
+        } else {
+            navigate('/login');
+        }
+    };
+
+    const followClickHandler = (authorId) => {
+        if (currentUser) {
+            dispatch(followUserThunk(authorId))
+                .then(navigate(`/profile`));
         } else {
             navigate('/login');
         }
@@ -148,7 +159,7 @@ const RecipeDetail = ({recipe}) => {
             </div>
 
             {/* Save Recipe & cancel button */}
-            {!savedOrMy &&
+            {!savedOrMy && currentUser &&
             <div className="row justify-content-evenly mb-2">
                 <button
                 onClick={saveRecipeClickHandler}
@@ -156,9 +167,19 @@ const RecipeDetail = ({recipe}) => {
                     Save Recipe
                 </button>
                 <button
+                    onClick={() => followClickHandler(recipe.authorId)}
                     className="col-3 btn btn-sm btn-secondary m-2">
                     Follow Author
                 </button>
+                <Link to="/home"
+                      className="col-3 btn btn-sm btn-secondary m-2">
+                    Close
+                </Link>
+            </div>
+            }
+            {/* if not logged in */}
+            {!currentUser &&
+            <div className="row justify-content-evenly mb-2">
                 <Link to="/home"
                       className="col-3 btn btn-sm btn-secondary m-2">
                     Close

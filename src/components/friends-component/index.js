@@ -62,11 +62,11 @@ const FriendsComponent = () => {
     return(
         <div className="m-3">
             {/* Search bar */}
-            <div className="position-relative">
+            {/* <div className="position-relative">
                 <input className="ps-5 form-control rounded-pill text-dark"
                        placeholder="Search Friends"/>
                 <i className="position-absolute wd-search-friends bi bi-search"></i>
-            </div>
+            </div> */}
 
             {/* Followers/Following */}
             {

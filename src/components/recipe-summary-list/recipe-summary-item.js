@@ -7,15 +7,7 @@ import {Link} from "react-router-dom";
 import {followUserThunk} from "../../services/friends-thunks";
 
 const RecipeSummaryItem = (
-    {
-    recipe = {
-        "dishName": "Mashed Potato",
-        "avatar": "avatar.png",
-        "author": "@cook",
-        "recipePic": "mashedPotato.jpg",
-        "intro": "Mashed potato recipe"
-        }
-    }
+    {recipe}
     
 ) => {
     const {currentUser} = useSelector(state => state.usersData);

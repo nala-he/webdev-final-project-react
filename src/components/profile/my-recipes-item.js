@@ -17,7 +17,7 @@ const MyRecipesItem = ({recipe}) => {
     }
     const {following} = useSelector(state => state.followsData);
     const followingList = following.map(friend => friend.following._id);
-    console.log(followingList);
+    // console.log(followingList);
     const {pathname} = useLocation();
     const paths = pathname.split('/');
 
@@ -35,7 +35,7 @@ const MyRecipesItem = ({recipe}) => {
     if (paths.includes('friends')) {
         const friendId = paths[3];
         isFollowing = followingList.includes(friendId);
-        console.log(isFollowing);
+        // console.log(isFollowing);
         notFollowingPublic = !followingList.includes(friendId) && (recipe.privacy === 'PUBLIC');
     }
     let isMyRecipes = !paths.includes('friends');

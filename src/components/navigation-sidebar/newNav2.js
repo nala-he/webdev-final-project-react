@@ -12,8 +12,9 @@ const NewNavigationSidebar2 = () => {
     const {pathname} = useLocation();
     const paths = pathname.split('/');
     let temp = paths[paths.length - 1] === '' ? 'home' : paths[paths.length - 1];
+    let firstWord = paths[1];
     let active = paths.includes("my-recipes") || paths.includes("profile") ? "profile" : temp;
-
+    
     const {currentUser} = useSelector(state => state.usersData);
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -21,9 +22,6 @@ const NewNavigationSidebar2 = () => {
         dispatch(logoutThunk())
             .then(() => navigate('/login'));
     }
-
-    // hard coded user for now
-    // const uid = "638624452cf03e49f0977570";
 
     const createRecipeHandler = () => {
         if (currentUser) {
@@ -46,9 +44,6 @@ const NewNavigationSidebar2 = () => {
                             <span className="d-none d-xl-block wd-sitename text-black">
                                 RecipeFridge
                             </span>
-                            {/*<h6 className="d-none d-xl-block p-3 fw-bold text-black">*/}
-                            {/*    RecipeFridge*/}
-                            {/*</h6>*/}
                         </div>
                 </div>
                 {/*Navigation Buttons*/}
@@ -109,10 +104,11 @@ const NewNavigationSidebar2 = () => {
                 <div className="m-2">
                     {
                     ("/friends" !== "/login" && "/friends" !== "/logout") &&
-                    <Link to="/friends" className={`${"/friends".includes(active) ? 'active' : ''}`}>
+                    <Link to="/friends" className={`${"/friends/followers".includes(firstWord || active)
+                                                      ? 'active' : ''}`}>
                         {/*Navigation Button Item*/}
                         <button type="button" onClick={deleteInvalidRecipesHandler} className={`button mt-2 mb-2 w-100
-                        ${"/friends".includes(active) ? 'wd-button-active' : ''}`}>
+                        ${"/friends/followers".includes(firstWord || active) ? 'wd-button-active' : ''}`}>
                             <div className="row row-cols-12 pt-1 pb-1">
                                 <div className="col-2 d-flex align-items-center">
                                     <i className="bi bi-people-fill"> </i>

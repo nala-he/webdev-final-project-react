@@ -10,7 +10,7 @@ const NewNavigationSidebar = () => {
     const {pathname} = useLocation();
     const paths = pathname.split('/');
     let active = (paths[1] !== '') ? paths[1] : 'home';
-
+    
     const dispatch = useDispatch();
 
     // hard coded user for now

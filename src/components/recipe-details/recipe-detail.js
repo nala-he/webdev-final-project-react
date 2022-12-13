@@ -13,8 +13,8 @@ const RecipeDetail = ({recipe}) => {
     const {currentUser} = useSelector(state => state.usersData);
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    console.log(recipe);
-    console.log(recipe.authorId);
+    // console.log(recipe);
+    // console.log(recipe.authorId);
 
     const {pathname} = useLocation();
     const paths = pathname.split('/');

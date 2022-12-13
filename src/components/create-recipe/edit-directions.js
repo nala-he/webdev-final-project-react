@@ -26,7 +26,7 @@ const EditDirections = ({recipe}) => {
     }
 
     const deleteDirectionHandler = (directionId) => {
-        console.log(directionId);
+        // console.log(directionId);
         dispatch(deleteRecipeDirectionThunk(directionId));
     }
 

@@ -33,7 +33,7 @@ const MyRecipeDetails = () => {
 
     useEffect(() => {
         async function fetchData() {
-            console.log(rid);
+            // console.log(rid);
             const targetRecipe = await service.findRecipeById(rid)
             setRecipe(targetRecipe)
         }

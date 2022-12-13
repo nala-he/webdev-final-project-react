@@ -6,7 +6,6 @@ const USERS_API = `${FRIDGE_API_BASE}/users`;
 
 export const createRecipe = async (uid) => {
     const response = await axios.post(`${USERS_API}/${uid}/recipes`);
-    // console.log(response.data);
     return response.data;
 }
 
@@ -22,9 +21,6 @@ export const deleteInvalidRecipes = async () => {
 
 export const updateRecipe = async (rid, recipe) => {
     await axios.put(`${RECIPES_API}/${rid}`, recipe);
-    // console.log("service debug");
-    // console.log(rid);
-    // console.log(recipe);
     return recipe;
 }
 
@@ -35,7 +31,6 @@ export const findRecipes = async () => {
 
 export const findRecipeById = async (rid) => {
     const response = await axios.get(`${RECIPES_API}/${rid}`);
-    // console.log(response.data);
     return response.data;
 }
 

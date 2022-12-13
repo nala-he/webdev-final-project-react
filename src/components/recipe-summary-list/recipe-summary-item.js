@@ -90,17 +90,17 @@ const RecipeSummaryItem = (
                          src={`/images/${recipe.recipePic}`} alt="recipePic"/> */}
                 </div>
             </div>
-            <div className="row">
+            <div className="row d-flex align-items-center justify-content-center">
                 <div className="btn col-4 text-dark"
                      onClick={saveRecipeClickHandler}>
-                    <div className="d-block d-xl-none">
-                        <i className="bi bi-bookmark text-dark p-2"></i>
-                        <span className="wd-text-md">Save Recipe</span>
-                    </div>
-                    <div className="d-none d-xl-block">
-                        <i className="bi bi-bookmark text-dark p-2"></i>
-                        <span>Save Recipe</span>
-                    </div>
+                        <div className="d-block d-xl-none">
+                            <i className="bi bi-bookmark text-dark p-2"></i>
+                            <span className="wd-text-md">Save Recipe</span>
+                        </div>
+                        <div className="d-none d-xl-block">
+                            <i className="bi bi-bookmark text-dark p-2"></i>
+                            <span>Save Recipe</span>
+                        </div>
                 </div>
                 <div className="btn col-4 text-dark">
                     <Link className="wd-link" to={`/recipes/${recipe._id}/details`}>
